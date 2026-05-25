@@ -1,0 +1,169 @@
+[gd_scene format=3 uid="uid://dnhdvxp66r0sr"]
+
+[ext_resource type="Script" uid="uid://ddihppcirpcdq" path="res://Scripts/main_menu.gd" id="1_28flt"]
+[ext_resource type="Texture2D" uid="uid://dppvuj7nubmc2" path="res://Assets/Main Menu/ButtonsMenu/MenuButtonsStart.png" id="2_1ehe0"]
+[ext_resource type="Texture2D" uid="uid://bn57vtncmn8xm" path="res://Assets/Main Menu/ButtonsMenu/MenuButtonsStartHighlighted.png" id="3_ce3w2"]
+[ext_resource type="Texture2D" uid="uid://b3dd0kfmhikxr" path="res://Assets/Main Menu/ButtonsMenu/MenuButtonsExit.png" id="4_n45e2"]
+[ext_resource type="Script" uid="uid://cvpv3nvnh76b4" path="res://Scripts/start.gd" id="5_cp0ys"]
+[ext_resource type="Texture2D" uid="uid://h6e4x3cpftt0" path="res://Assets/Main Menu/ButtonsMenu/MenuButtonsExitHighlighted.png" id="5_opfnp"]
+[ext_resource type="Texture2D" uid="uid://bq2nlmwy883b3" path="res://Assets/Main Menu/ButtonsMenu/MenuButtonsStartHover.png" id="5_trj04"]
+[ext_resource type="Texture2D" uid="uid://b4lrr7vr1hy4m" path="res://Assets/Main Menu/Title/Title.png" id="6_opfnp"]
+[ext_resource type="Script" uid="uid://c57isocbv8ffm" path="res://Scripts/exit.gd" id="8_yhxw7"]
+[ext_resource type="Texture2D" uid="uid://bavjjf76l83xm" path="res://Assets/Main Menu/ButtonsMenu/MenuButtonsExitHover.png" id="9_16hvj"]
+[ext_resource type="PackedScene" uid="uid://by1622uoguy0" path="res://Scenes/Transition.tscn" id="11_vr1f0"]
+
+[sub_resource type="Animation" id="Animation_opfnp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Button_Manager/Start:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(249, 156)]
+}
+
+[sub_resource type="Animation" id="Animation_cp0ys"]
+resource_name = "buttonstart"
+length = 0.6666667
+loop_mode = 1
+step = 0.33333334
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Button_Manager/Start:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(249, 156), Vector2(251, 156)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_opfnp"]
+_data = {
+&"RESET": SubResource("Animation_opfnp"),
+&"buttonstart": SubResource("Animation_cp0ys")
+}
+
+[sub_resource type="Animation" id="Animation_vr1f0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Button_Manager/Exit:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(249.00691, 212)]
+}
+
+[sub_resource type="Animation" id="Animation_16hvj"]
+resource_name = "buttonexit"
+length = 0.6768682
+loop_mode = 1
+step = 0.33333334
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Button_Manager/Exit:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.07555738),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(249, 212), Vector2(251, 212)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vr1f0"]
+_data = {
+&"RESET": SubResource("Animation_vr1f0"),
+&"buttonexit": SubResource("Animation_16hvj")
+}
+
+[node name="MainMenu" type="Node2D" unique_id=290221870]
+script = ExtResource("1_28flt")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=339475466]
+
+[node name="title" type="Sprite2D" parent="." unique_id=402884615]
+texture_filter = 1
+position = Vector2(321.00003, 73)
+scale = Vector2(2.1655185, 2.158934)
+texture = ExtResource("6_opfnp")
+
+[node name="Button_Manager" type="Control" parent="." unique_id=916885730]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Start" type="TextureButton" parent="Button_Manager" unique_id=2039831401]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 229.0
+offset_top = 136.0
+offset_right = 358.0243
+offset_bottom = 185.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("2_1ehe0")
+texture_pressed = ExtResource("3_ce3w2")
+texture_hover = ExtResource("5_trj04")
+script = ExtResource("5_cp0ys")
+
+[node name="Option" type="TextureButton" parent="Button_Manager" unique_id=521592957]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 183.0
+offset_right = 410.0
+offset_bottom = 247.0
+
+[node name="Exit" type="TextureButton" parent="Button_Manager" unique_id=1399843577]
+layout_mode = 0
+offset_left = 249.00691
+offset_top = 212.0
+offset_right = 377.00873
+offset_bottom = 260.9994
+texture_normal = ExtResource("4_n45e2")
+texture_pressed = ExtResource("5_opfnp")
+texture_hover = ExtResource("9_16hvj")
+script = ExtResource("8_yhxw7")
+
+[node name="ButtonsAnimation" type="AnimationPlayer" parent="." unique_id=1675666091]
+libraries/ = SubResource("AnimationLibrary_opfnp")
+
+[node name="ButtonsAnimation2" type="AnimationPlayer" parent="." unique_id=1334672466]
+libraries/ = SubResource("AnimationLibrary_vr1f0")
+
+[node name="Fade_transition" parent="." unique_id=1693795128 instance=ExtResource("11_vr1f0")]
+visible = false
+
+[node name="fade_timer" type="Timer" parent="Fade_transition" unique_id=1011323230]
+wait_time = 1.5
+
+[node name="fade_timerstart" type="Timer" parent="Fade_transition" unique_id=1333577638]
+wait_time = 2.0
+
+[connection signal="mouse_entered" from="Button_Manager/Start" to="Button_Manager/Start" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Button_Manager/Start" to="Button_Manager/Start" method="_on_mouse_exited"]
+[connection signal="pressed" from="Button_Manager/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Button_Manager/Option" to="." method="_on_option_pressed"]
+[connection signal="mouse_entered" from="Button_Manager/Exit" to="Button_Manager/Exit" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Button_Manager/Exit" to="Button_Manager/Exit" method="_on_mouse_exited"]
+[connection signal="pressed" from="Button_Manager/Exit" to="." method="_on_exit_pressed"]
+[connection signal="timeout" from="Fade_transition/fade_timer" to="." method="_on_fade_timer_timeout"]
+[connection signal="timeout" from="Fade_transition/fade_timerstart" to="." method="_on_fade_timer_timeout"]
