@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b8w4kw2ipi6o8"]
 
-[ext_resource type="Script" uid="uid://1qbo87k3n7ci" path="res://Scenes/enemy.gd" id="1_1f0kj"]
+[ext_resource type="Script" uid="uid://1qbo87k3n7ci" path="res://Scripts/enemy.gd" id="1_1f0kj"]
 [ext_resource type="Texture2D" uid="uid://vmkdaniqpouc" path="res://Assets/Enemy/Placeholder/PurpleBlue/ToxicFrogPurpleBlue_Sheet.png" id="1_hghv2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hgeoe"]

@@ -465,8 +465,8 @@ func _dashingTime(time):
 #Attack 
 func handle_attack_animation(attack_type):
 	if current_attack:
-		#var random_variation = randi_range(1, 3)
-		var animation = str(attack_type, "_attack")
+		var random_vari = randi_range(1, 3)
+		var animation = str(attack_type, "_attack_", random_vari)
 		PlayerSprite.play(animation)
 
 
@@ -482,5 +482,5 @@ func handle_attack_animation(attack_type):
 
 
 func _on_animated_sprite_2d_animation_finished() -> void:
-	if current_attack and ("_attack" in PlayerSprite.animation):
+	if current_attack and ("_attack_" in PlayerSprite.animation):
 		current_attack = false
