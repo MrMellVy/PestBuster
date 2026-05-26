@@ -37,7 +37,7 @@ func _process(delta: float) -> void:
 	Global.EnemyDamageZone = $EnemyDealDamageArea
 	player = Global.playerBody
 	
-	if player_in_area and !defeat and !taking_damage:
+	if player_in_area and can_attack and !defeat and !taking_damage:
 		attack_sequence()
 	
 	move(delta)
@@ -51,16 +51,19 @@ func move(delta):
 	if is_dealing_damage:
 		velocity.x = 0
 		return
+		
 	if !is_enemy_chase:
 		velocity += dir * speed * delta
-	elif is_enemy_chase and  !taking_damage:
+	elif taking_damage:
+		var knockbar_dir = position.direction_to(player.position) * knockback_force
+		velocity.x = knockbar_dir.x
+	elif player_in_area:
+		velocity.x = 0
+	elif is_enemy_chase:
 		var dir_to_player = position.direction_to(player.position) * speed
 		velocity.x = dir_to_player.x
 		if velocity.x != 0:
 			dir.x = abs(velocity.x) / velocity.x
-	elif taking_damage:
-		var knockbak_dir = position.direction_to(player.position) * knockback_force
-		velocity.x = knockbak_dir.x
 	is_roaming = true
 
 func handle_animation():
@@ -74,7 +77,10 @@ func handle_animation():
 	elif is_dealing_damage:
 		anim_sprite.play("attack")
 	else:
-		anim_sprite.play("move")
+		if velocity.x == 0:
+			anim_sprite.play("idle")
+		else:
+			anim_sprite.play("move")
 		if dir.x == -1:
 			anim_sprite.flip_h = true
 		elif dir.x == 1:
@@ -122,14 +128,15 @@ func attack_sequence():
 	is_dealing_damage = true
 	await $AnimatedSprite2D.animation_finished
 	is_dealing_damage = false
-	await get_tree().create_timer(4.5).timeout
+	await get_tree().create_timer(3).timeout
 	can_attack = true
 
 func _on_enemy_deal_damage_area_area_entered(area: Area2D) -> void:
 	if area == Global.playerHitbox:
-		is_dealing_damage = true
+		player_in_area = true
 
 
 func _on_enemy_deal_damage_area_area_exited(area: Area2D) -> void:
 	if area == Global.playerHitbox:
-		is_dealing_damage = false
+		player_in_area = false
+	

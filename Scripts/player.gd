@@ -100,7 +100,7 @@ var health_max = 100
 var health_min = 0
 var can_take_damage: bool
 var defeat: bool
-
+var is_hurt: bool = false
 
 var anim
 var col
@@ -190,7 +190,7 @@ func _updateData():
 		twoWayDashVertical = true
 		
 func _process(_delta) -> void:
-	if defeat: return
+	if defeat or is_hurt: return
 	# Direction
 	if is_on_wall() and !is_on_floor() and latch and wallLatching and ((wallLatchingModifer and latchHold) or !wallLatchingModifer):
 		latched = true
@@ -249,7 +249,13 @@ func _physics_process(delta) -> void:
 		if !current_attack:
 				if Input.is_action_just_pressed("attack"):
 					current_attack = true
-					attack_type = "single" if is_on_floor() else "air"
+					#check for dash too.
+					if dashing:
+						attack_type = "dash"
+					elif is_on_floor():
+						attack_type = "single"
+					else:
+						attack_type = "air"
 					set_damage(attack_type)
 					handle_attack_animation(attack_type)
 				elif Input.is_action_just_pressed("double"):
@@ -412,7 +418,10 @@ func _physics_process(delta) -> void:
 				dashCount += -1
 				movementInputMonitoring = Vector2(false, false)
 				_inputPauseReset(dTime)
-				
+			if current_attack and (attack_type == "single" or attack_type == "double"):
+				attack_type = "dash"
+				set_damage(attack_type)
+				handle_attack_animation(attack_type)
 		if dashing and velocity.x > 0 and leftTap and dashCancel:
 			velocity.x = 0
 		if dashing and velocity.x < 0 and rightTap and dashCancel:
@@ -424,13 +433,17 @@ func check_hitbox():
 	if !can_take_damage or defeat:
 		return
 	var hitbox_areas = $PlayerHitbox.get_overlapping_areas()
+	
 	for hitbox in hitbox_areas:
-		if hitbox.get_parent() is Enemy:
-			take_damage(Global.EnemyDamageAmount)
-			break
-			#add more if there many enemy down here
-		#elif hitbox.get_parent() is OtherEnemy:
-			#take_damage(Global.EnemyDamageAmount)
+		var parent_node = hitbox.get_parent()
+		
+		if parent_node is Enemy:
+			if parent_node.is_dealing_damage == true:
+				take_damage(Global.EnemyDamageAmount)
+				break
+				#add more if there many enemy down here
+			#elif hitbox.get_parent() is OtherEnemy:
+				#take_damage(Global.EnemyDamageAmount)
 
 func take_damage(damage):
 	if defeat or damage <= 0: 
@@ -443,8 +456,17 @@ func take_damage(damage):
 			defeat = true
 			handle_defeat_animation()
 		else:
+			handle_hurt_animation()
 			take_damage_cooldown(2.0)
-		
+
+func handle_hurt_animation():
+	is_hurt = true
+	current_attack = false
+	velocity.x = 0
+	PlayerSprite.play("hit")
+	await PlayerSprite.animation_finished
+	is_hurt = false
+
 func handle_defeat_animation():
 	velocity = Vector2.ZERO
 	PlayerSprite.play("defeat")
@@ -526,6 +548,7 @@ func _dashingTime(time):
 #Attack 
 func handle_attack_animation(attack_type):
 	if current_attack:
+		PlayerSprite.speed_scale = 1.0
 		var random_vari = randi_range(1, 3)
 		var animation = str(attack_type, "_attack_", random_vari)
 		PlayerSprite.play(animation)
@@ -542,17 +565,7 @@ func handle_attack_animation(attack_type):
 				current_attack = false
 				
 func toggle_damage_collisions(attack_type):
-	var damage_zone_collision = deal_damage_zone.get_node("CollisionShape2D2")
-	var wait_time: float
-	if attack_type == "air":
-		wait_time = 0.8
-	elif attack_type == "single":
-		wait_time = 1
-	elif attack_type == "double":
-		wait_time = 1.2
-	damage_zone_collision.disabled = false
-	await get_tree().create_timer(wait_time).timeout
-	damage_zone_collision.disabled = true
+	deal_damage_zone.get_node("CollisionShape2D2").disabled = false
 
 func toggle_flip_sprite(dir):
 	if dir == 1:
@@ -565,6 +578,7 @@ func toggle_flip_sprite(dir):
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if current_attack and (PlayerSprite.animation.ends_with("attack") or ("_attack_" in PlayerSprite.animation)):
 		current_attack = false
+		deal_damage_zone.get_node("CollisionShape2D2").disabled = true
 
 func set_damage(attack_type):
 	var current_damage_to_deal: int
@@ -574,4 +588,7 @@ func set_damage(attack_type):
 		current_damage_to_deal = 16
 	elif attack_type == "air":
 		current_damage_to_deal = 20
+	elif attack_type == "dash":
+		current_damage_to_deal = 15
+		
 	Global.playerDamageAmount = current_damage_to_deal

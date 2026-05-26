@@ -276,6 +276,7 @@ sources/1 = SubResource("TileSetAtlasSource_q2tg5")
 
 [node name="Level_1" type="Node2D" unique_id=630728870]
 script = ExtResource("1_pvlc2")
+enemy_scene = ExtResource("10_d68a7")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1844576796]
 position = Vector2(0, 167.57)
@@ -336,5 +337,8 @@ position = Vector2(0, 161.565)
 [node name="Fade_transition" parent="." unique_id=250833089 instance=ExtResource("8_c458c")]
 visible = false
 
-[node name="Enemy" parent="." unique_id=1626501939 instance=ExtResource("10_d68a7")]
-position = Vector2(90, 13)
+[node name="EnemySpawnPoint1" type="Marker2D" parent="." unique_id=1300696701]
+position = Vector2(435, 138)
+
+[node name="EnemySpawnPoint2" type="Marker2D" parent="." unique_id=353946305]
+position = Vector2(-354, 130)
