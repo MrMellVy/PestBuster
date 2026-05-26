@@ -333,11 +333,6 @@ tile_set = SubResource("TileSet_mt3j2")
 [node name="Player" parent="." unique_id=1296403870 instance=ExtResource("1_b828a")]
 position = Vector2(0, 161.565)
 
-[node name="Camera2D" type="Camera2D" parent="Player" unique_id=591262117]
-ignore_rotation = false
-zoom = Vector2(1.935, 1.935)
-limit_bottom = 197
-
 [node name="Fade_transition" parent="." unique_id=250833089 instance=ExtResource("8_c458c")]
 visible = false
 

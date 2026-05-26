@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+class_name Player
+
 @export var PlayerSprite: AnimatedSprite2D
 @export var PlayerCollider: CollisionShape2D
 
@@ -93,6 +95,13 @@ var wasLatched
 var attack_type: String
 var current_attack: bool
 
+var health = 100
+var health_max = 100
+var health_min = 0
+var can_take_damage: bool
+var defeat: bool
+
+
 var anim
 var col
 var animScaleLock : Vector2
@@ -113,10 +122,14 @@ var dashTap
 func _ready() -> void:
 	Global.playerBody = self
 	current_attack = false
+	defeat = false
+	can_take_damage = true
 	wasMovingR = true
 	anim = PlayerSprite
 	col = PlayerCollider
-	
+	Global.playerAlive = true
+	deal_damage_zone.get_node("CollisionShape2D2").disabled = true
+
 	_updateData()
 	
 func _updateData():
@@ -177,6 +190,7 @@ func _updateData():
 		twoWayDashVertical = true
 		
 func _process(_delta) -> void:
+	if defeat: return
 	# Direction
 	if is_on_wall() and !is_on_floor() and latch and wallLatching and ((wallLatchingModifer and latchHold) or !wallLatchingModifer):
 		latched = true
@@ -185,10 +199,11 @@ func _process(_delta) -> void:
 		wasLatched = true
 		_setLatch(0.2, false)
 		
+	#flip_sprite btw
 	if rightHold and !latched:
-		anim.scale.x = animScaleLock.x
+		toggle_flip_sprite(1)
 	if leftHold and !latched:
-		anim.scale.x = animScaleLock.x * -1
+		toggle_flip_sprite(-1)
 		
 	# Run
 	if !current_attack:
@@ -210,7 +225,7 @@ func _process(_delta) -> void:
 			anim.speed_scale = 1
 			anim.play("falling")
 		
-	if latch and slide:
+	if !current_attack and (latch and slide):
 		# Wall slide & latch
 		if latched and !wasLatched:
 			anim.speed_scale = 1
@@ -220,186 +235,232 @@ func _process(_delta) -> void:
 			anim.play("slide")
 	
 	# Dashing
-	if dashing:
+	if dashing and !current_attack:
 			anim.speed_scale = 1
 			anim.play("dash")
 
 func _physics_process(delta) -> void:
+	Global.playerDamageZone = deal_damage_zone
+	Global.playerHitbox = $PlayerHitbox
 	if !dset:
 		gdelta = delta
 		dset = true
-	if !current_attack:
-			if Input.is_action_just_pressed("attack"):
-				current_attack = true
-				attack_type = "single" if is_on_floor() else "air"
-				handle_attack_animation(attack_type)
-			elif Input.is_action_just_pressed("double"):
-				current_attack = true
-				attack_type = "double" if is_on_floor() else "air"
-				handle_attack_animation(attack_type)
-	# Input Detection
-	leftHold = Input.is_action_pressed("left")
-	rightHold = Input.is_action_pressed("right")
-	leftTap = Input.is_action_just_pressed("left")
-	rightTap = Input.is_action_just_pressed("right")
-	leftRelease = Input.is_action_just_released("left")
-	rightRelease = Input.is_action_just_released("right")
-	jumpTap = Input.is_action_just_pressed("jump")
-	jumpRelease = Input.is_action_just_released("jump")
-	latchHold = Input.is_action_pressed("latch")
-	dashTap = Input.is_action_just_pressed("dash")
-	
-	# L/R Movement
-	if rightHold and leftHold and movementInputMonitoring:
-		if !instantStop:
-			_decelerate(delta, false)
-		else:
-			velocity.x = -0.1
-	elif rightHold and movementInputMonitoring.x:
-		if velocity.x > maxSpeed or instantAccel:
-			velocity.x = maxSpeed
-		else:
-			velocity.x += acceleration * delta
-		if velocity.x < 0:
+	if !defeat:
+		if !current_attack:
+				if Input.is_action_just_pressed("attack"):
+					current_attack = true
+					attack_type = "single" if is_on_floor() else "air"
+					set_damage(attack_type)
+					handle_attack_animation(attack_type)
+				elif Input.is_action_just_pressed("double"):
+					current_attack = true
+					attack_type = "double" if is_on_floor() else "air"
+					set_damage(attack_type)
+					handle_attack_animation(attack_type)
+		# Input Detection
+		leftHold = Input.is_action_pressed("left")
+		rightHold = Input.is_action_pressed("right")
+		leftTap = Input.is_action_just_pressed("left")
+		rightTap = Input.is_action_just_pressed("right")
+		leftRelease = Input.is_action_just_released("left")
+		rightRelease = Input.is_action_just_released("right")
+		jumpTap = Input.is_action_just_pressed("jump")
+		jumpRelease = Input.is_action_just_released("jump")
+		latchHold = Input.is_action_pressed("latch")
+		dashTap = Input.is_action_just_pressed("dash")
+		
+		# L/R Movement
+		if rightHold and leftHold and movementInputMonitoring:
 			if !instantStop:
 				_decelerate(delta, false)
 			else:
-				velocity.x = -1
-	elif leftHold and movementInputMonitoring.y:
-		if velocity.x < -maxSpeed or instantAccel:
-			velocity.x = -maxSpeed
-		else:
-			velocity.x -= acceleration * delta
+				velocity.x = -0.1
+		elif rightHold and movementInputMonitoring.x:
+			if velocity.x > maxSpeed or instantAccel:
+				velocity.x = maxSpeed
+			else:
+				velocity.x += acceleration * delta
+			if velocity.x < 0:
+				if !instantStop:
+					_decelerate(delta, false)
+				else:
+					velocity.x = -1
+		elif leftHold and movementInputMonitoring.y:
+			if velocity.x < -maxSpeed or instantAccel:
+				velocity.x = -maxSpeed
+			else:
+				velocity.x -= acceleration * delta
+			if velocity.x > 0:
+				if !instantStop:
+					_decelerate(delta, false)
+				else:
+					velocity.x = 0.1
+					
 		if velocity.x > 0:
+			wasMovingR = true
+		elif velocity.x < 0:
+			wasMovingR = false
+			
+		if rightTap:
+			wasPressingR = true
+		if leftTap:
+			wasPressingR = false
+			
+		if runningModifier:
+			maxSpeed = maxSpeedLock / 2
+		elif is_on_floor(): 
+			maxSpeed = maxSpeedLock
+			
+		if !(leftHold or rightHold):
 			if !instantStop:
 				_decelerate(delta, false)
 			else:
-				velocity.x = 0.1
-				
-	if velocity.x > 0:
-		wasMovingR = true
-	elif velocity.x < 0:
-		wasMovingR = false
-		
-	if rightTap:
-		wasPressingR = true
-	if leftTap:
-		wasPressingR = false
-		
-	if runningModifier:
-		maxSpeed = maxSpeedLock / 2
-	elif is_on_floor(): 
-		maxSpeed = maxSpeedLock
-		
-	if !(leftHold or rightHold):
-		if !instantStop:
-			_decelerate(delta, false)
-		else:
-			velocity.x = 0
-			
-	#Double Jump
-	if is_on_floor():
-		jumpCount = 0
-	else:
-		if jumpCount == 0:
-			jumpCount += 1
-			
-	# Jump and Gravity
-	if velocity.y > 0:
-		appliedGravity = gravityScale * descendingGravityFactor
-	else:
-		appliedGravity = gravityScale
-		
-	if is_on_wall():
-		appliedTerminalVelocity = terminalVelocity / wallSliding
-		if wallLatching and ((wallLatchingModifer and latchHold) or !wallLatchingModifer):
-			appliedGravity = 0
-			
-			if velocity.y < 0:
-				velocity.y += 50
-			if velocity.y > 0:
-				velocity.y = 0
-				
-			if wallLatchingModifer and latchHold and movementInputMonitoring == Vector2(true, true):
 				velocity.x = 0
 				
-		elif wallSliding != 1 and velocity.y > 0:
-			appliedGravity = appliedGravity / wallSliding
-	elif !is_on_wall():
-		appliedTerminalVelocity = terminalVelocity
-		
-	if gravityActive:
-		if velocity.y < appliedTerminalVelocity:
-			velocity.y += appliedGravity
-		elif velocity.y > appliedTerminalVelocity:
-				velocity.y = appliedTerminalVelocity
-				
-	if VariableJumpHeight and jumpRelease and velocity.y < 0:
-		velocity.y = velocity.y / jumpVariable
-		
-	if jumps == 1:
-		if !is_on_floor() and !is_on_wall():
-			if coyoteTime > 0:
-				coyoteActive = true
-				_coyoteTime()
-				
-		if jumpTap and !is_on_wall():
-			if coyoteActive:
-				coyoteActive = false
-				_jump()
-			if jumpBuffering > 0:
-				jumpWasPressed = true
-				_bufferJump()
-			elif jumpBuffering == 0 and coyoteTime == 0 and is_on_floor():
-				_jump()
-		elif jumpTap and is_on_wall() and !is_on_floor():
-			if wallJump and !latched:
-				_wallJump()
-			elif wallJump and latched:
-				_wallJump()
-		elif jumpTap and is_on_floor():
-			_jump()
-			
+		#Double Jump
 		if is_on_floor():
-			jumpCount = jumps
-			if coyoteTime > 0:
-				coyoteActive = true
-			else:
-				coyoteActive = false
-			if jumpWasPressed:
+			jumpCount = 0
+		else:
+			if jumpCount == 0:
+				jumpCount += 1
+				
+		# Jump and Gravity
+		if velocity.y > 0:
+			appliedGravity = gravityScale * descendingGravityFactor
+		else:
+			appliedGravity = gravityScale
+			
+		if is_on_wall():
+			appliedTerminalVelocity = terminalVelocity / wallSliding
+			if wallLatching and ((wallLatchingModifer and latchHold) or !wallLatchingModifer):
+				appliedGravity = 0
+				
+				if velocity.y < 0:
+					velocity.y += 50
+				if velocity.y > 0:
+					velocity.y = 0
+					
+				if wallLatchingModifer and latchHold and movementInputMonitoring == Vector2(true, true):
+					velocity.x = 0
+					
+			elif wallSliding != 1 and velocity.y > 0:
+				appliedGravity = appliedGravity / wallSliding
+		elif !is_on_wall():
+			appliedTerminalVelocity = terminalVelocity
+			
+		if gravityActive:
+			if velocity.y < appliedTerminalVelocity:
+				velocity.y += appliedGravity
+			elif velocity.y > appliedTerminalVelocity:
+					velocity.y = appliedTerminalVelocity
+					
+		if VariableJumpHeight and jumpRelease and velocity.y < 0:
+			velocity.y = velocity.y / jumpVariable
+			
+		if jumps == 1:
+			if !is_on_floor() and !is_on_wall():
+				if coyoteTime > 0:
+					coyoteActive = true
+					_coyoteTime()
+					
+			if jumpTap and !is_on_wall():
+				if coyoteActive:
+					coyoteActive = false
+					_jump()
+				if jumpBuffering > 0:
+					jumpWasPressed = true
+					_bufferJump()
+				elif jumpBuffering == 0 and coyoteTime == 0 and is_on_floor():
+					_jump()
+			elif jumpTap and is_on_wall() and !is_on_floor():
+				if wallJump and !latched:
+					_wallJump()
+				elif wallJump and latched:
+					_wallJump()
+			elif jumpTap and is_on_floor():
 				_jump()
 				
+			if is_on_floor():
+				jumpCount = jumps
+				if coyoteTime > 0:
+					coyoteActive = true
+				else:
+					coyoteActive = false
+				if jumpWasPressed:
+					_jump()
+					
 
-		
-	# Dashing
-	if is_on_floor():
-		dashCount = dashes
-	if twoWayDashHorizontal and dashTap and dashCount > 0:
-		var dTime = 0.0625 * dashLength
-		if wasPressingR:
-			velocity.y = 0
-			velocity.x = dashMagnitude
-			_pauseGravity(dTime)
-			_dashingTime(dTime)
-			dashCount += -1
-			movementInputMonitoring = Vector2(false, false)
-			_inputPauseReset(dTime)
-		else:
-			velocity.y = 0
-			velocity.x = -dashMagnitude
-			_pauseGravity(dTime)
-			_dashingTime(dTime)
-			dashCount += -1
-			movementInputMonitoring = Vector2(false, false)
-			_inputPauseReset(dTime)
 			
-	if dashing and velocity.x > 0 and leftTap and dashCancel:
-		velocity.x = 0
-	if dashing and velocity.x < 0 and rightTap and dashCancel:
-		velocity.x = 0
-		
+		# Dashing
+		if is_on_floor():
+			dashCount = dashes
+		if twoWayDashHorizontal and dashTap and dashCount > 0:
+			var dTime = 0.0625 * dashLength
+			if wasPressingR:
+				velocity.y = 0
+				velocity.x = dashMagnitude
+				_pauseGravity(dTime)
+				_dashingTime(dTime)
+				dashCount += -1
+				movementInputMonitoring = Vector2(false, false)
+				_inputPauseReset(dTime)
+			else:
+				velocity.y = 0
+				velocity.x = -dashMagnitude
+				_pauseGravity(dTime)
+				_dashingTime(dTime)
+				dashCount += -1
+				movementInputMonitoring = Vector2(false, false)
+				_inputPauseReset(dTime)
+				
+		if dashing and velocity.x > 0 and leftTap and dashCancel:
+			velocity.x = 0
+		if dashing and velocity.x < 0 and rightTap and dashCancel:
+			velocity.x = 0
+		check_hitbox()
 	move_and_slide()
 	
+func check_hitbox():
+	if !can_take_damage or defeat:
+		return
+	var hitbox_areas = $PlayerHitbox.get_overlapping_areas()
+	for hitbox in hitbox_areas:
+		if hitbox.get_parent() is Enemy:
+			take_damage(Global.EnemyDamageAmount)
+			break
+			#add more if there many enemy down here
+		#elif hitbox.get_parent() is OtherEnemy:
+			#take_damage(Global.EnemyDamageAmount)
+
+func take_damage(damage):
+	if defeat or damage <= 0: 
+		return
+	if health > 0:
+		health -= damage
+		print("player health: ", health)
+		if health <= 0:
+			health = 0
+			defeat = true
+			handle_defeat_animation()
+		else:
+			take_damage_cooldown(2.0)
+		
+func handle_defeat_animation():
+	velocity = Vector2.ZERO
+	PlayerSprite.play("defeat")
+	await get_tree().create_timer(0.5).timeout
+	$Camera2D.zoom.x = 4
+	$Camera2D.zoom.y = 4
+	await get_tree().create_timer(3.5).timeout
+	Global.playerAlive = false
+	await get_tree().create_timer(2.0).timeout
+	self.queue_free()
+	
+func take_damage_cooldown(wait_time):
+	can_take_damage = false
+	await get_tree().create_timer(wait_time).timeout
+	can_take_damage = true
+
 func _bufferJump():
 	await get_tree().create_timer(jumpBuffering).timeout
 	jumpWasPressed = false
@@ -468,19 +529,49 @@ func handle_attack_animation(attack_type):
 		var random_vari = randi_range(1, 3)
 		var animation = str(attack_type, "_attack_", random_vari)
 		PlayerSprite.play(animation)
+		toggle_damage_collisions(attack_type)
+		#FailSafe
+		if PlayerSprite.sprite_frames.has_animation(animation):
+			PlayerSprite.play(animation)
+		else:
+			var fallback_anim = str(attack_type, "_attack")
+			if PlayerSprite.sprite_frames.has_animation(fallback_anim):
+				PlayerSprite.play(fallback_anim)
+			else:
+				print("Animation not found -> ", animation, " or ", fallback_anim)
+				current_attack = false
+				
+func toggle_damage_collisions(attack_type):
+	var damage_zone_collision = deal_damage_zone.get_node("CollisionShape2D2")
+	var wait_time: float
+	if attack_type == "air":
+		wait_time = 0.8
+	elif attack_type == "single":
+		wait_time = 1
+	elif attack_type == "double":
+		wait_time = 1.2
+	damage_zone_collision.disabled = false
+	await get_tree().create_timer(wait_time).timeout
+	damage_zone_collision.disabled = true
 
-
-#func set_damage(attack_type):
-	#var current_damage_to_deal: int
-	#if attack_type == "single":
-		#current_damage_to_deal = 8
-	#elif attack_type == "double":
-		#current_damage_to_deal = 16
-	#elif attack_type == "air":
-		#current_damage_to_deal = 20
-		#Global.playerDamageAmount = current_damage_to_deal
-
+func toggle_flip_sprite(dir):
+	if dir == 1:
+		PlayerSprite.flip_h = false
+		deal_damage_zone.scale.x = 1
+	elif dir == -1:
+		PlayerSprite.flip_h = true
+		deal_damage_zone.scale.x = -1
 
 func _on_animated_sprite_2d_animation_finished() -> void:
-	if current_attack and ("_attack_" in PlayerSprite.animation):
+	if current_attack and (PlayerSprite.animation.ends_with("attack") or ("_attack_" in PlayerSprite.animation)):
 		current_attack = false
+
+func set_damage(attack_type):
+	var current_damage_to_deal: int
+	if attack_type == "single":
+		current_damage_to_deal = 8
+	elif attack_type == "double":
+		current_damage_to_deal = 16
+	elif attack_type == "air":
+		current_damage_to_deal = 20
+	Global.playerDamageAmount = current_damage_to_deal

@@ -543,7 +543,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_nmr2m")
 }],
 "loop": false,
-"name": &"air_attack",
+"name": &"air_attack_1",
 "speed": 24.0
 }, {
 "frames": [{
@@ -713,7 +713,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_wpjfl")
 }],
 "loop": false,
-"name": &"die",
+"name": &"defeat",
 "speed": 6.0
 }, {
 "frames": [{
@@ -790,7 +790,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_sg72k")
 }],
 "loop": false,
-"name": &"double_attack_1",
+"name": &"double_attack",
 "speed": 30.0
 }, {
 "frames": [{
@@ -1007,6 +1007,10 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_l6n3p"]
 radius = 17.029387
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l6n3p"]
+radius = 9.0
+height = 54.0
+
 [node name="Player" type="CharacterBody2D" unique_id=1296403870 node_paths=PackedStringArray("PlayerSprite", "PlayerCollider")]
 script = ExtResource("1_3smsa")
 PlayerSprite = NodePath("AnimatedSprite2D")
@@ -1032,13 +1036,26 @@ shape = SubResource("RectangleShape2D_pu2lt")
 z_index = 5
 position = Vector2(0, -24)
 sprite_frames = SubResource("SpriteFrames_nv4vc")
-animation = &"air_attack_2"
+animation = &"defeat"
 autoplay = "idle"
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=957296252]
+visible = false
+ignore_rotation = false
+zoom = Vector2(1.935, 1.935)
+limit_bottom = 197
 
 [node name="DealDamageZone" type="Area2D" parent="." unique_id=1754983955]
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="DealDamageZone" unique_id=266151287]
 position = Vector2(14, -19)
 shape = SubResource("CircleShape2D_l6n3p")
+
+[node name="PlayerHitbox" type="Area2D" parent="." unique_id=1242725272]
+position = Vector2(14, -19)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHitbox" unique_id=1685020704]
+position = Vector2(-14, 4)
+shape = SubResource("CapsuleShape2D_l6n3p")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
