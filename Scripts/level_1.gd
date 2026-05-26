@@ -13,7 +13,7 @@ var is_transitioning: bool = false
 func _ready() -> void:
 	$Fade_transition.show()
 	$Fade_transition/Fade_transition/AnimationPlayer.play("Fade_out")
-	current_wave = 2
+	current_wave = 0
 	Global.current_wave = current_wave
 	starting_nodes = get_child_count()
 	current_nodes = get_child_count()

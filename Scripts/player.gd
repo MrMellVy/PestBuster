@@ -457,7 +457,7 @@ func take_damage(damage):
 			handle_defeat_animation()
 		else:
 			handle_hurt_animation()
-			take_damage_cooldown(2.0)
+			take_damage_cooldown(0.5)
 
 func handle_hurt_animation():
 	is_hurt = true
