@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" uid="uid://ddihppcirpcdq" path="res://Scripts/main_menu.gd" id="1_28flt"]
 [ext_resource type="Texture2D" uid="uid://dppvuj7nubmc2" path="res://Assets/Main Menu/ButtonsMenu/MenuButtonsStart.png" id="2_1ehe0"]
+[ext_resource type="Texture2D" uid="uid://crqx2cn2iyfwu" path="res://Assets/Main Menu/Title/NewTitle.png" id="2_vr1f0"]
 [ext_resource type="Texture2D" uid="uid://bn57vtncmn8xm" path="res://Assets/Main Menu/ButtonsMenu/MenuButtonsStartHighlighted.png" id="3_ce3w2"]
 [ext_resource type="Texture2D" uid="uid://b3dd0kfmhikxr" path="res://Assets/Main Menu/ButtonsMenu/MenuButtonsExit.png" id="4_n45e2"]
 [ext_resource type="Script" uid="uid://cvpv3nvnh76b4" path="res://Scripts/start.gd" id="5_cp0ys"]
 [ext_resource type="Texture2D" uid="uid://h6e4x3cpftt0" path="res://Assets/Main Menu/ButtonsMenu/MenuButtonsExitHighlighted.png" id="5_opfnp"]
-[ext_resource type="Texture2D" uid="uid://bq2nlmwy883b3" path="res://Assets/Main Menu/ButtonsMenu/MenuButtonsStartHover.png" id="5_trj04"]
-[ext_resource type="Texture2D" uid="uid://b4lrr7vr1hy4m" path="res://Assets/Main Menu/Title/Title.png" id="6_opfnp"]
+[ext_resource type="Texture2D" uid="uid://cg0tw5tul4fy7" path="res://Assets/Main Menu/ButtonsMenu/MenuButtonsStartHover.png" id="5_trj04"]
 [ext_resource type="Script" uid="uid://c57isocbv8ffm" path="res://Scripts/exit.gd" id="8_yhxw7"]
 [ext_resource type="Texture2D" uid="uid://bavjjf76l83xm" path="res://Assets/Main Menu/ButtonsMenu/MenuButtonsExitHover.png" id="9_16hvj"]
 [ext_resource type="PackedScene" uid="uid://by1622uoguy0" path="res://Scenes/Transition.tscn" id="11_vr1f0"]
@@ -98,8 +98,8 @@ script = ExtResource("1_28flt")
 [node name="title" type="Sprite2D" parent="." unique_id=402884615]
 texture_filter = 1
 position = Vector2(321.00003, 73)
-scale = Vector2(2.1655185, 2.158934)
-texture = ExtResource("6_opfnp")
+scale = Vector2(1.411, 1.406)
+texture = ExtResource("2_vr1f0")
 
 [node name="Button_Manager" type="Control" parent="." unique_id=916885730]
 layout_mode = 3
