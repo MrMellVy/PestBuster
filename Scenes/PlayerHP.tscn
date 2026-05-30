@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://b3048smma4113"]
+
+[ext_resource type="Script" uid="uid://dt4x30lguo52f" path="res://Scripts/playerhealth.gd" id="1_ih32l"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d3hep"]
+bg_color = Color(0.9434091, 0, 0.16076374, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ih32l"]
+bg_color = Color(0, 0.72114366, 0.31139332, 1)
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=1041979520]
+
+[node name="PlayerHP" type="ProgressBar" parent="." unique_id=212636330]
+offset_left = 16.0
+offset_top = 11.0
+offset_right = 170.0
+offset_bottom = 38.0
+theme_override_styles/background = SubResource("StyleBoxFlat_d3hep")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ih32l")
+show_percentage = false
+script = ExtResource("1_ih32l")

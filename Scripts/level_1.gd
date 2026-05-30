@@ -12,11 +12,16 @@ var is_transitioning: bool = false
 
 func _ready() -> void:
 	$Fade_transition.show()
+	$Fade_transition.layer = 2
 	$Fade_transition/Fade_transition/AnimationPlayer.play("Fade_out")
+	
 	current_wave = 0
 	Global.current_wave = current_wave
 	starting_nodes = get_child_count()
 	current_nodes = get_child_count()
+	
+	await SceneTransitionAnimation.animation_finished
+	
 	position_to_next_wave()
 
 func position_to_next_wave():
@@ -24,6 +29,8 @@ func position_to_next_wave():
 		if current_wave != 0:
 			Global.moving_to_next_wave = true
 		wave_spawn_ended = false
+		
+		$Fade_transition.layer = 1
 		SceneTransitionAnimation.play("between_wave")
 		current_wave += 1
 		Global.current_wave = current_wave
@@ -55,11 +62,12 @@ func spawn_type(type, mob_spawn_rounds, mob_wait_time):
 			wave_spawn_ended = true
 			
 			
-func _process(delta):
+func _process(_delta):
 	if !Global.playerAlive and !is_transitioning:
 		is_transitioning = true
 		Global.gameStarted = false
 		$Fade_transition.show()
+		$Fade_transition.layer = 2
 		SceneTransitionAnimation.play("Fade_in")
 		await SceneTransitionAnimation.animation_finished
 		update_score()
@@ -67,8 +75,8 @@ func _process(delta):
 	
 	current_nodes = get_child_count()
 	
-	if wave_spawn_ended:
-		print("test")
+	if wave_spawn_ended and current_nodes <= starting_nodes:
+		print("Next wave starting.")
 		position_to_next_wave()
 
 func update_score():

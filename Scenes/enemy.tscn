@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://1qbo87k3n7ci" path="res://Scripts/enemy.gd" id="1_1f0kj"]
 [ext_resource type="Texture2D" uid="uid://vmkdaniqpouc" path="res://Assets/Enemy/Placeholder/PurpleBlue/ToxicFrogPurpleBlue_Sheet.png" id="1_hghv2"]
+[ext_resource type="PackedScene" uid="uid://duuff8qd42t81" path="res://Scenes/health_bar.tscn" id="3_afpow"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hgeoe"]
 atlas = ExtResource("1_hghv2")
@@ -304,6 +305,12 @@ shape = SubResource("CircleShape2D_1f0kj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDealDamageArea" unique_id=1954831590]
 shape = SubResource("CircleShape2D_afpow")
+
+[node name="HealthBar" parent="." unique_id=2024550470 instance=ExtResource("3_afpow")]
+offset_left = -10.0
+offset_top = 13.0
+offset_right = 10.0
+offset_bottom = 18.0
 
 [connection signal="timeout" from="DirectionTimer" to="." method="_on_direction_timer_timeout"]
 [connection signal="area_entered" from="EnemyHitbox" to="." method="_on_enemy_hitbox_area_entered"]

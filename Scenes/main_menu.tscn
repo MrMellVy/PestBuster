@@ -167,7 +167,7 @@ layer = 2
 [node name="highscoreLabel" type="RichTextLabel" parent="score_Labels" unique_id=1931567855]
 offset_left = 182.0
 offset_top = 276.0
-offset_right = 443.0
+offset_right = 554.0
 offset_bottom = 316.0
 text = "HIGHSCORE: 99999 (Place Holder)"
 script = ExtResource("12_t1dhk")
@@ -175,7 +175,7 @@ script = ExtResource("12_t1dhk")
 [node name="previousroundLabel" type="RichTextLabel" parent="score_Labels" unique_id=198105083]
 offset_left = 169.0
 offset_top = 296.0
-offset_right = 466.0
+offset_right = 566.0
 offset_bottom = 336.0
 text = "PREVIOUS RD: 99999 ( PLACE HOLDER)"
 script = ExtResource("13_5egv6")

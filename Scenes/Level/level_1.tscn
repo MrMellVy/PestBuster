@@ -337,6 +337,7 @@ tile_set = SubResource("TileSet_mt3j2")
 position = Vector2(0, 161.565)
 
 [node name="Fade_transition" parent="." unique_id=250833089 instance=ExtResource("8_c458c")]
+layer = 2
 visible = false
 
 [node name="EnemySpawnPoint1" type="Marker2D" parent="." unique_id=1300696701]
@@ -348,14 +349,17 @@ position = Vector2(-354, 130)
 [node name="scoreLabels" type="CanvasLayer" parent="." unique_id=245646660]
 
 [node name="currentscoreLabel" type="RichTextLabel" parent="scoreLabels" unique_id=992819181]
-offset_right = 191.0
-offset_bottom = 40.0
+offset_left = 448.0
+offset_top = 4.0
+offset_right = 639.0
+offset_bottom = 44.0
 text = "CURRENT SCORE: 99999"
 script = ExtResource("11_q2tg5")
 
 [node name="currentwaveLabel" type="RichTextLabel" parent="scoreLabels" unique_id=542419889]
-offset_top = 22.0
-offset_right = 191.0
-offset_bottom = 62.0
+offset_left = 454.0
+offset_top = 24.0
+offset_right = 645.0
+offset_bottom = 64.0
 text = "CURRENT WAVE: 99999"
 script = ExtResource("12_mt3j2")
