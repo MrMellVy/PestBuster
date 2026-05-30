@@ -438,15 +438,16 @@ func check_hitbox():
 		var parent_node = hitbox.get_parent()
 		
 		if parent_node is Enemy:
-			if parent_node.is_dealing_damage == true:
+			if parent_node.is_dealing_damage == true and parent_node.has_dealt_damage == false:
 				take_damage(Global.EnemyDamageAmount)
+				parent_node.has_dealt_damage = true
 				break
 				#add more if there many enemy down here
 			#elif hitbox.get_parent() is OtherEnemy:
 				#take_damage(Global.EnemyDamageAmount)
 
 func take_damage(damage):
-	if defeat or damage <= 0: 
+	if defeat or damage <= 0 or !can_take_damage: 
 		return
 	if health > 0:
 		health -= damage

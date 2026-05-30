@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://b0dw0nvbctg3v"]
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=1161621358]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1650454403]
+offset_right = 40.0
+offset_bottom = 40.0
+text = "CURRENT SCORE: 9999"

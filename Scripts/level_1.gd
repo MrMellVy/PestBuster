@@ -23,6 +23,7 @@ func position_to_next_wave():
 	if current_nodes == starting_nodes:
 		if current_wave != 0:
 			Global.moving_to_next_wave = true
+		wave_spawn_ended = false
 		SceneTransitionAnimation.play("between_wave")
 		current_wave += 1
 		Global.current_wave = current_wave
@@ -61,4 +62,17 @@ func _process(delta):
 		$Fade_transition.show()
 		SceneTransitionAnimation.play("Fade_in")
 		await SceneTransitionAnimation.animation_finished
+		update_score()
 		get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
+	
+	current_nodes = get_child_count()
+	
+	if wave_spawn_ended:
+		print("test")
+		position_to_next_wave()
+
+func update_score():
+	Global.previous_score = Global.current_score
+	if Global.current_score > Global.high_score:
+		Global.high_score = Global.current_score
+		Global.current_score = 0

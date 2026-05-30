@@ -13,6 +13,8 @@ var defeat: bool = false
 var taking_damage: bool = false
 var damage_to_deal = 20
 var is_dealing_damage: bool = false
+var has_dealt_damage: bool = false
+var points_for_kill = 250
 
 var dir: Vector2
 const gravity = 900
@@ -94,6 +96,7 @@ func handle_defeat_sequence():
 	handle_defeat()
 
 func handle_defeat():
+	Global.current_score += points_for_kill
 	self.queue_free()
 
 func _on_direction_timer_timeout() -> void:
@@ -126,6 +129,7 @@ func take_damage(damage):
 func attack_sequence():
 	can_attack = false
 	is_dealing_damage = true
+	has_dealt_damage = false
 	await $AnimatedSprite2D.animation_finished
 	is_dealing_damage = false
 	await get_tree().create_timer(3).timeout
