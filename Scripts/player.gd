@@ -499,6 +499,7 @@ func _jump():
 		velocity.y = -jumpMagnitude
 		jumpCount += -1
 		jumpWasPressed = false
+		jump_sound.play()
 		
 func _wallJump():
 	var horizontalWallKick = abs(jumpMagnitude * cos(wallKickAngle * (PI / 180)))

@@ -285,7 +285,6 @@ enemy_scene = ExtResource("10_d68a7")
 position = Vector2(-354, 130)
 stream = ExtResource("3_akeww")
 volume_db = -22.63
-autoplay = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1844576796]
 position = Vector2(0, 167.57)

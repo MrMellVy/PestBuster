@@ -14,6 +14,7 @@ func _ready() -> void:
 	$Fade_transition.show()
 	$Fade_transition.layer = 2
 	$Fade_transition/Fade_transition/AnimationPlayer.play("Fade_out")
+	BgmManager.play_BGM("Battle Encounter")
 	
 	current_wave = 0
 	Global.current_wave = current_wave

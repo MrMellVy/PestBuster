@@ -9,6 +9,7 @@ func _ready() -> void:
 	$Fade_transition.show()
 	$Fade_transition/fade_timerstart.start()
 	$Fade_transition/Fade_transition/AnimationPlayer.play("Fade_out") 
+	BgmManager.play_BGM("cyber_runner")
 	fade_startup = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

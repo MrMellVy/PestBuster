@@ -256,7 +256,7 @@ script = ExtResource("1_ydpwf")
 [node name="Player" parent="." unique_id=1296403870 instance=ExtResource("1_707jr")]
 position = Vector2(152, 182)
 
-[node name="Camera2D2" type="Camera2D" parent="Player" unique_id=1019016580]
+[node name="Camerehere" type="Camera2D" parent="Player" unique_id=1019016580]
 zoom = Vector2(2.09, 2.09)
 process_callback = 0
 limit_bottom = 240
@@ -282,9 +282,9 @@ shape = SubResource("RectangleShape2D_ebmjs")
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D2" unique_id=431315707]
 offset_left = 218.0
-offset_top = 117.0
+offset_top = 123.0
 offset_right = 238.0
-offset_bottom = 204.0
+offset_bottom = 210.0
 
 [node name="TileMapLayerBackground" type="TileMapLayer" parent="." unique_id=391878866]
 position = Vector2(-151, 2)
