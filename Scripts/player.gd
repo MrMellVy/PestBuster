@@ -24,6 +24,7 @@ class_name Player
 @export_range(1, 10) var jumpVariable: float = 2
 @export_range(0, 0.5) var coyoteTime: float = 0.2
 @export_range(0, 0.5) var jumpBuffering: float = 0.2
+@onready var jump_sound: AudioStreamPlayer = $JumpSound
 
 # Extra Mech
 @export_category("Wall Jumping")
@@ -590,6 +591,6 @@ func set_damage(attack_type):
 	elif attack_type == "air":
 		current_damage_to_deal = 20
 	elif attack_type == "dash":
-		current_damage_to_deal = 15
+		current_damage_to_deal = 16
 		
 	Global.playerDamageAmount = current_damage_to_deal

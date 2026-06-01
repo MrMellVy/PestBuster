@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://bj2nef1jqdw6i" path="res://Assets/Sprites/Player/ShootGun1.png" id="19_xuaoq"]
 [ext_resource type="Texture2D" uid="uid://dln2ssj0c1px7" path="res://Assets/Sprites/Player/ShootGun2.png" id="20_wohnl"]
 [ext_resource type="PackedScene" uid="uid://b3048smma4113" path="res://Scenes/PlayerHP.tscn" id="21_olqyp"]
+[ext_resource type="AudioStream" uid="uid://btcwwcaot3em7" path="res://Assets/Audio/SFX/lmptaudioefek.wav" id="22_wpjfl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pu2lt"]
 size = Vector2(8, 30)
@@ -1062,5 +1063,8 @@ position = Vector2(-14, 4)
 shape = SubResource("CapsuleShape2D_l6n3p")
 
 [node name="CanvasLayer" parent="." unique_id=1041979520 instance=ExtResource("21_olqyp")]
+
+[node name="JumpSound" type="AudioStreamPlayer" parent="." unique_id=1259353545]
+stream = ExtResource("22_wpjfl")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://w7doc70s2ixt" path="res://Scenes/player.tscn" id="1_707jr"]
 [ext_resource type="Script" uid="uid://br4erkka3xqa8" path="res://Scripts/debug_area.gd" id="1_ydpwf"]
-[ext_resource type="Texture2D" uid="uid://do3tc2uclsm04" path="res://Assets/Tilesets/Roads.png" id="2_av56p"]
-[ext_resource type="Texture2D" uid="uid://d3jrimpphfk2x" path="res://Assets/Tilesets/Buildings.png" id="2_ykxxj"]
-[ext_resource type="Texture2D" uid="uid://bsbkykem2s0l8" path="res://Assets/Tilesets/Platform-Sheet.png" id="3_ykxxj"]
+[ext_resource type="Texture2D" uid="uid://dpui6y2i7aj56" path="res://Assets/Tilesets/Roads.png" id="2_av56p"]
+[ext_resource type="Texture2D" uid="uid://ck8ryb16wtmbn" path="res://Assets/Tilesets/Buildings.png" id="2_ykxxj"]
+[ext_resource type="Texture2D" uid="uid://dyhirno48mfiq" path="res://Assets/Tilesets/Platform-Sheet.png" id="3_ykxxj"]
 [ext_resource type="PackedScene" uid="uid://by1622uoguy0" path="res://Scenes/Transition.tscn" id="6_ihk1h"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_qxrlw"]
@@ -256,7 +256,7 @@ script = ExtResource("1_ydpwf")
 [node name="Player" parent="." unique_id=1296403870 instance=ExtResource("1_707jr")]
 position = Vector2(152, 182)
 
-[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1019016580]
+[node name="Camera2D2" type="Camera2D" parent="Player" unique_id=1019016580]
 zoom = Vector2(2.09, 2.09)
 process_callback = 0
 limit_bottom = 240

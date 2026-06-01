@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://by1622uoguy0" path="res://Scenes/Transition.tscn" id="11_vr1f0"]
 [ext_resource type="Script" uid="uid://chvbiplsrw7wi" path="res://Scripts/highscore_label.gd" id="12_t1dhk"]
 [ext_resource type="Script" uid="uid://b3s1qdx0rfvka" path="res://Scripts/previousround_label.gd" id="13_5egv6"]
+[ext_resource type="AudioStream" uid="uid://doevch1mt0len" path="res://Assets/Audio/Musics/mega-bot-pipes under.ogg" id="14_vtepg"]
 
 [sub_resource type="Animation" id="Animation_opfnp"]
 length = 0.001
@@ -99,7 +100,7 @@ script = ExtResource("1_28flt")
 
 [node name="title" type="Sprite2D" parent="." unique_id=402884615]
 texture_filter = 1
-position = Vector2(321.00003, 73)
+position = Vector2(316, 80)
 scale = Vector2(1.411, 1.406)
 texture = ExtResource("2_vr1f0")
 
@@ -179,6 +180,11 @@ offset_right = 566.0
 offset_bottom = 336.0
 text = "PREVIOUS RD: 99999 ( PLACE HOLDER)"
 script = ExtResource("13_5egv6")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1687307165]
+stream = ExtResource("14_vtepg")
+volume_db = -7.33
+autoplay = true
 
 [connection signal="mouse_entered" from="Button_Manager/Start" to="Button_Manager/Start" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Button_Manager/Start" to="Button_Manager/Start" method="_on_mouse_exited"]
