@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cihqm3eob5rym"]
+
+[ext_resource type="Script" uid="uid://dbjxnmphoporj" path="res://Scripts/retry.gd" id="1_2f3yr"]
+
+[node name="Node2D" type="Node2D" unique_id=1114511704]
+visible = false
+script = ExtResource("1_2f3yr")

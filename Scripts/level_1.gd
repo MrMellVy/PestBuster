@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var SceneTransitionAnimation = $Fade_transition/Fade_transition/AnimationPlayer
+@onready var world_camera: Camera2D = $Player/WorldCamera
 
 var current_wave: int
 @export var enemy_scene:PackedScene
@@ -11,6 +12,7 @@ var wave_spawn_ended
 var is_transitioning: bool = false
 
 func _ready() -> void:
+	world_camera.make_current()
 	$Fade_transition.show()
 	$Fade_transition.layer = 2
 	$Fade_transition/Fade_transition/AnimationPlayer.play("Fade_out")

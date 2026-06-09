@@ -22,6 +22,9 @@
 [ext_resource type="Texture2D" uid="uid://dln2ssj0c1px7" path="res://Assets/Sprites/Player/ShootGun2.png" id="20_wohnl"]
 [ext_resource type="PackedScene" uid="uid://b3048smma4113" path="res://Scenes/PlayerHP.tscn" id="21_olqyp"]
 [ext_resource type="AudioStream" uid="uid://btcwwcaot3em7" path="res://Assets/Audio/SFX/lmptaudioefek.wav" id="22_wpjfl"]
+[ext_resource type="AudioStream" uid="uid://un7vx46je8l1" path="res://Assets/Audio/SFX/Sword Whoosh 01.wav" id="23_p1odr"]
+[ext_resource type="AudioStream" uid="uid://bf2mhh33ioulc" path="res://Assets/Audio/SFX/Sword Whoosh 02.wav" id="24_0gysh"]
+[ext_resource type="AudioStream" uid="uid://cqxp3pcmtu2nb" path="res://Assets/Audio/SFX/Sword Whoosh 04.wav" id="25_vfarp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pu2lt"]
 size = Vector2(8, 30)
@@ -1013,6 +1016,13 @@ radius = 17.029387
 radius = 9.0
 height = 54.0
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_y6uwr"]
+random_pitch = 1.2559247
+streams_count = 3
+stream_0/stream = ExtResource("23_p1odr")
+stream_1/stream = ExtResource("24_0gysh")
+stream_2/stream = ExtResource("25_vfarp")
+
 [node name="Player" type="CharacterBody2D" unique_id=1296403870 node_paths=PackedStringArray("PlayerSprite", "PlayerCollider")]
 script = ExtResource("1_3smsa")
 PlayerSprite = NodePath("AnimatedSprite2D")
@@ -1066,5 +1076,8 @@ shape = SubResource("CapsuleShape2D_l6n3p")
 
 [node name="JumpSound" type="AudioStreamPlayer" parent="." unique_id=1259353545]
 stream = ExtResource("22_wpjfl")
+
+[node name="SlashSFX" type="AudioStreamPlayer" parent="." unique_id=1390356603]
+stream = SubResource("AudioStreamRandomizer_y6uwr")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

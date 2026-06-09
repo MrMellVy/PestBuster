@@ -4,6 +4,7 @@ class_name Player
 
 @export var PlayerSprite: AnimatedSprite2D
 @export var PlayerCollider: CollisionShape2D
+@onready var world_camera: Camera2D = $WorldCamera
 
 # Horizontal Movement
 @export_category("Movement")
@@ -54,6 +55,8 @@ class_name Player
 
 #Attack
 @onready var deal_damage_zone = $DealDamageZone
+@onready var slash_sfx: AudioStreamPlayer = $SlashSFX
+
 
 # Dev Variable and const
 var appliedGravity: float
@@ -472,9 +475,11 @@ func handle_hurt_animation():
 func handle_defeat_animation():
 	velocity = Vector2.ZERO
 	PlayerSprite.play("defeat")
+	BgmManager.play_game_over()
+	
 	await get_tree().create_timer(0.5).timeout
-	$Camera2D.zoom.x = 4
-	$Camera2D.zoom.y = 4
+	world_camera.zoom.x = 4
+	world_camera.zoom.y = 4
 	await get_tree().create_timer(3.5).timeout
 	Global.playerAlive = false
 	await get_tree().create_timer(2.0).timeout
@@ -555,6 +560,7 @@ func handle_attack_animation(attack_type):
 		var random_vari = randi_range(1, 3)
 		var animation = str(attack_type, "_attack_", random_vari)
 		PlayerSprite.play(animation)
+		slash_sfx.play()
 		toggle_damage_collisions(attack_type)
 		#FailSafe
 		if PlayerSprite.sprite_frames.has_animation(animation):
