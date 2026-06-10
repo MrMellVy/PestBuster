@@ -262,11 +262,11 @@ func _physics_process(delta) -> void:
 						attack_type = "air"
 					set_damage(attack_type)
 					handle_attack_animation(attack_type)
-				elif Input.is_action_just_pressed("double"):
-					current_attack = true
-					attack_type = "double" if is_on_floor() else "air"
-					set_damage(attack_type)
-					handle_attack_animation(attack_type)
+				#elif Input.is_action_just_pressed("double"):
+					#current_attack = true
+					#attack_type = "double" if is_on_floor() else "air"
+					#set_damage(attack_type)
+					#handle_attack_animation(attack_type)
 		# Input Detection
 		leftHold = Input.is_action_pressed("left")
 		rightHold = Input.is_action_pressed("right")
@@ -422,7 +422,7 @@ func _physics_process(delta) -> void:
 				dashCount += -1
 				movementInputMonitoring = Vector2(false, false)
 				_inputPauseReset(dTime)
-			if current_attack and (attack_type == "single" or attack_type == "double"):
+			if current_attack and (attack_type == "single"): #or attack_type == "double"):
 				attack_type = "dash"
 				set_damage(attack_type)
 				handle_attack_animation(attack_type)
@@ -475,7 +475,7 @@ func handle_hurt_animation():
 func handle_defeat_animation():
 	velocity = Vector2.ZERO
 	PlayerSprite.play("defeat")
-	BgmManager.play_game_over()
+	BgmManager.play_defeated()
 	
 	await get_tree().create_timer(0.5).timeout
 	world_camera.zoom.x = 4
@@ -593,8 +593,8 @@ func set_damage(attack_type):
 	var current_damage_to_deal: int
 	if attack_type == "single":
 		current_damage_to_deal = 8
-	elif attack_type == "double":
-		current_damage_to_deal = 16
+	#elif attack_type == "double":
+		#current_damage_to_deal = 16
 	elif attack_type == "air":
 		current_damage_to_deal = 20
 	elif attack_type == "dash":

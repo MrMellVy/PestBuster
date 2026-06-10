@@ -1,7 +1,103 @@
 [gd_scene format=3 uid="uid://cihqm3eob5rym"]
 
 [ext_resource type="Script" uid="uid://dbjxnmphoporj" path="res://Scripts/retry.gd" id="1_2f3yr"]
+[ext_resource type="Texture2D" uid="uid://c3707c7c3w2se" path="res://Assets/Retry Menu/Title/Retry.png" id="2_nu154"]
+[ext_resource type="Texture2D" uid="uid://datjvllb1d0ix" path="res://Assets/Retry Menu/ButtonsMenu/ButtonAkhir.png" id="3_y6j7g"]
+[ext_resource type="Texture2D" uid="uid://qy4c53ejef7p" path="res://Assets/Retry Menu/ButtonsMenu/ButtonAkhirclick.png" id="4_y6j7g"]
+[ext_resource type="Texture2D" uid="uid://b3dd0kfmhikxr" path="res://Assets/Main Menu/ButtonsMenu/MenuButtonsExit.png" id="7_yddc6"]
+[ext_resource type="Texture2D" uid="uid://h6e4x3cpftt0" path="res://Assets/Main Menu/ButtonsMenu/MenuButtonsExitHighlighted.png" id="8_mjccn"]
 
-[node name="Node2D" type="Node2D" unique_id=1114511704]
-visible = false
+[sub_resource type="Animation" id="Animation_ug3to"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Retry:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_8xgux"]
+resource_name = "Title"
+length = 3.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Retry:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.05235988, 0.0, -0.05235988]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ug3to"]
+_data = {
+&"RESET": SubResource("Animation_ug3to"),
+&"Title": SubResource("Animation_8xgux")
+}
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=1385621877]
 script = ExtResource("1_2f3yr")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1169734101]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+color = Color(0, 0, 0.09019608, 1)
+
+[node name="Retry" type="Sprite2D" parent="." unique_id=1152840147]
+position = Vector2(312.00003, 73)
+scale = Vector2(2.63, 2.63)
+texture = ExtResource("2_nu154")
+
+[node name="Button_Manager" type="Control" parent="." unique_id=1099279470]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Retry" type="TextureButton" parent="Button_Manager" unique_id=4510931]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 229.0
+offset_top = 136.0
+offset_right = 309.0
+offset_bottom = 168.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.6, 1.6)
+texture_normal = ExtResource("3_y6j7g")
+texture_pressed = ExtResource("4_y6j7g")
+
+[node name="Menu" type="TextureButton" parent="Button_Manager" unique_id=1665777620]
+layout_mode = 0
+offset_left = 249.00691
+offset_top = 212.0
+offset_right = 377.00873
+offset_bottom = 260.9994
+texture_normal = ExtResource("7_yddc6")
+texture_pressed = ExtResource("8_mjccn")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1775356970]
+libraries/ = SubResource("AnimationLibrary_ug3to")
+
+[connection signal="mouse_entered" from="Button_Manager/Retry" to="Button_Manager/Retry" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Button_Manager/Retry" to="Button_Manager/Retry" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Button_Manager/Menu" to="Button_Manager/Menu" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Button_Manager/Menu" to="Button_Manager/Menu" method="_on_mouse_exited"]

@@ -5,8 +5,8 @@ class_name Enemy
 const speed = 30
 var is_enemy_chase: bool = true
 
-var health = 80
-var health_max = 80
+var health = 40
+var health_max = 40
 var health_min = 0
 
 var defeat: bool = false

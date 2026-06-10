@@ -9,11 +9,10 @@ var fading_onstart: bool = true
 func _ready() -> void:
 	add_child(dummy_player)
 	add_child(sfx_player)
-	stream = load("res://Assets/Audio/Musics/cyber_runner.ogg")
 	volume_db = -80.0
 	play()
 
-func play_game_over():
+func play_defeated():
 	stop()
 	dummy_player.stop()
 	sfx_player.stream = load("res://Assets/Audio/SFX/Gameovertheme.wav")
@@ -44,8 +43,29 @@ func _process(delta: float) -> void:
 			dummy_player.stop()
 			fading = false
 			
-
+var retry_themes = {
+	"Retry": {
+		"intro": "res://Assets/Audio/Musics/Original/Gameovertheme_2.ogg",
+		"loop": "res://Assets/Audio/Musics/Original/Gameovertheme_2ExtLoop.ogg"
+	}
+}
+var next_loop_path: String = ""
 	
+
+func play_retry_music(theme_name: String = "Retry"):
+	sfx_player.stop() 
+	next_loop_path = retry_themes[theme_name]["loop"]
+	if not sfx_player.finished.is_connected(_on_intro_finished):
+		sfx_player.finished.connect(_on_intro_finished)
+	sfx_player.stream = load(retry_themes[theme_name]["intro"])
+	sfx_player.play()
+
+func _on_intro_finished():
+	sfx_player.finished.disconnect(_on_intro_finished)
+	stream = load(next_loop_path)
+	volume_db = 0.0
+	play()
+
 func play_BGM(BGM_name) -> void:
 	dummy_player.stream = load("res://Assets/Audio/Musics/" + BGM_name + ".ogg")
 	dummy_player.volume_db = -60

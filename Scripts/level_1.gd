@@ -74,7 +74,7 @@ func _process(_delta):
 		SceneTransitionAnimation.play("Fade_in")
 		await SceneTransitionAnimation.animation_finished
 		update_score()
-		get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
+		get_tree().change_scene_to_file("res://Scenes/Retry.tscn")
 	
 	current_nodes = get_child_count()
 	
