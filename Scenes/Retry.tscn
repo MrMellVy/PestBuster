@@ -2,10 +2,13 @@
 
 [ext_resource type="Script" uid="uid://dbjxnmphoporj" path="res://Scripts/retry.gd" id="1_2f3yr"]
 [ext_resource type="Texture2D" uid="uid://c3707c7c3w2se" path="res://Assets/Retry Menu/Title/Retry.png" id="2_nu154"]
-[ext_resource type="Texture2D" uid="uid://datjvllb1d0ix" path="res://Assets/Retry Menu/ButtonsMenu/ButtonAkhir.png" id="3_y6j7g"]
-[ext_resource type="Texture2D" uid="uid://qy4c53ejef7p" path="res://Assets/Retry Menu/ButtonsMenu/ButtonAkhirclick.png" id="4_y6j7g"]
-[ext_resource type="Texture2D" uid="uid://b3dd0kfmhikxr" path="res://Assets/Main Menu/ButtonsMenu/MenuButtonsExit.png" id="7_yddc6"]
-[ext_resource type="Texture2D" uid="uid://h6e4x3cpftt0" path="res://Assets/Main Menu/ButtonsMenu/MenuButtonsExitHighlighted.png" id="8_mjccn"]
+[ext_resource type="Texture2D" uid="uid://cch3o0mwje8pp" path="res://Assets/Retry Menu/ButtonsMenu/ButtonAkhirretry.png" id="3_wp23j"]
+[ext_resource type="Texture2D" uid="uid://lqupf3yka0wj" path="res://Assets/Retry Menu/ButtonsMenu/ButtonAkhirretryclicked.png" id="4_8xgux"]
+[ext_resource type="Texture2D" uid="uid://c8cldimmr1541" path="res://Assets/Retry Menu/ButtonsMenu/ButtonAkhirmenu.png" id="5_ug3to"]
+[ext_resource type="Texture2D" uid="uid://cak7ogc3eqjqc" path="res://Assets/Retry Menu/ButtonsMenu/ButtonAkhirmenuclicked.png" id="6_5rsef"]
+[ext_resource type="PackedScene" uid="uid://by1622uoguy0" path="res://Scenes/Transition.tscn" id="7_wp23j"]
+[ext_resource type="Script" uid="uid://chvbiplsrw7wi" path="res://Scripts/highscore_label.gd" id="8_ug3to"]
+[ext_resource type="Script" uid="uid://b3s1qdx0rfvka" path="res://Scripts/previousround_label.gd" id="9_5rsef"]
 
 [sub_resource type="Animation" id="Animation_ug3to"]
 length = 0.001
@@ -75,29 +78,62 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 229.0
-offset_top = 136.0
+offset_left = 229.00002
+offset_top = 129.00002
 offset_right = 309.0
-offset_bottom = 168.0
+offset_bottom = 161.00002
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.6, 1.6)
-texture_normal = ExtResource("3_y6j7g")
-texture_pressed = ExtResource("4_y6j7g")
+texture_normal = ExtResource("3_wp23j")
+texture_pressed = ExtResource("4_8xgux")
 
 [node name="Menu" type="TextureButton" parent="Button_Manager" unique_id=1665777620]
 layout_mode = 0
-offset_left = 249.00691
+offset_left = 249.0069
 offset_top = 212.0
-offset_right = 377.00873
-offset_bottom = 260.9994
-texture_normal = ExtResource("7_yddc6")
-texture_pressed = ExtResource("8_mjccn")
+offset_right = 329.0069
+offset_bottom = 244.0
+scale = Vector2(1.595, 1.595)
+texture_normal = ExtResource("5_ug3to")
+texture_pressed = ExtResource("6_5rsef")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1775356970]
 libraries/ = SubResource("AnimationLibrary_ug3to")
 
-[connection signal="mouse_entered" from="Button_Manager/Retry" to="Button_Manager/Retry" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="Button_Manager/Retry" to="Button_Manager/Retry" method="_on_mouse_exited"]
+[node name="Fade_transition" parent="." unique_id=250833089 instance=ExtResource("7_wp23j")]
+layer = 2
+visible = false
+
+[node name="fade_timer" type="Timer" parent="Fade_transition" unique_id=935449586]
+wait_time = 1.5
+
+[node name="fade_timerstart" type="Timer" parent="Fade_transition" unique_id=178469926]
+wait_time = 2.0
+
+[node name="score_Labels" type="CanvasLayer" parent="." unique_id=54927724]
+
+[node name="highscoreLabel" type="RichTextLabel" parent="score_Labels" unique_id=1843846656]
+offset_left = 248.0
+offset_top = 275.0
+offset_right = 620.0
+offset_bottom = 315.0
+text = "HIGHSCORE: 99999 (Place Holder)"
+script = ExtResource("8_ug3to")
+metadata/_edit_use_anchors_ = true
+
+[node name="previousroundLabel" type="RichTextLabel" parent="score_Labels" unique_id=824084577]
+offset_left = 247.0
+offset_top = 296.0
+offset_right = 644.0
+offset_bottom = 336.0
+text = "PREVIOUS RD: 99999 ( PLACE HOLDER)"
+script = ExtResource("9_5rsef")
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="Button_Manager/Retry" to="." method="_on_retry_pressed"]
 [connection signal="mouse_entered" from="Button_Manager/Menu" to="Button_Manager/Menu" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Button_Manager/Menu" to="Button_Manager/Menu" method="_on_mouse_exited"]
+[connection signal="pressed" from="Button_Manager/Menu" to="." method="_on_menu_pressed"]
+[connection signal="timeout" from="Fade_transition/fade_timer" to="." method="_on_fade_timer_timeout"]
+[connection signal="timeout" from="Fade_transition/fade_timerstart" to="." method="_on_fade_timerstart_timeout"]

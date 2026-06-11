@@ -26,6 +26,8 @@ var player_in_area = false
 
 var can_attack: bool = true
 
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+
 func _process(delta: float) -> void:
 	if !is_on_floor():
 		velocity.y += gravity * delta
@@ -68,29 +70,27 @@ func move(delta):
 			dir.x = abs(velocity.x) / velocity.x
 	is_roaming = true
 
-func handle_animation():
-	var anim_sprite = $AnimatedSprite2D
-	
+func handle_animation():	
 	if defeat:
 		return 
 		
 	if taking_damage:
-		anim_sprite.play("hitted")
+		play_enemy_animation("hitted")
 	elif is_dealing_damage:
-		anim_sprite.play("attack")
+		play_enemy_animation("attack")
 	else:
 		if velocity.x == 0:
-			anim_sprite.play("idle")
+			play_enemy_animation("idle")
 		else:
-			anim_sprite.play("move")
+			play_enemy_animation("move")
 		if dir.x == -1:
-			anim_sprite.flip_h = true
+			animated_sprite_2d.flip_h = false
 		elif dir.x == 1:
-			anim_sprite.flip_h = false
+			animated_sprite_2d.flip_h = true
 
 func handle_defeat_sequence():
 	is_roaming = false
-	$AnimatedSprite2D.play("defeat")
+	play_enemy_animation("defeat")
 	velocity.x = 0
 	await get_tree().create_timer(1.0).timeout
 	handle_defeat()
@@ -144,3 +144,9 @@ func _on_enemy_deal_damage_area_area_exited(area: Area2D) -> void:
 	if area == Global.playerHitbox:
 		player_in_area = false
 	
+func play_enemy_animation(anim_name: String):
+	animated_sprite_2d.play(anim_name)
+	if anim_name == "defeat" or anim_name == "move":
+		animated_sprite_2d.offset.y = -27
+	else:
+		animated_sprite_2d.offset.y = -7

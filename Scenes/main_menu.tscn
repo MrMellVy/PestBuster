@@ -11,8 +11,6 @@
 [ext_resource type="Script" uid="uid://c57isocbv8ffm" path="res://Scripts/exit.gd" id="8_yhxw7"]
 [ext_resource type="Texture2D" uid="uid://bavjjf76l83xm" path="res://Assets/Main Menu/ButtonsMenu/MenuButtonsExitHover.png" id="9_16hvj"]
 [ext_resource type="PackedScene" uid="uid://by1622uoguy0" path="res://Scenes/Transition.tscn" id="11_vr1f0"]
-[ext_resource type="Script" uid="uid://chvbiplsrw7wi" path="res://Scripts/highscore_label.gd" id="12_t1dhk"]
-[ext_resource type="Script" uid="uid://b3s1qdx0rfvka" path="res://Scripts/previousround_label.gd" id="13_5egv6"]
 [ext_resource type="AudioStream" uid="uid://doevch1mt0len" path="res://Assets/Audio/Musics/mega-bot-pipes under.ogg" id="14_vtepg"]
 
 [sub_resource type="Animation" id="Animation_opfnp"]
@@ -161,25 +159,6 @@ wait_time = 1.5
 
 [node name="fade_timerstart" type="Timer" parent="Fade_transition" unique_id=1333577638]
 wait_time = 2.0
-
-[node name="score_Labels" type="CanvasLayer" parent="." unique_id=452739916]
-layer = 2
-
-[node name="highscoreLabel" type="RichTextLabel" parent="score_Labels" unique_id=1931567855]
-offset_left = 182.0
-offset_top = 276.0
-offset_right = 554.0
-offset_bottom = 316.0
-text = "HIGHSCORE: 99999 (Place Holder)"
-script = ExtResource("12_t1dhk")
-
-[node name="previousroundLabel" type="RichTextLabel" parent="score_Labels" unique_id=198105083]
-offset_left = 169.0
-offset_top = 296.0
-offset_right = 566.0
-offset_bottom = 336.0
-text = "PREVIOUS RD: 99999 ( PLACE HOLDER)"
-script = ExtResource("13_5egv6")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1687307165]
 stream = ExtResource("14_vtepg")

@@ -23,7 +23,7 @@ func _process(_delta: float) -> void:
 			tween.tween_property(self, "value", actual_health, 0.1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 			current_tracked_health = actual_health
 	
-		if Global.playerBody.health == Global.playerBody.health_max or Global.playerBody.health <= Global.playerBody.health_min:
-			self.visible = false
-		else:
-			self.visible = true
+		#if Global.playerBody.health == Global.playerBody.health_max or Global.playerBody.health <= Global.playerBody.health_min:
+			#self.visible = false
+		#else:
+			#self.visible = true

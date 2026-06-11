@@ -37,6 +37,8 @@ func position_to_next_wave():
 		SceneTransitionAnimation.play("between_wave")
 		current_wave += 1
 		Global.current_wave = current_wave
+		$Player.apply_wave_stats(current_wave)
+		
 		await get_tree().create_timer(0.5).timeout
 		prepare_spawn("enemy", 4.0, 4.0) # type, multiplier, spwans
 		print(current_wave)

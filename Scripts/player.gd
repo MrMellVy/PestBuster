@@ -99,6 +99,9 @@ var wasLatched
 var attack_type: String
 var current_attack: bool
 
+var base_health_max = 100
+var damage_bonus = 0
+
 var health = 100
 var health_max = 100
 var health_min = 0
@@ -599,5 +602,18 @@ func set_damage(attack_type):
 		current_damage_to_deal = 20
 	elif attack_type == "dash":
 		current_damage_to_deal = 16
-		
-	Global.playerDamageAmount = current_damage_to_deal
+
+	Global.playerDamageAmount = current_damage_to_deal + damage_bonus
+	
+func apply_wave_stats(wave_number: int):
+	# Calculate math man. (+0 on wave 1, +5 on wave 2, +10 on wave 3...)
+	var bonus_stats = (wave_number - 1) * 5
+	
+	# Update Max HP and heal to max health
+	health_max = base_health_max + bonus_stats
+	health = health_max 
+	
+	# to update the set_damage.
+	damage_bonus = bonus_stats
+	
+	print("Level Up! Max HP: ", health_max, ", Bonus Damage: +", damage_bonus)
