@@ -1,7 +1,8 @@
 extends TextureButton
 
 var original_pos: Vector2
-@onready var anim_player = $"../../ButtonsAnimation"
+@onready var animation_player: AnimationPlayer = $"../AnimationPlayer"
+
 
 func _ready() -> void:
 	original_pos = position
@@ -9,7 +10,7 @@ func _ready() -> void:
 	mouse_exited.connect(_on_mouse_exited)
 
 func _on_mouse_entered() -> void:
-	anim_player.play("buttonstart")
+	animation_player.play("buttonstart")
 
 func _on_mouse_exited() -> void:
-	anim_player.stop()
+	animation_player.stop()

@@ -13,51 +13,50 @@
 [ext_resource type="PackedScene" uid="uid://by1622uoguy0" path="res://Scenes/Transition.tscn" id="11_vr1f0"]
 [ext_resource type="AudioStream" uid="uid://doevch1mt0len" path="res://Assets/Audio/Musics/mega-bot-pipes under.ogg" id="14_vtepg"]
 
-[sub_resource type="Animation" id="Animation_opfnp"]
+[sub_resource type="Animation" id="Animation_5egv6"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Button_Manager/Start:position")
+tracks/0/path = NodePath("../Start:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(249, 156)]
+"values": [Vector2(249, 158)]
 }
 
-[sub_resource type="Animation" id="Animation_cp0ys"]
+[sub_resource type="Animation" id="Animation_t1dhk"]
 resource_name = "buttonstart"
-length = 0.6666667
+length = 0.5
 loop_mode = 1
-step = 0.33333334
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Button_Manager/Start:position")
+tracks/0/path = NodePath("../Start:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05),
+"times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(249, 156), Vector2(251, 156)]
+"values": [Vector2(249, 158), Vector2(251, 158)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_opfnp"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5egv6"]
 _data = {
-&"RESET": SubResource("Animation_opfnp"),
-&"buttonstart": SubResource("Animation_cp0ys")
+&"RESET": SubResource("Animation_5egv6"),
+&"buttonstart": SubResource("Animation_t1dhk")
 }
 
-[sub_resource type="Animation" id="Animation_vr1f0"]
+[sub_resource type="Animation" id="Animation_8dnnj"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Button_Manager/Exit:position")
+tracks/0/path = NodePath("../Exit:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -67,31 +66,31 @@ tracks/0/keys = {
 "values": [Vector2(249.00691, 212)]
 }
 
-[sub_resource type="Animation" id="Animation_16hvj"]
+[sub_resource type="Animation" id="Animation_vtepg"]
 resource_name = "buttonexit"
-length = 0.6768682
+length = 0.5
 loop_mode = 1
-step = 0.33333334
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Button_Manager/Exit:position")
+tracks/0/path = NodePath("../Exit:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.07555738),
+"times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(249, 212), Vector2(251, 212)]
+"values": [Vector2(249.00691, 212), Vector2(251, 212)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_vr1f0"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8dnnj"]
 _data = {
-&"RESET": SubResource("Animation_vr1f0"),
-&"buttonexit": SubResource("Animation_16hvj")
+&"RESET": SubResource("Animation_8dnnj"),
+&"buttonexit": SubResource("Animation_vtepg")
 }
 
 [node name="MainMenu" type="Node2D" unique_id=290221870]
+process_mode = 3
 script = ExtResource("1_28flt")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=339475466]
@@ -116,9 +115,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 229.0
-offset_top = 136.0
-offset_right = 358.0243
-offset_bottom = 185.0
+offset_top = 138.0
+offset_right = 358.02466
+offset_bottom = 187.0
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("2_1ehe0")
@@ -137,18 +136,20 @@ offset_bottom = 247.0
 layout_mode = 0
 offset_left = 249.00691
 offset_top = 212.0
-offset_right = 377.00873
+offset_right = 377.0089
 offset_bottom = 260.9994
 texture_normal = ExtResource("4_n45e2")
 texture_pressed = ExtResource("5_opfnp")
 texture_hover = ExtResource("9_16hvj")
 script = ExtResource("8_yhxw7")
 
-[node name="ButtonsAnimation" type="AnimationPlayer" parent="." unique_id=1675666091]
-libraries/ = SubResource("AnimationLibrary_opfnp")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Button_Manager" unique_id=518537144]
+root_node = NodePath("../Exit")
+libraries/ = SubResource("AnimationLibrary_5egv6")
 
-[node name="ButtonsAnimation2" type="AnimationPlayer" parent="." unique_id=1334672466]
-libraries/ = SubResource("AnimationLibrary_vr1f0")
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Button_Manager" unique_id=194222391]
+root_node = NodePath("../AnimationPlayer")
+libraries/ = SubResource("AnimationLibrary_8dnnj")
 
 [node name="Fade_transition" parent="." unique_id=1693795128 instance=ExtResource("11_vr1f0")]
 layer = 3

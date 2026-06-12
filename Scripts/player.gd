@@ -617,3 +617,8 @@ func apply_wave_stats(wave_number: int):
 	damage_bonus = bonus_stats
 	
 	print("Level Up! Max HP: ", health_max, ", Bonus Damage: +", damage_bonus)
+	
+func _input(event: InputEvent) -> void:
+	#this function it's for going down one way platform, though is still that basic.
+	if (event.is_action_pressed("down")):
+		position.y += 1

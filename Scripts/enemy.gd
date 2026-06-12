@@ -146,7 +146,9 @@ func _on_enemy_deal_damage_area_area_exited(area: Area2D) -> void:
 	
 func play_enemy_animation(anim_name: String):
 	animated_sprite_2d.play(anim_name)
-	if anim_name == "defeat" or anim_name == "move":
+	if anim_name == "move":
 		animated_sprite_2d.offset.y = -27
+	elif anim_name == "defeat":
+		animated_sprite_2d.offset.y = -20
 	else:
 		animated_sprite_2d.offset.y = -7
