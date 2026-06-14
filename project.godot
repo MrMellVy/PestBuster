@@ -20,6 +20,7 @@ config/icon="uid://c5hap6e66gqiv"
 
 Global="*uid://b0a1sh4cslfoq"
 BgmManager="*uid://c1hopa307tlcx"
+Dialouge="*uid://byp2g67igx83u"
 
 [display]
 

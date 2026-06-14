@@ -1,8 +1,9 @@
-extends ProgressBar
+extends TextureProgressBar
 
 var parent
 var max_value_amount
 var min_value_amount
+@onready var color_rect: ColorRect = $ColorRect
 
 var current_tracked_health: float =  -1.0
 
