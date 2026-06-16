@@ -54,6 +54,11 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 func calculate_movement():
+	if player_in_area and player != null:
+			var dir_to_player = sign(player.global_position.x - global_position.x)
+			if dir_to_player != 0:
+				dir.x = dir_to_player
+
 	if defeat or is_dealing_damage:
 		velocity.x = 0
 		return
@@ -61,12 +66,8 @@ func calculate_movement():
 	if taking_damage:
 		var knockbar_dir = position.direction_to(player.position) * knockback_force
 		velocity.x = knockbar_dir.x
-		return
 		
-	if player_in_area:
-		velocity.x = 0
-		return
-		
+
 	if is_enemy_chase and player != null:
 		var distance_x = abs(global_position.x - player.global_position.x)
 		var distance_y = abs(global_position.y - player.global_position.y)
@@ -92,6 +93,11 @@ func calculate_movement():
 func handle_animation():
 	if defeat:
 		return 
+	
+	if dir.x < 0:
+		animated_sprite_2d.flip_h = false
+	elif dir.x > 0:
+		animated_sprite_2d.flip_h = true
 		
 	if taking_damage:
 		play_enemy_animation("hitted")
@@ -102,10 +108,7 @@ func handle_animation():
 			play_enemy_animation("move")
 		else:
 			play_enemy_animation("idle")
-		if dir.x < 0:
-			animated_sprite_2d.flip_h = false
-		elif dir.x > 0:
-			animated_sprite_2d.flip_h = true
+
 
 func handle_defeat_sequence():
 	is_roaming = false
