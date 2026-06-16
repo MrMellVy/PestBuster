@@ -4,10 +4,9 @@
 [ext_resource type="Script" uid="uid://bv5u5t8xyclsc" path="res://Scripts/level_1.gd" id="1_pvlc2"]
 [ext_resource type="Texture2D" uid="uid://ck8ryb16wtmbn" path="res://Assets/Tilesets/Buildings.png" id="3_knogg"]
 [ext_resource type="Texture2D" uid="uid://cf8lxwsdblm8" path="res://Assets/Background/Day/Background.png" id="3_mt3j2"]
-[ext_resource type="Texture2D" uid="uid://hn700ec7p8v7" path="res://Assets/Background/Day/Cloud0.png" id="4_mt3j2"]
 [ext_resource type="Texture2D" uid="uid://dpui6y2i7aj56" path="res://Assets/Tilesets/Roads.png" id="4_uoico"]
 [ext_resource type="Texture2D" uid="uid://dyhirno48mfiq" path="res://Assets/Tilesets/Platform-Sheet.png" id="5_4snqv"]
-[ext_resource type="Texture2D" uid="uid://cw24n634a78kb" path="res://Assets/Background/Day/Cloud1.png" id="5_mt3j2"]
+[ext_resource type="FontFile" uid="uid://2a60yd24n10g" path="res://Assets/Fonts/ThaleahFat.ttf" id="6_fvaf1"]
 [ext_resource type="PackedScene" uid="uid://by1622uoguy0" path="res://Scenes/Transition.tscn" id="8_c458c"]
 [ext_resource type="PackedScene" uid="uid://b8w4kw2ipi6o8" path="res://Scenes/enemy.tscn" id="10_d68a7"]
 [ext_resource type="Script" uid="uid://bw5wocne5iwbg" path="res://Scripts/currentscore_label.gd" id="11_q2tg5"]
@@ -17,6 +16,12 @@
 [ext_resource type="PackedScene" uid="uid://c3ijuhpxgpyie" path="res://Scenes/WallJump.tscn" id="15_50v45"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_5dsmb"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xagk4"]
+load_path = "res://.godot/imported/Cloud0.png-f7d3aa7d538e5189608ed4a3e481fd2e.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_akeww"]
+load_path = "res://.godot/imported/Cloud1.png-c2e2a5604fe819f914bcb2d94d3d769b.ctex"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c458c"]
 texture = ExtResource("3_knogg")
@@ -412,7 +417,7 @@ repeat_times = 3
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxC0" unique_id=1528459691]
 position = Vector2(0, -103.915)
 scale = Vector2(0.814, 0.86)
-texture = ExtResource("4_mt3j2")
+texture = SubResource("CompressedTexture2D_xagk4")
 centered = false
 
 [node name="ParallaxC1" type="Parallax2D" parent="." unique_id=1388602135]
@@ -425,7 +430,7 @@ repeat_times = 2
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxC1" unique_id=1727448177]
 position = Vector2(1.5999999, -429.56)
 scale = Vector2(0.821, 0.867)
-texture = ExtResource("5_mt3j2")
+texture = SubResource("CompressedTexture2D_akeww")
 centered = false
 
 [node name="Player" parent="." unique_id=1296403870 instance=ExtResource("1_b828a")]
@@ -450,18 +455,22 @@ position = Vector2(-354, 130)
 [node name="scoreLabels" type="CanvasLayer" parent="." unique_id=245646660]
 
 [node name="currentscoreLabel" type="RichTextLabel" parent="scoreLabels" unique_id=992819181]
-offset_left = 448.0
-offset_top = 4.0
-offset_right = 639.0
-offset_bottom = 44.0
+offset_left = 376.0
+offset_top = 2.0
+offset_right = 568.0
+offset_bottom = 17.384617
+scale = Vector2(1.625, 1.625)
+theme_override_fonts/normal_font = ExtResource("6_fvaf1")
 text = "CURRENT SCORE: 99999"
 script = ExtResource("11_q2tg5")
 
 [node name="currentwaveLabel" type="RichTextLabel" parent="scoreLabels" unique_id=542419889]
-offset_left = 454.0
-offset_top = 24.0
-offset_right = 645.0
-offset_bottom = 64.0
+offset_left = 392.99997
+offset_top = 19.0
+offset_right = 614.1072
+offset_bottom = 36.0
+scale = Vector2(1.585, 1.585)
+theme_override_fonts/normal_font = ExtResource("6_fvaf1")
 text = "CURRENT WAVE: 99999"
 script = ExtResource("12_mt3j2")
 

@@ -2,9 +2,11 @@ extends CharacterBody2D
 
 class_name Enemy
 
-const speed = 30
-var is_enemy_chase: bool = true
+const speed = 40 #The enemy speed.
+const push_force = 10.0 # So it doesnt collide with other enemy. Yes, taking the difficult way.
+const anim_threshold = 5.0 #Cam be upper than the push_force or lower, idk man.
 
+var is_enemy_chase: bool = true
 var health = 40
 var health_max = 40
 var health_min = 0
@@ -27,8 +29,10 @@ var player_in_area = false
 var can_attack: bool = true
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var separate_area: Area2D = $SeparateArea
 
-func _process(delta: float) -> void:
+
+func _physics_process(delta: float) -> void:
 	if !is_on_floor():
 		velocity.y += gravity * delta
 		velocity.x = 0
@@ -44,33 +48,48 @@ func _process(delta: float) -> void:
 	if player_in_area and can_attack and !defeat and !taking_damage:
 		attack_sequence()
 	
-	move(delta)
+	calculate_movement()
+	apply_separation()
 	handle_animation()
 	move_and_slide()
 	
-func move(delta):
-	if defeat:
+func calculate_movement():
+	if defeat or is_dealing_damage:
 		velocity.x = 0
 		return
-	if is_dealing_damage:
+
+	if taking_damage:
+		var knockbar_dir = position.direction_to(player.position) * knockback_force
+		velocity.x = knockbar_dir.x
+		return
+		
+	if player_in_area:
 		velocity.x = 0
 		return
 		
-	if !is_enemy_chase:
-		velocity += dir * speed * delta
-	elif taking_damage:
-		var knockbar_dir = position.direction_to(player.position) * knockback_force
-		velocity.x = knockbar_dir.x
-	elif player_in_area:
-		velocity.x = 0
-	elif is_enemy_chase:
-		var dir_to_player = position.direction_to(player.position) * speed
-		velocity.x = dir_to_player.x
-		if velocity.x != 0:
-			dir.x = abs(velocity.x) / velocity.x
+	if is_enemy_chase and player != null:
+		var distance_x = abs(global_position.x - player.global_position.x)
+		var distance_y = abs(global_position.y - player.global_position.y)
+		
+		var in_deadzone = false
+		
+		if distance_y > 20.0:
+			if distance_x < 80.0: in_deadzone = true
+		else:
+			if distance_x < 15.0: in_deadzone = true
+		
+		if in_deadzone:
+			velocity.x = dir.x * (speed * 0.5)
+		else:
+			var dir_to_player = sign(player.global_position.x - global_position.x)
+			velocity.x = dir_to_player * speed
+			dir.x = dir_to_player 
+	elif  !is_enemy_chase:
+		velocity.x = dir.x * speed
+		
 	is_roaming = true
-
-func handle_animation():	
+	
+func handle_animation():
 	if defeat:
 		return 
 		
@@ -79,13 +98,13 @@ func handle_animation():
 	elif is_dealing_damage:
 		play_enemy_animation("attack")
 	else:
-		if velocity.x == 0:
-			play_enemy_animation("idle")
-		else:
+		if abs(velocity.x) > anim_threshold:
 			play_enemy_animation("move")
-		if dir.x == -1:
+		else:
+			play_enemy_animation("idle")
+		if dir.x < 0:
 			animated_sprite_2d.flip_h = false
-		elif dir.x == 1:
+		elif dir.x > 0:
 			animated_sprite_2d.flip_h = true
 
 func handle_defeat_sequence():
@@ -101,9 +120,8 @@ func handle_defeat():
 
 func _on_direction_timer_timeout() -> void:
 	$DirectionTimer.wait_time = choose([1.5,2.0,2.5])
-	if !is_enemy_chase:
-		dir = choose([Vector2.RIGHT, Vector2.LEFT])
-		velocity.x = 0
+	var random_dir = choose([-1, 1])
+	dir.x = random_dir
 	
 func choose(array):
 	array.shuffle()
@@ -128,11 +146,19 @@ func take_damage(damage):
 
 func attack_sequence():
 	can_attack = false
+	await  get_tree().create_timer(0.4).timeout
+
+	if defeat or taking_damage:
+		can_attack = true
+		return
+		
 	is_dealing_damage = true
 	has_dealt_damage = false
+
 	await $AnimatedSprite2D.animation_finished
+
 	is_dealing_damage = false
-	await get_tree().create_timer(3).timeout
+	await get_tree().create_timer(3.0).timeout
 	can_attack = true
 
 func _on_enemy_deal_damage_area_area_entered(area: Area2D) -> void:
@@ -152,3 +178,27 @@ func play_enemy_animation(anim_name: String):
 		animated_sprite_2d.offset.y = -20
 	else:
 		animated_sprite_2d.offset.y = -7
+
+func apply_separation():
+	if defeat or taking_damage or is_dealing_damage or player_in_area: 
+		return
+	var push_separation = get_separation_x()
+	velocity.x += (push_separation * push_force)
+	
+func get_separation_x() -> float:
+	var push_x = 0.0
+	var overlapping_bodies = $SeparateArea.get_overlapping_bodies()
+	
+	for body in overlapping_bodies:
+		if body == self:
+			continue
+			
+		if body.global_position.x == global_position.x:
+			push_x += randf_range(-1.0, 1.0) # Panic shove left or right
+		else:
+			if body.global_position.x < global_position.x:
+				push_x += 1.0
+			else:
+				push_x -= 1.0
+				
+	return sign(push_x)

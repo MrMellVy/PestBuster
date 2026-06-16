@@ -1,10 +1,10 @@
 [
-        {"name": "You", "text": "This city.."},
-        {"name": "You", "text": "My Grandfather want me to comeback to this city."},
-        {"name": "You", "text": "He said something about a job.."},
-        {"name": "You", "text": "I hope it's not about hunting again.."},
-        {"name": "You", "text": "Did i see.. What?"},
-        {"name": "You", "text": "Not again-"}
+        {"name": "You", "text": "This city..", "face": "SpriteFace_Silence_1"},
+        {"name": "You", "text": "My Grandfather want me to comeback to this city.", "face": "SpriteFace_Silence"},
+        {"name": "You", "text": "He need my help to clean something big..", "face": "SpriteFace_Silence"},
+        {"name": "You", "text": "Man.. I miss this place.", "face": "SpriteFace_Haha_1"},
+        {"name": "You", "text": "Did i see.. What?", "face": "SpriteFace_Silence_1"},
+        {"name": "You", "text": "Not again-", "face": "SpriteFace_What"}
 
 ]
 

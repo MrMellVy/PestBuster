@@ -1,6 +1,5 @@
 extends Node2D
 
-
 var button_type = null
 var fade_startup = false
 
@@ -39,7 +38,7 @@ func _on_exit_pressed() -> void:
 func _on_fade_timer_timeout() -> void:
 	if button_type == "start" :
 		Global.gameStarted = true
-		get_tree().change_scene_to_file("res://Scenes/Level/level_1.tscn")
+		get_tree().change_scene_to_file("res://Scenes/Cutscene/cutscene_1.tscn")
 	elif button_type == "exit" :
 		get_tree().quit()
 	elif fade_startup == true:

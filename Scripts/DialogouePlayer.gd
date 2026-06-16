@@ -1,5 +1,6 @@
 extends CanvasLayer
 
+signal dialogue_finished
 var dialogue = []
 var current_dialogue_id = 0
 var d_active = false
@@ -59,9 +60,13 @@ func next_script():
 	if current_dialogue_id >= len(dialogue):
 		d_active = false
 		$NinePatchRect.visible = false
+		dialogue_finished.emit()
 		return
 	$NinePatchRect/Name.text = dialogue[current_dialogue_id]['name']
 	$NinePatchRect/Dialogue.text = dialogue[current_dialogue_id]['text']
 
+	var face_name = dialogue[current_dialogue_id]['face']
+	$NinePatchRect/PictureProtait.texture = load("res://Assets/Sprites/PlayerFace/" + face_name + ".png")
+	
 	$NinePatchRect/AnimationPlayer.stop()
 	$NinePatchRect/AnimationPlayer.play("Dialogue")

@@ -1024,6 +1024,7 @@ stream_1/stream = ExtResource("24_0gysh")
 stream_2/stream = ExtResource("25_vfarp")
 
 [node name="Player" type="CharacterBody2D" unique_id=1296403870 node_paths=PackedStringArray("PlayerSprite", "PlayerCollider")]
+collision_mask = 7
 script = ExtResource("1_3smsa")
 PlayerSprite = NodePath("AnimatedSprite2D")
 PlayerCollider = NodePath("CollisionShape2D")
