@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://by1622uoguy0" path="res://Scenes/Transition.tscn" id="8_c458c"]
 [ext_resource type="PackedScene" uid="uid://b8w4kw2ipi6o8" path="res://Scenes/enemy.tscn" id="10_d68a7"]
 [ext_resource type="PackedScene" uid="uid://bhoc04ca7xoh5" path="res://Scenes/ScoreWaveLabels.tscn" id="10_q2tg5"]
+[ext_resource type="PackedScene" uid="uid://bhik0cbrtt1bx" path="res://Scenes/pause_menu.tscn" id="11_q2tg5"]
 [ext_resource type="Texture2D" uid="uid://carjrejog3yx1" path="res://Assets/Tilesets/Car.png" id="13_akeww"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xagk4"]
@@ -371,7 +372,6 @@ size = Vector2(20, 710.875)
 size = Vector2(20, 669.4375)
 
 [node name="Level_1" type="Node2D" unique_id=630728870]
-process_mode = 3
 script = ExtResource("1_pvlc2")
 enemy_scene = ExtResource("10_d68a7")
 
@@ -483,5 +483,8 @@ autostart = true
 
 [node name="BorderMarker" type="Marker2D" parent="." unique_id=1564193171]
 position = Vector2(-1, -69)
+
+[node name="PauseMenu" parent="." unique_id=1424256854 instance=ExtResource("11_q2tg5")]
+layer = 10
 
 [connection signal="timeout" from="TimerHealthPowerUp" to="." method="_on_timer_health_power_up_timeout"]

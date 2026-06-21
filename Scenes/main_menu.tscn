@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://dppvuj7nubmc2" path="res://Assets/Main Menu/ButtonsMenu/MenuButtonsStart.png" id="2_1ehe0"]
 [ext_resource type="Texture2D" uid="uid://crqx2cn2iyfwu" path="res://Assets/Main Menu/Title/NewTitle.png" id="2_vr1f0"]
 [ext_resource type="Texture2D" uid="uid://bn57vtncmn8xm" path="res://Assets/Main Menu/ButtonsMenu/MenuButtonsStartHighlighted.png" id="3_ce3w2"]
-[ext_resource type="Texture2D" uid="uid://ct6g4sbk6nlxu" path="res://Assets/Sprites/Spritesquare/Cloudmainmenu.png" id="3_vtepg"]
 [ext_resource type="Texture2D" uid="uid://b3dd0kfmhikxr" path="res://Assets/Main Menu/ButtonsMenu/MenuButtonsExit.png" id="4_n45e2"]
 [ext_resource type="Script" uid="uid://cvpv3nvnh76b4" path="res://Scripts/start.gd" id="5_cp0ys"]
 [ext_resource type="Texture2D" uid="uid://h6e4x3cpftt0" path="res://Assets/Main Menu/ButtonsMenu/MenuButtonsExitHighlighted.png" id="5_opfnp"]
@@ -12,16 +11,15 @@
 [ext_resource type="Script" uid="uid://c57isocbv8ffm" path="res://Scripts/exit.gd" id="8_yhxw7"]
 [ext_resource type="Texture2D" uid="uid://bavjjf76l83xm" path="res://Assets/Main Menu/ButtonsMenu/MenuButtonsExitHover.png" id="9_16hvj"]
 [ext_resource type="PackedScene" uid="uid://by1622uoguy0" path="res://Scenes/Transition.tscn" id="11_vr1f0"]
-[ext_resource type="Shader" uid="uid://baxjruh5664dn" path="res://Assets/Sprites/Spritesquare/spritesquare.gdshader" id="13_vtepg"]
 [ext_resource type="AudioStream" uid="uid://doevch1mt0len" path="res://Assets/Audio/Musics/mega-bot-pipes under.ogg" id="14_vtepg"]
-[ext_resource type="Shader" uid="uid://cnp7jsughunct" path="res://Assets/Sprites/Spritesquare/spritesquare1.gdshader" id="15_8dnnj"]
+[ext_resource type="Shader" uid="uid://baxjruh5664dn" path="res://Assets/Sprites/Spritesquare/spritesquare.gdshader" id="15_8dnnj"]
 [ext_resource type="Texture2D" uid="uid://cf8lxwsdblm8" path="res://Assets/Background/Day/Background.png" id="16_mkpwh"]
 [ext_resource type="Texture2D" uid="uid://ck8ryb16wtmbn" path="res://Assets/Tilesets/Buildings.png" id="17_4nkqq"]
 [ext_resource type="Texture2D" uid="uid://dpui6y2i7aj56" path="res://Assets/Tilesets/Roads.png" id="18_ehtkc"]
 [ext_resource type="Texture2D" uid="uid://dyhirno48mfiq" path="res://Assets/Tilesets/Platform-Sheet.png" id="19_6dk6o"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m3bi6"]
-shader = ExtResource("13_vtepg")
+shader = ExtResource("15_8dnnj")
 shader_parameter/wind_speed = 1.0
 shader_parameter/wave_frequency = 3.385
 shader_parameter/wave_amplitude = 0.03
@@ -323,6 +321,9 @@ shader_parameter/wind_speed = 0.525
 shader_parameter/wave_frequency = 2.23
 shader_parameter/wave_amplitude = 0.01
 shader_parameter/wind_direction = Vector2(1, -1)
+shader_parameter/shadow_color = Color(0, 0, 0, 0.4)
+shader_parameter/highlight_color = Color(1, 1, 1, 0.3)
+shader_parameter/light_angle = 0.5
 
 [sub_resource type="Animation" id="Animation_5egv6"]
 length = 0.001
@@ -409,7 +410,6 @@ visible = false
 material = SubResource("ShaderMaterial_m3bi6")
 position = Vector2(321, 178.5)
 scale = Vector2(0.33437502, 0.33240741)
-texture = ExtResource("3_vtepg")
 
 [node name="Background2" type="Node2D" parent="." unique_id=1506809843]
 

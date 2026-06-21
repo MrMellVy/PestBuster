@@ -16,3 +16,10 @@ data_*/
 mono_crash.*.json
 *.import
 *.tmp
+export_presets.cfg
+Build/PestBuster.exe
+Assets/Sprites/Spritesquare/spritesquare1.gdshader.uid
+Assets/Sprites/Spritesquare/spritesquare1.gdshader
+Assets/Sprites/Spritesquare/spritesquare.gdshader.uid
+Assets/Sprites/Spritesquare/spritesquare.gdshader
+Assets/Sprites/Spritesquare/Cloudmainmenu.png
