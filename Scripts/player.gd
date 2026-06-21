@@ -199,7 +199,7 @@ func _updateData():
 func _process(_delta) -> void:
 	if defeat or is_hurt: return
 	# Direction
-	if is_on_wall() and !is_on_floor() and latch and wallLatching and ((wallLatchingModifer and latchHold) or !wallLatchingModifer):
+	if can_wall_interact() and !is_on_floor() and latch and wallLatching and ((wallLatchingModifer and latchHold) or !wallLatchingModifer):
 		latched = true
 	else :
 		latched = false
@@ -215,11 +215,12 @@ func _process(_delta) -> void:
 	# Run
 	if !current_attack:
 		if run and idle and !dashing:
-			if abs(velocity.x) > 0.1 and is_on_floor() and !is_on_wall():
-				anim.speed_scale = abs(velocity.x / 150)
+			var actual_speed = abs(get_real_velocity().x)
+			if actual_speed > 0.1 and is_on_floor() and !is_on_wall():
+				anim.speed_scale = actual_speed / 150.0
 				anim.play("run")
-			elif abs(velocity.x) < 0.1 and is_on_floor():
-				anim.speed_scale = 1
+			elif is_on_floor():
+				anim.speed_scale = 1.0
 				anim.play("idle")
 	
 	# Jump
@@ -237,7 +238,7 @@ func _process(_delta) -> void:
 		if latched and !wasLatched:
 			anim.speed_scale = 1
 			anim.play("latch")
-		if is_on_wall() and velocity.y > 0 and slide and anim.animation != "slide" and wallSliding != 1:
+		if can_wall_interact() and velocity.y > 0 and slide and anim.animation != "slide" and wallSliding != 1:
 			anim.speed_scale = 1
 			anim.play("slide")
 	
@@ -343,7 +344,7 @@ func _physics_process(delta) -> void:
 		else:
 			appliedGravity = gravityScale
 			
-		if is_on_wall():
+		if can_wall_interact():
 			appliedTerminalVelocity = terminalVelocity / wallSliding
 			if wallLatching and ((wallLatchingModifer and latchHold) or !wallLatchingModifer):
 				appliedGravity = 0
@@ -358,7 +359,7 @@ func _physics_process(delta) -> void:
 					
 			elif wallSliding != 1 and velocity.y > 0:
 				appliedGravity = appliedGravity / wallSliding
-		elif !is_on_wall():
+		elif !can_wall_interact():
 			appliedTerminalVelocity = terminalVelocity
 			
 		if gravityActive:
@@ -371,12 +372,12 @@ func _physics_process(delta) -> void:
 			velocity.y = velocity.y / jumpVariable
 			
 		if jumps == 1:
-			if !is_on_floor() and !is_on_wall():
+			if !is_on_floor() and !can_wall_interact():
 				if coyoteTime > 0:
 					coyoteActive = true
 					_coyoteTime()
 					
-			if jumpTap and !is_on_wall():
+			if jumpTap and !can_wall_interact():
 				if coyoteActive:
 					coyoteActive = false
 					_jump()
@@ -385,7 +386,7 @@ func _physics_process(delta) -> void:
 					_bufferJump()
 				elif jumpBuffering == 0 and coyoteTime == 0 and is_on_floor():
 					_jump()
-			elif jumpTap and is_on_wall() and !is_on_floor():
+			elif jumpTap and can_wall_interact() and !is_on_floor():
 				if wallJump and !latched:
 					_wallJump()
 				elif wallJump and latched:
@@ -608,17 +609,33 @@ func set_damage(attack_type):
 func apply_wave_stats(wave_number: int):
 	# Calculate math man. (+0 on wave 1, +5 on wave 2, +10 on wave 3...)
 	var bonus_stats = (wave_number - 1) * 5
-	
-	# Update Max HP and heal to max health
 	health_max = base_health_max + bonus_stats
 	health = health_max 
-	
-	# to update the set_damage.
 	damage_bonus = bonus_stats
 	
-	print("Level Up! Max HP: ", health_max, ", Bonus Damage: +", damage_bonus)
+	print("Level Up, Max HP: ", health_max, ", Bonus Damage: +", damage_bonus)
 	
 func _input(event: InputEvent) -> void:
 	#this function it's for going down one way platform, though is still that basic.
 	if (event.is_action_pressed("down")):
 		position.y += 1
+
+#For the player not jumping on the world border
+func can_wall_interact() -> bool:
+	if !is_on_wall():
+		return false
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+		if collider != null and collider.is_in_group("Border"):
+			return false
+	return true
+
+func heal(amount: int) -> void:
+	health += amount
+	health = min(health, health_max)
+	
+	print("Healed for ", amount, "! Current H.P. (Health Points): ", health)
+	
+	# Optional: If you have a UI label for health, update it here!
+	# $HealthLabel.text = str(health) + "/" + str(health_max)

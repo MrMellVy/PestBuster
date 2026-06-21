@@ -59,7 +59,8 @@ func play_retry_music(theme_name: String = "Retry"):
 		sfx_player.finished.connect(_on_intro_finished)
 	sfx_player.stream = load(retry_themes[theme_name]["intro"])
 	sfx_player.play()
-
+	
+#This func for looping the song if you have a second song that just only for the loop part.
 func _on_intro_finished():
 	sfx_player.finished.disconnect(_on_intro_finished)
 	stream = load(next_loop_path)

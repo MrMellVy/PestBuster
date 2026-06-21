@@ -13,7 +13,7 @@ config_version=5
 config/name="PestBuster"
 config/version="0.0.1"
 run/main_scene="uid://dnhdvxp66r0sr"
-config/features=PackedStringArray("4.6", "Forward Plus")
+config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="uid://c5hap6e66gqiv"
 
 [autoload]

@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://bhki26frbxu88"]
+
+[ext_resource type="Script" uid="uid://bwef6dok2l31b" path="res://Scenes/spawn_health.gd" id="1_u0nel"]
+[ext_resource type="Texture2D" uid="uid://naxpg8gs4nri" path="res://Assets/Sprites/PowerUps/PowerUps.png" id="2_vrklq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vrklq"]
+radius = 15.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u0nel"]
+
+[sub_resource type="Animation" id="Animation_j2pb4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -10.005)]
+}
+
+[sub_resource type="Animation" id="Animation_vrklq"]
+resource_name = "float"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(2, 0.5),
+"update": 0,
+"values": [Vector2(0, -10.005), Vector2(0, -2.225)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j2pb4"]
+_data = {
+&"RESET": SubResource("Animation_j2pb4"),
+&"float": SubResource("Animation_vrklq")
+}
+
+[node name="HealthBuff" type="RigidBody2D" unique_id=1563827152]
+collision_layer = 16
+collision_mask = 12
+gravity_scale = 0.2
+lock_rotation = true
+linear_damp = 2.5
+script = ExtResource("1_u0nel")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=962838775]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_vrklq")
+offset = Vector2(0, -10.005)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1300766457]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=214653411]
+shape = SubResource("CircleShape2D_vrklq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1123625573]
+visible = false
+shape = SubResource("RectangleShape2D_u0nel")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2108982238]
+libraries/ = SubResource("AnimationLibrary_j2pb4")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

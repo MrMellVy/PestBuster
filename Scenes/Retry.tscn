@@ -31,7 +31,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_8xgux"]
 resource_name = "Title"
-length = 3.0
+length = 3.1
 loop_mode = 2
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -40,10 +40,10 @@ tracks/0/path = NodePath("Retry:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 2, 3),
+"times": PackedFloat32Array(0, 0.1, 3, 3.1),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 0.05235988, 0.0, -0.05235988]
+"values": [0.05235988, 0.05235988, -0.05235988, -0.05235988]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ug3to"]
@@ -174,9 +174,9 @@ script = ExtResource("6_bume2")
 
 [node name="Menu" type="TextureButton" parent="Button_Manager" unique_id=1665777620]
 layout_mode = 0
-offset_left = 249.64659
+offset_left = 249.0069
 offset_top = 212.0
-offset_right = 329.64813
+offset_right = 329.00842
 offset_bottom = 244.0
 scale = Vector2(1.595, 1.595)
 texture_normal = ExtResource("5_ug3to")

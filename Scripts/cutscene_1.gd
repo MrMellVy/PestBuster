@@ -16,6 +16,11 @@ func start() -> void:
 	animation_player.play("car")
 	Dialouge.start("CS_00")
 	await  Dialouge.dialogue_finished
+	
+	animation_player.play("carwew")
+	await  animation_player.animation_finished
+	
 	$Fade_transition/Fade_transition/AnimationPlayer.play("Fade_in")
 	await  $Fade_transition/Fade_transition/AnimationPlayer.animation_finished
+	
 	get_tree().change_scene_to_file("res://Scenes/Level/level_1.tscn")

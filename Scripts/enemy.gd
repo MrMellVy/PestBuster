@@ -2,9 +2,9 @@ extends CharacterBody2D
 
 class_name Enemy
 
-const speed = 40 #The enemy speed.
+const speed = 50 #The enemy speed.
 const push_force = 10.0 # So it doesnt collide with other enemy. Yes, taking the difficult way.
-const anim_threshold = 5.0 #Cam be upper than the push_force or lower, idk man.
+const anim_threshold = 15.0 #Cam be upper than the push_force or lower, idk man.
 
 var is_enemy_chase: bool = true
 var health = 40
@@ -66,7 +66,12 @@ func calculate_movement():
 	if taking_damage:
 		var knockbar_dir = position.direction_to(player.position) * knockback_force
 		velocity.x = knockbar_dir.x
+		return
 		
+
+	if player_in_area:
+			velocity.x = 0
+			return 
 
 	if is_enemy_chase and player != null:
 		var distance_x = abs(global_position.x - player.global_position.x)
@@ -77,7 +82,7 @@ func calculate_movement():
 		if distance_y > 20.0:
 			if distance_x < 80.0: in_deadzone = true
 		else:
-			if distance_x < 15.0: in_deadzone = true
+			if distance_x < 5.0: in_deadzone = true
 		
 		if in_deadzone:
 			velocity.x = dir.x * (speed * 0.5)

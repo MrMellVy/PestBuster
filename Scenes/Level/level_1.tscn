@@ -6,16 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://cf8lxwsdblm8" path="res://Assets/Background/Day/Background.png" id="3_mt3j2"]
 [ext_resource type="Texture2D" uid="uid://dpui6y2i7aj56" path="res://Assets/Tilesets/Roads.png" id="4_uoico"]
 [ext_resource type="Texture2D" uid="uid://dyhirno48mfiq" path="res://Assets/Tilesets/Platform-Sheet.png" id="5_4snqv"]
-[ext_resource type="FontFile" uid="uid://2a60yd24n10g" path="res://Assets/Fonts/ThaleahFat.ttf" id="6_fvaf1"]
 [ext_resource type="PackedScene" uid="uid://by1622uoguy0" path="res://Scenes/Transition.tscn" id="8_c458c"]
 [ext_resource type="PackedScene" uid="uid://b8w4kw2ipi6o8" path="res://Scenes/enemy.tscn" id="10_d68a7"]
-[ext_resource type="Script" uid="uid://bw5wocne5iwbg" path="res://Scripts/currentscore_label.gd" id="11_q2tg5"]
-[ext_resource type="Script" uid="uid://dctbcwqp8g8ml" path="res://Scripts/currentwave_label.gd" id="12_mt3j2"]
+[ext_resource type="PackedScene" uid="uid://bhoc04ca7xoh5" path="res://Scenes/ScoreWaveLabels.tscn" id="10_q2tg5"]
 [ext_resource type="Texture2D" uid="uid://carjrejog3yx1" path="res://Assets/Tilesets/Car.png" id="13_akeww"]
-[ext_resource type="Texture2D" uid="uid://c4au6nfdag87o" path="res://Assets/Tilesets/CollisonShapeTileset.png" id="14_hnohd"]
-[ext_resource type="PackedScene" uid="uid://c3ijuhpxgpyie" path="res://Scenes/WallJump.tscn" id="15_50v45"]
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_5dsmb"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xagk4"]
 load_path = "res://.godot/imported/Cloud0.png-f7d3aa7d538e5189608ed4a3e481fd2e.ctex"
@@ -210,7 +204,8 @@ texture = ExtResource("3_knogg")
 24:7/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_pvlc2"]
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 8
+physics_layer_0/collision_mask = 7
 sources/0 = SubResource("TileSetAtlasSource_c458c")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d68a7"]
@@ -298,7 +293,8 @@ texture = ExtResource("5_4snqv")
 4:0/0/physics_layer_0/polygon_0/one_way = true
 
 [sub_resource type="TileSet" id="TileSet_mt3j2"]
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 4
+physics_layer_0/collision_mask = 7
 sources/0 = SubResource("TileSetAtlasSource_d68a7")
 sources/1 = SubResource("TileSetAtlasSource_q2tg5")
 
@@ -368,111 +364,55 @@ texture = ExtResource("13_akeww")
 [sub_resource type="TileSet" id="TileSet_hnohd"]
 sources/0 = SubResource("TileSetAtlasSource_fvaf1")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_akeww"]
-size = Vector2(80.99999, 20)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mt3j2"]
+size = Vector2(20, 710.875)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lrh7k"]
-texture = ExtResource("14_hnohd")
-0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-0:0/0/physics_layer_0/polygon_0/one_way = true
-
-[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_ia3c5"]
-scenes/1/scene = ExtResource("15_50v45")
-
-[sub_resource type="TileSet" id="TileSet_unuuj"]
-physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_lrh7k")
-sources/1 = SubResource("TileSetScenesCollectionSource_ia3c5")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d68a7"]
+size = Vector2(20, 669.4375)
 
 [node name="Level_1" type="Node2D" unique_id=630728870]
 process_mode = 3
 script = ExtResource("1_pvlc2")
 enemy_scene = ExtResource("10_d68a7")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1844576796]
-position = Vector2(0, 167.57)
+[node name="Clouds" type="Node2D" parent="." unique_id=1353283448]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1785107921]
-shape = SubResource("WorldBoundaryShape2D_5dsmb")
-
-[node name="ParallaxBackground" type="Parallax2D" parent="." unique_id=1127383803]
+[node name="ParallaxBackground" type="Parallax2D" parent="Clouds" unique_id=1127383803]
 scale = Vector2(0.28, 0.28)
 scroll_scale = Vector2(0.1, 0)
 repeat_size = Vector2(180, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground" unique_id=1150576621]
+[node name="Sprite2D" type="Sprite2D" parent="Clouds/ParallaxBackground" unique_id=1150576621]
 position = Vector2(0, -94.99999)
 scale = Vector2(1.0607638, 1.1203704)
 texture = ExtResource("3_mt3j2")
 centered = false
 
-[node name="ParallaxC0" type="Parallax2D" parent="." unique_id=1849727233]
+[node name="ParallaxC0" type="Parallax2D" parent="Clouds" unique_id=1849727233]
 scale = Vector2(0.385, 0.385)
 scroll_scale = Vector2(0.2, 0)
 repeat_size = Vector2(800, 0)
 autoscroll = Vector2(0.5, 0)
 repeat_times = 3
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxC0" unique_id=1528459691]
+[node name="Sprite2D" type="Sprite2D" parent="Clouds/ParallaxC0" unique_id=1528459691]
 position = Vector2(0, -103.915)
 scale = Vector2(0.814, 0.86)
 texture = SubResource("CompressedTexture2D_xagk4")
 centered = false
 
-[node name="ParallaxC1" type="Parallax2D" parent="." unique_id=1388602135]
+[node name="ParallaxC1" type="Parallax2D" parent="Clouds" unique_id=1388602135]
 scale = Vector2(0.625, 0.625)
 scroll_scale = Vector2(0.3, 0)
 repeat_size = Vector2(600, 0)
 autoscroll = Vector2(1, 0)
 repeat_times = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxC1" unique_id=1727448177]
+[node name="Sprite2D" type="Sprite2D" parent="Clouds/ParallaxC1" unique_id=1727448177]
 position = Vector2(1.5999999, -429.56)
 scale = Vector2(0.821, 0.867)
 texture = SubResource("CompressedTexture2D_akeww")
 centered = false
-
-[node name="Player" parent="." unique_id=1296403870 instance=ExtResource("1_b828a")]
-position = Vector2(0, 161.565)
-
-[node name="WorldCamera" type="Camera2D" parent="Player" unique_id=1481191766]
-zoom = Vector2(1.93, 1.93)
-limit_left = -435
-limit_right = 550
-limit_bottom = 198
-
-[node name="Fade_transition" parent="." unique_id=250833089 instance=ExtResource("8_c458c")]
-layer = 2
-visible = false
-
-[node name="EnemySpawnPoint1" type="Marker2D" parent="." unique_id=1300696701]
-position = Vector2(435, 138)
-
-[node name="EnemySpawnPoint2" type="Marker2D" parent="." unique_id=353946305]
-position = Vector2(-354, 130)
-
-[node name="scoreLabels" type="CanvasLayer" parent="." unique_id=245646660]
-
-[node name="currentscoreLabel" type="RichTextLabel" parent="scoreLabels" unique_id=992819181]
-offset_left = 376.0
-offset_top = 2.0
-offset_right = 568.0
-offset_bottom = 17.384617
-scale = Vector2(1.625, 1.625)
-theme_override_fonts/normal_font = ExtResource("6_fvaf1")
-text = "CURRENT SCORE: 99999"
-script = ExtResource("11_q2tg5")
-
-[node name="currentwaveLabel" type="RichTextLabel" parent="scoreLabels" unique_id=542419889]
-offset_left = 392.99997
-offset_top = 19.0
-offset_right = 614.1072
-offset_bottom = 36.0
-scale = Vector2(1.585, 1.585)
-theme_override_fonts/normal_font = ExtResource("6_fvaf1")
-text = "CURRENT WAVE: 99999"
-script = ExtResource("12_mt3j2")
 
 [node name="BuildingBackground" type="TileMapLayer" parent="." unique_id=1790643070]
 position = Vector2(-358, -84)
@@ -494,14 +434,54 @@ position = Vector2(436, 134.145)
 tile_map_data = PackedByteArray("AADr////AAAOAAAAAADt/wIAAAACAAMAAADu/wIAAAADAAMAAADv////AAAOAAAAAADT////AAAAAAAAAADT/wIAAAAAAAMAAADU/wIAAAABAAMAAADV/wIAAAACAAMAAADW/wIAAAADAAMAAADX/wIAAAAEAAMAAADY/wIAAAAFAAMAAADZ/wIAAAAGAAMAAAA=")
 tile_set = SubResource("TileSet_hnohd")
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=1100074387]
-position = Vector2(67, 151)
+[node name="Border Collision" type="Node2D" parent="." unique_id=704711646]
+position = Vector2(0, 335.14)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=483675230]
-position = Vector2(76, -62.5)
-rotation = -1.5707964
-shape = SubResource("RectangleShape2D_akeww")
+[node name="BorderCollisionLeft" type="StaticBody2D" parent="Border Collision" unique_id=1033083013 groups=["Border"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Border Collision/BorderCollisionLeft" unique_id=823123314 groups=["Border"]]
+position = Vector2(-445, -518.5775)
+shape = SubResource("RectangleShape2D_mt3j2")
 one_way_collision = true
+one_way_collision_direction = Vector2(-1, 0)
+debug_color = Color(0.9780404, 0, 0.40309572, 0.41960785)
 
-[node name="TileMapLayerWall" type="TileMapLayer" parent="." unique_id=411104086]
-tile_set = SubResource("TileSet_unuuj")
+[node name="BorderCollisionRight" type="StaticBody2D" parent="Border Collision" unique_id=1844576796 groups=["Border"]]
+position = Vector2(0, -167.57)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Border Collision/BorderCollisionRight" unique_id=1785107921 groups=["Border"]]
+position = Vector2(560, -329.28876)
+shape = SubResource("RectangleShape2D_d68a7")
+one_way_collision = true
+one_way_collision_direction = Vector2(1, 0)
+debug_color = Color(0.9764706, 0, 0.40392157, 0.41960785)
+
+[node name="Fade_transition" parent="." unique_id=250833089 instance=ExtResource("8_c458c")]
+layer = 2
+visible = false
+
+[node name="EnemySpawnPoint1" type="Marker2D" parent="." unique_id=1300696701]
+position = Vector2(611.085, 138)
+
+[node name="EnemySpawnPoint2" type="Marker2D" parent="." unique_id=353946305]
+position = Vector2(-528.63, 130)
+
+[node name="scoreLabels" parent="." unique_id=969138735 instance=ExtResource("10_q2tg5")]
+
+[node name="Player" parent="." unique_id=1296403870 instance=ExtResource("1_b828a")]
+position = Vector2(0, 161.565)
+
+[node name="WorldCamera" type="Camera2D" parent="Player" unique_id=1481191766]
+zoom = Vector2(1.93, 1.93)
+limit_left = -435
+limit_right = 550
+limit_bottom = 198
+
+[node name="TimerHealthPowerUp" type="Timer" parent="." unique_id=1022797986]
+wait_time = 15.0
+autostart = true
+
+[node name="BorderMarker" type="Marker2D" parent="." unique_id=1564193171]
+position = Vector2(-1, -69)
+
+[connection signal="timeout" from="TimerHealthPowerUp" to="." method="_on_timer_health_power_up_timeout"]

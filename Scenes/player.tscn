@@ -510,7 +510,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_8gxox")
 }],
-"loop": false,
+"loop": 0,
 "name": &"2way_shoot1",
 "speed": 10.0
 }, {
@@ -521,7 +521,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qpa8y")
 }],
-"loop": false,
+"loop": 0,
 "name": &"2way_shoot2",
 "speed": 10.0
 }, {
@@ -547,7 +547,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_nmr2m")
 }],
-"loop": false,
+"loop": 0,
 "name": &"air_attack_1",
 "speed": 24.0
 }, {
@@ -573,7 +573,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_57lvd")
 }],
-"loop": false,
+"loop": 0,
 "name": &"air_attack_2",
 "speed": 18.0
 }, {
@@ -605,7 +605,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_c8b32")
 }],
-"loop": false,
+"loop": 0,
 "name": &"air_attack_3",
 "speed": 18.0
 }, {
@@ -616,7 +616,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_usbl8")
 }],
-"loop": false,
+"loop": 0,
 "name": &"air_shoot1",
 "speed": 10.0
 }, {
@@ -627,7 +627,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_nuaet")
 }],
-"loop": false,
+"loop": 0,
 "name": &"air_shoot2",
 "speed": 10.0
 }, {
@@ -650,7 +650,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_igrcy")
 }],
-"loop": true,
+"loop": 1,
 "name": &"dash",
 "speed": 8.0
 }, {
@@ -700,7 +700,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_w4w4b")
 }],
-"loop": false,
+"loop": 0,
 "name": &"dash_attack",
 "speed": 18.0
 }, {
@@ -717,7 +717,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_wpjfl")
 }],
-"loop": false,
+"loop": 0,
 "name": &"defeat",
 "speed": 6.0
 }, {
@@ -794,7 +794,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_sg72k")
 }],
-"loop": false,
+"loop": 0,
 "name": &"double_attack",
 "speed": 20.0
 }, {
@@ -802,7 +802,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_bi64h")
 }],
-"loop": false,
+"loop": 0,
 "name": &"falling",
 "speed": 5.0
 }, {
@@ -810,7 +810,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2ijsl")
 }],
-"loop": false,
+"loop": 0,
 "name": &"hit",
 "speed": 5.0
 }, {
@@ -818,7 +818,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_p1odr")
 }],
-"loop": true,
+"loop": 1,
 "name": &"idle",
 "speed": 3.0
 }, {
@@ -826,7 +826,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_0gysh")
 }],
-"loop": false,
+"loop": 0,
 "name": &"jump",
 "speed": 5.0
 }, {
@@ -834,7 +834,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_0gysh")
 }],
-"loop": true,
+"loop": 1,
 "name": &"latch",
 "speed": 5.0
 }, {
@@ -863,7 +863,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_yh6i2")
 }],
-"loop": true,
+"loop": 1,
 "name": &"run",
 "speed": 12.0
 }, {
@@ -874,7 +874,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hl8o5")
 }],
-"loop": false,
+"loop": 0,
 "name": &"shoot1",
 "speed": 10.0
 }, {
@@ -885,7 +885,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_vlr8u")
 }],
-"loop": false,
+"loop": 0,
 "name": &"shoot2",
 "speed": 10.0
 }, {
@@ -914,7 +914,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4grkl")
 }],
-"loop": false,
+"loop": 0,
 "name": &"single_attack_1",
 "speed": 30.0
 }, {
@@ -961,7 +961,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_78kn1")
 }],
-"loop": false,
+"loop": 0,
 "name": &"single_attack_2",
 "speed": 30.0
 }, {
@@ -996,7 +996,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_0y64g")
 }],
-"loop": false,
+"loop": 0,
 "name": &"single_attack_3",
 "speed": 30.0
 }, {
@@ -1004,7 +1004,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_bi64h")
 }],
-"loop": true,
+"loop": 1,
 "name": &"slide",
 "speed": 5.0
 }]
@@ -1023,8 +1023,8 @@ stream_0/stream = ExtResource("23_p1odr")
 stream_1/stream = ExtResource("24_0gysh")
 stream_2/stream = ExtResource("25_vfarp")
 
-[node name="Player" type="CharacterBody2D" unique_id=1296403870 node_paths=PackedStringArray("PlayerSprite", "PlayerCollider")]
-collision_mask = 7
+[node name="Player" type="CharacterBody2D" unique_id=1296403870 node_paths=PackedStringArray("PlayerSprite", "PlayerCollider") groups=["player"]]
+collision_mask = 15
 script = ExtResource("1_3smsa")
 PlayerSprite = NodePath("AnimatedSprite2D")
 PlayerCollider = NodePath("CollisionShape2D")
