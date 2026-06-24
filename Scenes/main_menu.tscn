@@ -325,6 +325,22 @@ shader_parameter/shadow_color = Color(0, 0, 0, 0.4)
 shader_parameter/highlight_color = Color(1, 1, 1, 0.3)
 shader_parameter/light_angle = 0.5
 
+[sub_resource type="Animation" id="Animation_wyh8j"]
+resource_name = "ButtonPressed"
+length = 0.5166999999999999
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Start:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.099999994, 0.15, 0.19999999, 0.25, 0.36666667, 0.4166667, 0.46666664, 0.51666677),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(1.07, 1.07), Vector2(1.07, 1.07), Vector2(1, 1), Vector2(1, 1), Vector2(1.07, 1.07), Vector2(1.07, 1.07), Vector2(1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_5egv6"]
 length = 0.001
 tracks/0/type = "value"
@@ -338,6 +354,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(249, 158)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Start:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_t1dhk"]
@@ -359,8 +387,25 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5egv6"]
 _data = {
+&"ButtonPressed": SubResource("Animation_wyh8j"),
 &"RESET": SubResource("Animation_5egv6"),
 &"buttonstart": SubResource("Animation_t1dhk")
+}
+
+[sub_resource type="Animation" id="Animation_ujyyl"]
+resource_name = "Buttonexitpressed"
+length = 0.5166999999999999
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Exit:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.099999994, 0.15, 0.19999999, 0.25, 0.36666667, 0.4166667, 0.46666664, 0.51666677),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(1.07, 1.07), Vector2(1.07, 1.07), Vector2(1, 1), Vector2(1, 1), Vector2(1.07, 1.07), Vector2(1.07, 1.07), Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_8dnnj"]
@@ -376,6 +421,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(249.00691, 212)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Exit:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_vtepg"]
@@ -397,6 +454,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8dnnj"]
 _data = {
+&"Buttonexitpressed": SubResource("Animation_ujyyl"),
 &"RESET": SubResource("Animation_8dnnj"),
 &"buttonexit": SubResource("Animation_vtepg")
 }
@@ -503,51 +561,48 @@ texture = ExtResource("2_vr1f0")
 [node name="Button_Manager" type="Control" parent="." unique_id=916885730]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 128.0
+offset_bottom = 104.0
 
 [node name="Start" type="TextureButton" parent="Button_Manager" unique_id=2039831401]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 229.0
-offset_top = 138.0
-offset_right = 358.02466
-offset_bottom = 187.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 0
+offset_left = 249.0
+offset_top = 158.0
+offset_right = 377.00003
+offset_bottom = 206.0
+pivot_offset = Vector2(66, 24)
 texture_normal = ExtResource("2_1ehe0")
 texture_pressed = ExtResource("3_ce3w2")
 texture_hover = ExtResource("5_trj04")
+texture_focused = ExtResource("5_trj04")
 script = ExtResource("5_cp0ys")
 
 [node name="Option" type="TextureButton" parent="Button_Manager" unique_id=521592957]
+visible = false
 layout_mode = 0
-offset_left = 220.0
-offset_top = 183.0
-offset_right = 410.0
-offset_bottom = 247.0
+offset_top = 52.0
+offset_right = 128.0
+offset_bottom = 52.0
 
 [node name="Exit" type="TextureButton" parent="Button_Manager" unique_id=1399843577]
 layout_mode = 0
 offset_left = 249.00691
 offset_top = 212.0
-offset_right = 377.0089
-offset_bottom = 260.9994
+offset_right = 377.00836
+offset_bottom = 260.0
+pivot_offset = Vector2(66.99309, 24)
 texture_normal = ExtResource("4_n45e2")
 texture_pressed = ExtResource("5_opfnp")
 texture_hover = ExtResource("9_16hvj")
+texture_focused = ExtResource("9_16hvj")
 script = ExtResource("8_yhxw7")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Button_Manager" unique_id=518537144]
-root_node = NodePath("../Exit")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=518537144]
+root_node = NodePath("../Button_Manager/Exit")
 libraries/ = SubResource("AnimationLibrary_5egv6")
 
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="Button_Manager" unique_id=194222391]
-root_node = NodePath("../AnimationPlayer")
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="." unique_id=194222391]
+root_node = NodePath("../Button_Manager/Exit")
 libraries/ = SubResource("AnimationLibrary_8dnnj")
 
 [node name="Fade_transition" parent="." unique_id=1693795128 instance=ExtResource("11_vr1f0")]
@@ -567,10 +622,18 @@ volume_db = -7.33
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1608125728]
 position = Vector2(320, 180)
 
+[connection signal="button_down" from="Button_Manager/Start" to="Button_Manager/Start" method="_on_button_down"]
+[connection signal="button_up" from="Button_Manager/Start" to="Button_Manager/Start" method="_on_button_up"]
+[connection signal="focus_entered" from="Button_Manager/Start" to="Button_Manager/Start" method="_on_focus_entered"]
+[connection signal="focus_exited" from="Button_Manager/Start" to="Button_Manager/Start" method="_on_focus_exited"]
 [connection signal="mouse_entered" from="Button_Manager/Start" to="Button_Manager/Start" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Button_Manager/Start" to="Button_Manager/Start" method="_on_mouse_exited"]
 [connection signal="pressed" from="Button_Manager/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Button_Manager/Option" to="." method="_on_option_pressed"]
+[connection signal="button_down" from="Button_Manager/Exit" to="Button_Manager/Exit" method="_on_button_down"]
+[connection signal="button_up" from="Button_Manager/Exit" to="Button_Manager/Exit" method="_on_button_up"]
+[connection signal="focus_entered" from="Button_Manager/Exit" to="Button_Manager/Exit" method="_on_focus_entered"]
+[connection signal="focus_exited" from="Button_Manager/Exit" to="Button_Manager/Exit" method="_on_focus_exited"]
 [connection signal="mouse_entered" from="Button_Manager/Exit" to="Button_Manager/Exit" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Button_Manager/Exit" to="Button_Manager/Exit" method="_on_mouse_exited"]
 [connection signal="pressed" from="Button_Manager/Exit" to="." method="_on_exit_pressed"]

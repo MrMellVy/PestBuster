@@ -338,7 +338,7 @@ func _physics_process(delta) -> void:
 			if jumpCount == 0:
 				jumpCount += 1
 				
-		# Jump and Gravity
+		# Jump, Gravity, and wall interaction.
 		if velocity.y > 0:
 			appliedGravity = gravityScale * descendingGravityFactor
 		else:
@@ -480,8 +480,10 @@ func handle_defeat_animation():
 	velocity = Vector2.ZERO
 	PlayerSprite.play("defeat")
 	BgmManager.play_defeated()
-	
 	await get_tree().create_timer(0.5).timeout
+	#var tween = create_tween()
+	#tween.tween_property(world_camera, "zoom", Vector2(4.0,4.0), 0.5)
+	#await  tween.finished
 	world_camera.zoom.x = 4
 	world_camera.zoom.y = 4
 	await get_tree().create_timer(3.5).timeout
@@ -634,8 +636,4 @@ func can_wall_interact() -> bool:
 func heal(amount: int) -> void:
 	health += amount
 	health = min(health, health_max)
-	
-	print("Healed for ", amount, "! Current H.P. (Health Points): ", health)
-	
-	# Optional: If you have a UI label for health, update it here!
-	# $HealthLabel.text = str(health) + "/" + str(health_max)
+	print("Healed for ", amount, "! Current HP: ", health)

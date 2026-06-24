@@ -20,11 +20,17 @@ func start_flicker() -> void:
 	tween.tween_property($Sprite2D, "modulate:a", 1.0, 0.1)
 
 
-func _on_area_2d_body_entered(body: Node2D) -> void:	
-	if body.is_in_group("player"):
-		if body.health < body.health_max:
-			var heal_amount = randi_range(10, 15)
-			body.heal(heal_amount)
-			queue_free()
-		else:
-			print("HP Still full. Ignored the Pick-up.")
+func _on_area_2d_body_entered(body: Node2D) -> void:
+		if body.is_in_group("player"):
+			if body.health < body.health_max:
+				var heal_amount: int
+				if randf() < 0.5:
+					heal_amount = 20
+					print("Got High Heal! 20 HP")
+				else:
+					heal_amount = randi_range(10, 15)
+					print("Normal Heal! Restored ", heal_amount, " HP.")
+				body.heal(heal_amount)
+				queue_free()
+			else:
+				print("HP Still full. Ignored the Pick-up.")

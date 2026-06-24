@@ -380,7 +380,8 @@ enemy_scene = ExtResource("10_d68a7")
 [node name="ParallaxBackground" type="Parallax2D" parent="Clouds" unique_id=1127383803]
 scale = Vector2(0.28, 0.28)
 scroll_scale = Vector2(0.1, 0)
-repeat_size = Vector2(180, 0)
+repeat_size = Vector2(2036.32, 0)
+repeat_times = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="Clouds/ParallaxBackground" unique_id=1150576621]
 position = Vector2(0, -94.99999)
@@ -478,7 +479,7 @@ limit_right = 550
 limit_bottom = 198
 
 [node name="TimerHealthPowerUp" type="Timer" parent="." unique_id=1022797986]
-wait_time = 15.0
+wait_time = 20.0
 autostart = true
 
 [node name="BorderMarker" type="Marker2D" parent="." unique_id=1564193171]

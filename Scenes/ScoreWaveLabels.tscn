@@ -3,7 +3,7 @@
 [ext_resource type="FontFile" uid="uid://2a60yd24n10g" path="res://Assets/Fonts/ThaleahFat.ttf" id="1_kd0fp"]
 [ext_resource type="Script" uid="uid://bw5wocne5iwbg" path="res://Scripts/currentscore_label.gd" id="2_ja1gn"]
 [ext_resource type="Script" uid="uid://dctbcwqp8g8ml" path="res://Scripts/currentwave_label.gd" id="3_oujfp"]
-[ext_resource type="Script" uid="uid://cgriouykcipvs" path="res://Scenes/middlecurrentwave_label.gd" id="4_ja1gn"]
+[ext_resource type="Script" uid="uid://cgriouykcipvs" path="res://Scripts/middlecurrentwave_label.gd" id="4_ja1gn"]
 
 [sub_resource type="Animation" id="Animation_l3hpj"]
 length = 0.001
@@ -32,7 +32,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(0.5, -2, 2),
 "update": 0,
-"values": [Vector2(376, -40.76), Vector2(376, 17.995), Vector2(376, 0.94)]
+"values": [Vector2(318.755, -40.76), Vector2(318.755, 17.995), Vector2(318.755, 0.94)]
 }
 
 [sub_resource type="Animation" id="Animation_uesk5"]
@@ -47,7 +47,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(0.5, -2, 2),
 "update": 0,
-"values": [Vector2(376, 0.94), Vector2(376, 17.995), Vector2(376, -40.76)]
+"values": [Vector2(318.755, 0.94), Vector2(318.755, 17.995), Vector2(318.755, -40.76)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_l3hpj"]
@@ -84,7 +84,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(0.5, -2, 2),
 "update": 0,
-"values": [Vector2(393, -26.41), Vector2(393, 36.795), Vector2(393, 18.46)]
+"values": [Vector2(280.35, -26.41), Vector2(280.35, 36.795), Vector2(280.35, 18.46)]
 }
 
 [sub_resource type="Animation" id="Animation_0q8pi"]
@@ -99,7 +99,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(0.5, -2, 2),
 "update": 0,
-"values": [Vector2(393, 18.46), Vector2(393, 36.795), Vector2(393, -26.41)]
+"values": [Vector2(280.35, 18.46), Vector2(280.35, 36.795), Vector2(280.35, -26.41)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kcewg"]
@@ -167,21 +167,23 @@ _data = {
 [node name="currentscoreLabel" type="RichTextLabel" parent="." unique_id=1897053102]
 offset_left = 376.0
 offset_top = -40.76
-offset_right = 567.9999
+offset_right = 568.001
 offset_bottom = -25.375393
 scale = Vector2(1.625, 1.625)
 theme_override_fonts/normal_font = ExtResource("1_kd0fp")
 text = "CURRENT SCORE: 99999"
+horizontal_alignment = 2
 script = ExtResource("2_ja1gn")
 
 [node name="currentwaveLabel" type="RichTextLabel" parent="." unique_id=460203778]
 offset_left = 393.0
 offset_top = -26.41
-offset_right = 614.1072
+offset_right = 614.10693
 offset_bottom = -9.41003
 scale = Vector2(1.585, 1.585)
 theme_override_fonts/normal_font = ExtResource("1_kd0fp")
 text = "CURRENT WAVE: 99999"
+horizontal_alignment = 2
 script = ExtResource("3_oujfp")
 
 [node name="MiddlecurrentwaveLabel" type="RichTextLabel" parent="." unique_id=1847470568]
