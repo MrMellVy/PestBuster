@@ -12,10 +12,10 @@ scale = Vector2(1.525, 1.525)
 skew = -0.5864306
 
 [node name="PlayerHP" type="TextureProgressBar" parent="HealthBarContainer" unique_id=1265035597]
-offset_left = 16.0
-offset_top = 11.0
-offset_right = 172.0
-offset_bottom = 39.0
+offset_left = 3.0919247
+offset_top = 4.7018046
+offset_right = 159.09192
+offset_bottom = 32.70181
 radial_initial_angle = 360.0
 radial_fill_degrees = 249.0
 texture_under = ExtResource("2_gwfsw")

@@ -5,8 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://ck8ryb16wtmbn" path="res://Assets/Tilesets/Buildings.png" id="3_oyhfi"]
 [ext_resource type="Texture2D" uid="uid://dpui6y2i7aj56" path="res://Assets/Tilesets/Roads.png" id="4_uicln"]
 [ext_resource type="Texture2D" uid="uid://dyhirno48mfiq" path="res://Assets/Tilesets/Platform-Sheet.png" id="5_obeik"]
-[ext_resource type="PackedScene" uid="uid://by1622uoguy0" path="res://Scenes/Transition.tscn" id="7_mqjud"]
-[ext_resource type="PackedScene" uid="uid://w7doc70s2ixt" path="res://Scenes/player.tscn" id="7_n0hvp"]
+[ext_resource type="PackedScene" uid="uid://bhik0cbrtt1bx" path="res://Scenes/Menu/pause_menu.tscn" id="6_4org1"]
+[ext_resource type="PackedScene" uid="uid://by1622uoguy0" path="res://Scenes/Menu/Transition.tscn" id="7_mqjud"]
+[ext_resource type="PackedScene" uid="uid://w7doc70s2ixt" path="res://Scenes/character/player.tscn" id="7_n0hvp"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6mqln"]
 load_path = "res://.godot/imported/Cloud0.png-f7d3aa7d538e5189608ed4a3e481fd2e.ctex"
@@ -371,10 +372,10 @@ wait_time = 1.5
 [node name="Player" parent="." unique_id=1296403870 instance=ExtResource("7_n0hvp")]
 position = Vector2(-7, 166)
 
-[node name="WorldCamera" type="Camera2D" parent="Player" unique_id=1439266323]
-position = Vector2(0, 162)
+[node name="WorldCamera" type="Camera2D" parent="Player" unique_id=1133320123]
 zoom = Vector2(2.7, 2.7)
-limit_top = 66
+limit_left = -249
+limit_right = 199
 limit_bottom = 198
 
 [node name="Target_Move3" type="Marker2D" parent="." unique_id=1163069681]
@@ -382,3 +383,5 @@ position = Vector2(104, 166)
 
 [node name="Target_Move5" type="Marker2D" parent="." unique_id=1288608334]
 position = Vector2(-7, 166)
+
+[node name="PauseMenu" parent="." unique_id=1424256854 instance=ExtResource("6_4org1")]

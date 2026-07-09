@@ -2,19 +2,12 @@ extends TextureButton
 
 var original_pos: Vector2
 var is_mouse_mode: bool = false
-@onready var animation_player_2: AnimationPlayer = $"../../AnimationPlayer2"
+@onready var animation_player_2: AnimationPlayer = $"../../../AnimationBExit"
 
 
 func _ready() -> void:
 	original_pos = position
-	mouse_entered.connect(_on_mouse_entered)
-	mouse_exited.connect(_on_mouse_exited)
 
-	focus_entered.connect(_on_focus_entered)
-	focus_exited.connect(_on_focus_exited)
-	
-	button_down.connect(_on_button_down)
-	button_up.connect(_on_button_up)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:

@@ -1,11 +1,12 @@
 [
         {"name": "You", "text": "This city..", "face": "SpriteFace_Silence_1"},
-        {"name": "You", "text": "My Grandfather want me to comeback to this city.", "face": "SpriteFace_Silence"},
-        {"name": "You", "text": "He need my help to clean something big..", "face": "SpriteFace_Silence"},
-        {"name": "You", "text": "Man.. I miss this place.", "face": "SpriteFace_Haha_1"},
-        {"name": "You", "text": "Did i see.. What?", "face": "SpriteFace_Silence_1"},
-        {"name": "You", "text": "Not again-", "face": "SpriteFace_What"}
-
+        {"name": "You", "text": "Huh, never thought i will comeback to here again.", "face": "SpriteFace_Silence"},
+        {"name": "You", "text": "...", "face": "SpriteFace_Silence"},
+        {"name": "You", "text": "Okay.. So, Where's the problems?", "face": "SpriteFace_Haha_1"},
+        {"name": "You", "text": "Boss said something about rats.. Mutated-", "face": "SpriteFace_Hm"},
+        {"name": "You", "text": "Did i see..", "face": "SpriteFace_Silence_1"},
+        {"name": "You", "text": "Right, probably that's the one.", "face": "SpriteFace_Haha_2"},
+        {"name": "You", "text": "Oh-", "face": "SpriteFace_What"}
 ]
 
 

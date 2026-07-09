@@ -15,7 +15,7 @@ func _ready() -> void:
 	BgmManager.play_BGM("cyberpunk-street")
 	start()
 	world_camera.make_current()
-	$Player/CanvasLayer/HealthBarContainer/PlayerHP.visible = false
+	$Player/PlayerHealthbar/HealthBarContainer/PlayerHP.visible = false
 	var player = $Player
 	player.set_process(false)
 	player.set_physics_process(false)
@@ -43,7 +43,7 @@ func _input(event: InputEvent) -> void:
 			await move_player_to_target($Target_Move5)
 			
 func start() -> void:
-	Dialouge.start("CS_00")
+	Dialouge.start("CS_01")
 	await  Dialouge.dialogue_finished
 	
 	dialogue_is_active = false

@@ -1,25 +1,28 @@
 [gd_scene format=4 uid="uid://dnhdvxp66r0sr"]
 
-[ext_resource type="Script" uid="uid://ddihppcirpcdq" path="res://Scripts/main_menu.gd" id="1_28flt"]
-[ext_resource type="Texture2D" uid="uid://dppvuj7nubmc2" path="res://Assets/Main Menu/ButtonsMenu/MenuButtonsStart.png" id="2_1ehe0"]
-[ext_resource type="Texture2D" uid="uid://crqx2cn2iyfwu" path="res://Assets/Main Menu/Title/NewTitle.png" id="2_vr1f0"]
-[ext_resource type="Texture2D" uid="uid://bn57vtncmn8xm" path="res://Assets/Main Menu/ButtonsMenu/MenuButtonsStartHighlighted.png" id="3_ce3w2"]
-[ext_resource type="Texture2D" uid="uid://b3dd0kfmhikxr" path="res://Assets/Main Menu/ButtonsMenu/MenuButtonsExit.png" id="4_n45e2"]
-[ext_resource type="Script" uid="uid://cvpv3nvnh76b4" path="res://Scripts/start.gd" id="5_cp0ys"]
-[ext_resource type="Texture2D" uid="uid://h6e4x3cpftt0" path="res://Assets/Main Menu/ButtonsMenu/MenuButtonsExitHighlighted.png" id="5_opfnp"]
-[ext_resource type="Texture2D" uid="uid://cg0tw5tul4fy7" path="res://Assets/Main Menu/ButtonsMenu/MenuButtonsStartHover.png" id="5_trj04"]
-[ext_resource type="Script" uid="uid://c57isocbv8ffm" path="res://Scripts/exit.gd" id="8_yhxw7"]
-[ext_resource type="Texture2D" uid="uid://bavjjf76l83xm" path="res://Assets/Main Menu/ButtonsMenu/MenuButtonsExitHover.png" id="9_16hvj"]
-[ext_resource type="PackedScene" uid="uid://by1622uoguy0" path="res://Scenes/Transition.tscn" id="11_vr1f0"]
-[ext_resource type="AudioStream" uid="uid://doevch1mt0len" path="res://Assets/Audio/Musics/mega-bot-pipes under.ogg" id="14_vtepg"]
-[ext_resource type="Shader" uid="uid://baxjruh5664dn" path="res://Assets/Sprites/Spritesquare/spritesquare.gdshader" id="15_8dnnj"]
-[ext_resource type="Texture2D" uid="uid://cf8lxwsdblm8" path="res://Assets/Background/Day/Background.png" id="16_mkpwh"]
-[ext_resource type="Texture2D" uid="uid://ck8ryb16wtmbn" path="res://Assets/Tilesets/Buildings.png" id="17_4nkqq"]
-[ext_resource type="Texture2D" uid="uid://dpui6y2i7aj56" path="res://Assets/Tilesets/Roads.png" id="18_ehtkc"]
-[ext_resource type="Texture2D" uid="uid://dyhirno48mfiq" path="res://Assets/Tilesets/Platform-Sheet.png" id="19_6dk6o"]
+[ext_resource type="Script" uid="uid://ddihppcirpcdq" path="res://Scripts/main_menu.gd" id="1_qf5q3"]
+[ext_resource type="Shader" uid="uid://baxjruh5664dn" path="res://Assets/Sprites/Spritesquare/spritesquare.gdshader" id="2_egyys"]
+[ext_resource type="Texture2D" uid="uid://cf8lxwsdblm8" path="res://Assets/Background/Day/Background.png" id="3_cdmmi"]
+[ext_resource type="Texture2D" uid="uid://ck8ryb16wtmbn" path="res://Assets/Tilesets/Buildings.png" id="4_btwdk"]
+[ext_resource type="Texture2D" uid="uid://dpui6y2i7aj56" path="res://Assets/Tilesets/Roads.png" id="5_4dd87"]
+[ext_resource type="Texture2D" uid="uid://dyhirno48mfiq" path="res://Assets/Tilesets/Platform-Sheet.png" id="6_wyf5o"]
+[ext_resource type="Texture2D" uid="uid://dppvuj7nubmc2" path="res://Assets/Other/Main Menu/ButtonsMenu/MenuButtonsStart.png" id="7_b801w"]
+[ext_resource type="Texture2D" uid="uid://bn57vtncmn8xm" path="res://Assets/Other/Main Menu/ButtonsMenu/MenuButtonsStartHighlighted.png" id="8_kvk33"]
+[ext_resource type="Texture2D" uid="uid://cg0tw5tul4fy7" path="res://Assets/Other/Main Menu/ButtonsMenu/MenuButtonsStartHover.png" id="9_kqfms"]
+[ext_resource type="Script" uid="uid://cvpv3nvnh76b4" path="res://Scripts/start.gd" id="10_gcenh"]
+[ext_resource type="Texture2D" uid="uid://cd0n5cxb6qwgv" path="res://Assets/Other/Main Menu/ButtonsMenu/Settingsnormal.png" id="11_ufnow"]
+[ext_resource type="Texture2D" uid="uid://cnv3f6f6nv5xr" path="res://Assets/Other/Main Menu/ButtonsMenu/SettingsHighlighted.png" id="12_2v82h"]
+[ext_resource type="Texture2D" uid="uid://bymqhve0xk36f" path="res://Assets/Other/Main Menu/ButtonsMenu/SettingsHover.png" id="13_xarbm"]
+[ext_resource type="Texture2D" uid="uid://b3dd0kfmhikxr" path="res://Assets/Other/Main Menu/ButtonsMenu/MenuButtonsExit.png" id="14_svjyn"]
+[ext_resource type="Texture2D" uid="uid://h6e4x3cpftt0" path="res://Assets/Other/Main Menu/ButtonsMenu/MenuButtonsExitHighlighted.png" id="15_5jio3"]
+[ext_resource type="Texture2D" uid="uid://bavjjf76l83xm" path="res://Assets/Other/Main Menu/ButtonsMenu/MenuButtonsExitHover.png" id="16_3778w"]
+[ext_resource type="Script" uid="uid://c57isocbv8ffm" path="res://Scripts/exit.gd" id="17_k3736"]
+[ext_resource type="Texture2D" uid="uid://crqx2cn2iyfwu" path="res://Assets/Other/Main Menu/Title/NewTitle.png" id="18_llifo"]
+[ext_resource type="PackedScene" uid="uid://i6vri7kwh8cb" path="res://Scenes/Menu/Settings.tscn" id="19_0jto8"]
+[ext_resource type="PackedScene" uid="uid://by1622uoguy0" path="res://Scenes/Menu/Transition.tscn" id="20_6n2g5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m3bi6"]
-shader = ExtResource("15_8dnnj")
+shader = ExtResource("2_egyys")
 shader_parameter/wind_speed = 1.0
 shader_parameter/wave_frequency = 3.385
 shader_parameter/wave_amplitude = 0.03
@@ -35,7 +38,7 @@ load_path = "res://.godot/imported/Cloud0.png-f7d3aa7d538e5189608ed4a3e481fd2e.c
 load_path = "res://.godot/imported/Cloud1.png-c2e2a5604fe819f914bcb2d94d3d769b.ctex"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_84iac"]
-texture = ExtResource("17_4nkqq")
+texture = ExtResource("4_btwdk")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6, -3, 8, -3, 8, 0, -5.5, 0)
 0:0/0/physics_layer_0/polygon_0/one_way = true
@@ -227,7 +230,7 @@ sources/0 = SubResource("TileSetAtlasSource_84iac")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ne6ao"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tt8ml"]
-texture = ExtResource("18_ehtkc")
+texture = ExtResource("5_4dd87")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0
@@ -296,7 +299,7 @@ texture = ExtResource("18_ehtkc")
 12:3/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fmarx"]
-texture = ExtResource("19_6dk6o")
+texture = ExtResource("6_wyf5o")
 1:0/0 = 0
 1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -4, -8, -4)
 1:0/0/physics_layer_0/polygon_0/one_way = true
@@ -316,7 +319,7 @@ sources/0 = SubResource("TileSetAtlasSource_tt8ml")
 sources/1 = SubResource("TileSetAtlasSource_fmarx")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wyh8j"]
-shader = ExtResource("15_8dnnj")
+shader = ExtResource("2_egyys")
 shader_parameter/wind_speed = 0.525
 shader_parameter/wave_frequency = 2.23
 shader_parameter/wave_amplitude = 0.01
@@ -353,7 +356,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(249, 158)]
+"values": [Vector2(251, 158)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -382,7 +385,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(249, 158), Vector2(251, 158)]
+"values": [Vector2(251, 158), Vector2(253, 158)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5egv6"]
@@ -398,7 +401,7 @@ length = 0.5166999999999999
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Exit:scale")
+tracks/0/path = NodePath(".:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -413,19 +416,19 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Exit:position")
+tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(249.00691, 212)]
+"values": [Vector2(251, 260.36)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../Exit:scale")
+tracks/1/path = NodePath(".:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -442,14 +445,14 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Exit:position")
+tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(249.00691, 212), Vector2(251, 212)]
+"values": [Vector2(251, 260.36), Vector2(253, 260.36)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8dnnj"]
@@ -459,9 +462,15 @@ _data = {
 &"buttonexit": SubResource("Animation_vtepg")
 }
 
-[node name="MainMenu" type="Node2D" unique_id=290221870]
+[node name="MainMenu" type="Control" unique_id=339656063]
 process_mode = 3
-script = ExtResource("1_28flt")
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qf5q3")
 
 [node name="ShaderTest" type="Sprite2D" parent="." unique_id=1567252592]
 visible = false
@@ -480,7 +489,7 @@ repeat_times = 2
 [node name="Sprite2D" type="Sprite2D" parent="Background2/ParallaxBackground" unique_id=2127735656]
 position = Vector2(0, -3.85)
 scale = Vector2(1.0607638, 1.1203704)
-texture = ExtResource("16_mkpwh")
+texture = ExtResource("3_cdmmi")
 centered = false
 
 [node name="ParallaxC0" type="Parallax2D" parent="Background2" unique_id=2080359331]
@@ -544,68 +553,81 @@ tile_set = SubResource("TileSet_hkdq0")
 [node name="ShaderTest2" type="ColorRect" parent="." unique_id=2071214693]
 visible = false
 material = SubResource("ShaderMaterial_wyh8j")
+layout_mode = 0
 offset_right = 640.0
 offset_bottom = 360.0
 
 [node name="DarkOverlay" type="ColorRect" parent="." unique_id=723621456]
-offset_right = 640.0
-offset_bottom = 360.0
+layout_mode = 0
+offset_left = -1.0
+offset_top = 1.0
+offset_right = 687.0
+offset_bottom = 472.0
 color = Color(0, 0, 0, 0.13725491)
+
+[node name="MainButtons" type="VBoxContainer" parent="." unique_id=334783007]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Button_Manager" type="Control" parent="MainButtons" unique_id=916885730]
+layout_mode = 2
+
+[node name="Start" type="TextureButton" parent="MainButtons/Button_Manager" unique_id=2039831401]
+layout_mode = 0
+offset_left = 251.0
+offset_top = 158.0
+offset_right = 379.00012
+offset_bottom = 206.0
+pivot_offset = Vector2(66, 24)
+texture_normal = ExtResource("7_b801w")
+texture_pressed = ExtResource("8_kvk33")
+texture_hover = ExtResource("9_kqfms")
+texture_focused = ExtResource("9_kqfms")
+script = ExtResource("10_gcenh")
+
+[node name="Option" type="TextureButton" parent="MainButtons/Button_Manager" unique_id=521592957]
+layout_mode = 0
+offset_left = 251.0
+offset_top = 209.0
+offset_right = 379.0
+offset_bottom = 257.0
+texture_normal = ExtResource("11_ufnow")
+texture_pressed = ExtResource("12_2v82h")
+texture_hover = ExtResource("13_xarbm")
+texture_focused = ExtResource("13_xarbm")
+
+[node name="Exit" type="TextureButton" parent="MainButtons/Button_Manager" unique_id=1399843577]
+layout_mode = 0
+offset_left = 251.0
+offset_top = 260.36
+offset_right = 379.00275
+offset_bottom = 308.36017
+pivot_offset = Vector2(66.99309, 24)
+texture_normal = ExtResource("14_svjyn")
+texture_pressed = ExtResource("15_5jio3")
+texture_hover = ExtResource("16_3778w")
+texture_focused = ExtResource("16_3778w")
+script = ExtResource("17_k3736")
 
 [node name="title" type="Sprite2D" parent="." unique_id=402884615]
 texture_filter = 1
-position = Vector2(316, 80.000015)
+position = Vector2(316.00003, 75)
 scale = Vector2(1.411, 1.406)
-texture = ExtResource("2_vr1f0")
+texture = ExtResource("18_llifo")
 
-[node name="Button_Manager" type="Control" parent="." unique_id=916885730]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 128.0
-offset_bottom = 104.0
+[node name="Options" parent="." unique_id=315415237 instance=ExtResource("19_0jto8")]
+layout_mode = 1
 
-[node name="Start" type="TextureButton" parent="Button_Manager" unique_id=2039831401]
-layout_mode = 0
-offset_left = 249.0
-offset_top = 158.0
-offset_right = 377.00003
-offset_bottom = 206.0
-pivot_offset = Vector2(66, 24)
-texture_normal = ExtResource("2_1ehe0")
-texture_pressed = ExtResource("3_ce3w2")
-texture_hover = ExtResource("5_trj04")
-texture_focused = ExtResource("5_trj04")
-script = ExtResource("5_cp0ys")
-
-[node name="Option" type="TextureButton" parent="Button_Manager" unique_id=521592957]
-visible = false
-layout_mode = 0
-offset_top = 52.0
-offset_right = 128.0
-offset_bottom = 52.0
-
-[node name="Exit" type="TextureButton" parent="Button_Manager" unique_id=1399843577]
-layout_mode = 0
-offset_left = 249.00691
-offset_top = 212.0
-offset_right = 377.00836
-offset_bottom = 260.0
-pivot_offset = Vector2(66.99309, 24)
-texture_normal = ExtResource("4_n45e2")
-texture_pressed = ExtResource("5_opfnp")
-texture_hover = ExtResource("9_16hvj")
-texture_focused = ExtResource("9_16hvj")
-script = ExtResource("8_yhxw7")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=518537144]
-root_node = NodePath("../Button_Manager/Exit")
+[node name="AnimationBStart" type="AnimationPlayer" parent="." unique_id=518537144]
+root_node = NodePath("../MainButtons/Button_Manager/Exit")
 libraries/ = SubResource("AnimationLibrary_5egv6")
 
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="." unique_id=194222391]
-root_node = NodePath("../Button_Manager/Exit")
+[node name="AnimationBExit" type="AnimationPlayer" parent="." unique_id=194222391]
+root_node = NodePath("../MainButtons/Button_Manager/Exit")
 libraries/ = SubResource("AnimationLibrary_8dnnj")
 
-[node name="Fade_transition" parent="." unique_id=1693795128 instance=ExtResource("11_vr1f0")]
+[node name="Fade_transition" parent="." unique_id=1693795128 instance=ExtResource("20_6n2g5")]
 layer = 3
 visible = false
 
@@ -615,27 +637,20 @@ wait_time = 1.5
 [node name="fade_timerstart" type="Timer" parent="Fade_transition" unique_id=1333577638]
 wait_time = 2.0
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1687307165]
-stream = ExtResource("14_vtepg")
-volume_db = -7.33
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1608125728]
-position = Vector2(320, 180)
-
-[connection signal="button_down" from="Button_Manager/Start" to="Button_Manager/Start" method="_on_button_down"]
-[connection signal="button_up" from="Button_Manager/Start" to="Button_Manager/Start" method="_on_button_up"]
-[connection signal="focus_entered" from="Button_Manager/Start" to="Button_Manager/Start" method="_on_focus_entered"]
-[connection signal="focus_exited" from="Button_Manager/Start" to="Button_Manager/Start" method="_on_focus_exited"]
-[connection signal="mouse_entered" from="Button_Manager/Start" to="Button_Manager/Start" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="Button_Manager/Start" to="Button_Manager/Start" method="_on_mouse_exited"]
-[connection signal="pressed" from="Button_Manager/Start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="Button_Manager/Option" to="." method="_on_option_pressed"]
-[connection signal="button_down" from="Button_Manager/Exit" to="Button_Manager/Exit" method="_on_button_down"]
-[connection signal="button_up" from="Button_Manager/Exit" to="Button_Manager/Exit" method="_on_button_up"]
-[connection signal="focus_entered" from="Button_Manager/Exit" to="Button_Manager/Exit" method="_on_focus_entered"]
-[connection signal="focus_exited" from="Button_Manager/Exit" to="Button_Manager/Exit" method="_on_focus_exited"]
-[connection signal="mouse_entered" from="Button_Manager/Exit" to="Button_Manager/Exit" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="Button_Manager/Exit" to="Button_Manager/Exit" method="_on_mouse_exited"]
-[connection signal="pressed" from="Button_Manager/Exit" to="." method="_on_exit_pressed"]
+[connection signal="button_down" from="MainButtons/Button_Manager/Start" to="MainButtons/Button_Manager/Start" method="_on_button_down"]
+[connection signal="button_up" from="MainButtons/Button_Manager/Start" to="MainButtons/Button_Manager/Start" method="_on_button_up"]
+[connection signal="focus_entered" from="MainButtons/Button_Manager/Start" to="MainButtons/Button_Manager/Start" method="_on_focus_entered"]
+[connection signal="focus_exited" from="MainButtons/Button_Manager/Start" to="MainButtons/Button_Manager/Start" method="_on_focus_exited"]
+[connection signal="mouse_entered" from="MainButtons/Button_Manager/Start" to="MainButtons/Button_Manager/Start" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="MainButtons/Button_Manager/Start" to="MainButtons/Button_Manager/Start" method="_on_mouse_exited"]
+[connection signal="pressed" from="MainButtons/Button_Manager/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="MainButtons/Button_Manager/Option" to="." method="_on_option_pressed"]
+[connection signal="button_down" from="MainButtons/Button_Manager/Exit" to="MainButtons/Button_Manager/Exit" method="_on_button_down"]
+[connection signal="button_up" from="MainButtons/Button_Manager/Exit" to="MainButtons/Button_Manager/Exit" method="_on_button_up"]
+[connection signal="focus_entered" from="MainButtons/Button_Manager/Exit" to="MainButtons/Button_Manager/Exit" method="_on_focus_entered"]
+[connection signal="focus_exited" from="MainButtons/Button_Manager/Exit" to="MainButtons/Button_Manager/Exit" method="_on_focus_exited"]
+[connection signal="mouse_entered" from="MainButtons/Button_Manager/Exit" to="MainButtons/Button_Manager/Exit" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="MainButtons/Button_Manager/Exit" to="MainButtons/Button_Manager/Exit" method="_on_mouse_exited"]
+[connection signal="pressed" from="MainButtons/Button_Manager/Exit" to="." method="_on_exit_pressed"]
 [connection signal="timeout" from="Fade_transition/fade_timer" to="." method="_on_fade_timer_timeout"]
 [connection signal="timeout" from="Fade_transition/fade_timerstart" to="." method="_on_fade_timer_timeout"]

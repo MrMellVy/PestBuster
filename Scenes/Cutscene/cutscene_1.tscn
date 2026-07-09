@@ -6,7 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://cf8lxwsdblm8" path="res://Assets/Background/Day/Background.png" id="2_y02wl"]
 [ext_resource type="Texture2D" uid="uid://dyhirno48mfiq" path="res://Assets/Tilesets/Platform-Sheet.png" id="3_bbbkj"]
 [ext_resource type="Texture2D" uid="uid://carjrejog3yx1" path="res://Assets/Tilesets/Car.png" id="4_y02wl"]
-[ext_resource type="PackedScene" uid="uid://by1622uoguy0" path="res://Scenes/Transition.tscn" id="6_bbbkj"]
+[ext_resource type="PackedScene" uid="uid://by1622uoguy0" path="res://Scenes/Menu/Transition.tscn" id="6_bbbkj"]
+[ext_resource type="PackedScene" uid="uid://bhik0cbrtt1bx" path="res://Scenes/Menu/pause_menu.tscn" id="8_6mqln"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6mqln"]
 load_path = "res://.godot/imported/Cloud0.png-f7d3aa7d538e5189608ed4a3e481fd2e.ctex"
@@ -443,3 +444,5 @@ visible = false
 
 [node name="fade_timer" type="Timer" parent="Fade_transition" unique_id=166228585]
 wait_time = 1.5
+
+[node name="PauseMenu" parent="." unique_id=1424256854 instance=ExtResource("8_6mqln")]

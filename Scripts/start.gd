@@ -2,7 +2,7 @@ extends TextureButton
 
 var original_pos: Vector2
 var is_mouse_mode: bool = false
-@onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
+@onready var animation_player: AnimationPlayer = $"../../../AnimationBStart"
 
 
 func _ready() -> void:

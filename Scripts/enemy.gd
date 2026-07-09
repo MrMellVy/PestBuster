@@ -2,35 +2,40 @@ extends CharacterBody2D
 
 class_name Enemy
 
-const speed = 50 #The enemy speed.
-const push_force = 10.0 # So it doesnt collide with other enemy. Yes, taking the difficult way.
-const anim_threshold = 15.0 #Cam be upper than the push_force or lower, idk man.
+@export_category("Ground Enemy Stats")
+@export var speed: float = 50 #The enemy speed.
+@export var health_max = 40
+@export var points_for_kill = 250
+@export var damage_to_deal = 20
 
-var is_enemy_chase: bool = true
-var health = 40
-var health_max = 40
-var health_min = 0
+@export_category("Physics")
+@export var push_force = 10.0 # So it doesnt collide with other enemy. Yes, taking the difficult way.
+@export var anim_threshold = 15.0 #Cam be upper than the push_force or lower, idk man.
+@export var gravity = 900
+@export var knockback_force = -20
 
 var defeat: bool = false
 var taking_damage: bool = false
-var damage_to_deal = 20
 var is_dealing_damage: bool = false
 var has_dealt_damage: bool = false
-var points_for_kill = 250
-
+var health: int
 var dir: Vector2
-const gravity = 900
-var knockback_force = -20
 var is_roaming: bool = true
-
 var player: CharacterBody2D
 var player_in_area = false
-
 var can_attack: bool = true
+var is_enemy_chase: bool = true
+var health_min = 0
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var separate_area: Area2D = $SeparateArea
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
+func _ready() -> void:
+	health = health_max
+	#This code below to make the shader doesn't apply to all enemy in this scene. I think it make a unique copy? it doesn't work on inspector but work on code.
+	if animated_sprite_2d.material:
+		animated_sprite_2d.material = animated_sprite_2d.material.duplicate()
 
 func _physics_process(delta: float) -> void:
 	if !is_on_floor():
@@ -68,7 +73,6 @@ func calculate_movement():
 		velocity.x = knockbar_dir.x
 		return
 		
-
 	if player_in_area:
 			velocity.x = 0
 			return 
@@ -106,6 +110,7 @@ func handle_animation():
 		
 	if taking_damage:
 		play_enemy_animation("hitted")
+		animation_player.play("TakeDamage")
 	elif is_dealing_damage:
 		play_enemy_animation("attack")
 	else:
@@ -187,6 +192,7 @@ func play_enemy_animation(anim_name: String):
 	else:
 		animated_sprite_2d.offset.y = -7
 
+#I don't how to seperate the GEnemy, i just decided to think other..
 func apply_separation():
 	if defeat or taking_damage or is_dealing_damage or player_in_area: 
 		return

@@ -70,3 +70,7 @@ func next_script():
 	
 	$NinePatchRect/AnimationPlayer.stop()
 	$NinePatchRect/AnimationPlayer.play("Dialogue")
+
+func stop() -> void:
+	d_active = false
+	$NinePatchRect.visible = false

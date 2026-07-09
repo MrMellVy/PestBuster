@@ -16,11 +16,16 @@ run/main_scene="uid://dnhdvxp66r0sr"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="uid://c5hap6e66gqiv"
 
+[audio]
+
+buses/default_bus_layout="uid://d0t5rlbcewgek"
+
 [autoload]
 
 Global="*uid://b0a1sh4cslfoq"
 BgmManager="*uid://c1hopa307tlcx"
 Dialouge="*uid://byp2g67igx83u"
+PhantomCameraManager="*uid://duq6jhf6unyis"
 
 [display]
 
@@ -33,6 +38,10 @@ window/stretch/mode="viewport"
 [dotnet]
 
 project/assembly_name="PestCleaner"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/phantom_camera/plugin.cfg")
 
 [gui]
 
@@ -109,6 +118,10 @@ down={
 2d_physics/layer_1="Player"
 2d_physics/layer_2="Enemy"
 2d_physics/layer_3="World"
+2d_physics/layer_4="TilesetsBuild"
+2d_physics/layer_5="AirAreaEmy"
+2d_physics/layer_6="AirEmy"
+2d_physics/layer_7="Border"
 
 [physics]
 
@@ -117,3 +130,4 @@ down={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+2d/sdf/scale=0

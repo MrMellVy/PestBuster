@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://u056f26uw1lh" path="res://Scripts/player.gd" id="1_3smsa"]
 [ext_resource type="Texture2D" uid="uid://dris6r0wcmgkl" path="res://Assets/Sprites/Player/Dash.png" id="1_x3wgy"]
+[ext_resource type="Shader" uid="uid://coiyd03hra4c5" path="res://Assets/Shader/hiteffect.gdshader" id="2_0gysh"]
 [ext_resource type="Texture2D" uid="uid://bm68arcbrtkr" path="res://Assets/Sprites/Player/Die.png" id="2_3smsa"]
 [ext_resource type="Texture2D" uid="uid://cynjgrosmet05" path="res://Assets/Sprites/Player/2WayShootGun1.png" id="2_l6n3p"]
 [ext_resource type="Texture2D" uid="uid://clba7dar6qlek" path="res://Assets/Sprites/Player/JumpAndFall.png" id="3_8erm5"]
@@ -20,7 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://bnf86umftel5v" path="res://Assets/Sprites/Player/GroundCombo3.png" id="15_ypfnu"]
 [ext_resource type="Texture2D" uid="uid://bj2nef1jqdw6i" path="res://Assets/Sprites/Player/ShootGun1.png" id="19_xuaoq"]
 [ext_resource type="Texture2D" uid="uid://dln2ssj0c1px7" path="res://Assets/Sprites/Player/ShootGun2.png" id="20_wohnl"]
-[ext_resource type="PackedScene" uid="uid://b3048smma4113" path="res://Scenes/PlayerHP.tscn" id="21_olqyp"]
+[ext_resource type="PackedScene" uid="uid://b3048smma4113" path="res://Scenes/Other/PlayerHP.tscn" id="21_olqyp"]
 [ext_resource type="AudioStream" uid="uid://btcwwcaot3em7" path="res://Assets/Audio/SFX/lmptaudioefek.wav" id="22_wpjfl"]
 [ext_resource type="AudioStream" uid="uid://un7vx46je8l1" path="res://Assets/Audio/SFX/Sword Whoosh 01.wav" id="23_p1odr"]
 [ext_resource type="AudioStream" uid="uid://bf2mhh33ioulc" path="res://Assets/Audio/SFX/Sword Whoosh 02.wav" id="24_0gysh"]
@@ -28,6 +29,10 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pu2lt"]
 size = Vector2(8, 30)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p1odr"]
+shader = ExtResource("2_0gysh")
+shader_parameter/quantity = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nv4vc"]
 atlas = ExtResource("2_l6n3p")
@@ -1023,6 +1028,43 @@ stream_0/stream = ExtResource("23_p1odr")
 stream_1/stream = ExtResource("24_0gysh")
 stream_2/stream = ExtResource("25_vfarp")
 
+[sub_resource type="Animation" id="Animation_0gysh"]
+resource_name = "Damage_flick"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/quantity")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06, 0.10020597, 0.16, 0.20041193, 0.26, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [1.0, 1.0, 0.0, 0.0, 1.0, 1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_vfarp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/quantity")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vfarp"]
+_data = {
+&"Damage_flick": SubResource("Animation_0gysh"),
+&"RESET": SubResource("Animation_vfarp")
+}
+
 [node name="Player" type="CharacterBody2D" unique_id=1296403870 node_paths=PackedStringArray("PlayerSprite", "PlayerCollider") groups=["player"]]
 collision_mask = 15
 script = ExtResource("1_3smsa")
@@ -1040,13 +1082,16 @@ idle = true
 slide = true
 latch = true
 falling = true
+max_shake_duration = 0.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1088756894]
 position = Vector2(0, -15)
 shape = SubResource("RectangleShape2D_pu2lt")
+debug_color = Color(0, 0.6, 0.7019608, 0.41960785)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1763439861]
 z_index = 5
+material = SubResource("ShaderMaterial_p1odr")
 position = Vector2(-1, -24)
 sprite_frames = SubResource("SpriteFrames_nv4vc")
 animation = &"single_attack_3"
@@ -1071,12 +1116,23 @@ position = Vector2(14, -19)
 position = Vector2(-14, 4)
 shape = SubResource("CapsuleShape2D_l6n3p")
 
-[node name="CanvasLayer" parent="." unique_id=1041979520 instance=ExtResource("21_olqyp")]
+[node name="PlayerHealthbar" parent="." unique_id=1041979520 instance=ExtResource("21_olqyp")]
 
 [node name="JumpSound" type="AudioStreamPlayer" parent="." unique_id=1259353545]
 stream = ExtResource("22_wpjfl")
+bus = &"SFX"
 
 [node name="SlashSFX" type="AudioStreamPlayer" parent="." unique_id=1390356603]
 stream = SubResource("AudioStreamRandomizer_y6uwr")
+bus = &"SFX"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=996302244]
+libraries/ = SubResource("AnimationLibrary_vfarp")
+
+[node name="ColorChooser" type="ColorRect" parent="." unique_id=1494011029]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.8792635, 1, 1, 1)
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

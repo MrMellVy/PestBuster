@@ -1,15 +1,16 @@
 [gd_scene format=4 uid="uid://ds2c4suuofs8w"]
 
-[ext_resource type="PackedScene" uid="uid://w7doc70s2ixt" path="res://Scenes/player.tscn" id="1_b828a"]
+[ext_resource type="PackedScene" uid="uid://w7doc70s2ixt" path="res://Scenes/character/player.tscn" id="1_b828a"]
 [ext_resource type="Script" uid="uid://bv5u5t8xyclsc" path="res://Scripts/level_1.gd" id="1_pvlc2"]
 [ext_resource type="Texture2D" uid="uid://ck8ryb16wtmbn" path="res://Assets/Tilesets/Buildings.png" id="3_knogg"]
 [ext_resource type="Texture2D" uid="uid://cf8lxwsdblm8" path="res://Assets/Background/Day/Background.png" id="3_mt3j2"]
 [ext_resource type="Texture2D" uid="uid://dpui6y2i7aj56" path="res://Assets/Tilesets/Roads.png" id="4_uoico"]
 [ext_resource type="Texture2D" uid="uid://dyhirno48mfiq" path="res://Assets/Tilesets/Platform-Sheet.png" id="5_4snqv"]
-[ext_resource type="PackedScene" uid="uid://by1622uoguy0" path="res://Scenes/Transition.tscn" id="8_c458c"]
-[ext_resource type="PackedScene" uid="uid://b8w4kw2ipi6o8" path="res://Scenes/enemy.tscn" id="10_d68a7"]
-[ext_resource type="PackedScene" uid="uid://bhoc04ca7xoh5" path="res://Scenes/ScoreWaveLabels.tscn" id="10_q2tg5"]
-[ext_resource type="PackedScene" uid="uid://bhik0cbrtt1bx" path="res://Scenes/pause_menu.tscn" id="11_q2tg5"]
+[ext_resource type="PackedScene" uid="uid://by1622uoguy0" path="res://Scenes/Menu/Transition.tscn" id="8_c458c"]
+[ext_resource type="PackedScene" uid="uid://b8w4kw2ipi6o8" path="res://Scenes/character/enemy.tscn" id="10_d68a7"]
+[ext_resource type="PackedScene" uid="uid://bhoc04ca7xoh5" path="res://Scenes/Other/ScoreWaveLabels.tscn" id="10_q2tg5"]
+[ext_resource type="PackedScene" uid="uid://bhik0cbrtt1bx" path="res://Scenes/Menu/pause_menu.tscn" id="11_q2tg5"]
+[ext_resource type="PackedScene" uid="uid://b7w5ldp1n0qke" path="res://Scenes/character/air_enemy.tscn" id="12_mt3j2"]
 [ext_resource type="Texture2D" uid="uid://carjrejog3yx1" path="res://Assets/Tilesets/Car.png" id="13_akeww"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xagk4"]
@@ -206,7 +207,7 @@ texture = ExtResource("3_knogg")
 
 [sub_resource type="TileSet" id="TileSet_pvlc2"]
 physics_layer_0/collision_layer = 8
-physics_layer_0/collision_mask = 7
+physics_layer_0/collision_mask = 3
 sources/0 = SubResource("TileSetAtlasSource_c458c")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d68a7"]
@@ -295,7 +296,7 @@ texture = ExtResource("5_4snqv")
 
 [sub_resource type="TileSet" id="TileSet_mt3j2"]
 physics_layer_0/collision_layer = 4
-physics_layer_0/collision_mask = 7
+physics_layer_0/collision_mask = 3
 sources/0 = SubResource("TileSetAtlasSource_d68a7")
 sources/1 = SubResource("TileSetAtlasSource_q2tg5")
 
@@ -371,9 +372,14 @@ size = Vector2(20, 710.875)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d68a7"]
 size = Vector2(20, 669.4375)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_akeww"]
+size = Vector2(51, 259)
+
 [node name="Level_1" type="Node2D" unique_id=630728870]
 script = ExtResource("1_pvlc2")
+starting_wave = 2
 enemy_scene = ExtResource("10_d68a7")
+airenemy_scene = ExtResource("12_mt3j2")
 
 [node name="Clouds" type="Node2D" parent="." unique_id=1353283448]
 
@@ -439,21 +445,43 @@ tile_set = SubResource("TileSet_hnohd")
 position = Vector2(0, 335.14)
 
 [node name="BorderCollisionLeft" type="StaticBody2D" parent="Border Collision" unique_id=1033083013 groups=["Border"]]
+collision_layer = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Border Collision/BorderCollisionLeft" unique_id=823123314 groups=["Border"]]
 position = Vector2(-445, -518.5775)
 shape = SubResource("RectangleShape2D_mt3j2")
-one_way_collision = true
 one_way_collision_direction = Vector2(-1, 0)
 debug_color = Color(0.9780404, 0, 0.40309572, 0.41960785)
 
 [node name="BorderCollisionRight" type="StaticBody2D" parent="Border Collision" unique_id=1844576796 groups=["Border"]]
 position = Vector2(0, -167.57)
+collision_layer = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Border Collision/BorderCollisionRight" unique_id=1785107921 groups=["Border"]]
 position = Vector2(560, -329.28876)
 shape = SubResource("RectangleShape2D_d68a7")
-one_way_collision = true
+one_way_collision_direction = Vector2(1, 0)
+debug_color = Color(0.9764706, 0, 0.40392157, 0.41960785)
+
+[node name="BorderCollisionRight2" type="StaticBody2D" parent="Border Collision" unique_id=1213907376 groups=["Border"]]
+light_mask = 4
+position = Vector2(0, -335.14)
+collision_layer = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Border Collision/BorderCollisionRight2" unique_id=879131864 groups=["Border"]]
+position = Vector2(1691, -168)
+shape = SubResource("RectangleShape2D_d68a7")
+one_way_collision_direction = Vector2(1, 0)
+debug_color = Color(0.9764706, 0, 0.40392157, 0.41960785)
+
+[node name="BorderCollisionRight3" type="StaticBody2D" parent="Border Collision" unique_id=973997275 groups=["Border"]]
+light_mask = 4
+position = Vector2(0, -670.28)
+collision_layer = 64
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Border Collision/BorderCollisionRight3" unique_id=1593322956 groups=["Border"]]
+position = Vector2(1691, 167.14001)
+shape = SubResource("RectangleShape2D_d68a7")
 one_way_collision_direction = Vector2(1, 0)
 debug_color = Color(0.9764706, 0, 0.40392157, 0.41960785)
 
@@ -465,12 +493,38 @@ visible = false
 position = Vector2(611.085, 138)
 
 [node name="EnemySpawnPoint2" type="Marker2D" parent="." unique_id=353946305]
-position = Vector2(-528.63, 130)
+position = Vector2(-472, 132)
+
+[node name="EnemySpawnPoint3" type="Marker2D" parent="." unique_id=1711132047]
+position = Vector2(513, 139)
+
+[node name="EnemySpawnPoint4" type="Marker2D" parent="." unique_id=1005000563]
+position = Vector2(1722, 143)
+
+[node name="AirEnemySpawnPoint1" type="Marker2D" parent="." unique_id=343216688]
+position = Vector2(-325, -1)
+
+[node name="AirEnemySpawnPoint2" type="Marker2D" parent="." unique_id=1976020176]
+position = Vector2(-45, 2)
+
+[node name="AirEnemySpawnPoint3" type="Marker2D" parent="." unique_id=1382164491]
+position = Vector2(447, -6)
+
+[node name="AirEnemySpawnPoint4" type="Marker2D" parent="." unique_id=1045351592]
+position = Vector2(676, -6)
+
+[node name="AirEnemySpawnPoint5" type="Marker2D" parent="." unique_id=723228662]
+position = Vector2(1139, -4)
+
+[node name="AirEnemySpawnPoint6" type="Marker2D" parent="." unique_id=337011565]
+position = Vector2(1552, 4)
 
 [node name="scoreLabels" parent="." unique_id=969138735 instance=ExtResource("10_q2tg5")]
 
 [node name="Player" parent="." unique_id=1296403870 instance=ExtResource("1_b828a")]
 position = Vector2(0, 161.565)
+collision_mask = 78
+jumps = 2
 
 [node name="WorldCamera" type="Camera2D" parent="Player" unique_id=1481191766]
 zoom = Vector2(1.93, 1.93)
@@ -487,5 +541,22 @@ position = Vector2(-1, -69)
 
 [node name="PauseMenu" parent="." unique_id=1424256854 instance=ExtResource("11_q2tg5")]
 layer = 10
+visible = false
+
+[node name="AirEmyCollision" type="StaticBody2D" parent="." unique_id=727254738]
+collision_layer = 16
+collision_mask = 32
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AirEmyCollision" unique_id=1810536478]
+position = Vector2(55, 70)
+polygon = PackedVector2Array(-539, 74, -515, -83, 1703, -89, 1689, 104, -487, 81, -556, 83, -555, 122, 1714, 136, 1742, -101, -527, -89, -554, 66)
+
+[node name="Wave2ZoneTrigger" type="Area2D" parent="." unique_id=1733287364]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wave2ZoneTrigger" unique_id=975688168]
+position = Vector2(601.5, 36.5)
+shape = SubResource("RectangleShape2D_akeww")
 
 [connection signal="timeout" from="TimerHealthPowerUp" to="." method="_on_timer_health_power_up_timeout"]
+[connection signal="body_entered" from="Wave2ZoneTrigger" to="." method="_on_wave_2_zone_trigger_body_entered"]
+[connection signal="body_exited" from="Wave2ZoneTrigger" to="." method="_on_wave_2_zone_trigger_body_exited"]

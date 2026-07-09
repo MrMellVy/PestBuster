@@ -1,0 +1,308 @@
+[gd_scene format=3 uid="uid://i6vri7kwh8cb"]
+
+[ext_resource type="Script" uid="uid://brsu23raocfag" path="res://Scripts/settings.gd" id="1_fblaw"]
+[ext_resource type="Texture2D" uid="uid://bje6p77yemb8b" path="res://Assets/Other/Tweak/Checkmark.png" id="2_ann11"]
+[ext_resource type="Texture2D" uid="uid://c4i8c8pr6e62e" path="res://Assets/Other/Tweak/checkbox..png" id="3_fymb1"]
+[ext_resource type="Script" uid="uid://j4y6ms47i1wr" path="res://Scripts/full_screen_control.gd" id="4_upvq6"]
+[ext_resource type="Script" uid="uid://bpbwoxapxlqt3" path="res://Scripts/screen_control.gd" id="5_afaf4"]
+[ext_resource type="Script" uid="uid://dejalsvyqh2ly" path="res://Scripts/window_control.gd" id="6_o14jo"]
+[ext_resource type="Texture2D" uid="uid://wy6esn46mm0b" path="res://Assets/Other/Tweak/Grabber.png" id="7_j0jkk"]
+[ext_resource type="Script" uid="uid://cy6e6f1wg5s58" path="res://Scripts/audio_control.gd" id="8_egbht"]
+[ext_resource type="Texture2D" uid="uid://dd4lkjgvmq6g0" path="res://Assets/Other/Tweak/Volume Ori/Volume.png" id="9_mna3m"]
+[ext_resource type="Script" uid="uid://ospuvieprdcc" path="res://Scripts/sfx_control.gd" id="10_tr27g"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_6dk6o"]
+color = Color(0.41598046, 0.41598046, 0.41598028, 1)
+grow_begin = -5.0
+grow_end = -9.0
+thickness = 5
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_jr6u5"]
+color = Color(0.8129441, 1, 1, 1)
+grow_begin = -5.0
+thickness = 5
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_ehtkc"]
+color = Color(0.8129441, 1, 1, 1)
+grow_begin = -5.0
+thickness = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ehtkc"]
+bg_color = Color(0.87185884, 0.87185884, 0.87185884, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[node name="Options" type="Control" unique_id=439920918]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fblaw")
+
+[node name="Settings" type="TabContainer" parent="." unique_id=828882000]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 85.0
+offset_top = 28.0
+offset_right = -93.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+tab_alignment = 1
+current_tab = 0
+
+[node name="Window" type="TabBar" parent="Settings" unique_id=1395132641]
+layout_mode = 2
+tab_alignment = 1
+metadata/_tab_index = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings/Window" unique_id=1519029697]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -31.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="Settings/Window/VBoxContainer" unique_id=917596116]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Settings/Window/VBoxContainer/Control" unique_id=1894647946]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -46.5
+offset_top = 10.0
+offset_right = 46.5
+offset_bottom = 44.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 24
+text = "Window"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FullScreenControl" type="CheckButton" parent="Settings/Window/VBoxContainer/Control" unique_id=2106782770]
+visible = false
+layout_mode = 0
+offset_left = 81.0
+offset_top = 82.0
+offset_right = 404.0
+offset_bottom = 113.0
+theme_override_icons/checked = ExtResource("2_ann11")
+theme_override_icons/unchecked = ExtResource("3_fymb1")
+text = "Fullscreen"
+script = ExtResource("4_upvq6")
+
+[node name="ScreenControl" type="OptionButton" parent="Settings/Window/VBoxContainer/Control" unique_id=571442091]
+layout_mode = 0
+offset_left = 280.0
+offset_top = 71.0
+offset_right = 414.0
+offset_bottom = 102.0
+selected = 0
+item_count = 3
+popup/item_0/text = "Windowed"
+popup/item_0/id = 0
+popup/item_1/text = "Borderless"
+popup/item_1/id = 1
+popup/item_2/text = "Fullscreen"
+popup/item_2/id = 2
+script = ExtResource("5_afaf4")
+
+[node name="WindowModeLabel" type="Label" parent="Settings/Window/VBoxContainer/Control/ScreenControl" unique_id=669171993]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -247.0
+offset_top = -2.0
+offset_right = -215.0
+offset_bottom = 32.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 19
+text = "Window Mode"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WindowControl" type="OptionButton" parent="Settings/Window/VBoxContainer/Control" unique_id=448353658]
+layout_mode = 0
+offset_left = 281.0
+offset_top = 124.0
+offset_right = 415.0
+offset_bottom = 155.0
+script = ExtResource("6_o14jo")
+
+[node name="WindowSizeLabel" type="Label" parent="Settings/Window/VBoxContainer/Control/WindowControl" unique_id=1235341031]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -247.0
+offset_top = -2.0
+offset_right = -215.0
+offset_bottom = 32.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 19
+text = "Window Size"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sounds" type="TabBar" parent="Settings" unique_id=1714482156]
+visible = false
+layout_mode = 2
+tab_alignment = 1
+metadata/_tab_index = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings/Sounds" unique_id=1808019618]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -31.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="Settings/Sounds/VBoxContainer" unique_id=120040181]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Settings/Sounds/VBoxContainer/Control" unique_id=305208980]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -46.5
+offset_top = 20.0
+offset_right = 46.5
+offset_bottom = 54.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 24
+text = "BGM"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Settings/Sounds/VBoxContainer/Control" unique_id=167341696]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -46.5
+offset_top = 94.0
+offset_right = 46.5
+offset_bottom = 128.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 24
+text = "SFX"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioControl" type="HSlider" parent="Settings/Sounds/VBoxContainer/Control" unique_id=2138663456]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 47.0
+offset_right = 374.0
+offset_bottom = 89.0
+theme_override_icons/grabber = ExtResource("7_j0jkk")
+theme_override_styles/slider = SubResource("StyleBoxLine_6dk6o")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_jr6u5")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_ehtkc")
+max_value = 1.0
+step = 0.05
+value = 1.0
+script = ExtResource("8_egbht")
+audio_bus_name = "BGM"
+
+[node name="VolumeLabel" type="Label" parent="Settings/Sounds/VBoxContainer/Control/AudioControl" unique_id=891905625]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.042
+anchor_top = 0.21400002
+anchor_right = 1.1830001
+anchor_bottom = 0.762
+offset_left = 0.07199097
+offset_top = 0.01199913
+offset_right = 0.02798462
+offset_bottom = -0.0040016174
+grow_horizontal = 2
+grow_vertical = 2
+text = "0%"
+
+[node name="VolumeIcon" type="TextureButton" parent="Settings/Sounds/VBoxContainer/Control/AudioControl" unique_id=1290649332]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.113000005
+anchor_top = 0.19000001
+anchor_right = -0.023000002
+anchor_bottom = 0.8
+offset_left = 0.09200287
+offset_top = 0.019999504
+offset_right = -9.467999
+offset_bottom = -9.600002
+scale = Vector2(1.6, 1.6)
+texture_normal = ExtResource("9_mna3m")
+
+[node name="SFXControl" type="HSlider" parent="Settings/Sounds/VBoxContainer/Control" unique_id=2112076325]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 115.0
+offset_right = 374.0
+offset_bottom = 157.0
+theme_override_icons/grabber = ExtResource("7_j0jkk")
+theme_override_styles/slider = SubResource("StyleBoxLine_6dk6o")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_jr6u5")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_ehtkc")
+max_value = 1.0
+step = 0.05
+value = 1.0
+script = ExtResource("10_tr27g")
+audio_bus_name = "SFX"
+
+[node name="SFXLabel" type="Label" parent="Settings/Sounds/VBoxContainer/Control/SFXControl" unique_id=726828652]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.042
+anchor_top = 0.21400002
+anchor_right = 1.1830001
+anchor_bottom = 0.762
+offset_left = 0.07199097
+offset_top = 0.01199913
+offset_right = 0.02798462
+offset_bottom = -0.0040016174
+grow_horizontal = 2
+grow_vertical = 2
+text = "0%"
+
+[node name="SFXIcon" type="TextureButton" parent="Settings/Sounds/VBoxContainer/Control/SFXControl" unique_id=2079366788]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.113000005
+anchor_top = 0.19000001
+anchor_right = -0.023000002
+anchor_bottom = 0.8
+offset_left = 0.09200287
+offset_top = 0.019999504
+offset_right = -9.467999
+offset_bottom = -9.600002
+scale = Vector2(1.6, 1.6)
+texture_normal = ExtResource("9_mna3m")
+
+[node name="Back" type="Button" parent="." unique_id=1198480062]
+layout_mode = 0
+offset_left = 255.0
+offset_top = 313.0
+offset_right = 394.0
+offset_bottom = 344.0
+theme_override_colors/font_color = Color(0.009324101, 0.009324101, 0.009324101, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_ehtkc")
+text = "Back"
+
+[connection signal="toggled" from="Settings/Window/VBoxContainer/Control/FullScreenControl" to="Settings/Window/VBoxContainer/Control/FullScreenControl" method="_on_toggled"]
+[connection signal="item_selected" from="Settings/Window/VBoxContainer/Control/ScreenControl" to="Settings/Window/VBoxContainer/Control/ScreenControl" method="_on_item_selected"]
+[connection signal="item_selected" from="Settings/Window/VBoxContainer/Control/WindowControl" to="Settings/Window/VBoxContainer/Control/WindowControl" method="_on_item_selected"]
+[connection signal="value_changed" from="Settings/Sounds/VBoxContainer/Control/AudioControl" to="Settings/Sounds/VBoxContainer/Control/AudioControl" method="_on_value_changed"]
+[connection signal="value_changed" from="Settings/Sounds/VBoxContainer/Control/SFXControl" to="Settings/Sounds/VBoxContainer/Control/SFXControl" method="_on_value_changed"]

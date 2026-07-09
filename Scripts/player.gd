@@ -57,6 +57,11 @@ class_name Player
 @onready var deal_damage_zone = $DealDamageZone
 @onready var slash_sfx: AudioStreamPlayer = $SlashSFX
 
+#Shake Camera Motion
+@export var shake = false
+@export var max_shake_duration = 1.0
+@export var shake_duration = 0.0
+@export var time: int = 0
 
 # Dev Variable and const
 var appliedGravity: float
@@ -227,8 +232,12 @@ func _process(_delta) -> void:
 	if !current_attack:
 		if velocity.y < 0 and jump and !dashing:
 			anim.speed_scale = 1
-			anim.play("jump")
-			
+			if !is_on_floor() and jumpCount < jumps -1: #Don't have double jump anim so print.
+				anim.play("jump")
+				print("double jump!")
+			else:
+				anim.play("jump")
+
 		if velocity.y > 40 and falling and !dashing:
 			anim.speed_scale = 1
 			anim.play("falling")
@@ -331,14 +340,7 @@ func _physics_process(delta) -> void:
 			else:
 				velocity.x = 0
 				
-		#Double Jump
-		if is_on_floor():
-			jumpCount = 0
-		else:
-			if jumpCount == 0:
-				jumpCount += 1
-				
-		# Jump, Gravity, and wall interaction.
+		# Jump, Gravity, and wall interaction. To make the double jump work, put "2" on the inspector "jumps"
 		if velocity.y > 0:
 			appliedGravity = gravityScale * descendingGravityFactor
 		else:
@@ -371,7 +373,7 @@ func _physics_process(delta) -> void:
 		if VariableJumpHeight and jumpRelease and velocity.y < 0:
 			velocity.y = velocity.y / jumpVariable
 			
-		if jumps == 1:
+		if jumps >= 1:
 			if !is_on_floor() and !can_wall_interact():
 				if coyoteTime > 0:
 					coyoteActive = true
@@ -381,11 +383,15 @@ func _physics_process(delta) -> void:
 				if coyoteActive:
 					coyoteActive = false
 					_jump()
-				if jumpBuffering > 0:
+				elif is_on_floor():
+					_jump()
+				elif jumpCount > 0: #for double jump
+					_jump()
+					
+				if jumpBuffering > 0 and !is_on_floor():
 					jumpWasPressed = true
 					_bufferJump()
-				elif jumpBuffering == 0 and coyoteTime == 0 and is_on_floor():
-					_jump()
+
 			elif jumpTap and can_wall_interact() and !is_on_floor():
 				if wallJump and !latched:
 					_wallJump()
@@ -435,44 +441,69 @@ func _physics_process(delta) -> void:
 		if dashing and velocity.x < 0 and rightTap and dashCancel:
 			velocity.x = 0
 		check_hitbox()
+	if shake:
+		time += 1
+		shake_duration -= delta
+		var final_pos = Vector2(sin(time) * 1, sin(time) * 2)
+		if world_camera:
+			world_camera.offset = lerp(world_camera.offset, final_pos, 0.2)
+		else:
+			$Camera2D.offset = lerp($Camera2D.offset, final_pos, 0.2)
+	if shake_duration <= 0.0:
+		shake = false
+		time = 0
+		if world_camera:
+			world_camera.offset = Vector2.ZERO
+		else:
+			$Camera2D.offset = Vector2.ZERO
 	move_and_slide()
 	
 func check_hitbox():
 	if !can_take_damage or defeat:
 		return
 	var hitbox_areas = $PlayerHitbox.get_overlapping_areas()
-	
 	for hitbox in hitbox_areas:
 		var parent_node = hitbox.get_parent()
-		
-		if parent_node is Enemy:
-			if parent_node.is_dealing_damage == true and parent_node.has_dealt_damage == false:
-				take_damage(Global.EnemyDamageAmount)
-				parent_node.has_dealt_damage = true
-				break
-				#add more if there many enemy down here
-			#elif hitbox.get_parent() is OtherEnemy:
-				#take_damage(Global.EnemyDamageAmount)
+		if parent_node == self:
+			continue
+			
+		if parent_node is Enemy or EnemyAir:
+			if "is_dealing_damage" in parent_node and "has_dealt_damage" in parent_node:
+				if parent_node.is_dealing_damage == true and parent_node.has_dealt_damage == false:
+					var dir = sign(global_position.x - parent_node.global_position.x)
+					
+					var damage = Global.EnemyDamageAmount
+					if parent_node is EnemyAir:
+						damage = Global.EnemyAirDamageAmount
+					
+					take_damage(damage, dir)
+					parent_node.has_dealt_damage = true
+					break
 
-func take_damage(damage):
-	if defeat or damage <= 0 or !can_take_damage: 
+func take_damage(value, push_direction):
+	if defeat or value <= 0 or !can_take_damage: 
 		return
-	if health > 0:
-		health -= damage
-		print("player health: ", health)
-		if health <= 0:
-			health = 0
-			defeat = true
-			handle_defeat_animation()
-		else:
-			handle_hurt_animation()
-			take_damage_cooldown(0.5)
+	health -= value
+	can_take_damage = false
+	print("player health: ", health)
+	velocity.x = push_direction * 200
+	velocity.y = 200
+	shake = true
+	shake_duration = max_shake_duration
+	
+	if health <= 0:
+		health = 0
+		defeat = true
+		handle_defeat_animation()
+	else:
+		handle_hurt_animation()
+		take_damage_cooldown(0.5)
 
 func handle_hurt_animation():
 	is_hurt = true
 	current_attack = false
-	velocity.x = 0
 	PlayerSprite.play("hit")
+	$AnimationPlayer.play("Damage_flick")
 	await PlayerSprite.animation_finished
 	is_hurt = false
 

@@ -1,13 +1,13 @@
 [gd_scene format=4 uid="uid://c5y0v8k75fk5r"]
 
-[ext_resource type="PackedScene" uid="uid://w7doc70s2ixt" path="res://Scenes/player.tscn" id="1_707jr"]
+[ext_resource type="PackedScene" uid="uid://w7doc70s2ixt" path="res://Scenes/character/player.tscn" id="1_707jr"]
 [ext_resource type="Script" uid="uid://br4erkka3xqa8" path="res://Scripts/debug_area.gd" id="1_ydpwf"]
 [ext_resource type="Texture2D" uid="uid://dpui6y2i7aj56" path="res://Assets/Tilesets/Roads.png" id="2_av56p"]
 [ext_resource type="Texture2D" uid="uid://ck8ryb16wtmbn" path="res://Assets/Tilesets/Buildings.png" id="2_ykxxj"]
 [ext_resource type="Texture2D" uid="uid://dyhirno48mfiq" path="res://Assets/Tilesets/Platform-Sheet.png" id="3_ykxxj"]
-[ext_resource type="PackedScene" uid="uid://by1622uoguy0" path="res://Scenes/Transition.tscn" id="6_ihk1h"]
+[ext_resource type="PackedScene" uid="uid://by1622uoguy0" path="res://Scenes/Menu/Transition.tscn" id="6_ihk1h"]
+[ext_resource type="PackedScene" uid="uid://b7w5ldp1n0qke" path="res://Scenes/character/air_enemy.tscn" id="7_dhoeo"]
 [ext_resource type="Texture2D" uid="uid://c4au6nfdag87o" path="res://Assets/Tilesets/CollisonShapeTileset.png" id="7_ihk1h"]
-[ext_resource type="PackedScene" uid="uid://c3ijuhpxgpyie" path="res://Scenes/WallJump.tscn" id="8_48ywc"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_qxrlw"]
 distance = -235.0
@@ -277,8 +277,25 @@ texture = ExtResource("7_ihk1h")
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:0/0/physics_layer_0/polygon_0/one_way = true
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oi8hf"]
+
+[sub_resource type="PackedScene" id="PackedScene_48ywc"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"id_paths": [PackedInt32Array()],
+"names": PackedStringArray("StaticBody2D", "StaticBody2D", "CollisionShape2D", "CollisionShape2D", "rotation", "shape", "one_way_collision"),
+"node_count": 2,
+"node_ids": PackedInt32Array(321811404, 317675939),
+"node_paths": [NodePath(".")],
+"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 0, 0, 1073741824, 0, 3, 2, -1, 3, 4, 0, 5, 1, 6, 2, 0),
+"variants": [-1.5707964, SubResource("RectangleShape2D_oi8hf"), true],
+"version": 3
+}
+
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_dhoeo"]
-scenes/1/scene = ExtResource("8_48ywc")
+scenes/1/scene = SubResource("PackedScene_48ywc")
 
 [sub_resource type="TileSet" id="TileSet_48ywc"]
 physics_layer_0/collision_layer = 1
@@ -328,17 +345,15 @@ offset_bottom = 45.0
 [node name="Player" parent="." unique_id=1296403870 instance=ExtResource("1_707jr")]
 position = Vector2(66, 162)
 
-[node name="Camerehere" type="Camera2D" parent="Player" unique_id=1019016580]
-zoom = Vector2(2.09, 2.09)
-process_callback = 0
-limit_bottom = 240
-limit_smoothed = true
-position_smoothing_enabled = true
-position_smoothing_speed = 7.0
-drag_left_margin = 0.1
-drag_top_margin = 0.1
-drag_right_margin = 0.1
-drag_bottom_margin = 0.1
+[node name="WorldCamera" type="Camera2D" parent="Player" unique_id=439616166]
+zoom = Vector2(0.575, 0.575)
+limit_enabled = false
+limit_left = -119
+limit_right = 119
+limit_bottom = 198
 
 [node name="TileMapLayerWall" type="TileMapLayer" parent="." unique_id=1170031807]
 tile_set = SubResource("TileSet_48ywc")
+
+[node name="AirEnemy" parent="." unique_id=559430859 instance=ExtResource("7_dhoeo")]
+position = Vector2(100, 111)
