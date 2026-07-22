@@ -7,8 +7,8 @@ var advance_action: StringName = "attack"
 var anim_is_moving: bool = false
 
 var dialogue_is_active: bool = true
-var max_lines: int = 14
-
+var max_lines: int = 6
+# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$Fade_transition.show()    
 	$Fade_transition/Fade_transition/AnimationPlayer.play("Fade_out")
@@ -20,6 +20,7 @@ func _ready() -> void:
 	player.set_process(false)
 	player.set_physics_process(false)
 	player.set_collision_layer_value(1, false) 
+# Called every frame. 'delta' is the elapsed time since the previous frame.
 
 func _input(event: InputEvent) -> void:
 	if not dialogue_is_active:
@@ -30,10 +31,6 @@ func _input(event: InputEvent) -> void:
 		return
 
 	if event.is_action_pressed(advance_action):
-		
-		if Dialouge.get_node("NinePatchRect/AnimationPlayer").is_playing():
-			return
-		
 		if current_dialogue_index >= max_lines:
 			return
 		

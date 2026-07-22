@@ -7,14 +7,11 @@ extends HSlider
 var audio_bus_id
 var previous_volume: float = 1.0
 
-var icon_normal = preload("res://Assets/Other/Tweak/Volume Ori/Volume.png")
-var icon_mid = preload("res://Assets/Other/Tweak/Volume Ori/Volume_mid.png")
-var icon_muted = preload("res://Assets/Other/Tweak/Volume Ori/Volume_muted.png")
+var icon_normal = preload("res://Assets/Other/Tweak/Volume/Volume.png")
+var icon_mid = preload("res://Assets/Other/Tweak/Volume/Volume_mid.png")
+var icon_muted = preload("res://Assets/Other/Tweak/Volume/Volume_muted.png")
 
 func _ready() -> void:
-	audio_control()
-
-func audio_control() -> void:
 	audio_bus_id = AudioServer.get_bus_index(audio_bus_name)
 	var current_db = AudioServer.get_bus_volume_db(audio_bus_id)
 	value = db_to_linear(current_db)
@@ -45,7 +42,6 @@ func _update_ui(value: float) -> void:
 			volume_icon_btn.texture_normal = icon_mid
 		else:
 			volume_icon_btn.texture_normal = icon_normal
-
 func _on_value_changed(value: float) -> void:
 	var db = linear_to_db(value)
 	AudioServer.set_bus_volume_db(audio_bus_id, db)

@@ -377,7 +377,7 @@ size = Vector2(51, 259)
 
 [node name="Level_1" type="Node2D" unique_id=630728870]
 script = ExtResource("1_pvlc2")
-starting_wave = 1
+starting_wave = 2
 enemy_scene = ExtResource("10_d68a7")
 airenemy_scene = ExtResource("12_mt3j2")
 
@@ -522,12 +522,11 @@ position = Vector2(1552, 4)
 [node name="scoreLabels" parent="." unique_id=969138735 instance=ExtResource("10_q2tg5")]
 
 [node name="Player" parent="." unique_id=1296403870 instance=ExtResource("1_b828a")]
-position = Vector2(0, 166.565)
+position = Vector2(0, 161.565)
 collision_mask = 78
 jumps = 2
 
-[node name="WorldCamera" type="Camera2D" parent="." unique_id=1481191766]
-position = Vector2(0, 166.565)
+[node name="WorldCamera" type="Camera2D" parent="Player" unique_id=1481191766]
 zoom = Vector2(1.93, 1.93)
 limit_left = -435
 limit_right = 550

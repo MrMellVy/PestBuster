@@ -6,7 +6,7 @@
         {"name": "You", "text": "Boss said something about rats.. Mutated-", "face": "SpriteFace_Hm"},
         {"name": "You", "text": "Did i see..", "face": "SpriteFace_Silence_1"},
         {"name": "You", "text": "Right, probably that's the one.", "face": "SpriteFace_Haha_2"},
-        {"name": "You", "text": "Oh-", "face": "SpriteFace_What", "auto": 0.2, "event": "car_crash"}
+        {"name": "You", "text": "Oh-", "face": "SpriteFace_What"}
 ]
 
 

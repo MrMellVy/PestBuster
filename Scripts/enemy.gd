@@ -26,7 +26,6 @@ var player_in_area = false
 var can_attack: bool = true
 var is_enemy_chase: bool = true
 var health_min = 0
-var hit_by_skill: bool = false
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var separate_area: Area2D = $SeparateArea
@@ -70,11 +69,8 @@ func calculate_movement():
 		return
 
 	if taking_damage:
-		if hit_by_skill:
-			velocity.x = 0
-		else:
-			var knockbar_dir = position.direction_to(player.position) * knockback_force
-			velocity.x = knockbar_dir.x
+		var knockbar_dir = position.direction_to(player.position) * knockback_force
+		velocity.x = knockbar_dir.x
 		return
 		
 	if player_in_area:
@@ -145,13 +141,8 @@ func choose(array):
 	return array.front()
 
 func _on_enemy_hitbox_area_entered(area: Area2D) -> void:
+	var damage = Global.playerDamageAmount
 	if area == Global.playerDamageZone:
-		if Global.playerBody != null and "attack_type" in Global.playerBody:
-			hit_by_skill = (Global.playerBody.attack_type == "skill")
-		if hit_by_skill:
-			$SkillHitSFX.play()
-		
-		var damage = Global.playerDamageAmount
 		take_damage(damage)
 		
 func take_damage(damage):

@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var SceneTransitionAnimation = $Fade_transition/Fade_transition/AnimationPlayer
-@onready var world_camera: Camera2D = $WorldCamera
+@onready var world_camera: Camera2D = $Player/WorldCamera
 
 @export var starting_wave: int
 
@@ -25,21 +25,12 @@ var rand_x
 var rand_y
 
 func _ready() -> void:
-	#region for camera movement.
 	world_camera.make_current()
-	$Player.world_camera = world_camera
-	
-	var remote = RemoteTransform2D.new()
-	$Player.add_child(remote)
-	remote.remote_path = remote.get_path_to(world_camera)
-	#endregion
-	
 	$Fade_transition.show()
 	$Fade_transition.layer = 2
 	$Fade_transition/Fade_transition/AnimationPlayer.play("Fade_out_start")
 	BgmManager.play_BGM("Battle Encounter")
-	$Player.set_physics_process(false)
-	$Player.set_process_unhandled_input(false)
+	
 	if Global.is_continuing:
 		current_wave = Global.saved_wave
 		$Player.health = Global.saved_player_health
@@ -55,18 +46,11 @@ func _ready() -> void:
 	else:
 		current_wave = starting_wave
 		Global.current_wave = current_wave
-		$Player/PlayerHealthbar.visible = false
 		await SceneTransitionAnimation.animation_finished
-		$Player.set_physics_process(true)
-		$Player.set_process_unhandled_input(true)
 		$scoreLabels.layer = 3
 		if current_wave == 2:
 			open_path_to_zone_2()
 		else:
-			await level_dialogue("CS_00_1")
-			$Player/PlayerHealthbar.visible = true
-			$Player/PlayerHealthbar.layer = 0
-			$Player/PlayerHealthbar.layer = 1
 			$scoreLabels/MiddleWaveAnim.play("LeftStart")
 			await $scoreLabels/MiddleWaveAnim.animation_finished
 			position_to_next_wave()
@@ -300,24 +284,13 @@ func _on_timer_health_power_up_timeout() -> void:
 func _on_wave_2_zone_trigger_body_entered(body: Node2D) -> void:
 	if body.name == "Player" and current_wave == 2 and not is_spawning:
 		print("Player reached Zone 2 Transition, Starting Wave")
-		
 		#Disable the font sign here. with .hide()
 		$Wave2ZoneTrigger.set_deferred("monitoring", false) #for failsafe
 		$"Border Collision/BorderCollisionRight/CollisionShape2D".set_deferred("disabled", false)
-		
 		var tween = create_tween()
 		tween.tween_property(world_camera, "limit_left", 570, 1.0).set_trans(Tween.TRANS_SINE)
 		
-		$scoreLabels.visible = false
-		$Player/PlayerHealthbar.visible = false
-		
-		await level_dialogue("CS_00_2")
-		
-		$scoreLabels.visible = true
-		$Player/PlayerHealthbar.visible = true
-		
 		Global.current_wave = current_wave
-		
 		$scoreLabels/ScoreAnim.play("ScoreUp")
 		$scoreLabels/WaveAnim.play("WaveUp")
 		$scoreLabels/MiddleWaveAnim.play("LeftStart")
@@ -331,14 +304,8 @@ func _on_wave_2_zone_trigger_body_entered(body: Node2D) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and event.keycode == KEY_K:
-		print("SKIP. Next Batch.")
+		print("SKIP. Next.. Batch.")
 		for child in get_children():
 			if child is Enemy or child is EnemyAir:
 				if not child.defeat:
 					child.take_damage(999999)
-
-func level_dialogue(json_filename: String) -> void:
-	get_tree().paused = true
-	Dialouge.start(json_filename)
-	await Dialouge.dialogue_finished
-	get_tree().paused = false

@@ -5,14 +5,14 @@
         {"name": "You", "text": "Give me a break.", "face": "SpriteFace_Haha_1"},
         {"name": "You", "text": "Sigh.", "face": "SpriteFace_Hm"},
         {"name": "You", "text": "Hm?", "face": "SpriteFace_Silence_1"},
-        {"name": "Nashear", "text": "Gah, that's was tiring..", "face": "SpriteFace_Silence"},
-        {"name": "Nashear", "text": "Oh, hey there.", "face": "SpriteFace_Haha_1"},
-        {"name": "You", "text": "Hey.", "face": "SpriteFace_Silence"},
-        {"name": "Nashear", "text": "Hm, You must be the person..", "face": "SpriteFace_What"},
-        {"name": "You", "text": "Ah, really? i'm just passingby. ", "face": "SpriteFace_What"},
-        {"name": "Nashear", "text": "Thought, follow me to the city square.", "face": "SpriteFace_Hm"},
-        {"name": "Nashear", "text": "Not much time left.", "face": "SpriteFace_Hm"},
-        {"name": "You", "text": "Huh? sure..", "face": "SpriteFace_Hm"}
+        {"name": "You", "text": "Oh, hey.", "face": "SpriteFace_Haha_2"},
+        {"name": "Nashear", "text": "Hey.", "face": "SpriteFace_Silence"}
+        {"name": "Nashear", "text": "Nice weather today isn't it?", "face": "SpriteFace_Haha_1"}
+        {"name": "You", "text": "Oh, yes of course.", "face": "SpriteFace_Silence"}
+        {"name": "You", "text": "Wait!", "face": "SpriteFace_What"}
+        {"name": "You", "text": "What are ya doing? find safe place..", "face": "SpriteFace_What"}
+        {"name": "Nashear", "text": "Huh? I'm here also cleaning all this big sized rats", "face": "SpriteFace_Hm"}
+
 ]
 
 
