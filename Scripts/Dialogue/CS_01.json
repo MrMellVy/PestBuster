@@ -1,0 +1,18 @@
+[
+        {"name": "You", "text": "Ugh, My car..", "face": "SpriteFace_Silence_1"},
+        {"name": "You", "text": "Okay.", "face": "SpriteFace_Silence"},
+        {"name": "You", "text": "...", "face": "SpriteFace_Silence"},
+        {"name": "You", "text": "Give me a break.", "face": "SpriteFace_Haha_1"},
+        {"name": "You", "text": "Sigh.", "face": "SpriteFace_Hm"},
+        {"name": "You", "text": "Hm?", "face": "SpriteFace_Silence_1"},
+        {"name": "Nashear", "text": "Gah, that's was tiring..", "face": "SpriteFace_Silence"},
+        {"name": "Nashear", "text": "Oh, hey there.", "face": "SpriteFace_Haha_1"},
+        {"name": "You", "text": "Hey.", "face": "SpriteFace_Silence"},
+        {"name": "Nashear", "text": "Hm, You must be the person..", "face": "SpriteFace_What"},
+        {"name": "You", "text": "Ah, really? i'm just passingby. ", "face": "SpriteFace_What"},
+        {"name": "Nashear", "text": "Thought, follow me to the city square.", "face": "SpriteFace_Hm"},
+        {"name": "Nashear", "text": "Not much time left.", "face": "SpriteFace_Hm"},
+        {"name": "You", "text": "Huh? sure..", "face": "SpriteFace_Hm"}
+]
+
+

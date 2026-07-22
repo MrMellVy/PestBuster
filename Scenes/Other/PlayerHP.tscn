@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://b3048smma4113"]
+
+[ext_resource type="Script" uid="uid://dt4x30lguo52f" path="res://Scripts/playerhealth.gd" id="1_ih32l"]
+[ext_resource type="Texture2D" uid="uid://dgf6v31cmopin" path="res://Assets/Sprites/ProgressBar/ProgressbarUnder.png" id="2_gwfsw"]
+[ext_resource type="Texture2D" uid="uid://sdvhgusml8xv" path="res://Assets/Sprites/ProgressBar/ProgressbarProgress.png" id="2_ou6nx"]
+[ext_resource type="Texture2D" uid="uid://c0gqfx0xheoxm" path="res://Assets/Sprites/ProgressBar/ProgressbarOver.png" id="3_g52q5"]
+
+[node name="HealthBarPlayer" type="CanvasLayer" unique_id=1041979520]
+
+[node name="HealthBarContainer" type="Node2D" parent="." unique_id=1699284854]
+scale = Vector2(1.525, 1.525)
+skew = -0.5864306
+
+[node name="PlayerHP" type="TextureProgressBar" parent="HealthBarContainer" unique_id=1265035597]
+offset_left = 3.0919247
+offset_top = 4.7018046
+offset_right = 159.09192
+offset_bottom = 32.70181
+radial_initial_angle = 360.0
+radial_fill_degrees = 249.0
+texture_under = ExtResource("2_gwfsw")
+texture_over = ExtResource("3_g52q5")
+texture_progress = ExtResource("2_ou6nx")
+script = ExtResource("1_ih32l")

@@ -1,0 +1,667 @@
+[gd_scene format=4 uid="uid://dnhdvxp66r0sr"]
+
+[ext_resource type="Script" uid="uid://ddihppcirpcdq" path="res://Scripts/main_menu.gd" id="1_qf5q3"]
+[ext_resource type="Shader" uid="uid://baxjruh5664dn" path="res://Assets/Sprites/Spritesquare/spritesquare.gdshader" id="2_egyys"]
+[ext_resource type="Texture2D" uid="uid://cf8lxwsdblm8" path="res://Assets/Background/Day/Background.png" id="3_cdmmi"]
+[ext_resource type="Texture2D" uid="uid://ck8ryb16wtmbn" path="res://Assets/Tilesets/Buildings.png" id="4_btwdk"]
+[ext_resource type="Texture2D" uid="uid://dpui6y2i7aj56" path="res://Assets/Tilesets/Roads.png" id="5_4dd87"]
+[ext_resource type="Texture2D" uid="uid://dyhirno48mfiq" path="res://Assets/Tilesets/Platform-Sheet.png" id="6_wyf5o"]
+[ext_resource type="Texture2D" uid="uid://dppvuj7nubmc2" path="res://Assets/Other/Main Menu/ButtonsMenu/MenuButtonsStart.png" id="7_b801w"]
+[ext_resource type="Texture2D" uid="uid://bn57vtncmn8xm" path="res://Assets/Other/Main Menu/ButtonsMenu/MenuButtonsStartHighlighted.png" id="8_kvk33"]
+[ext_resource type="Texture2D" uid="uid://cg0tw5tul4fy7" path="res://Assets/Other/Main Menu/ButtonsMenu/MenuButtonsStartHover.png" id="9_kqfms"]
+[ext_resource type="Script" uid="uid://cvpv3nvnh76b4" path="res://Scripts/start.gd" id="10_gcenh"]
+[ext_resource type="Texture2D" uid="uid://cd0n5cxb6qwgv" path="res://Assets/Other/Main Menu/ButtonsMenu/Settingsnormal.png" id="11_ufnow"]
+[ext_resource type="Texture2D" uid="uid://cnv3f6f6nv5xr" path="res://Assets/Other/Main Menu/ButtonsMenu/SettingsHighlighted.png" id="12_2v82h"]
+[ext_resource type="Texture2D" uid="uid://bymqhve0xk36f" path="res://Assets/Other/Main Menu/ButtonsMenu/SettingsHover.png" id="13_xarbm"]
+[ext_resource type="Texture2D" uid="uid://b3dd0kfmhikxr" path="res://Assets/Other/Main Menu/ButtonsMenu/MenuButtonsExit.png" id="14_svjyn"]
+[ext_resource type="Texture2D" uid="uid://h6e4x3cpftt0" path="res://Assets/Other/Main Menu/ButtonsMenu/MenuButtonsExitHighlighted.png" id="15_5jio3"]
+[ext_resource type="Texture2D" uid="uid://bavjjf76l83xm" path="res://Assets/Other/Main Menu/ButtonsMenu/MenuButtonsExitHover.png" id="16_3778w"]
+[ext_resource type="Script" uid="uid://c57isocbv8ffm" path="res://Scripts/exit.gd" id="17_k3736"]
+[ext_resource type="Texture2D" uid="uid://crqx2cn2iyfwu" path="res://Assets/Other/Main Menu/Title/NewTitle.png" id="18_llifo"]
+[ext_resource type="PackedScene" uid="uid://i6vri7kwh8cb" path="res://Scenes/Menu/Settings.tscn" id="19_0jto8"]
+[ext_resource type="PackedScene" uid="uid://by1622uoguy0" path="res://Scenes/Menu/Transition.tscn" id="20_6n2g5"]
+[ext_resource type="FontFile" uid="uid://bgx1d1885ufiu" path="res://Assets/Fonts/Ririgitriz.ttf" id="21_egyys"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m3bi6"]
+shader = ExtResource("2_egyys")
+shader_parameter/wind_speed = 1.0
+shader_parameter/wave_frequency = 3.385
+shader_parameter/wave_amplitude = 0.03
+shader_parameter/wind_direction = Vector2(1, -1)
+shader_parameter/shadow_color = Color(0, 0, 0, 0.25882354)
+shader_parameter/highlight_color = Color(1, 1, 1, 0.3)
+shader_parameter/light_angle = 0.5
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jr6u5"]
+load_path = "res://.godot/imported/Cloud0.png-f7d3aa7d538e5189608ed4a3e481fd2e.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6m47u"]
+load_path = "res://.godot/imported/Cloud1.png-c2e2a5604fe819f914bcb2d94d3d769b.ctex"
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_84iac"]
+texture = ExtResource("4_btwdk")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6, -3, 8, -3, 8, 0, -5.5, 0)
+0:0/0/physics_layer_0/polygon_0/one_way = true
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -3, 8, -3, 8, 1, -8, 1)
+1:0/0/physics_layer_0/polygon_0/one_way = true
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -3, 8, -3, 8, 1, -8, 1)
+2:0/0/physics_layer_0/polygon_0/one_way = true
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(4, -3, -8, -3, -8, 0, 4, 0)
+3:0/0/physics_layer_0/polygon_0/one_way = true
+9:0/0 = 0
+9:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -2, 8, -2, 8, 2.5, -4, 2)
+9:0/0/physics_layer_0/polygon_0/one_way = true
+10:0/0 = 0
+10:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -2, 8, -2, 8, 2.5, -8, 2.5)
+10:0/0/physics_layer_0/polygon_0/one_way = true
+11:0/0 = 0
+11:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -2, 8, -2, 8, 2.5, -8, 2.5)
+11:0/0/physics_layer_0/polygon_0/one_way = true
+12:0/0 = 0
+12:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(4, -2, -8, -2, -8, 2.5, 4, 2)
+12:0/0/physics_layer_0/polygon_0/one_way = true
+13:0/0 = 0
+13:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(3.5, 3, 8, 3, 8, 8, 3, 8)
+13:0/0/physics_layer_0/polygon_0/one_way = true
+14:0/0 = 0
+14:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 1, 8, 1, 8, 8, -8, 8)
+14:0/0/physics_layer_0/polygon_0/one_way = true
+15:0/0 = 0
+15:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 1, 8, 1, 8, 8, -8, 8)
+15:0/0/physics_layer_0/polygon_0/one_way = true
+16:0/0 = 0
+16:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 1, 8, 1, 8, 8, -8, 8)
+16:0/0/physics_layer_0/polygon_0/one_way = true
+17:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+9:1/0 = 0
+10:1/0 = 0
+11:1/0 = 0
+12:1/0 = 0
+13:1/0 = 0
+14:1/0 = 0
+15:1/0 = 0
+16:1/0 = 0
+17:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+9:2/0 = 0
+10:2/0 = 0
+11:2/0 = 0
+12:2/0 = 0
+13:2/0 = 0
+14:2/0 = 0
+15:2/0 = 0
+16:2/0 = 0
+17:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+9:3/0 = 0
+10:3/0 = 0
+11:3/0 = 0
+12:3/0 = 0
+13:3/0 = 0
+14:3/0 = 0
+15:3/0 = 0
+16:3/0 = 0
+17:3/0 = 0
+24:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+4:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(5, -7, 8, -7, 8, -1, 4.5, -1.5)
+4:4/0/physics_layer_0/polygon_0/one_way = true
+5:4/0 = 0
+5:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -6.903738, 8, -7, 8, -1.0152559, -8, -0.91372967)
+5:4/0/physics_layer_0/polygon_0/one_way = true
+6:4/0 = 0
+6:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -6.903738, 8, -7, 8, -1.0152559, -8, -0.91372967)
+6:4/0/physics_layer_0/polygon_0/one_way = true
+7:4/0 = 0
+7:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -6.903738, 8, -7, 8, -1.0152559, -8, -0.91372967)
+7:4/0/physics_layer_0/polygon_0/one_way = true
+8:4/0 = 0
+8:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-5, -7, -8, -7, -8, -1, -4.5, -1.5)
+8:4/0/physics_layer_0/polygon_0/one_way = true
+9:4/0 = 0
+10:4/0 = 0
+11:4/0 = 0
+12:4/0 = 0
+13:4/0 = 0
+14:4/0 = 0
+15:4/0 = 0
+16:4/0 = 0
+17:4/0 = 0
+22:4/0 = 0
+24:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+8:5/0 = 0
+9:5/0 = 0
+10:5/0 = 0
+11:5/0 = 0
+12:5/0 = 0
+13:5/0 = 0
+14:5/0 = 0
+15:5/0 = 0
+16:5/0 = 0
+17:5/0 = 0
+18:5/0 = 0
+18:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4.5, -4, 8, -4, 8, 5, -4.5, 5)
+18:5/0/physics_layer_0/polygon_0/one_way = true
+19:5/0 = 0
+19:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -4, 8, -4, 8, 5, -8, 5)
+19:5/0/physics_layer_0/polygon_0/one_way = true
+20:5/0 = 0
+20:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(4.5, -4, -8, -4, -8, 5, 4.5, 5)
+20:5/0/physics_layer_0/polygon_0/one_way = true
+22:5/0 = 0
+24:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+8:6/0 = 0
+9:6/0 = 0
+10:6/0 = 0
+11:6/0 = 0
+12:6/0 = 0
+13:6/0 = 0
+14:6/0 = 0
+15:6/0 = 0
+16:6/0 = 0
+17:6/0 = 0
+18:6/0 = 0
+19:6/0 = 0
+20:6/0 = 0
+21:6/0 = 0
+22:6/0 = 0
+23:6/0 = 0
+24:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+6:7/0 = 0
+7:7/0 = 0
+8:7/0 = 0
+9:7/0 = 0
+10:7/0 = 0
+11:7/0 = 0
+12:7/0 = 0
+13:7/0 = 0
+14:7/0 = 0
+15:7/0 = 0
+16:7/0 = 0
+17:7/0 = 0
+21:7/0 = 0
+22:7/0 = 0
+23:7/0 = 0
+24:7/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_5n0dv"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_84iac")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ne6ao"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tt8ml"]
+texture = ExtResource("5_4dd87")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:2/0 = 0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:3/0 = 0
+4:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:3/0 = 0
+3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:3/0 = 0
+5:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:2/0 = 0
+5:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:2/0 = 0
+4:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+6:0/0 = 0
+6:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+7:1/0 = 0
+7:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+8:1/0 = 0
+8:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+9:1/0 = 0
+9:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+10:1/0 = 0
+10:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+11:1/0 = 0
+11:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+11:0/0 = 0
+11:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+10:0/0 = 0
+10:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+9:0/0 = 0
+9:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+8:0/0 = 0
+8:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+7:0/0 = 0
+7:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+6:1/0 = 0
+6:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+12:2/0 = 0
+12:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+13:2/0 = 0
+13:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+14:3/0 = 0
+15:3/0 = 0
+16:3/0 = 0
+17:3/0 = 0
+17:2/0 = 0
+17:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+16:2/0 = 0
+16:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+15:2/0 = 0
+15:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+14:2/0 = 0
+14:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+13:3/0 = 0
+12:3/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fmarx"]
+texture = ExtResource("6_wyf5o")
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -4, -8, -4)
+1:0/0/physics_layer_0/polygon_0/one_way = true
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -4, -8, -4)
+2:0/0/physics_layer_0/polygon_0/one_way = true
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -4, -8, -4)
+3:0/0/physics_layer_0/polygon_0/one_way = true
+4:0/0 = 0
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -4, -8, -4)
+4:0/0/physics_layer_0/polygon_0/one_way = true
+
+[sub_resource type="TileSet" id="TileSet_hkdq0"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_tt8ml")
+sources/1 = SubResource("TileSetAtlasSource_fmarx")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wyh8j"]
+shader = ExtResource("2_egyys")
+shader_parameter/wind_speed = 0.525
+shader_parameter/wave_frequency = 2.23
+shader_parameter/wave_amplitude = 0.01
+shader_parameter/wind_direction = Vector2(1, -1)
+shader_parameter/shadow_color = Color(0, 0, 0, 0.4)
+shader_parameter/highlight_color = Color(1, 1, 1, 0.3)
+shader_parameter/light_angle = 0.5
+
+[sub_resource type="Animation" id="Animation_wyh8j"]
+resource_name = "ButtonPressed"
+length = 0.5166999999999999
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Start:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.099999994, 0.15, 0.19999999, 0.25, 0.36666667, 0.4166667, 0.46666664, 0.51666677),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(1.07, 1.07), Vector2(1.07, 1.07), Vector2(1, 1), Vector2(1, 1), Vector2(1.07, 1.07), Vector2(1.07, 1.07), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5egv6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Start:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(251, 158)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Start:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_t1dhk"]
+resource_name = "buttonstart"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Start:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(251, 158), Vector2(253, 158)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5egv6"]
+_data = {
+&"ButtonPressed": SubResource("Animation_wyh8j"),
+&"RESET": SubResource("Animation_5egv6"),
+&"buttonstart": SubResource("Animation_t1dhk")
+}
+
+[sub_resource type="Animation" id="Animation_ujyyl"]
+resource_name = "Buttonexitpressed"
+length = 0.5166999999999999
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.099999994, 0.15, 0.19999999, 0.25, 0.36666667, 0.4166667, 0.46666664, 0.51666677),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(1.07, 1.07), Vector2(1.07, 1.07), Vector2(1, 1), Vector2(1, 1), Vector2(1.07, 1.07), Vector2(1.07, 1.07), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_8dnnj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(251, 260.36)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_vtepg"]
+resource_name = "buttonexit"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(251, 260.36), Vector2(253, 260.36)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8dnnj"]
+_data = {
+&"Buttonexitpressed": SubResource("Animation_ujyyl"),
+&"RESET": SubResource("Animation_8dnnj"),
+&"buttonexit": SubResource("Animation_vtepg")
+}
+
+[node name="MainMenu" type="Control" unique_id=339656063]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qf5q3")
+
+[node name="ShaderTest" type="Sprite2D" parent="." unique_id=1567252592]
+visible = false
+material = SubResource("ShaderMaterial_m3bi6")
+position = Vector2(321, 178.5)
+scale = Vector2(0.33437502, 0.33240741)
+
+[node name="Background2" type="Node2D" parent="." unique_id=1506809843]
+
+[node name="ParallaxBackground" type="Parallax2D" parent="Background2" unique_id=670409308]
+scale = Vector2(0.28, 0.28)
+scroll_scale = Vector2(0.1, 0)
+repeat_size = Vector2(416.56, 0)
+repeat_times = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Background2/ParallaxBackground" unique_id=2127735656]
+position = Vector2(0, -3.85)
+scale = Vector2(1.0607638, 1.1203704)
+texture = ExtResource("3_cdmmi")
+centered = false
+
+[node name="ParallaxC0" type="Parallax2D" parent="Background2" unique_id=2080359331]
+scale = Vector2(0.385, 0.385)
+scroll_scale = Vector2(0.2, 0)
+repeat_size = Vector2(1500, 0)
+autoscroll = Vector2(-5, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Background2/ParallaxC0" unique_id=1152812291]
+position = Vector2(0, 3.18)
+scale = Vector2(0.814, 0.86)
+texture = SubResource("CompressedTexture2D_jr6u5")
+centered = false
+
+[node name="ParallaxC1" type="Parallax2D" parent="Background2" unique_id=338023433]
+scale = Vector2(0.625, 0.625)
+repeat_size = Vector2(1500, 0)
+autoscroll = Vector2(-10, 0)
+repeat_times = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Background2/ParallaxC1" unique_id=454647706]
+position = Vector2(1.6, -360.31)
+scale = Vector2(0.821, 0.867)
+texture = SubResource("CompressedTexture2D_6m47u")
+centered = false
+
+[node name="Building" type="Node2D" parent="." unique_id=284561305]
+visible = false
+
+[node name="Parallax2D" type="Parallax2D" parent="Building" unique_id=1054525251]
+repeat_size = Vector2(1200, 0)
+autoscroll = Vector2(100, 0)
+
+[node name="BuildingBackground" type="TileMapLayer" parent="Building/Parallax2D" unique_id=1806941932]
+position = Vector2(-358, 78.085)
+tile_map_data = PackedByteArray("AAAPAA4AAAAWAAYAAAAPAA8AAAAWAAcAAAAQAA4AAAAXAAYAAAAQAA8AAAAXAAcAAAARAA4AAAAXAAYAAAARAA8AAAAXAAcAAAAOAA4AAAAXAAYAAAAOAA8AAAAXAAcAAAAKAA4AAAAXAAYAAAAKAA8AAAAXAAcAAAALAA4AAAAXAAYAAAALAA8AAAAXAAcAAAAHAA4AAAAXAAYAAAAHAA8AAAAXAAcAAAAIAA4AAAAXAAYAAAAIAA8AAAAXAAcAAAAJAA4AAAAXAAYAAAAJAA8AAAAXAAcAAAAEAA4AAAAXAAYAAAAEAA8AAAAXAAcAAAAFAA4AAAAXAAYAAAAFAA8AAAAXAAcAAAAGAA4AAAAXAAYAAAAGAA8AAAAXAAcAAAACAA4AAAAXAAYAAAACAA8AAAAXAAcAAAADAA4AAAAXAAYAAAADAA8AAAAXAAcAAAD//w4AAAAXAAYAAAD//w8AAAAXAAcAAAAAAA4AAAAXAAYAAAAAAA8AAAAXAAcAAAABAA4AAAAXAAYAAAABAA8AAAAXAAcAAAD7/w4AAAAXAAYAAAD7/w8AAAAXAAcAAAD8/w4AAAAXAAYAAAD8/w8AAAAXAAcAAAD9/w4AAAAXAAYAAAD9/w8AAAAXAAcAAAD3/w4AAAAXAAYAAAD3/w8AAAAXAAcAAAD4/w4AAAAXAAYAAAD4/w8AAAAXAAcAAAD5/w4AAAAXAAYAAAD5/w8AAAAXAAcAAADy/w4AAAAXAAYAAADy/w8AAAAXAAcAAADz/w4AAAAXAAYAAADz/w8AAAAXAAcAAAD0/w4AAAAXAAYAAAD0/w8AAAAXAAcAAADu/w4AAAAXAAYAAADu/w8AAAAXAAcAAADv/w4AAAAXAAYAAADv/w8AAAAXAAcAAADw/w4AAAAXAAYAAADw/w8AAAAXAAcAAAASAA4AAAAWAAYAAAASAA8AAAAWAAcAAAATAA4AAAAWAAYAAAATAA8AAAAWAAcAAAAUAA4AAAAXAAYAAAAUAA8AAAAXAAcAAAAYAA4AAAAXAAYAAAAYAA8AAAAXAAcAAAAZAA4AAAAXAAYAAAAZAA8AAAAXAAcAAAAaAA4AAAAXAAYAAAAaAA8AAAAXAAcAAAAbAA4AAAAXAAYAAAAbAA8AAAAXAAcAAAAcAA4AAAAXAAYAAAAcAA8AAAAXAAcAAAAdAA4AAAAXAAYAAAAdAA8AAAAXAAcAAAAeAA4AAAAXAAYAAAAeAA8AAAAXAAcAAAAfAA4AAAAXAAYAAAAfAA8AAAAXAAcAAAAgAA4AAAAXAAYAAAAgAA8AAAAXAAcAAAAhAA4AAAAXAAYAAAAhAA8AAAAXAAcAAAAiAA4AAAAXAAYAAAAiAA8AAAAXAAcAAAAjAA4AAAAXAAYAAAAjAA8AAAAXAAcAAAAkAA4AAAAXAAYAAAAkAA8AAAAXAAcAAAAlAA4AAAAXAAYAAAAlAA8AAAAXAAcAAAAmAA4AAAAXAAYAAAAmAA8AAAAXAAcAAAAnAA4AAAAXAAYAAAAnAA8AAAAXAAcAAAAoAA4AAAAXAAYAAAAoAA8AAAAXAAcAAAApAA4AAAAXAAYAAAApAA8AAAAXAAcAAAAqAA4AAAAXAAYAAAAqAA8AAAAXAAcAAAArAA4AAAAXAAYAAAArAA8AAAAXAAcAAAAsAA4AAAAXAAYAAAAsAA8AAAAXAAcAAAAtAA4AAAAXAAYAAAAtAA8AAAAXAAcAAAAuAA4AAAAXAAYAAAAuAA8AAAAXAAcAAAAvAA4AAAAXAAYAAAAvAA8AAAAXAAcAAAAwAA4AAAAXAAYAAAAwAA8AAAAXAAcAAAAxAA4AAAAXAAYAAAAxAA8AAAAXAAcAAAAyAA4AAAAXAAYAAAAyAA8AAAAXAAcAAAAzAA4AAAAXAAYAAAAzAA8AAAAXAAcAAAA0AA4AAAAXAAYAAAA0AA8AAAAXAAcAAAA1AA4AAAAXAAYAAAA1AA8AAAAXAAcAAAA2AA4AAAAXAAYAAAA2AA8AAAAXAAcAAAA3AA4AAAAXAAYAAAA3AA8AAAAXAAcAAAA4AA4AAAAXAAYAAAA4AA8AAAAXAAcAAAA5AA4AAAAXAAYAAAA5AA8AAAAXAAcAAAA6AA4AAAAXAAYAAAA6AA8AAAAXAAcAAAD+/w4AAAAXAAYAAAD+/w8AAAAXAAcAAAD6/w4AAAAXAAYAAAD6/w8AAAAXAAcAAAD1/w4AAAAXAAYAAAD1/w8AAAAXAAcAAAD2/w4AAAAXAAYAAAD2/w8AAAAXAAcAAADs/w4AAAAXAAYAAADs/w8AAAAXAAcAAADt/w4AAAAXAAYAAADt/w8AAAAXAAcAAADx/w4AAAAXAAYAAADx/w8AAAAXAAcAAAAVAA4AAAAXAAYAAAAVAA8AAAAXAAcAAAAWAA4AAAAXAAYAAAAWAA8AAAAXAAcAAAAXAA4AAAAXAAYAAAAXAA8AAAAXAAcAAAA7AA4AAAAXAAYAAAA7AA8AAAAXAAcAAAA8AA4AAAAWAAYAAAA8AA8AAAAWAAcAAAA9AA4AAAAXAAYAAAA9AA8AAAAXAAcAAAA+AA4AAAAWAAYAAAA+AA8AAAAWAAcAAAA/AA4AAAAXAAYAAAA/AA8AAAAXAAcAAABAAA4AAAAWAAYAAABAAA8AAAAWAAcAAABBAA4AAAAXAAYAAABBAA8AAAAXAAcAAABCAA4AAAAYAAYAAABCAA8AAAAYAAcAAAAMAA4AAAAXAAYAAAAMAA8AAAAXAAcAAAANAA4AAAAXAAYAAAANAA8AAAAXAAcAAAA=")
+tile_set = SubResource("TileSet_5n0dv")
+
+[node name="Parallax2D2" type="Parallax2D" parent="Building" unique_id=1570379283]
+repeat_size = Vector2(1000, 0)
+autoscroll = Vector2(150, 0)
+repeat_times = 3
+
+[node name="Building" type="TileMapLayer" parent="Building/Parallax2D2" unique_id=452618249]
+material = SubResource("ShaderMaterial_ne6ao")
+position = Vector2(-176, 120.095)
+tile_map_data = PackedByteArray("AAAAAAUAAAAJAAAAAAAAAAYAAAAJAAEAAAAAAAcAAAAJAAIAAAAAAAgAAAAJAAMAAAAAAAkAAAAJAAQAAAAAAAoAAAAJAAUAAAAAAAsAAAAJAAYAAAAAAAwAAAAJAAcAAAABAAUAAAAKAAAAAAABAAYAAAAKAAEAAAABAAcAAAAKAAIAAAABAAgAAAAKAAMAAAABAAkAAAAKAAQAAAABAAoAAAAKAAUAAAABAAsAAAAKAAYAAAABAAwAAAAKAAcAAAACAAUAAAALAAAAAAACAAYAAAALAAEAAAACAAcAAAALAAIAAAACAAgAAAALAAMAAAACAAkAAAALAAQAAAACAAoAAAALAAUAAAACAAsAAAALAAYAAAACAAwAAAALAAcAAAADAAUAAAAMAAAAAAADAAYAAAAMAAEAAAADAAcAAAAMAAIAAAADAAgAAAAMAAMAAAADAAkAAAAMAAQAAAADAAoAAAAMAAUAAAADAAsAAAAMAAYAAAADAAwAAAAMAAcAAAD3/wUAAAAAAAAAAAD3/wYAAAAAAAEAAAD3/wcAAAAAAAIAAAD3/wgAAAAAAAMAAAD3/wkAAAAAAAQAAAD3/woAAAAAAAUAAAD3/wsAAAAAAAYAAAD3/wwAAAAAAAcAAAD4/wUAAAABAAAAAAD4/wYAAAABAAEAAAD4/wcAAAABAAIAAAD4/wgAAAABAAMAAAD4/wkAAAABAAQAAAD4/woAAAABAAUAAAD4/wsAAAABAAYAAAD4/wwAAAABAAcAAAD5/wUAAAACAAAAAAD5/wYAAAACAAEAAAD5/wcAAAACAAIAAAD5/wgAAAACAAMAAAD5/wkAAAACAAQAAAD5/woAAAACAAUAAAD5/wsAAAACAAYAAAD5/wwAAAACAAcAAAD6/wUAAAADAAAAAAD6/wYAAAADAAEAAAD6/wcAAAADAAIAAAD6/wgAAAADAAMAAAD6/wkAAAADAAQAAAD6/woAAAADAAUAAAD6/wsAAAADAAYAAAD6/wwAAAADAAcAAAD7/wkAAAAEAAQAAAD7/woAAAAEAAUAAAD7/wsAAAAEAAYAAAD7/wwAAAAEAAcAAAD8/wkAAAAFAAQAAAD8/woAAAAFAAUAAAD8/wsAAAAFAAYAAAD8/wwAAAAFAAcAAAD9/wkAAAAGAAQAAAD9/woAAAAGAAUAAAD9/wsAAAAGAAYAAAD9/wwAAAAGAAcAAAD+/wkAAAAHAAQAAAD+/woAAAAHAAUAAAD+/wsAAAAHAAYAAAD+/wwAAAAHAAcAAAD//wkAAAAIAAQAAAD//woAAAAIAAUAAAD//wsAAAAIAAYAAAD//wwAAAAIAAcAAADy/wUAAAANAAAAAADy/wYAAAANAAEAAADy/wcAAAANAAIAAADy/wgAAAANAAMAAADy/wkAAAANAAQAAADy/woAAAANAAUAAADy/wsAAAANAAYAAADy/wwAAAANAAcAAADz/wUAAAAOAAAAAADz/wYAAAAOAAEAAADz/wcAAAAOAAIAAADz/wgAAAAOAAMAAADz/wkAAAAOAAQAAADz/woAAAAOAAUAAADz/wsAAAAOAAYAAADz/wwAAAAOAAcAAAD0/wUAAAAPAAAAAAD0/wYAAAAPAAEAAAD0/wcAAAAPAAIAAAD0/wgAAAAPAAMAAAD0/wkAAAAPAAQAAAD0/woAAAAPAAUAAAD0/wsAAAAPAAYAAAD0/wwAAAAPAAcAAAD1/wUAAAAQAAAAAAD1/wYAAAAQAAEAAAD1/wcAAAAQAAIAAAD1/wgAAAAQAAMAAAD1/wkAAAAQAAQAAAD1/woAAAAQAAUAAAD1/wsAAAAQAAYAAAD1/wwAAAAQAAcAAAD2/wUAAAARAAAAAAD2/wYAAAARAAEAAAD2/wcAAAARAAIAAAD2/wgAAAARAAMAAAD2/wkAAAARAAQAAAD2/woAAAARAAUAAAD2/wsAAAARAAYAAAD2/wwAAAARAAcAAAAEAAsAAAASAAUAAAAEAAwAAAASAAYAAAAFAAsAAAATAAUAAAAFAAwAAAATAAYAAAAGAAsAAAAUAAUAAAAGAAwAAAAUAAYAAADt/wUAAAANAAAAAADt/wYAAAANAAEAAADt/wcAAAANAAIAAADt/wgAAAANAAMAAADt/wkAAAANAAQAAADt/woAAAANAAUAAADt/wsAAAANAAYAAADt/wwAAAANAAcAAADu/wUAAAAOAAAAAADu/wYAAAAOAAEAAADu/wcAAAAOAAIAAADu/wgAAAAOAAMAAADu/wkAAAAOAAQAAADu/woAAAAOAAUAAADu/wsAAAAOAAYAAADu/wwAAAAOAAcAAADv/wUAAAAPAAAAAADv/wYAAAAPAAEAAADv/wcAAAAPAAIAAADv/wgAAAAPAAMAAADv/wkAAAAPAAQAAADv/woAAAAPAAUAAADv/wsAAAAPAAYAAADv/wwAAAAPAAcAAADw/wUAAAAQAAAAAADw/wYAAAAQAAEAAADw/wcAAAAQAAIAAADw/wgAAAAQAAMAAADw/wkAAAAQAAQAAADw/woAAAAQAAUAAADw/wsAAAAQAAYAAADw/wwAAAAQAAcAAADx/wUAAAARAAAAAADx/wYAAAARAAEAAADx/wcAAAARAAIAAADx/wgAAAARAAMAAADx/wkAAAARAAQAAADx/woAAAARAAUAAADx/wsAAAARAAYAAADx/wwAAAARAAcAAAATAAUAAAAAAAAAAAATAAYAAAAAAAEAAAATAAcAAAAAAAIAAAATAAgAAAAAAAMAAAATAAkAAAAAAAQAAAATAAoAAAAAAAUAAAATAAsAAAAAAAYAAAATAAwAAAAAAAcAAAAUAAUAAAABAAAAAAAUAAYAAAABAAEAAAAUAAcAAAABAAIAAAAUAAgAAAABAAMAAAAUAAkAAAABAAQAAAAUAAoAAAABAAUAAAAUAAsAAAABAAYAAAAUAAwAAAABAAcAAAAVAAUAAAACAAAAAAAVAAYAAAACAAEAAAAVAAcAAAACAAIAAAAVAAgAAAACAAMAAAAVAAkAAAACAAQAAAAVAAoAAAACAAUAAAAVAAsAAAACAAYAAAAVAAwAAAACAAcAAAAWAAUAAAADAAAAAAAWAAYAAAADAAEAAAAWAAcAAAADAAIAAAAWAAgAAAADAAMAAAAWAAkAAAADAAQAAAAWAAoAAAADAAUAAAAWAAsAAAADAAYAAAAWAAwAAAADAAcAAAAXAAkAAAAEAAQAAAAXAAoAAAAEAAUAAAAXAAsAAAAEAAYAAAAXAAwAAAAEAAcAAAAYAAkAAAAFAAQAAAAYAAoAAAAFAAUAAAAYAAsAAAAFAAYAAAAYAAwAAAAFAAcAAAAZAAkAAAAGAAQAAAAZAAoAAAAGAAUAAAAZAAsAAAAGAAYAAAAZAAwAAAAGAAcAAAAaAAkAAAAHAAQAAAAaAAoAAAAHAAUAAAAaAAsAAAAHAAYAAAAaAAwAAAAHAAcAAAAbAAkAAAAIAAQAAAAbAAoAAAAIAAUAAAAbAAsAAAAIAAYAAAAbAAwAAAAIAAcAAAAcAAUAAAAJAAAAAAAcAAYAAAAJAAEAAAAcAAcAAAAJAAIAAAAcAAgAAAAJAAMAAAAcAAkAAAAJAAQAAAAcAAoAAAAJAAUAAAAcAAsAAAAJAAYAAAAcAAwAAAAJAAcAAAAdAAUAAAAKAAAAAAAdAAYAAAAKAAEAAAAdAAcAAAAKAAIAAAAdAAgAAAAKAAMAAAAdAAkAAAAKAAQAAAAdAAoAAAAKAAUAAAAdAAsAAAAKAAYAAAAdAAwAAAAKAAcAAAAeAAUAAAALAAAAAAAeAAYAAAALAAEAAAAeAAcAAAALAAIAAAAeAAgAAAALAAMAAAAeAAkAAAALAAQAAAAeAAoAAAALAAUAAAAeAAsAAAALAAYAAAAeAAwAAAALAAcAAAAfAAUAAAAMAAAAAAAfAAYAAAAMAAEAAAAfAAcAAAAMAAIAAAAfAAgAAAAMAAMAAAAfAAkAAAAMAAQAAAAfAAoAAAAMAAUAAAAfAAsAAAAMAAYAAAAfAAwAAAAMAAcAAAAgAAUAAAANAAAAAAAgAAYAAAANAAEAAAAgAAcAAAANAAIAAAAgAAgAAAANAAMAAAAgAAkAAAANAAQAAAAgAAoAAAANAAUAAAAgAAsAAAANAAYAAAAgAAwAAAANAAcAAAAhAAUAAAAOAAAAAAAhAAYAAAAOAAEAAAAhAAcAAAAOAAIAAAAhAAgAAAAOAAMAAAAhAAkAAAAOAAQAAAAhAAoAAAAOAAUAAAAhAAsAAAAOAAYAAAAhAAwAAAAOAAcAAAAiAAUAAAAPAAAAAAAiAAYAAAAPAAEAAAAiAAcAAAAPAAIAAAAiAAgAAAAPAAMAAAAiAAkAAAAPAAQAAAAiAAoAAAAPAAUAAAAiAAsAAAAPAAYAAAAiAAwAAAAPAAcAAAAjAAUAAAAQAAAAAAAjAAYAAAAQAAEAAAAjAAcAAAAQAAIAAAAjAAgAAAAQAAMAAAAjAAkAAAAQAAQAAAAjAAoAAAAQAAUAAAAjAAsAAAAQAAYAAAAjAAwAAAAQAAcAAAAkAAYAAAARAAEAAAAkAAcAAAARAAIAAAAkAAgAAAARAAMAAAAkAAkAAAARAAQAAAAkAAoAAAARAAUAAAAkAAsAAAARAAYAAAAkAAwAAAARAAcAAAA=")
+tile_set = SubResource("TileSet_5n0dv")
+
+[node name="Parallax2D3" type="Parallax2D" parent="Building" unique_id=1330345019]
+repeat_size = Vector2(319.99, 0)
+autoscroll = Vector2(200, 0)
+repeat_times = 7
+
+[node name="Floor" type="TileMapLayer" parent="Building/Parallax2D3" unique_id=613590433]
+position = Vector2(-156, 120.15)
+tile_map_data = PackedByteArray("AAADAA0AAAAGAAAAAAAEAA0AAAAHAAAAAAAFAA0AAAAIAAAAAAAGAA0AAAAMAAIAAAAHAA0AAAANAAIAAAAIAA0AAAANAAIAAAAJAA0AAAAIAAAAAAAKAA0AAAAJAAAAAAALAA0AAAAIAAAAAAAMAA0AAAAJAAAAAAANAA0AAAAKAAAAAAAOAA0AAAALAAAAAAAOAA4AAAALAAEAAAAPAA0AAAAGAAAAAAAPAA4AAAAGAAEAAAAQAA0AAAAHAAAAAAAQAA4AAAAHAAEAAAARAA0AAAAGAAAAAAARAA4AAAAGAAEAAAASAA0AAAAHAAAAAAASAA4AAAAHAAEAAAATAA0AAAAIAAAAAAATAA4AAAAIAAEAAAAAAA0AAAAJAAAAAAAAAA4AAAAJAAEAAAABAA0AAAAKAAAAAAABAA4AAAAKAAEAAAACAA0AAAALAAAAAAACAA4AAAALAAEAAAADAA4AAAAGAAEAAAAEAA4AAAAHAAEAAAAFAA4AAAABAAEAAAAGAA4AAAAMAAMAAAAHAA4AAAANAAMAAAAIAA4AAAACAAEAAAAJAA4AAAAIAAEAAAAKAA4AAAAJAAEAAAALAA4AAAAIAAEAAAAMAA4AAAAJAAEAAAANAA4AAAAKAAEAAAA=")
+tile_set = SubResource("TileSet_hkdq0")
+
+[node name="ShaderTest2" type="ColorRect" parent="." unique_id=2071214693]
+visible = false
+material = SubResource("ShaderMaterial_wyh8j")
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 360.0
+
+[node name="DarkOverlay" type="ColorRect" parent="." unique_id=723621456]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 1.0
+offset_right = 687.0
+offset_bottom = 472.0
+color = Color(0, 0, 0, 0.13725491)
+
+[node name="MainButtons" type="VBoxContainer" parent="." unique_id=334783007]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Button_Manager" type="Control" parent="MainButtons" unique_id=916885730]
+layout_mode = 2
+
+[node name="Start" type="TextureButton" parent="MainButtons/Button_Manager" unique_id=2039831401]
+layout_mode = 0
+offset_left = 251.0
+offset_top = 158.0
+offset_right = 379.00012
+offset_bottom = 206.0
+pivot_offset = Vector2(66, 24)
+texture_normal = ExtResource("7_b801w")
+texture_pressed = ExtResource("8_kvk33")
+texture_hover = ExtResource("9_kqfms")
+texture_focused = ExtResource("9_kqfms")
+script = ExtResource("10_gcenh")
+
+[node name="Option" type="TextureButton" parent="MainButtons/Button_Manager" unique_id=521592957]
+layout_mode = 0
+offset_left = 251.0
+offset_top = 209.0
+offset_right = 379.0
+offset_bottom = 257.0
+texture_normal = ExtResource("11_ufnow")
+texture_pressed = ExtResource("12_2v82h")
+texture_hover = ExtResource("13_xarbm")
+texture_focused = ExtResource("13_xarbm")
+
+[node name="Exit" type="TextureButton" parent="MainButtons/Button_Manager" unique_id=1399843577]
+layout_mode = 0
+offset_left = 251.0
+offset_top = 260.36
+offset_right = 379.00275
+offset_bottom = 308.36017
+pivot_offset = Vector2(66.99309, 24)
+texture_normal = ExtResource("14_svjyn")
+texture_pressed = ExtResource("15_5jio3")
+texture_hover = ExtResource("16_3778w")
+texture_focused = ExtResource("16_3778w")
+script = ExtResource("17_k3736")
+
+[node name="title" type="Sprite2D" parent="." unique_id=402884615]
+texture_filter = 1
+position = Vector2(316.00003, 75)
+scale = Vector2(1.411, 1.406)
+texture = ExtResource("18_llifo")
+
+[node name="Options" parent="." unique_id=315415237 instance=ExtResource("19_0jto8")]
+layout_mode = 1
+
+[node name="AnimationBStart" type="AnimationPlayer" parent="." unique_id=518537144]
+root_node = NodePath("../MainButtons/Button_Manager/Exit")
+libraries/ = SubResource("AnimationLibrary_5egv6")
+
+[node name="AnimationBExit" type="AnimationPlayer" parent="." unique_id=194222391]
+root_node = NodePath("../MainButtons/Button_Manager/Exit")
+libraries/ = SubResource("AnimationLibrary_8dnnj")
+
+[node name="Fade_transition" parent="." unique_id=1693795128 instance=ExtResource("20_6n2g5")]
+layer = 3
+visible = false
+
+[node name="fade_timer" type="Timer" parent="Fade_transition" unique_id=1011323230]
+wait_time = 1.5
+
+[node name="fade_timerstart" type="Timer" parent="Fade_transition" unique_id=1333577638]
+wait_time = 2.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=578224207]
+layout_mode = 0
+offset_left = 404.0
+offset_top = 107.0
+offset_right = 565.0
+offset_bottom = 170.0
+theme_override_fonts/normal_font = ExtResource("21_egyys")
+text = "WORKING TITLE
+(RATROYINGS)"
+
+[connection signal="button_down" from="MainButtons/Button_Manager/Start" to="MainButtons/Button_Manager/Start" method="_on_button_down"]
+[connection signal="button_up" from="MainButtons/Button_Manager/Start" to="MainButtons/Button_Manager/Start" method="_on_button_up"]
+[connection signal="focus_entered" from="MainButtons/Button_Manager/Start" to="MainButtons/Button_Manager/Start" method="_on_focus_entered"]
+[connection signal="focus_exited" from="MainButtons/Button_Manager/Start" to="MainButtons/Button_Manager/Start" method="_on_focus_exited"]
+[connection signal="mouse_entered" from="MainButtons/Button_Manager/Start" to="MainButtons/Button_Manager/Start" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="MainButtons/Button_Manager/Start" to="MainButtons/Button_Manager/Start" method="_on_mouse_exited"]
+[connection signal="pressed" from="MainButtons/Button_Manager/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="MainButtons/Button_Manager/Option" to="." method="_on_option_pressed"]
+[connection signal="button_down" from="MainButtons/Button_Manager/Exit" to="MainButtons/Button_Manager/Exit" method="_on_button_down"]
+[connection signal="button_up" from="MainButtons/Button_Manager/Exit" to="MainButtons/Button_Manager/Exit" method="_on_button_up"]
+[connection signal="focus_entered" from="MainButtons/Button_Manager/Exit" to="MainButtons/Button_Manager/Exit" method="_on_focus_entered"]
+[connection signal="focus_exited" from="MainButtons/Button_Manager/Exit" to="MainButtons/Button_Manager/Exit" method="_on_focus_exited"]
+[connection signal="mouse_entered" from="MainButtons/Button_Manager/Exit" to="MainButtons/Button_Manager/Exit" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="MainButtons/Button_Manager/Exit" to="MainButtons/Button_Manager/Exit" method="_on_mouse_exited"]
+[connection signal="pressed" from="MainButtons/Button_Manager/Exit" to="." method="_on_exit_pressed"]
+[connection signal="timeout" from="Fade_transition/fade_timer" to="." method="_on_fade_timer_timeout"]
+[connection signal="timeout" from="Fade_transition/fade_timerstart" to="." method="_on_fade_timer_timeout"]

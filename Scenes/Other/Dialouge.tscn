@@ -1,0 +1,111 @@
+[gd_scene format=3 uid="uid://byp2g67igx83u"]
+
+[ext_resource type="Script" uid="uid://cr6n4hu1do643" path="res://Scripts/DialogouePlayer.gd" id="1_3lq5a"]
+[ext_resource type="Texture2D" uid="uid://bqhtc7adiqaf1" path="res://Assets/Sprites/Boxes/Dialougebox.png" id="1_q7pqq"]
+[ext_resource type="FontFile" uid="uid://bgx1d1885ufiu" path="res://Assets/Fonts/Ririgitriz.ttf" id="3_welnc"]
+
+[sub_resource type="Animation" id="Animation_3lq5a"]
+resource_name = "Dialogue"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../NinePatchRect/Dialogue:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_xn403"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../NinePatchRect/Dialogue:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lk5ny"]
+_data = {
+&"Dialogue": SubResource("Animation_3lq5a"),
+&"RESET": SubResource("Animation_xn403")
+}
+
+[node name="Dialogue" type="CanvasLayer" unique_id=872236530]
+script = ExtResource("1_3lq5a")
+test_dialogue = "CS_00_1"
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=507488428]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 197.0
+offset_top = 9.0
+offset_right = -29.0
+offset_bottom = 123.0
+grow_horizontal = 2
+texture = ExtResource("1_q7pqq")
+region_rect = Rect2(0, 0, 64, 64)
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="NinePatchRect" unique_id=418525260]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -169.0
+offset_right = -425.0
+offset_bottom = 144.0
+grow_horizontal = 2
+texture = ExtResource("1_q7pqq")
+region_rect = Rect2(0, 0, 64, 64)
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
+
+[node name="Name" type="RichTextLabel" parent="NinePatchRect" unique_id=1859198936]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 7.0
+offset_right = 121.0
+offset_bottom = 38.925
+theme_override_fonts/normal_font = ExtResource("3_welnc")
+theme_override_font_sizes/normal_font_size = 22
+text = "NAME"
+
+[node name="Dialogue" type="RichTextLabel" parent="NinePatchRect" unique_id=2128816391]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 35.0
+offset_right = 396.0
+offset_bottom = 95.0
+theme_override_fonts/normal_font = ExtResource("3_welnc")
+theme_override_font_sizes/normal_font_size = 16
+text = "Dialogue	"
+visible_characters = 0
+visible_characters_behavior = 1
+visible_ratio = 0.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="NinePatchRect" unique_id=269444492]
+libraries/ = SubResource("AnimationLibrary_lk5ny")
+
+[node name="PictureProtait" type="TextureRect" parent="NinePatchRect" unique_id=1950830109]
+texture_filter = 1
+layout_mode = 0
+offset_left = -147.0
+offset_top = 8.0
+offset_right = -54.0
+offset_bottom = 91.0
+stretch_mode = 3
