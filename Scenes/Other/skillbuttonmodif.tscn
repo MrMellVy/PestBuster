@@ -30,7 +30,7 @@ texture_progress = ExtResource("3_v76ym")
 tint_progress = Color(0.09019608, 0.09019608, 0.14509805, 0.5058824)
 
 [node name="Timer" type="Timer" parent="." unique_id=1407220814]
-wait_time = 1.5
+wait_time = 3.0
 one_shot = true
 
 [node name="Time" type="Label" parent="." unique_id=1167152021]

@@ -275,10 +275,10 @@ func _physics_process(delta) -> void:
 		dset = true
 	if !defeat:
 		if !current_attack and !is_use_skill and !skill_hit_active:
-				if Input.is_action_just_pressed("skill_attack") and is_on_floor():
-					attack_type = "skill"
-					perform_skill_a()
-				elif Input.is_action_just_pressed("attack"):
+				#if Input.is_action_just_pressed("skill_attack") and is_on_floor():
+					#attack_type = "skill"
+					#perform_skill_a()
+				if Input.is_action_just_pressed("attack"):
 					current_attack = true
 					#check for dash too.
 					if dashing:

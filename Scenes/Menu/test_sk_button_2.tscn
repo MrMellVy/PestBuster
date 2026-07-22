@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://clxe4hkd427ln"]
+
+[ext_resource type="Script" uid="uid://d86byr4rvopu" path="res://Scripts/action_bar.gd" id="1_6ji53"]
+[ext_resource type="PackedScene" uid="uid://bcu5cg7ht5ctp" path="res://Scenes/Other/skillbuttonmodif.tscn" id="2_6ji53"]
+
+[node name="TestSkButton" type="Control" unique_id=97205223]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="." unique_id=611706103]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Debug" type="Label" parent="." unique_id=799314641]
+visible = false
+layout_mode = 0
+offset_left = -2.0
+offset_top = 286.0
+offset_right = 144.0
+offset_bottom = 321.0
+
+[node name="ActionBar" type="HBoxContainer" parent="." unique_id=758495803]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("1_6ji53")
+
+[node name="SkillA" parent="ActionBar" unique_id=192717379 instance=ExtResource("2_6ji53")]
+layout_mode = 2
+
+[node name="Skillbutton2" parent="ActionBar" unique_id=1621378040 instance=ExtResource("2_6ji53")]
+layout_mode = 2
+
+[node name="Skillbutton3" parent="ActionBar" unique_id=2123110237 instance=ExtResource("2_6ji53")]
+layout_mode = 2
