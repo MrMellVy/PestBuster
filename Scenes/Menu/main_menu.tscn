@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://crqx2cn2iyfwu" path="res://Assets/Other/Main Menu/Title/NewTitle.png" id="18_llifo"]
 [ext_resource type="PackedScene" uid="uid://i6vri7kwh8cb" path="res://Scenes/Menu/Settings.tscn" id="19_0jto8"]
 [ext_resource type="PackedScene" uid="uid://by1622uoguy0" path="res://Scenes/Menu/Transition.tscn" id="20_6n2g5"]
+[ext_resource type="FontFile" uid="uid://bgx1d1885ufiu" path="res://Assets/Fonts/Ririgitriz.ttf" id="21_egyys"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m3bi6"]
 shader = ExtResource("2_egyys")
@@ -636,6 +637,16 @@ wait_time = 1.5
 
 [node name="fade_timerstart" type="Timer" parent="Fade_transition" unique_id=1333577638]
 wait_time = 2.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=578224207]
+layout_mode = 0
+offset_left = 404.0
+offset_top = 107.0
+offset_right = 565.0
+offset_bottom = 170.0
+theme_override_fonts/normal_font = ExtResource("21_egyys")
+text = "WORKING TITLE
+(RATROYINGS)"
 
 [connection signal="button_down" from="MainButtons/Button_Manager/Start" to="MainButtons/Button_Manager/Start" method="_on_button_down"]
 [connection signal="button_up" from="MainButtons/Button_Manager/Start" to="MainButtons/Button_Manager/Start" method="_on_button_up"]

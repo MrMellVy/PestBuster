@@ -8,14 +8,7 @@ var size_values = [
 ]
 
 func _ready() -> void:
-	for i in size_names.size():
-		add_item(size_names[i], i)
-
-	var current_size = get_window().size
-	for i in size_values.size():
-		if size_values[i] == current_size:
-			selected = i
-			break
+	_show_item_selected()
 
 
 func _on_item_selected(index: int) -> void:
@@ -24,3 +17,13 @@ func _on_item_selected(index: int) -> void:
 	var screen_size = DisplayServer.screen_get_size()
 	var new_pos = (screen_size - new_size) / 2
 	get_window().position = new_pos
+
+func _show_item_selected() -> void:
+	for i in size_names.size():
+		add_item(size_names[i], i)
+
+	var current_size = get_window().size
+	for i in size_values.size():
+		if size_values[i] == current_size:
+			selected = i
+			break

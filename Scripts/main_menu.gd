@@ -32,6 +32,7 @@ func _on_option_pressed() -> void:
 	settings_menu.visible = true
 	settings_menu.set_process(true)
 	$title.visible = false
+	$RichTextLabel.visible = false
 
 func _on_exit_pressed() -> void:
 	button_type = "exit"
@@ -52,12 +53,11 @@ func _on_fade_timer_timeout() -> void:
 		get_tree().quit()
 	elif fade_startup == true:
 		$Fade_transition.hide()
-
 func _on_back_settings_menu() -> void:
 	print("it work.")
 	main_buttons.visible = true
 	settings_menu.visible = false
 	$title.visible = true
-
+	$RichTextLabel.visible = true
 func handle_connecting_signals() -> void:
 	settings_menu.back_settings_menu.connect(_on_back_settings_menu)

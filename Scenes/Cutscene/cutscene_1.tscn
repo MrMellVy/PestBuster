@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dyhirno48mfiq" path="res://Assets/Tilesets/Platform-Sheet.png" id="3_bbbkj"]
 [ext_resource type="Texture2D" uid="uid://carjrejog3yx1" path="res://Assets/Tilesets/Car.png" id="4_y02wl"]
 [ext_resource type="PackedScene" uid="uid://by1622uoguy0" path="res://Scenes/Menu/Transition.tscn" id="6_bbbkj"]
+[ext_resource type="Texture2D" uid="uid://bwhymbt4xngq3" path="res://Assets/Sprites/Enemy/Original/tikusidle.png" id="7_scjhd"]
 [ext_resource type="PackedScene" uid="uid://bhik0cbrtt1bx" path="res://Scenes/Menu/pause_menu.tscn" id="8_6mqln"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6mqln"]
@@ -49,7 +50,6 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_y02wl"]
 resource_name = "carwew"
-length = 2.005
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -57,10 +57,10 @@ tracks/0/path = NodePath("Car:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1, 2.005),
-"transitions": PackedFloat32Array(-2, 0.5, -2, 2),
+"times": PackedFloat32Array(0, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(-2, 0.5, -2, 1),
 "update": 0,
-"values": [Vector2(0, 162), Vector2(12.58, 162), Vector2(12.58, 162), Vector2(-204.945, 162)]
+"values": [Vector2(0, 162), Vector2(12.58, 162), Vector2(12.58, 162), Vector2(-39.877, 162)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_g2k7w"]
@@ -68,6 +68,42 @@ _data = {
 &"RESET": SubResource("Animation_g2k7w"),
 &"car": SubResource("Animation_hav6f"),
 &"carwew": SubResource("Animation_y02wl")
+}
+
+[sub_resource type="Animation" id="Animation_scjhd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Rt:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-151, 162)]
+}
+
+[sub_resource type="Animation" id="Animation_jbt2t"]
+resource_name = "rtwew"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Rt:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8333333, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-151, 162), Vector2(-151, 162), Vector2(-99.97, 162)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_27ut5"]
+_data = {
+&"RESET": SubResource("Animation_scjhd"),
+&"rtwew": SubResource("Animation_jbt2t")
 }
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6mqln"]
@@ -395,6 +431,9 @@ centered = false
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=501530828]
 libraries/ = SubResource("AnimationLibrary_g2k7w")
 
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="." unique_id=2110325271]
+libraries/ = SubResource("AnimationLibrary_27ut5")
+
 [node name="Building" type="Node2D" parent="." unique_id=2007841928]
 
 [node name="Parallax2D" type="Parallax2D" parent="Building" unique_id=768157471]
@@ -426,6 +465,12 @@ repeat_times = 7
 position = Vector2(-156, -42)
 tile_map_data = PackedByteArray("AAADAA0AAAAGAAAAAAAEAA0AAAAHAAAAAAAFAA0AAAAIAAAAAAAGAA0AAAAMAAIAAAAHAA0AAAANAAIAAAAIAA0AAAANAAIAAAAJAA0AAAAIAAAAAAAKAA0AAAAJAAAAAAALAA0AAAAIAAAAAAAMAA0AAAAJAAAAAAANAA0AAAAKAAAAAAAOAA0AAAALAAAAAAAOAA4AAAALAAEAAAAPAA0AAAAGAAAAAAAPAA4AAAAGAAEAAAAQAA0AAAAHAAAAAAAQAA4AAAAHAAEAAAARAA0AAAAGAAAAAAARAA4AAAAGAAEAAAASAA0AAAAHAAAAAAASAA4AAAAHAAEAAAATAA0AAAAIAAAAAAATAA4AAAAIAAEAAAAAAA0AAAAJAAAAAAAAAA4AAAAJAAEAAAABAA0AAAAKAAAAAAABAA4AAAAKAAEAAAACAA0AAAALAAAAAAACAA4AAAALAAEAAAADAA4AAAAGAAEAAAAEAA4AAAAHAAEAAAAFAA4AAAABAAEAAAAGAA4AAAAMAAMAAAAHAA4AAAANAAMAAAAIAA4AAAACAAEAAAAJAA4AAAAIAAEAAAAKAA4AAAAJAAEAAAALAA4AAAAIAAEAAAAMAA4AAAAJAAEAAAANAA4AAAAKAAEAAAA=")
 tile_set = SubResource("TileSet_8j1l1")
+
+[node name="Rt" type="Sprite2D" parent="." unique_id=1857825877]
+position = Vector2(-151, 162)
+texture = ExtResource("7_scjhd")
+region_enabled = true
+region_rect = Rect2(0, 0, 59.100098, 49.29626)
 
 [node name="Car" type="Sprite2D" parent="." unique_id=1025261203]
 position = Vector2(0, 162)

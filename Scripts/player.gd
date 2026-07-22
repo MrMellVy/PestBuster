@@ -4,7 +4,8 @@ class_name Player
 
 @export var PlayerSprite: AnimatedSprite2D
 @export var PlayerCollider: CollisionShape2D
-@onready var world_camera: Camera2D = $WorldCamera
+var world_camera: Camera2D
+@onready var skill_damage_zone: Area2D = $SkillDamageZone
 
 # Horizontal Movement
 @export_category("Movement")
@@ -113,6 +114,8 @@ var health_min = 0
 var can_take_damage: bool
 var defeat: bool
 var is_hurt: bool = false
+var is_use_skill: bool = false
+var skill_hit_active: bool = false
 
 var anim
 var col
@@ -143,6 +146,14 @@ func _ready() -> void:
 	deal_damage_zone.get_node("CollisionShape2D2").disabled = true
 
 	_updateData()
+	if get_tree().current_scene == self:
+		world_camera = $TestCamera
+		world_camera.make_current()
+	else:
+		if has_node("OwnPlat") and has_node("Enemy_dummy") and has_node("TestCamera"):
+			$OwnPlat.queue_free()
+			$Enemy_dummy.queue_free()
+			$TestCamera.queue_free()
 	
 func _updateData():
 	acceleration = maxSpeed / timeToMaxSpeed
@@ -212,9 +223,9 @@ func _process(_delta) -> void:
 		_setLatch(0.2, false)
 		
 	#flip_sprite btw
-	if rightHold and !latched:
+	if rightHold and !latched and !skill_hit_active:
 		toggle_flip_sprite(1)
-	if leftHold and !latched:
+	if leftHold and !latched and !skill_hit_active:
 		toggle_flip_sprite(-1)
 		
 	# Run
@@ -263,8 +274,11 @@ func _physics_process(delta) -> void:
 		gdelta = delta
 		dset = true
 	if !defeat:
-		if !current_attack:
-				if Input.is_action_just_pressed("attack"):
+		if !current_attack and !is_use_skill and !skill_hit_active:
+				if Input.is_action_just_pressed("skill_attack") and is_on_floor():
+					attack_type = "skill"
+					perform_skill_a()
+				elif Input.is_action_just_pressed("attack"):
 					current_attack = true
 					#check for dash too.
 					if dashing:
@@ -334,7 +348,7 @@ func _physics_process(delta) -> void:
 		elif is_on_floor(): 
 			maxSpeed = maxSpeedLock
 			
-		if !(leftHold or rightHold):
+		if !(leftHold or rightHold) or is_use_skill:
 			if !instantStop:
 				_decelerate(delta, false)
 			else:
@@ -502,6 +516,7 @@ func take_damage(value, push_direction):
 func handle_hurt_animation():
 	is_hurt = true
 	current_attack = false
+	is_use_skill = false
 	PlayerSprite.play("hit")
 	$AnimationPlayer.play("Damage_flick")
 	await PlayerSprite.animation_finished
@@ -616,13 +631,15 @@ func toggle_damage_collisions(attack_type):
 func toggle_flip_sprite(dir):
 	if dir == 1:
 		PlayerSprite.flip_h = false
-		deal_damage_zone.scale.x = 1
+		if !skill_hit_active:
+			deal_damage_zone.scale.x = 1
 	elif dir == -1:
 		PlayerSprite.flip_h = true
-		deal_damage_zone.scale.x = -1
+		if !skill_hit_active:
+			deal_damage_zone.scale.x = -1
 
 func _on_animated_sprite_2d_animation_finished() -> void:
-	if current_attack and (PlayerSprite.animation.ends_with("attack") or ("_attack_" in PlayerSprite.animation)):
+	if current_attack and not is_use_skill and (PlayerSprite.animation.ends_with("attack") or ("_attack_" in PlayerSprite.animation)):
 		current_attack = false
 		deal_damage_zone.get_node("CollisionShape2D2").disabled = true
 
@@ -636,6 +653,8 @@ func set_damage(attack_type):
 		current_damage_to_deal = 20
 	elif attack_type == "dash":
 		current_damage_to_deal = 16
+	elif attack_type == "skill":
+		current_damage_to_deal = 15
 
 	Global.playerDamageAmount = current_damage_to_deal + damage_bonus
 	
@@ -668,3 +687,111 @@ func heal(amount: int) -> void:
 	health += amount
 	health = min(health, health_max)
 	print("Healed for ", amount, "! Current HP: ", health)
+
+func perform_skill_a():
+	is_use_skill = true
+	current_attack = true
+	
+	PlayerSprite.speed_scale = 1.0
+	
+	movementInputMonitoring = Vector2(false, false)
+	var prev_grav = gravityActive
+	gravityActive = false
+	velocity = Vector2.ZERO
+	
+	var ori_damage_zone_pos = deal_damage_zone.position
+	
+	var ori_zoom = world_camera.zoom
+	var zoom_tween = create_tween()
+	zoom_tween.tween_property(world_camera, "zoom", ori_zoom * 1.5, 1.0).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+
+	PlayerSprite.play("single_attack_3") # Still placeholder?
+	slash_sfx.play()
+	await get_tree().create_timer(1.0).timeout
+	
+	if !is_use_skill or defeat or !is_on_floor():
+		gravityActive = prev_grav
+		movementInputMonitoring = Vector2(true, true)
+		var reset_tween = create_tween()
+		reset_tween.tween_property(world_camera,"zoom", ori_zoom, 0.3)
+		set_collision_mask_value(2, true)
+		return
+
+	var ori_smooth_enabled = world_camera.position_smoothing_enabled
+	var ori_smooth_speed = world_camera.position_smoothing_speed
+	
+	world_camera.position_smoothing_enabled = true
+	world_camera.position_smoothing_speed = 10.0
+
+	attack_type = "skill"
+	set_damage(attack_type)
+	PlayerSprite.play("dash_attack") # Placeholder?
+	slash_sfx.play()
+	
+	var dir = 1 if not PlayerSprite.flip_h else -1
+
+	skill_hit_active = true
+	var saved_global_pos = deal_damage_zone.global_position
+	deal_damage_zone.top_level = true
+	deal_damage_zone.global_position = saved_global_pos
+	
+	set_collision_mask_value(2, false)
+	set_collision_layer_value(1, false)
+	
+	velocity.x = maxSpeed * 3.0 * dir
+
+	# Stop the dash after 0.5 seconds, but do not block the skill hit loop.
+	get_tree().create_timer(0.5).timeout.connect(func():
+		velocity.x = 0
+		gravityActive = prev_grav
+		movementInputMonitoring = Vector2(true,true)
+		is_use_skill = false
+	)
+
+	await trigger_still_zone_skill()
+
+	skill_hit_active = false
+	current_attack = false
+	is_use_skill = false
+	movementInputMonitoring = Vector2(true, true)
+	gravityActive = prev_grav
+
+	deal_damage_zone.top_level = false
+	deal_damage_zone.position = ori_damage_zone_pos
+	deal_damage_zone.scale.x = -1 if PlayerSprite.flip_h else 1
+	set_collision_mask_value(2, true)
+	set_collision_layer_value(1, true)
+
+	var zoom_out_tween = create_tween()
+	zoom_out_tween.set_parallel(true)
+	zoom_out_tween.tween_property(world_camera, "zoom", ori_zoom, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	zoom_out_tween.tween_property(world_camera, "position_smoothing_speed", 25.0, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	await zoom_out_tween.finished
+	if is_instance_valid(world_camera):
+		world_camera.position_smoothing_enabled = ori_smooth_enabled
+		world_camera.position_smoothing_speed = ori_smooth_speed
+	
+
+
+func trigger_still_zone_skill() -> void:
+	var skill_shape = deal_damage_zone.get_node("SkillCollisionShape")
+
+	var hit_count = 3
+	var hit_active_time = 0.10
+	var delay_between_hits = 0.2 # lower, faster hits
+
+	for i in range(hit_count):
+		skill_shape.set_deferred("disabled", false)
+		await get_tree().physics_frame
+
+		for area in deal_damage_zone.get_overlapping_areas():
+			var parent_node = area.get_parent()
+			if parent_node is Enemy:
+				if parent_node.has_method("take_damage"):
+					parent_node.take_damage(Global.playerDamageAmount)
+
+		await get_tree().create_timer(hit_active_time).timeout
+		skill_shape.set_deferred("disabled", true)
+
+		if i < hit_count - 1:
+			await get_tree().create_timer(delay_between_hits).timeout
