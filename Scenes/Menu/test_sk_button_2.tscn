@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d86byr4rvopu" path="res://Scripts/action_bar.gd" id="1_6ji53"]
 [ext_resource type="PackedScene" uid="uid://bcu5cg7ht5ctp" path="res://Scenes/Other/skillbuttonmodif.tscn" id="2_6ji53"]
+[ext_resource type="Texture2D" uid="uid://drtd783jayqx2" path="res://Assets/Other/Tweak/Skill1.png" id="3_12v4n"]
 
 [node name="TestSkButton" type="Control" unique_id=97205223]
 layout_mode = 3
@@ -36,17 +37,13 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -20.0
-offset_top = -40.0
+offset_top = -45.0
 offset_right = 20.0
+offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("1_6ji53")
 
 [node name="SkillA" parent="ActionBar" unique_id=192717379 instance=ExtResource("2_6ji53")]
 layout_mode = 2
-
-[node name="Skillbutton2" parent="ActionBar" unique_id=1621378040 instance=ExtResource("2_6ji53")]
-layout_mode = 2
-
-[node name="Skillbutton3" parent="ActionBar" unique_id=2123110237 instance=ExtResource("2_6ji53")]
-layout_mode = 2
+texture_normal = ExtResource("3_12v4n")

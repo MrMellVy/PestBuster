@@ -4,6 +4,7 @@
 [ext_resource type="Shader" uid="uid://baxjruh5664dn" path="res://Assets/Sprites/Spritesquare/spritesquare.gdshader" id="2_egyys"]
 [ext_resource type="Texture2D" uid="uid://cf8lxwsdblm8" path="res://Assets/Background/Day/Background.png" id="3_cdmmi"]
 [ext_resource type="Texture2D" uid="uid://ck8ryb16wtmbn" path="res://Assets/Tilesets/Buildings.png" id="4_btwdk"]
+[ext_resource type="Texture2D" uid="uid://ch50ooqblafik" path="res://Assets/Background/Day/Cloud1.png" id="4_cdmmi"]
 [ext_resource type="Texture2D" uid="uid://dpui6y2i7aj56" path="res://Assets/Tilesets/Roads.png" id="5_4dd87"]
 [ext_resource type="Texture2D" uid="uid://dyhirno48mfiq" path="res://Assets/Tilesets/Platform-Sheet.png" id="6_wyf5o"]
 [ext_resource type="Texture2D" uid="uid://dppvuj7nubmc2" path="res://Assets/Other/Main Menu/ButtonsMenu/MenuButtonsStart.png" id="7_b801w"]
@@ -34,9 +35,6 @@ shader_parameter/light_angle = 0.5
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jr6u5"]
 load_path = "res://.godot/imported/Cloud0.png-f7d3aa7d538e5189608ed4a3e481fd2e.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6m47u"]
-load_path = "res://.godot/imported/Cloud1.png-c2e2a5604fe819f914bcb2d94d3d769b.ctex"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_84iac"]
 texture = ExtResource("4_btwdk")
@@ -484,38 +482,37 @@ scale = Vector2(0.33437502, 0.33240741)
 [node name="ParallaxBackground" type="Parallax2D" parent="Background2" unique_id=670409308]
 scale = Vector2(0.28, 0.28)
 scroll_scale = Vector2(0.1, 0)
-repeat_size = Vector2(416.56, 0)
 repeat_times = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="Background2/ParallaxBackground" unique_id=2127735656]
 position = Vector2(0, -3.85)
-scale = Vector2(1.0607638, 1.1203704)
+scale = Vector2(2.3846724, 2.3911307)
 texture = ExtResource("3_cdmmi")
 centered = false
 
 [node name="ParallaxC0" type="Parallax2D" parent="Background2" unique_id=2080359331]
 scale = Vector2(0.385, 0.385)
 scroll_scale = Vector2(0.2, 0)
-repeat_size = Vector2(1500, 0)
+repeat_size = Vector2(3301.125, 0)
 autoscroll = Vector2(-5, 0)
-repeat_times = 3
+repeat_times = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="Background2/ParallaxC0" unique_id=1152812291]
 position = Vector2(0, 3.18)
-scale = Vector2(0.814, 0.86)
+scale = Vector2(1.7316017, 1.7286572)
 texture = SubResource("CompressedTexture2D_jr6u5")
 centered = false
 
 [node name="ParallaxC1" type="Parallax2D" parent="Background2" unique_id=338023433]
 scale = Vector2(0.625, 0.625)
-repeat_size = Vector2(1500, 0)
+repeat_size = Vector2(2056.095, 0)
 autoscroll = Vector2(-10, 0)
-repeat_times = 4
+repeat_times = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="Background2/ParallaxC1" unique_id=454647706]
-position = Vector2(1.6, -360.31)
-scale = Vector2(0.821, 0.867)
-texture = SubResource("CompressedTexture2D_6m47u")
+position = Vector2(1.6, 6.399994)
+scale = Vector2(1.0691667, 1.0651852)
+texture = ExtResource("4_cdmmi")
 centered = false
 
 [node name="Building" type="Node2D" parent="." unique_id=284561305]
@@ -559,17 +556,19 @@ offset_right = 640.0
 offset_bottom = 360.0
 
 [node name="DarkOverlay" type="ColorRect" parent="." unique_id=723621456]
-layout_mode = 0
-offset_left = -1.0
-offset_top = 1.0
-offset_right = 687.0
-offset_bottom = 472.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0, 0, 0, 0.13725491)
 
 [node name="MainButtons" type="VBoxContainer" parent="." unique_id=334783007]
-layout_mode = 0
+layout_mode = 1
 offset_right = 40.0
 offset_bottom = 40.0
+scale = Vector2(1.95, 1.95)
 
 [node name="Button_Manager" type="Control" parent="MainButtons" unique_id=916885730]
 layout_mode = 2
@@ -613,8 +612,8 @@ script = ExtResource("17_k3736")
 
 [node name="title" type="Sprite2D" parent="." unique_id=402884615]
 texture_filter = 1
-position = Vector2(316.00003, 75)
-scale = Vector2(1.411, 1.406)
+position = Vector2(615, 138)
+scale = Vector2(2.621, 2.616)
 texture = ExtResource("18_llifo")
 
 [node name="Options" parent="." unique_id=315415237 instance=ExtResource("19_0jto8")]
@@ -640,11 +639,12 @@ wait_time = 2.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=578224207]
 layout_mode = 0
-offset_left = 404.0
-offset_top = 107.0
-offset_right = 565.0
-offset_bottom = 170.0
+offset_left = 739.0
+offset_top = 170.0
+offset_right = 1095.0
+offset_bottom = 279.0
 theme_override_fonts/normal_font = ExtResource("21_egyys")
+theme_override_font_sizes/normal_font_size = 35
 text = "WORKING TITLE
 (RATROYINGS)"
 

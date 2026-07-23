@@ -32,7 +32,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(0.5, -2, 2),
 "update": 0,
-"values": [Vector2(318.755, -40.76), Vector2(318.755, 17.995), Vector2(318.755, 0.94)]
+"values": [Vector2(900, -40.76), Vector2(900, 17.995), Vector2(900, 0.94)]
 }
 
 [sub_resource type="Animation" id="Animation_uesk5"]
@@ -47,7 +47,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(0.5, -2, 2),
 "update": 0,
-"values": [Vector2(318.755, 0.94), Vector2(318.755, 17.995), Vector2(318.755, -40.76)]
+"values": [Vector2(900, 0.94), Vector2(900, 17.995), Vector2(900, -40.76)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_l3hpj"]
@@ -84,7 +84,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(0.5, -2, 2),
 "update": 0,
-"values": [Vector2(280.35, -26.41), Vector2(280.35, 36.795), Vector2(280.35, 18.46)]
+"values": [Vector2(919.77, -26.41), Vector2(919.77, 36.795), Vector2(919.77, 28.525)]
 }
 
 [sub_resource type="Animation" id="Animation_0q8pi"]
@@ -99,7 +99,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(0.5, -2, 2),
 "update": 0,
-"values": [Vector2(280.35, 18.46), Vector2(280.35, 36.795), Vector2(280.35, -26.41)]
+"values": [Vector2(900, 18.46), Vector2(900, 36.795), Vector2(900, -26.41)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kcewg"]
@@ -122,7 +122,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1, 1.5),
 "transitions": PackedFloat32Array(0.5, 2, 1),
 "update": 0,
-"values": [Vector2(-100, 171.5), Vector2(276.01, 171.5), Vector2(276.01, 171.5)]
+"values": [Vector2(-217.32, 351.5), Vector2(612.23975, 351.5), Vector2(612.23975, 351.5)]
 }
 
 [sub_resource type="Animation" id="Animation_ja1gn"]
@@ -137,7 +137,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-100, 171.5)]
+"values": [Vector2(-217.32, 351.5)]
 }
 
 [sub_resource type="Animation" id="Animation_oujfp"]
@@ -152,7 +152,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(0.5, 2, 2),
 "update": 0,
-"values": [Vector2(276.01, 171.5), Vector2(276.01, 171.5), Vector2(800, 171.5)]
+"values": [Vector2(612.24, 351.5), Vector2(612.24, 351.5), Vector2(1500, 351.5)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ja1gn"]
@@ -167,10 +167,11 @@ _data = {
 [node name="currentscoreLabel" type="RichTextLabel" parent="." unique_id=1897053102]
 offset_left = 376.0
 offset_top = -40.76
-offset_right = 568.001
-offset_bottom = -25.375393
+offset_right = 604.9231
+offset_bottom = -18.138458
 scale = Vector2(1.625, 1.625)
 theme_override_fonts/normal_font = ExtResource("1_kd0fp")
+theme_override_font_sizes/normal_font_size = 23
 text = "CURRENT SCORE: 99999"
 horizontal_alignment = 2
 script = ExtResource("2_ja1gn")
@@ -178,10 +179,11 @@ script = ExtResource("2_ja1gn")
 [node name="currentwaveLabel" type="RichTextLabel" parent="." unique_id=460203778]
 offset_left = 393.0
 offset_top = -26.41
-offset_right = 614.10693
-offset_bottom = -9.41003
+offset_right = 614.1067
+offset_bottom = -4.0693054
 scale = Vector2(1.585, 1.585)
 theme_override_fonts/normal_font = ExtResource("1_kd0fp")
+theme_override_font_sizes/normal_font_size = 23
 text = "CURRENT WAVE: 99999"
 horizontal_alignment = 2
 script = ExtResource("3_oujfp")
@@ -192,15 +194,17 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -420.0
+offset_left = -857.32
 offset_top = -8.5
-offset_right = -364.4795
-offset_bottom = 8.4999695
+offset_right = -714.9274
+offset_bottom = 27.120636
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(2.19, 2.19)
+pivot_offset = Vector2(73.095795, 18.040726)
 theme_override_fonts/normal_font = ExtResource("1_kd0fp")
-text = "WAVE 1"
+theme_override_font_sizes/normal_font_size = 37
+text = "WAVE 123"
 script = ExtResource("4_ja1gn")
 
 [node name="ScoreAnim" type="AnimationPlayer" parent="." unique_id=1147819846]

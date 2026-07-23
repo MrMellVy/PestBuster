@@ -395,6 +395,7 @@ color = Color(0, 0.039215688, 0.08235294, 0.5882353)
 [node name="PauseMainButtons" type="VBoxContainer" parent="." unique_id=896766388]
 offset_right = 40.0
 offset_bottom = 40.0
+scale = Vector2(2.045, 2.045)
 
 [node name="ButtonManager" type="Control" parent="PauseMainButtons" unique_id=85806548]
 layout_mode = 2
@@ -474,6 +475,7 @@ libraries/ = SubResource("AnimationLibrary_taale")
 visible = false
 
 [node name="Options" parent="." unique_id=439920918 instance=ExtResource("3_1och7")]
+visible = false
 offset_top = -357.015
 offset_bottom = -357.0149
 pivot_offset = Vector2(323, 168)

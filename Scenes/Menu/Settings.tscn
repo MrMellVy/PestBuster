@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://dejalsvyqh2ly" path="res://Scripts/window_control.gd" id="6_o14jo"]
 [ext_resource type="Texture2D" uid="uid://wy6esn46mm0b" path="res://Assets/Other/Tweak/Grabber.png" id="7_j0jkk"]
 [ext_resource type="Script" uid="uid://cy6e6f1wg5s58" path="res://Scripts/audio_control.gd" id="8_egbht"]
-[ext_resource type="Texture2D" uid="uid://dd4lkjgvmq6g0" path="res://Assets/Other/Tweak/Volume Ori/Volume.png" id="9_mna3m"]
+[ext_resource type="Texture2D" uid="uid://4vi7vfmn4j81" path="res://Assets/Other/Tweak/Volume Ori/Volume.png" id="9_mna3m"]
 [ext_resource type="Script" uid="uid://ospuvieprdcc" path="res://Scripts/sfx_control.gd" id="10_tr27g"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_6dk6o"]
@@ -54,6 +54,7 @@ offset_right = -93.0
 offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 36
 tab_alignment = 1
 current_tab = 0
 
@@ -84,7 +85,7 @@ offset_top = 10.0
 offset_right = 46.5
 offset_bottom = 44.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 35
 text = "Window"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -103,10 +104,11 @@ script = ExtResource("4_upvq6")
 
 [node name="ScreenControl" type="OptionButton" parent="Settings/Window/VBoxContainer/Control" unique_id=571442091]
 layout_mode = 0
-offset_left = 280.0
-offset_top = 71.0
-offset_right = 414.0
-offset_bottom = 102.0
+offset_left = 616.61993
+offset_top = 99.0
+offset_right = 750.6197
+offset_bottom = 130.0
+scale = Vector2(1.91, 1.91)
 selected = 0
 item_count = 3
 popup/item_0/text = "Windowed"
@@ -133,10 +135,11 @@ vertical_alignment = 1
 
 [node name="WindowControl" type="OptionButton" parent="Settings/Window/VBoxContainer/Control" unique_id=448353658]
 layout_mode = 0
-offset_left = 281.0
-offset_top = 124.0
-offset_right = 415.0
-offset_bottom = 155.0
+offset_left = 616.62
+offset_top = 239.67
+offset_right = 750.62
+offset_bottom = 270.66998
+scale = Vector2(1.91, 1.91)
 script = ExtResource("6_o14jo")
 
 [node name="WindowSizeLabel" type="Label" parent="Settings/Window/VBoxContainer/Control/WindowControl" unique_id=1235341031]
@@ -292,11 +295,20 @@ scale = Vector2(1.6, 1.6)
 texture_normal = ExtResource("9_mna3m")
 
 [node name="Back" type="Button" parent="." unique_id=1198480062]
-layout_mode = 0
-offset_left = 255.0
-offset_top = 313.0
-offset_right = 394.0
-offset_bottom = 344.0
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -70.0
+offset_top = -69.99994
+offset_right = 69.0
+offset_bottom = -38.99994
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1.675, 1.675)
+pivot_offset = Vector2(69.552246, 15.522369)
 theme_override_colors/font_color = Color(0.009324101, 0.009324101, 0.009324101, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_ehtkc")
 text = "Back"

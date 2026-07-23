@@ -57,7 +57,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Button_Manager/Retry:position")
+tracks/0/path = NodePath("../VBoxContainer/Button_Manager/Retry:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -75,7 +75,7 @@ step = 0.33333334
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Button_Manager/Retry:position")
+tracks/0/path = NodePath("../VBoxContainer/Button_Manager/Retry:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -96,7 +96,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Button_Manager/Menu:position")
+tracks/0/path = NodePath("../VBoxContainer/Button_Manager/Menu:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -114,7 +114,7 @@ step = 0.33333334
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Button_Manager/Menu:position")
+tracks/0/path = NodePath("../VBoxContainer/Button_Manager/Menu:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -143,17 +143,20 @@ size_flags_horizontal = 4
 color = Color(0, 0, 0.09019608, 1)
 
 [node name="Retry" type="Sprite2D" parent="." unique_id=1152840147]
-position = Vector2(312.00003, 73)
-scale = Vector2(2.63, 2.63)
+position = Vector2(644, 131)
+scale = Vector2(4.7922726, 5.8462496)
 texture = ExtResource("2_nu154")
 
-[node name="Button_Manager" type="Control" parent="." unique_id=1099279470]
-layout_mode = 3
-anchors_preset = 0
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1830912278]
+offset_top = 76.0
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = 116.0
+scale = Vector2(2.045, 2.045)
 
-[node name="Retry" type="TextureButton" parent="Button_Manager" unique_id=4510931]
+[node name="Button_Manager" type="Control" parent="VBoxContainer" unique_id=1099279470]
+layout_mode = 2
+
+[node name="Retry" type="TextureButton" parent="VBoxContainer/Button_Manager" unique_id=4510931]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -161,9 +164,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 229.0
-offset_top = 129.00002
+offset_top = 149.00002
 offset_right = 309.0
-offset_bottom = 161.00002
+offset_bottom = 181.00002
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.6, 1.6)
@@ -172,7 +175,7 @@ texture_pressed = ExtResource("4_8xgux")
 texture_hover = ExtResource("5_1xjwf")
 script = ExtResource("6_bume2")
 
-[node name="Menu" type="TextureButton" parent="Button_Manager" unique_id=1665777620]
+[node name="Menu" type="TextureButton" parent="VBoxContainer/Button_Manager" unique_id=1665777620]
 layout_mode = 0
 offset_left = 249.0069
 offset_top = 212.0
@@ -200,20 +203,24 @@ wait_time = 2.0
 [node name="score_Labels" type="CanvasLayer" parent="." unique_id=54927724]
 
 [node name="highscoreLabel" type="RichTextLabel" parent="score_Labels" unique_id=1843846656]
-offset_left = 248.0
-offset_top = 275.0
-offset_right = 620.0
-offset_bottom = 315.0
-text = "HIGHSCORE: 99999 (Place Holder)"
+offset_left = 454.0
+offset_top = 314.0
+offset_right = 826.0
+offset_bottom = 354.0
+theme_override_font_sizes/normal_font_size = 28
+text = "HIGHSCORE: 99999"
+horizontal_alignment = 1
 script = ExtResource("8_ug3to")
 metadata/_edit_use_anchors_ = true
 
 [node name="previousroundLabel" type="RichTextLabel" parent="score_Labels" unique_id=824084577]
-offset_left = 247.0
-offset_top = 296.0
-offset_right = 644.0
-offset_bottom = 336.0
-text = "PREVIOUS RD: 99999 ( PLACE HOLDER)"
+offset_left = 449.0
+offset_top = 272.0
+offset_right = 846.0
+offset_bottom = 312.0
+theme_override_font_sizes/normal_font_size = 28
+text = "PREVIOUS RD: 99999 "
+horizontal_alignment = 1
 script = ExtResource("9_5rsef")
 metadata/_edit_use_anchors_ = true
 
@@ -225,9 +232,9 @@ libraries/ = SubResource("AnimationLibrary_1xjwf")
 root_node = NodePath("../AnimationPlayer")
 libraries/ = SubResource("AnimationLibrary_k31ta")
 
-[connection signal="pressed" from="Button_Manager/Retry" to="." method="_on_retry_pressed"]
-[connection signal="mouse_entered" from="Button_Manager/Menu" to="Button_Manager/Menu" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="Button_Manager/Menu" to="Button_Manager/Menu" method="_on_mouse_exited"]
-[connection signal="pressed" from="Button_Manager/Menu" to="." method="_on_menu_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button_Manager/Retry" to="." method="_on_retry_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/Button_Manager/Menu" to="VBoxContainer/Button_Manager/Menu" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/Button_Manager/Menu" to="VBoxContainer/Button_Manager/Menu" method="_on_mouse_exited"]
+[connection signal="pressed" from="VBoxContainer/Button_Manager/Menu" to="." method="_on_menu_pressed"]
 [connection signal="timeout" from="Fade_transition/fade_timer" to="." method="_on_fade_timer_timeout"]
 [connection signal="timeout" from="Fade_transition/fade_timerstart" to="." method="_on_fade_timerstart_timeout"]

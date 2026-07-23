@@ -8,21 +8,32 @@ var size_values = [
 ]
 
 func _ready() -> void:
+	if not item_selected.is_connected(_on_item_selected):
+		item_selected.connect(_on_item_selected)
+	
+	if item_count == 0:
+		for i in size_names.size():
+			add_item(size_names[i], i)
+	
 	_show_item_selected()
 
 
 func _on_item_selected(index: int) -> void:
-	var new_size = size_values[index]
-	get_window().size = new_size
+	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	
 	var screen_size = DisplayServer.screen_get_size()
-	var new_pos = (screen_size - new_size) / 2
-	get_window().position = new_pos
+	var new_size = size_values[index]
+	
+	new_size.x = min(new_size.x, screen_size.x)
+	new_size.y = min(new_size.y, screen_size.y)
 
+	get_window().size = new_size
+	get_window().move_to_center()
+	
 func _show_item_selected() -> void:
-	for i in size_names.size():
-		add_item(size_names[i], i)
-
 	var current_size = get_window().size
+	selected = 1
+	
 	for i in size_values.size():
 		if size_values[i] == current_size:
 			selected = i

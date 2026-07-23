@@ -8,12 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://bhik0cbrtt1bx" path="res://Scenes/Menu/pause_menu.tscn" id="6_4org1"]
 [ext_resource type="PackedScene" uid="uid://by1622uoguy0" path="res://Scenes/Menu/Transition.tscn" id="7_mqjud"]
 [ext_resource type="PackedScene" uid="uid://w7doc70s2ixt" path="res://Scenes/character/player.tscn" id="7_n0hvp"]
+[ext_resource type="Texture2D" uid="uid://ch50ooqblafik" path="res://Assets/Background/Day/Cloud1.png" id="9_oyhfi"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6mqln"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_uicln"]
 load_path = "res://.godot/imported/Cloud0.png-f7d3aa7d538e5189608ed4a3e481fd2e.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_scjhd"]
-load_path = "res://.godot/imported/Cloud1.png-c2e2a5604fe819f914bcb2d94d3d769b.ctex"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6mqln"]
 texture = ExtResource("3_oyhfi")
@@ -303,42 +301,42 @@ region = Rect2(291.0291, 83.91142, 41.022003, 28.151695)
 [node name="Cutscene1" type="Node2D" unique_id=1863500679]
 script = ExtResource("1_2vh58")
 
-[node name="Background" type="Node2D" parent="." unique_id=642977546]
+[node name="Background2" type="Node2D" parent="." unique_id=744623485]
 
-[node name="ParallaxBackground" type="Parallax2D" parent="Background" unique_id=434770687]
+[node name="ParallaxBackground" type="Parallax2D" parent="Background2" unique_id=1962394362]
 scale = Vector2(0.28, 0.28)
 scroll_scale = Vector2(0.1, 0)
-repeat_size = Vector2(180, 0)
+repeat_times = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="Background/ParallaxBackground" unique_id=1173992742]
-position = Vector2(0, -94.99999)
-scale = Vector2(1.0607638, 1.1203704)
+[node name="Sprite2D" type="Sprite2D" parent="Background2/ParallaxBackground" unique_id=1969956901]
+position = Vector2(0, -3.85)
+scale = Vector2(2.3846724, 2.3911307)
 texture = ExtResource("2_4org1")
 centered = false
 
-[node name="ParallaxC0" type="Parallax2D" parent="Background" unique_id=2137324816]
+[node name="ParallaxC0" type="Parallax2D" parent="Background2" unique_id=1759984407]
 scale = Vector2(0.385, 0.385)
 scroll_scale = Vector2(0.2, 0)
-repeat_size = Vector2(1500, 0)
+repeat_size = Vector2(3301.125, 0)
 autoscroll = Vector2(-5, 0)
-repeat_times = 3
+repeat_times = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="Background/ParallaxC0" unique_id=1880749269]
-position = Vector2(0, -300)
-scale = Vector2(0.814, 0.86)
-texture = SubResource("CompressedTexture2D_6mqln")
+[node name="Sprite2D" type="Sprite2D" parent="Background2/ParallaxC0" unique_id=473855540]
+scale = Vector2(1.122, 1.119)
+texture = SubResource("CompressedTexture2D_uicln")
 centered = false
 
-[node name="ParallaxC1" type="Parallax2D" parent="Background" unique_id=1543334555]
+[node name="ParallaxC1" type="Parallax2D" parent="Background2" unique_id=1340212921]
 scale = Vector2(0.625, 0.625)
-repeat_size = Vector2(600, 0)
-autoscroll = Vector2(-10, 0)
-repeat_times = 3
+scroll_scale = Vector2(0.3, 0.3)
+repeat_size = Vector2(2056.095, 0)
+autoscroll = Vector2(-3, 0)
+repeat_times = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="Background/ParallaxC1" unique_id=1026703458]
-position = Vector2(1.6, -500)
-scale = Vector2(0.821, 0.867)
-texture = SubResource("CompressedTexture2D_scjhd")
+[node name="Sprite2D" type="Sprite2D" parent="Background2/ParallaxC1" unique_id=1421321423]
+position = Vector2(0, -500)
+scale = Vector2(1.0691667, 1.0651852)
+texture = ExtResource("9_oyhfi")
 centered = false
 
 [node name="Building" type="Node2D" parent="." unique_id=2007841928]
@@ -373,7 +371,7 @@ wait_time = 1.5
 position = Vector2(-7, 166)
 
 [node name="WorldCamera" type="Camera2D" parent="Player" unique_id=1133320123]
-zoom = Vector2(2.7, 2.7)
+zoom = Vector2(6.15, 6.15)
 limit_left = -249
 limit_right = 199
 limit_bottom = 198
@@ -385,3 +383,4 @@ position = Vector2(104, 166)
 position = Vector2(-7, 166)
 
 [node name="PauseMenu" parent="." unique_id=1424256854 instance=ExtResource("6_4org1")]
+visible = false

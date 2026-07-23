@@ -8,7 +8,7 @@
 [node name="HealthBarPlayer" type="CanvasLayer" unique_id=1041979520]
 
 [node name="HealthBarContainer" type="Node2D" parent="." unique_id=1699284854]
-scale = Vector2(1.525, 1.525)
+scale = Vector2(2.705, 2.705)
 skew = -0.5864306
 
 [node name="PlayerHP" type="TextureProgressBar" parent="HealthBarContainer" unique_id=1265035597]

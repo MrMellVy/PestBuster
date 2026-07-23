@@ -23,7 +23,7 @@ func _on_button_menu_pressed() -> void:
 	get_tree().paused = false
 	BgmManager.set_pause_state(false)
 	
-	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
+	get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
 	BgmManager.play_BGM("cyber_runner")
 
 func _input(event: InputEvent) -> void:

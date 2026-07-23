@@ -12,12 +12,10 @@
 [ext_resource type="PackedScene" uid="uid://bhik0cbrtt1bx" path="res://Scenes/Menu/pause_menu.tscn" id="11_q2tg5"]
 [ext_resource type="PackedScene" uid="uid://b7w5ldp1n0qke" path="res://Scenes/character/air_enemy.tscn" id="12_mt3j2"]
 [ext_resource type="Texture2D" uid="uid://carjrejog3yx1" path="res://Assets/Tilesets/Car.png" id="13_akeww"]
+[ext_resource type="Texture2D" uid="uid://ch50ooqblafik" path="res://Assets/Background/Day/Cloud1.png" id="13_fvaf1"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xagk4"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hnohd"]
 load_path = "res://.godot/imported/Cloud0.png-f7d3aa7d538e5189608ed4a3e481fd2e.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_akeww"]
-load_path = "res://.godot/imported/Cloud1.png-c2e2a5604fe819f914bcb2d94d3d769b.ctex"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c458c"]
 texture = ExtResource("3_knogg")
@@ -381,44 +379,42 @@ starting_wave = 1
 enemy_scene = ExtResource("10_d68a7")
 airenemy_scene = ExtResource("12_mt3j2")
 
-[node name="Clouds" type="Node2D" parent="." unique_id=1353283448]
+[node name="Background2" type="Node2D" parent="." unique_id=518790334]
 
-[node name="ParallaxBackground" type="Parallax2D" parent="Clouds" unique_id=1127383803]
+[node name="ParallaxBackground" type="Parallax2D" parent="Background2" unique_id=126892757]
 scale = Vector2(0.28, 0.28)
 scroll_scale = Vector2(0.1, 0)
-repeat_size = Vector2(2036.32, 0)
 repeat_times = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="Clouds/ParallaxBackground" unique_id=1150576621]
-position = Vector2(0, -94.99999)
-scale = Vector2(1.0607638, 1.1203704)
+[node name="Sprite2D" type="Sprite2D" parent="Background2/ParallaxBackground" unique_id=217048285]
+position = Vector2(0, -3.85)
+scale = Vector2(2.3846724, 2.3911307)
 texture = ExtResource("3_mt3j2")
 centered = false
 
-[node name="ParallaxC0" type="Parallax2D" parent="Clouds" unique_id=1849727233]
+[node name="ParallaxC0" type="Parallax2D" parent="Background2" unique_id=366826398]
 scale = Vector2(0.385, 0.385)
 scroll_scale = Vector2(0.2, 0)
-repeat_size = Vector2(800, 0)
-autoscroll = Vector2(0.5, 0)
-repeat_times = 3
-
-[node name="Sprite2D" type="Sprite2D" parent="Clouds/ParallaxC0" unique_id=1528459691]
-position = Vector2(0, -103.915)
-scale = Vector2(0.814, 0.86)
-texture = SubResource("CompressedTexture2D_xagk4")
-centered = false
-
-[node name="ParallaxC1" type="Parallax2D" parent="Clouds" unique_id=1388602135]
-scale = Vector2(0.625, 0.625)
-scroll_scale = Vector2(0.3, 0)
-repeat_size = Vector2(600, 0)
-autoscroll = Vector2(1, 0)
+repeat_size = Vector2(3301.125, 0)
+autoscroll = Vector2(-5, 0)
 repeat_times = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="Clouds/ParallaxC1" unique_id=1727448177]
-position = Vector2(1.5999999, -429.56)
-scale = Vector2(0.821, 0.867)
-texture = SubResource("CompressedTexture2D_akeww")
+[node name="Sprite2D" type="Sprite2D" parent="Background2/ParallaxC0" unique_id=96515356]
+scale = Vector2(1.122, 1.119)
+texture = SubResource("CompressedTexture2D_hnohd")
+centered = false
+
+[node name="ParallaxC1" type="Parallax2D" parent="Background2" unique_id=1095067215]
+scale = Vector2(0.625, 0.625)
+scroll_scale = Vector2(0.3, 0.3)
+repeat_size = Vector2(2056.095, 0)
+autoscroll = Vector2(-3, 0)
+repeat_times = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Background2/ParallaxC1" unique_id=2088577758]
+position = Vector2(0, -500)
+scale = Vector2(1.0691667, 1.0651852)
+texture = ExtResource("13_fvaf1")
 centered = false
 
 [node name="BuildingBackground" type="TileMapLayer" parent="." unique_id=1790643070]
@@ -522,13 +518,13 @@ position = Vector2(1552, 4)
 [node name="scoreLabels" parent="." unique_id=969138735 instance=ExtResource("10_q2tg5")]
 
 [node name="Player" parent="." unique_id=1296403870 instance=ExtResource("1_b828a")]
-position = Vector2(0, 166.565)
+position = Vector2(2, 166.565)
 collision_mask = 78
 jumps = 2
 
 [node name="WorldCamera" type="Camera2D" parent="." unique_id=1481191766]
 position = Vector2(0, 166.565)
-zoom = Vector2(1.93, 1.93)
+zoom = Vector2(4.52, 4.52)
 limit_left = -435
 limit_right = 550
 limit_bottom = 198

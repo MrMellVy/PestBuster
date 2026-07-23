@@ -1,6 +1,14 @@
 extends OptionButton
 
 func _ready() -> void:
+	if not item_selected.is_connected(_on_item_selected):
+		item_selected.connect(_on_item_selected)
+	
+	if item_count == 0:
+		add_item("Windowed", 0)
+		add_item("Fullscreeen", 1)
+		add_item("Exclusive Fullscreen", 2)
+	
 	_show_item_selected()
 
 func _on_item_selected(index: int) -> void:
@@ -9,14 +17,17 @@ func _on_item_selected(index: int) -> void:
 		DisplayServer.WINDOW_MODE_FULLSCREEN,
 		DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN
 	]
-	DisplayServer.window_set_mode(window_modes[index])
-	print(index)
+	
+	if index >= 0 and index < window_modes.size():
+		DisplayServer.window_set_mode(window_modes[index])
 
 func _show_item_selected() -> void:
-	var current_mode = DisplayServer.window_get_mode()
-	if current_mode == DisplayServer.WINDOW_MODE_WINDOWED:
-		selected = 0
-	if current_mode == DisplayServer.WINDOW_MODE_FULLSCREEN:
-		selected = 1
-	if current_mode == DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN:
-		selected = 2
+	match DisplayServer.window_get_mode():
+		DisplayServer.WINDOW_MODE_WINDOWED:
+			selected = 0
+		DisplayServer.WINDOW_MODE_FULLSCREEN:
+			selected = 1
+		DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN:
+			selected = 2
+		_:
+			selected = 0
