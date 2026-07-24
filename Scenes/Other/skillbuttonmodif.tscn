@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://d2w04og03l3gl" path="res://Assets/Other/Tweak/SlimeFly.png" id="1_qo0sm"]
 [ext_resource type="Script" uid="uid://cvk43bja3h72r" path="res://Scripts/skillbuttonmodif.gd" id="2_qo0sm"]
 [ext_resource type="Texture2D" uid="uid://b034awq7mnrf6" path="res://Assets/Other/Tweak/white-01.png" id="3_v76ym"]
+[ext_resource type="FontFile" uid="uid://bgx1d1885ufiu" path="res://Assets/Fonts/Ririgitriz.ttf" id="4_sehqr"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_f0ur2"]
 
@@ -13,6 +14,7 @@ events = [SubResource("InputEventKey_f0ur2")]
 custom_minimum_size = Vector2(40, 0)
 offset_right = 40.0
 offset_bottom = 40.0
+scale = Vector2(4.01, 4.01)
 shortcut = SubResource("Shortcut_mf4m7")
 texture_normal = ExtResource("1_qo0sm")
 ignore_texture_size = true
@@ -23,7 +25,7 @@ script = ExtResource("2_qo0sm")
 layout_mode = 0
 offset_right = 20.0
 offset_bottom = 20.0
-scale = Vector2(1.99, 1.99)
+scale = Vector2(2.01, 2.01)
 step = 0.05
 fill_mode = 4
 texture_progress = ExtResource("3_v76ym")
@@ -40,26 +42,35 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -40.0
-offset_top = -23.0
+offset_left = -28.2793
+offset_top = -17.057354
+offset_right = 11.720699
+offset_bottom = 5.9426575
 grow_horizontal = 0
 grow_vertical = 0
+scale = Vector2(0.625, 0.625)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.23137255)
-theme_override_font_sizes/font_size = 8
+theme_override_fonts/font = ExtResource("4_sehqr")
+theme_override_font_sizes/font_size = 12
+text = "2.3"
 horizontal_alignment = 2
 vertical_alignment = 2
 
 [node name="Key" type="Label" parent="." unique_id=1477682170]
+visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 3.0
-offset_top = -23.0
-offset_right = 40.0
+offset_left = 2.8944118
+offset_top = -19.508728
+offset_right = 39.894413
+offset_bottom = 3.4912758
 grow_vertical = 0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.38039216)
-theme_override_font_sizes/font_size = 14
+scale = Vector2(0.805, 0.805)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.57254905)
+theme_override_fonts/font = ExtResource("4_sehqr")
+theme_override_font_sizes/font_size = 16
 text = "C"
 vertical_alignment = 2
 

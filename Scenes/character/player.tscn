@@ -27,6 +27,7 @@
 [ext_resource type="AudioStream" uid="uid://bf2mhh33ioulc" path="res://Assets/Audio/SFX/Sword Whoosh 02.wav" id="24_0gysh"]
 [ext_resource type="AudioStream" uid="uid://cqxp3pcmtu2nb" path="res://Assets/Audio/SFX/Sword Whoosh 04.wav" id="25_vfarp"]
 [ext_resource type="PackedScene" uid="uid://b3qoe5fyucafc" path="res://Scenes/character/enemy_dummy_damage.tscn" id="27_d42ii"]
+[ext_resource type="PackedScene" uid="uid://b8w4kw2ipi6o8" path="res://Scenes/character/enemy.tscn" id="28_13xor"]
 [ext_resource type="PackedScene" uid="uid://clxe4hkd427ln" path="res://Scenes/Menu/test_sk_button_2.tscn" id="28_smjl8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pu2lt"]
@@ -1144,25 +1145,38 @@ color = Color(0.8792635, 1, 1, 1)
 
 [node name="OwnPlat" type="StaticBody2D" parent="." unique_id=1917951852]
 top_level = true
+visibility_layer = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OwnPlat" unique_id=919605873]
 position = Vector2(-582.5, 30)
 shape = SubResource("RectangleShape2D_76hi5")
 
 [node name="ColorRect" type="ColorRect" parent="OwnPlat" unique_id=1165104246]
-offset_left = -1435.0
+offset_left = -1434.0
 offset_top = 19.0
-offset_right = 266.0
-offset_bottom = 45.0
+offset_right = 267.0
+offset_bottom = 61.0
 color = Color(0.035787404, 0.11233925, 0.16125765, 1)
 
 [node name="TestCamera" type="Camera2D" parent="." unique_id=1745200257]
-zoom = Vector2(1.935, 1.935)
-limit_bottom = 44
+zoom = Vector2(4.19, 4.19)
+limit_bottom = 60
 
 [node name="Enemy_dummy" parent="." unique_id=1626501939 instance=ExtResource("27_d42ii")]
 top_level = true
-position = Vector2(-308, -3)
+position = Vector2(278, -4)
+
+[node name="Enemy" parent="." unique_id=1497044103 instance=ExtResource("28_13xor")]
+top_level = true
+position = Vector2(-1342, -68)
+
+[node name="Enemy2" parent="." unique_id=554525008 instance=ExtResource("28_13xor")]
+top_level = true
+position = Vector2(-1342, -68)
+
+[node name="Enemy3" parent="." unique_id=1425010205 instance=ExtResource("28_13xor")]
+top_level = true
+position = Vector2(-1342, -68)
 
 [node name="Actionbar" type="CanvasLayer" parent="." unique_id=507612264]
 

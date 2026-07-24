@@ -37,11 +37,13 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -20.0
-offset_top = -45.0
+offset_top = -83.0
 offset_right = 20.0
-offset_bottom = -5.0
+offset_bottom = -43.0
 grow_horizontal = 2
 grow_vertical = 0
+scale = Vector2(2.515, 2.515)
+pivot_offset = Vector2(19.483109, 19.880737)
 script = ExtResource("1_6ji53")
 
 [node name="SkillA" parent="ActionBar" unique_id=192717379 instance=ExtResource("2_6ji53")]

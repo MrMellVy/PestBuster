@@ -23,7 +23,7 @@ func _ready() -> void:
 	
 	self_modulate.a = 0.0
 	time.visible = false
-	key.visible = false
+	#key.visible = false
 	
 	disabled = false #1
 	set_process(false)
@@ -40,11 +40,11 @@ func _on_pressed() -> void:
 	cast.emit(name)
 	self_modulate.a = 1.0
 	time.visible = true
-	key.visible = true
+	#key.visible = true
 
 func _on_timer_timeout() -> void:
 	disabled = false
 	time.text = ""
 	set_process(false)
 	self_modulate.a = 0.0
-	key.visible = false
+	#key.visible = false
