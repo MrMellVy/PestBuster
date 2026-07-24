@@ -27,7 +27,6 @@
 [ext_resource type="AudioStream" uid="uid://bf2mhh33ioulc" path="res://Assets/Audio/SFX/Sword Whoosh 02.wav" id="24_0gysh"]
 [ext_resource type="AudioStream" uid="uid://cqxp3pcmtu2nb" path="res://Assets/Audio/SFX/Sword Whoosh 04.wav" id="25_vfarp"]
 [ext_resource type="PackedScene" uid="uid://b3qoe5fyucafc" path="res://Scenes/character/enemy_dummy_damage.tscn" id="27_d42ii"]
-[ext_resource type="PackedScene" uid="uid://b8w4kw2ipi6o8" path="res://Scenes/character/enemy.tscn" id="28_13xor"]
 [ext_resource type="PackedScene" uid="uid://clxe4hkd427ln" path="res://Scenes/Menu/test_sk_button_2.tscn" id="28_smjl8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pu2lt"]
@@ -1165,18 +1164,6 @@ limit_bottom = 60
 [node name="Enemy_dummy" parent="." unique_id=1626501939 instance=ExtResource("27_d42ii")]
 top_level = true
 position = Vector2(278, -4)
-
-[node name="Enemy" parent="." unique_id=1497044103 instance=ExtResource("28_13xor")]
-top_level = true
-position = Vector2(-1342, -68)
-
-[node name="Enemy2" parent="." unique_id=554525008 instance=ExtResource("28_13xor")]
-top_level = true
-position = Vector2(-1342, -68)
-
-[node name="Enemy3" parent="." unique_id=1425010205 instance=ExtResource("28_13xor")]
-top_level = true
-position = Vector2(-1342, -68)
 
 [node name="Actionbar" type="CanvasLayer" parent="." unique_id=507612264]
 
