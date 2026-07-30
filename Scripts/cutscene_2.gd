@@ -13,13 +13,24 @@ func _ready() -> void:
 	$Fade_transition.show()    
 	$Fade_transition/Fade_transition/AnimationPlayer.play("Fade_out")
 	BgmManager.play_BGM("cyberpunk-street")
-	start()
-	world_camera.make_current()
-	$Player/PlayerHealthbar/HealthBarContainer/PlayerHP.visible = false
+
 	var player = $Player
+	player.can_use_skill = false
 	player.set_process(false)
 	player.set_physics_process(false)
+	player.set_process_input(false)
+	player.set_process_unhandled_input(false)
 	player.set_collision_layer_value(1, false) 
+	if has_node("Player/Actionbar"):
+		$Player/Actionbar.process_mode = Node.PROCESS_MODE_DISABLED
+
+
+	$Player/PlayerHealthbar/HealthBarContainer/PlayerHP.visible = false
+
+	world_camera.make_current()
+
+	start()
+
 
 func _input(event: InputEvent) -> void:
 	if not dialogue_is_active:

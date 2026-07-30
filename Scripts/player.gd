@@ -115,6 +115,7 @@ var can_take_damage: bool
 var defeat: bool
 var is_hurt: bool = false
 var is_use_skill: bool = false
+var can_use_skill: bool = true
 var skill_hit_active: bool = false
 
 var anim
@@ -691,17 +692,16 @@ func heal(amount: int) -> void:
 func perform_skill_a():
 	is_use_skill = true
 	current_attack = true
-	
 	PlayerSprite.speed_scale = 1.0
-	
 	movementInputMonitoring = Vector2(false, false)
+	
 	var prev_grav = gravityActive
 	gravityActive = false
 	velocity = Vector2.ZERO
 	
 	var ori_damage_zone_pos = deal_damage_zone.position
-	
 	var ori_zoom = world_camera.zoom
+	
 	var zoom_tween = create_tween()
 	zoom_tween.tween_property(world_camera, "zoom", ori_zoom * 1.5, 1.0).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 
@@ -795,3 +795,22 @@ func trigger_still_zone_skill() -> void:
 
 		if i < hit_count - 1:
 			await get_tree().create_timer(delay_between_hits).timeout
+
+func try_perform_skill_a() -> bool:
+	if not can_use_skill:
+		return false
+	
+	if defeat or is_use_skill or current_attack:
+		return false
+	
+	if world_camera == null:
+		world_camera = get_viewport().get_camera_2d()
+	
+	if world_camera == null:
+		return false 
+	
+	if not is_on_floor():
+		return false
+	
+	perform_skill_a()
+	return true

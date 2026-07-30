@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://dr8q2mlsjy2m1"]
+
+[ext_resource type="Script" uid="uid://doq7jtmw12dtb" path="res://Scripts/testcamera_transition.gd" id="1_pmcao"]
+
+[sub_resource type="Gradient" id="Gradient_ow83s"]
+colors = PackedColorArray(0, 0.23137255, 0, 1, 1, 1, 0.53333336, 0.6313726)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pmcao"]
+gradient = SubResource("Gradient_ow83s")
+
+[node name="TestcameraTransition" type="Node2D" unique_id=120387419]
+script = ExtResource("1_pmcao")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1681216334]
+position = Vector2(277, 156)
+zoom = Vector2(2.085, 2.085)
+limit_enabled = false
+
+[node name="Camera2D2" type="Camera2D" parent="." unique_id=1140312972]
+position = Vector2(938, 524)
+zoom = Vector2(2.125, 2.125)
+limit_enabled = false
+
+[node name="BG" type="TextureRect" parent="." unique_id=1353696287]
+offset_left = -48.0
+offset_top = -63.0
+offset_right = 1345.0
+offset_bottom = 791.0
+texture = SubResource("GradientTexture2D_pmcao")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1211445991]
+offset_right = 200.0
+offset_bottom = 195.0
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=1147030247]
+offset_left = 984.0
+offset_top = 456.0
+offset_right = 1184.0
+offset_bottom = 651.0
+
+[node name="TransitionCamera" type="Camera2D" parent="." unique_id=1412415645]
+position = Vector2(277, 156)
+zoom = Vector2(2.085, 2.085)

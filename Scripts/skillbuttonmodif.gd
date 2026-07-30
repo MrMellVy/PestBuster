@@ -34,6 +34,12 @@ func _process(_delta: float) -> void:
 
 
 func _on_pressed() -> void:
+	if disabled:
+		return
+	
+	cast.emit(name)
+	
+func start_cooldown() -> void:
 	timer.start()
 	disabled = true
 	set_process(true)
