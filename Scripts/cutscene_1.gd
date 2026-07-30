@@ -2,6 +2,8 @@ extends Node2D
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var animation_player_2: AnimationPlayer = $AnimationPlayer2
+@onready var world_camera: Camera2D = $WorldCamera
+@onready var world_camera_2: Camera2D = $WorldCamera2
 
 var current_dialogue_index: int = 0
 var advance_action: StringName = "attack"
@@ -20,8 +22,11 @@ func _ready() -> void:
 
 func _on_dialogue_event(event_name: String) -> void:
 	if event_name == "car_crash":
+		world_camera.make_current()
 		animation_player.play("carwew")
 		animation_player_2.play("rtwew")
+	if event_name == "cam2":
+		world_camera_2.make_current()
 
 func _input(event: InputEvent) -> void:
 	if not dialogue_is_active:

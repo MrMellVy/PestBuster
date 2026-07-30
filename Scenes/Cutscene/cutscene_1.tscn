@@ -388,39 +388,39 @@ sources/1 = SubResource("TileSetAtlasSource_jbt2t")
 [node name="Cutscene1" type="Node2D" unique_id=1863500679]
 script = ExtResource("1_g2k7w")
 
-[node name="Background2" type="Node2D" parent="." unique_id=1197613698]
+[node name="Background" type="Node2D" parent="." unique_id=1197613698]
 
-[node name="ParallaxBackground" type="Parallax2D" parent="Background2" unique_id=1458196286]
+[node name="ParallaxBackground" type="Parallax2D" parent="Background" unique_id=1458196286]
 scale = Vector2(0.28, 0.28)
 scroll_scale = Vector2(0.1, 0)
 repeat_times = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="Background2/ParallaxBackground" unique_id=336459302]
+[node name="Sprite2D" type="Sprite2D" parent="Background/ParallaxBackground" unique_id=336459302]
 position = Vector2(0, -3.85)
 scale = Vector2(2.3846724, 2.3911307)
 texture = ExtResource("2_y02wl")
 centered = false
 
-[node name="ParallaxC0" type="Parallax2D" parent="Background2" unique_id=392184322]
+[node name="ParallaxC0" type="Parallax2D" parent="Background" unique_id=392184322]
 scale = Vector2(0.385, 0.385)
 scroll_scale = Vector2(0.2, 0)
 repeat_size = Vector2(3301.125, 0)
 autoscroll = Vector2(-5, 0)
 repeat_times = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="Background2/ParallaxC0" unique_id=1098433523]
+[node name="Sprite2D" type="Sprite2D" parent="Background/ParallaxC0" unique_id=1098433523]
 scale = Vector2(1.122, 1.119)
 texture = SubResource("CompressedTexture2D_27ut5")
 centered = false
 
-[node name="ParallaxC1" type="Parallax2D" parent="Background2" unique_id=302525830]
+[node name="ParallaxC1" type="Parallax2D" parent="Background" unique_id=302525830]
 scale = Vector2(0.625, 0.625)
 scroll_scale = Vector2(0.3, 0.3)
 repeat_size = Vector2(2056.095, 0)
 autoscroll = Vector2(-3, 0)
 repeat_times = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="Background2/ParallaxC1" unique_id=1315643783]
+[node name="Sprite2D" type="Sprite2D" parent="Background/ParallaxC1" unique_id=1315643783]
 position = Vector2(0, -500)
 scale = Vector2(1.0691667, 1.0651852)
 texture = ExtResource("3_jbt2t")
@@ -464,6 +464,30 @@ position = Vector2(-156, -42)
 tile_map_data = PackedByteArray("AAADAA0AAAAGAAAAAAAEAA0AAAAHAAAAAAAFAA0AAAAIAAAAAAAGAA0AAAAMAAIAAAAHAA0AAAANAAIAAAAIAA0AAAANAAIAAAAJAA0AAAAIAAAAAAAKAA0AAAAJAAAAAAALAA0AAAAIAAAAAAAMAA0AAAAJAAAAAAANAA0AAAAKAAAAAAAOAA0AAAALAAAAAAAOAA4AAAALAAEAAAAPAA0AAAAGAAAAAAAPAA4AAAAGAAEAAAAQAA0AAAAHAAAAAAAQAA4AAAAHAAEAAAARAA0AAAAGAAAAAAARAA4AAAAGAAEAAAASAA0AAAAHAAAAAAASAA4AAAAHAAEAAAATAA0AAAAIAAAAAAATAA4AAAAIAAEAAAAAAA0AAAAJAAAAAAAAAA4AAAAJAAEAAAABAA0AAAAKAAAAAAABAA4AAAAKAAEAAAACAA0AAAALAAAAAAACAA4AAAALAAEAAAADAA4AAAAGAAEAAAAEAA4AAAAHAAEAAAAFAA4AAAABAAEAAAAGAA4AAAAMAAMAAAAHAA4AAAANAAMAAAAIAA4AAAACAAEAAAAJAA4AAAAIAAEAAAAKAA4AAAAJAAEAAAALAA4AAAAIAAEAAAAMAA4AAAAJAAEAAAANAA4AAAAKAAEAAAA=")
 tile_set = SubResource("TileSet_8j1l1")
 
+[node name="Building2" type="Node2D" parent="." unique_id=426499859]
+
+[node name="BuildingBackground" type="TileMapLayer" parent="Building2" unique_id=112835271]
+position = Vector2(-358, -73)
+tile_map_data = PackedByteArray("AADy/wEAAAAWAAYAAADy/wIAAAAWAAcAAADz/wEAAAAXAAYAAADz/wIAAAAXAAcAAAD0/wEAAAAXAAYAAAD0/wIAAAAXAAcAAAD1/wEAAAAWAAYAAAD1/wIAAAAWAAcAAAD2/wEAAAAXAAYAAAD2/wIAAAAXAAcAAAD3/wEAAAAXAAYAAAD3/wIAAAAXAAcAAAD4/wEAAAAWAAYAAAD4/wIAAAAWAAcAAAD5/wEAAAAXAAYAAAD5/wIAAAAXAAcAAAD6/wEAAAAXAAYAAAD6/wIAAAAXAAcAAAD7/wEAAAAWAAYAAAD7/wIAAAAWAAcAAAD8/wEAAAAXAAYAAAD8/wIAAAAXAAcAAAD9/wEAAAAXAAYAAAD9/wIAAAAXAAcAAAD+/wEAAAAWAAYAAAD+/wIAAAAWAAcAAAD//wEAAAAXAAYAAAD//wIAAAAXAAcAAAAAAAEAAAAYAAYAAAAAAAIAAAAYAAcAAAA=")
+tile_set = SubResource("TileSet_scjhd")
+
+[node name="Building" type="TileMapLayer" parent="Building2" unique_id=358139904]
+material = SubResource("ShaderMaterial_y02wl")
+position = Vector2(-176, -32)
+tile_map_data = PackedByteArray("AAAjAAsAAAAQAAYAAAAkAAsAAAARAAYAAADx//j/AAAJAAAAAADx//n/AAAJAAEAAADx//r/AAAJAAIAAADx//v/AAAJAAMAAADx//z/AAAJAAQAAADx//3/AAAJAAUAAADx//7/AAAJAAYAAADx////AAAJAAcAAADy//j/AAAKAAAAAADy//n/AAAKAAEAAADy//r/AAAKAAIAAADy//v/AAAKAAMAAADy//z/AAAKAAQAAADy//3/AAAKAAUAAADy//7/AAAKAAYAAADy////AAAKAAcAAADz//j/AAALAAAAAADz//n/AAALAAEAAADz//r/AAALAAIAAADz//v/AAALAAMAAADz//z/AAALAAQAAADz//3/AAALAAUAAADz//7/AAALAAYAAADz////AAALAAcAAAD0//j/AAAMAAAAAAD0//n/AAAMAAEAAAD0//r/AAAMAAIAAAD0//v/AAAMAAMAAAD0//z/AAAMAAQAAAD0//3/AAAMAAUAAAD0//7/AAAMAAYAAAD0////AAAMAAcAAADn//j/AAANAAAAAADn//n/AAANAAEAAADn//r/AAANAAIAAADn//v/AAANAAMAAADn//z/AAANAAQAAADn//3/AAANAAUAAADn//7/AAANAAYAAADn////AAANAAcAAADo//j/AAAOAAAAAADo//n/AAAOAAEAAADo//r/AAAOAAIAAADo//v/AAAOAAMAAADo//z/AAAOAAQAAADo//3/AAAOAAUAAADo//7/AAAOAAYAAADo////AAAOAAcAAADp//j/AAAPAAAAAADp//n/AAAPAAEAAADp//r/AAAPAAIAAADp//v/AAAPAAMAAADp//z/AAAPAAQAAADp//3/AAAPAAUAAADp//7/AAAPAAYAAADp////AAAPAAcAAADq//j/AAAQAAAAAADq//n/AAAQAAEAAADq//r/AAAQAAIAAADq//v/AAAQAAMAAADq//z/AAAQAAQAAADq//3/AAAQAAUAAADq//7/AAAQAAYAAADq////AAAQAAcAAADr//j/AAARAAAAAADr//n/AAARAAEAAADr//r/AAARAAIAAADr//v/AAARAAMAAADr//z/AAARAAQAAADr//3/AAARAAUAAADr//7/AAARAAYAAADr////AAARAAcAAAA=")
+tile_set = SubResource("TileSet_scjhd")
+
+[node name="Floor" type="TileMapLayer" parent="Building2" unique_id=1761540332]
+position = Vector2(-473, -15)
+tile_map_data = PackedByteArray("AAD7////AAAHAAAAAAD6////AAAGAAAAAAD6/wAAAAAGAAEAAAD7/wAAAAAHAAEAAAD8////AAAIAAAAAAD8/wAAAAAIAAEAAAD9////AAAJAAAAAAD9/wAAAAAJAAEAAAD+////AAAKAAAAAAD+/wAAAAAKAAEAAAD/////AAALAAAAAAD//wAAAAALAAEAAAAAAP//AAAGAAAAAAAAAAAAAAAGAAEAAAABAP//AAAHAAAAAAABAAAAAAAHAAEAAAACAP//AAAIAAAAAAACAAAAAAAIAAEAAAADAP//AAAJAAAAAAADAAAAAAAJAAEAAAAEAP//AAAKAAAAAAAEAAAAAAAKAAEAAAAFAP//AAALAAAAAAAFAAAAAAALAAEAAAAGAP//AAAGAAAAAAAGAAAAAAAGAAEAAAAHAP//AAAHAAAAAAAHAAAAAAAHAAEAAAA=")
+tile_set = SubResource("TileSet_8j1l1")
+
+[node name="Rt2" type="Sprite2D" parent="." unique_id=1847775806]
+position = Vector2(-462, -32)
+texture = ExtResource("7_scjhd")
+region_enabled = true
+region_rect = Rect2(0, 0, 59.100098, 49.29626)
+
 [node name="Rt" type="Sprite2D" parent="." unique_id=1857825877]
 position = Vector2(-151, 162)
 texture = ExtResource("7_scjhd")
@@ -482,6 +506,14 @@ zoom = Vector2(6.15, 6.15)
 limit_left = -119
 limit_right = 119
 limit_bottom = 198
+
+[node name="WorldCamera2" type="Camera2D" parent="." unique_id=1578602055]
+position = Vector2(-39.877, 162)
+zoom = Vector2(6.15, 6.15)
+limit_left = -590
+limit_top = -10000197
+limit_right = -352
+limit_bottom = 1
 
 [node name="Fade_transition" parent="." unique_id=250833089 instance=ExtResource("6_bbbkj")]
 visible = false
