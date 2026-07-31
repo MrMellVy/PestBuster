@@ -1,6 +1,11 @@
 extends Node2D
-@onready var world_camera: Camera2D = $Player/WorldCamera
+@onready var selected_camera: Camera2D = $Player/WorldCamera
+@onready var transition_camera: Camera2D = $Player/WorldCameraTransition
 @onready var player_sprite: AnimatedSprite2D = $Player/AnimatedSprite2D
+
+var TransitionTween: Tween
+var TransitionZoomTween: Tween
+var TransitionOffsetTween: Tween
 
 var current_dialogue_index: int = 0
 var advance_action: StringName = "attack"
@@ -24,10 +29,7 @@ func _ready() -> void:
 	if has_node("Player/Actionbar"):
 		$Player/Actionbar.process_mode = Node.PROCESS_MODE_DISABLED
 
-
 	$Player/PlayerHealthbar/HealthBarContainer/PlayerHP.visible = false
-
-	world_camera.make_current()
 
 	start()
 
@@ -55,8 +57,15 @@ func _input(event: InputEvent) -> void:
 			await move_player_to_target($Target_Move3)
 		elif current_dialogue_index == 5:
 			await move_player_to_target($Target_Move5)
+		elif current_dialogue_index == 6:
+			if selected_camera == $Player/WorldCamera:
+				_change_camera($Player/WorldCamera2)
+			else:
+				_change_camera($Player/WorldCamera)
 			
 func start() -> void:
+	$Player/WorldCameraTransition.make_current()
+	_change_camera($Player/WorldCamera)
 	Dialouge.start("CS_01")
 	await  Dialouge.dialogue_finished
 	
@@ -84,3 +93,24 @@ func move_player_to_target(target_node: Node2D) -> void:
 	await tween.finished
 	player.PlayerSprite.play("idle")
 	anim_is_moving = false
+
+func _change_camera(choose_camera: Camera2D) -> void:
+	if TransitionTween:
+		TransitionTween.kill()
+	TransitionTween = create_tween()
+	var target_transform: Transform2D = choose_camera.global_transform
+	TransitionTween.tween_property(transition_camera, "global_transform", target_transform, 0.5).set_trans(Tween.TRANS_SINE)
+	
+	if TransitionZoomTween:
+		TransitionZoomTween.kill()
+	TransitionZoomTween = create_tween()
+	var target_zoom: Vector2 = choose_camera.zoom
+	TransitionZoomTween.tween_property(transition_camera, "zoom", target_zoom, 0.5).set_trans(Tween.TRANS_SINE)
+	
+	if TransitionOffsetTween:
+		TransitionOffsetTween.kill()
+	TransitionOffsetTween = create_tween()
+	var target_offset: Vector2 = choose_camera.offset
+	TransitionOffsetTween.tween_property(transition_camera, "offset", target_offset, 0.5).set_trans(Tween.TRANS_SINE)
+
+	selected_camera = choose_camera

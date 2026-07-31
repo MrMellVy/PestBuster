@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://by1622uoguy0" path="res://Scenes/Menu/Transition.tscn" id="7_mqjud"]
 [ext_resource type="PackedScene" uid="uid://w7doc70s2ixt" path="res://Scenes/character/player.tscn" id="7_n0hvp"]
 [ext_resource type="Texture2D" uid="uid://ch50ooqblafik" path="res://Assets/Background/Day/Cloud1.png" id="9_oyhfi"]
+[ext_resource type="Texture2D" uid="uid://bk0cjoq1rklvj" path="res://Assets/Sprites/SupportPlayer/nashr_idle.png" id="10_uicln"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_uicln"]
 load_path = "res://.godot/imported/Cloud0.png-f7d3aa7d538e5189608ed4a3e481fd2e.ctex"
@@ -376,6 +377,19 @@ limit_left = -249
 limit_right = 199
 limit_bottom = 198
 
+[node name="WorldCamera2" type="Camera2D" parent="Player" unique_id=1286879714]
+position = Vector2(-78, 0)
+zoom = Vector2(6.15, 6.15)
+limit_left = -249
+limit_right = 199
+limit_bottom = 198
+
+[node name="WorldCameraTransition" type="Camera2D" parent="Player" unique_id=161662883]
+zoom = Vector2(6.15, 6.15)
+limit_left = -249
+limit_right = 199
+limit_bottom = 198
+
 [node name="Target_Move3" type="Marker2D" parent="." unique_id=1163069681]
 position = Vector2(104, 166)
 
@@ -384,3 +398,7 @@ position = Vector2(-7, 166)
 
 [node name="PauseMenu" parent="." unique_id=1424256854 instance=ExtResource("6_4org1")]
 visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=832747385]
+position = Vector2(-131, 142)
+texture = ExtResource("10_uicln")
