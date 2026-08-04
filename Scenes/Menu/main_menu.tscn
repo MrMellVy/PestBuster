@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://ddihppcirpcdq" path="res://Scripts/main_menu.gd" id="1_qf5q3"]
 [ext_resource type="Shader" uid="uid://baxjruh5664dn" path="res://Assets/Sprites/Spritesquare/spritesquare.gdshader" id="2_egyys"]
 [ext_resource type="Texture2D" uid="uid://cf8lxwsdblm8" path="res://Assets/Background/Day/Background.png" id="3_cdmmi"]
-[ext_resource type="Texture2D" uid="uid://ck8ryb16wtmbn" path="res://Assets/Tilesets/Buildings.png" id="4_btwdk"]
+[ext_resource type="Texture2D" uid="uid://ck8ryb16wtmbn" path="res://Assets/Tilesets/City/Buildings.png" id="4_btwdk"]
 [ext_resource type="Texture2D" uid="uid://ch50ooqblafik" path="res://Assets/Background/Day/Cloud1.png" id="4_cdmmi"]
-[ext_resource type="Texture2D" uid="uid://dpui6y2i7aj56" path="res://Assets/Tilesets/Roads.png" id="5_4dd87"]
-[ext_resource type="Texture2D" uid="uid://dyhirno48mfiq" path="res://Assets/Tilesets/Platform-Sheet.png" id="6_wyf5o"]
+[ext_resource type="Texture2D" uid="uid://dpui6y2i7aj56" path="res://Assets/Tilesets/City/Roads.png" id="5_4dd87"]
+[ext_resource type="Texture2D" uid="uid://dyhirno48mfiq" path="res://Assets/Tilesets/City/Platform-Sheet.png" id="6_wyf5o"]
 [ext_resource type="Texture2D" uid="uid://dppvuj7nubmc2" path="res://Assets/Other/Main Menu/ButtonsMenu/MenuButtonsStart.png" id="7_b801w"]
 [ext_resource type="Texture2D" uid="uid://bn57vtncmn8xm" path="res://Assets/Other/Main Menu/ButtonsMenu/MenuButtonsStartHighlighted.png" id="8_kvk33"]
 [ext_resource type="Texture2D" uid="uid://cg0tw5tul4fy7" path="res://Assets/Other/Main Menu/ButtonsMenu/MenuButtonsStartHover.png" id="9_kqfms"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://bymqhve0xk36f" path="res://Assets/Other/Main Menu/ButtonsMenu/SettingsHover.png" id="13_xarbm"]
 [ext_resource type="Texture2D" uid="uid://b3dd0kfmhikxr" path="res://Assets/Other/Main Menu/ButtonsMenu/MenuButtonsExit.png" id="14_svjyn"]
 [ext_resource type="Texture2D" uid="uid://h6e4x3cpftt0" path="res://Assets/Other/Main Menu/ButtonsMenu/MenuButtonsExitHighlighted.png" id="15_5jio3"]
+[ext_resource type="Script" uid="uid://dodpiemcrm6hq" path="res://Scripts/SettingsButton.gd" id="15_btwdk"]
 [ext_resource type="Texture2D" uid="uid://bavjjf76l83xm" path="res://Assets/Other/Main Menu/ButtonsMenu/MenuButtonsExitHover.png" id="16_3778w"]
 [ext_resource type="Script" uid="uid://c57isocbv8ffm" path="res://Scripts/exit.gd" id="17_k3736"]
 [ext_resource type="Texture2D" uid="uid://crqx2cn2iyfwu" path="res://Assets/Other/Main Menu/Title/NewTitle.png" id="18_llifo"]
@@ -394,6 +395,73 @@ _data = {
 &"buttonstart": SubResource("Animation_t1dhk")
 }
 
+[sub_resource type="Animation" id="Animation_4dd87"]
+resource_name = "ButtonSettingsPressed"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../MainButtons/Button_Manager/Option:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.099999994, 0.15, 0.19999999, 0.25, 0.36666667, 0.4166667, 0.46666664, 0.51666677),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(1.07, 1.07), Vector2(1.07, 1.07), Vector2(1, 1), Vector2(1, 1), Vector2(1.07, 1.07), Vector2(1.07, 1.07), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_btwdk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../MainButtons/Button_Manager/Option:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(251, 209)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../MainButtons/Button_Manager/Option:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_cdmmi"]
+resource_name = "buttonsettings"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../MainButtons/Button_Manager/Option:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(251, 209), Vector2(253, 209)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_btwdk"]
+_data = {
+&"ButtonSettingsPressed": SubResource("Animation_4dd87"),
+&"RESET": SubResource("Animation_btwdk"),
+&"buttonsettings": SubResource("Animation_cdmmi")
+}
+
 [sub_resource type="Animation" id="Animation_ujyyl"]
 resource_name = "Buttonexitpressed"
 length = 0.5166999999999999
@@ -482,6 +550,7 @@ scale = Vector2(0.33437502, 0.33240741)
 [node name="ParallaxBackground" type="Parallax2D" parent="Background2" unique_id=670409308]
 scale = Vector2(0.28, 0.28)
 scroll_scale = Vector2(0.1, 0)
+repeat_size = Vector2(4579.075, 0)
 repeat_times = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="Background2/ParallaxBackground" unique_id=2127735656]
@@ -560,6 +629,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 1277.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.13725491)
@@ -577,7 +647,7 @@ layout_mode = 2
 layout_mode = 0
 offset_left = 251.0
 offset_top = 158.0
-offset_right = 379.00012
+offset_right = 379.00018
 offset_bottom = 206.0
 pivot_offset = Vector2(66, 24)
 texture_normal = ExtResource("7_b801w")
@@ -590,12 +660,14 @@ script = ExtResource("10_gcenh")
 layout_mode = 0
 offset_left = 251.0
 offset_top = 209.0
-offset_right = 379.0
+offset_right = 379.00018
 offset_bottom = 257.0
+pivot_offset = Vector2(66.4359, 24.846146)
 texture_normal = ExtResource("11_ufnow")
 texture_pressed = ExtResource("12_2v82h")
 texture_hover = ExtResource("13_xarbm")
 texture_focused = ExtResource("13_xarbm")
+script = ExtResource("15_btwdk")
 
 [node name="Exit" type="TextureButton" parent="MainButtons/Button_Manager" unique_id=1399843577]
 layout_mode = 0
@@ -618,10 +690,18 @@ texture = ExtResource("18_llifo")
 
 [node name="Options" parent="." unique_id=315415237 instance=ExtResource("19_0jto8")]
 layout_mode = 1
+offset_left = 1280.0
+offset_top = 1.0
+offset_right = 1280.0
+offset_bottom = 1.0
 
 [node name="AnimationBStart" type="AnimationPlayer" parent="." unique_id=518537144]
 root_node = NodePath("../MainButtons/Button_Manager/Exit")
 libraries/ = SubResource("AnimationLibrary_5egv6")
+
+[node name="AnimationBSettings" type="AnimationPlayer" parent="." unique_id=339872191]
+root_node = NodePath("../AnimationBStart")
+libraries/ = SubResource("AnimationLibrary_btwdk")
 
 [node name="AnimationBExit" type="AnimationPlayer" parent="." unique_id=194222391]
 root_node = NodePath("../MainButtons/Button_Manager/Exit")
@@ -648,6 +728,17 @@ theme_override_font_sizes/normal_font_size = 35
 text = "WORKING TITLE
 (RATROYINGS)"
 
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2039962506]
+position = Vector2(640, 360)
+limit_enabled = false
+
+[node name="Camera2D2" type="Camera2D" parent="." unique_id=511767179]
+position = Vector2(1920, 360)
+limit_enabled = false
+
+[node name="TransitionCamera" type="Camera2D" parent="." unique_id=268272595]
+position = Vector2(640, 360)
+
 [connection signal="button_down" from="MainButtons/Button_Manager/Start" to="MainButtons/Button_Manager/Start" method="_on_button_down"]
 [connection signal="button_up" from="MainButtons/Button_Manager/Start" to="MainButtons/Button_Manager/Start" method="_on_button_up"]
 [connection signal="focus_entered" from="MainButtons/Button_Manager/Start" to="MainButtons/Button_Manager/Start" method="_on_focus_entered"]
@@ -655,6 +746,12 @@ text = "WORKING TITLE
 [connection signal="mouse_entered" from="MainButtons/Button_Manager/Start" to="MainButtons/Button_Manager/Start" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="MainButtons/Button_Manager/Start" to="MainButtons/Button_Manager/Start" method="_on_mouse_exited"]
 [connection signal="pressed" from="MainButtons/Button_Manager/Start" to="." method="_on_start_pressed"]
+[connection signal="button_down" from="MainButtons/Button_Manager/Option" to="MainButtons/Button_Manager/Option" method="_on_button_down"]
+[connection signal="button_up" from="MainButtons/Button_Manager/Option" to="MainButtons/Button_Manager/Option" method="_on_button_up"]
+[connection signal="focus_entered" from="MainButtons/Button_Manager/Option" to="MainButtons/Button_Manager/Option" method="_on_focus_entered"]
+[connection signal="focus_exited" from="MainButtons/Button_Manager/Option" to="MainButtons/Button_Manager/Option" method="_on_focus_exited"]
+[connection signal="mouse_entered" from="MainButtons/Button_Manager/Option" to="MainButtons/Button_Manager/Option" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="MainButtons/Button_Manager/Option" to="MainButtons/Button_Manager/Option" method="_on_mouse_exited"]
 [connection signal="pressed" from="MainButtons/Button_Manager/Option" to="." method="_on_option_pressed"]
 [connection signal="button_down" from="MainButtons/Button_Manager/Exit" to="MainButtons/Button_Manager/Exit" method="_on_button_down"]
 [connection signal="button_up" from="MainButtons/Button_Manager/Exit" to="MainButtons/Button_Manager/Exit" method="_on_button_up"]

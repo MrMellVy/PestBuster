@@ -74,7 +74,7 @@ func start() -> void:
 	$Fade_transition/Fade_transition/AnimationPlayer.play("Fade_in")
 	await  $Fade_transition/Fade_transition/AnimationPlayer.animation_finished
 	
-	get_tree().change_scene_to_file("res://Scenes/Level/level_1.tscn")
+	get_tree().change_scene_to_file("res://Scenes/Level/level_2.tscn")
 
 
 

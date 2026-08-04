@@ -2,12 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://w7doc70s2ixt" path="res://Scenes/character/player.tscn" id="1_707jr"]
 [ext_resource type="Script" uid="uid://br4erkka3xqa8" path="res://Scripts/debug_area.gd" id="1_ydpwf"]
-[ext_resource type="Texture2D" uid="uid://dpui6y2i7aj56" path="res://Assets/Tilesets/Roads.png" id="2_av56p"]
-[ext_resource type="Texture2D" uid="uid://ck8ryb16wtmbn" path="res://Assets/Tilesets/Buildings.png" id="2_ykxxj"]
-[ext_resource type="Texture2D" uid="uid://dyhirno48mfiq" path="res://Assets/Tilesets/Platform-Sheet.png" id="3_ykxxj"]
+[ext_resource type="Texture2D" uid="uid://dpui6y2i7aj56" path="res://Assets/Tilesets/City/Roads.png" id="2_av56p"]
+[ext_resource type="Texture2D" uid="uid://ck8ryb16wtmbn" path="res://Assets/Tilesets/City/Buildings.png" id="2_ykxxj"]
+[ext_resource type="Texture2D" uid="uid://dyhirno48mfiq" path="res://Assets/Tilesets/City/Platform-Sheet.png" id="3_ykxxj"]
 [ext_resource type="PackedScene" uid="uid://by1622uoguy0" path="res://Scenes/Menu/Transition.tscn" id="6_ihk1h"]
 [ext_resource type="PackedScene" uid="uid://b7w5ldp1n0qke" path="res://Scenes/character/air_enemy.tscn" id="7_dhoeo"]
-[ext_resource type="Texture2D" uid="uid://c4au6nfdag87o" path="res://Assets/Tilesets/CollisonShapeTileset.png" id="7_ihk1h"]
+[ext_resource type="Texture2D" uid="uid://c4au6nfdag87o" path="res://Assets/Tilesets/City/CollisonShapeTileset.png" id="7_ihk1h"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_qxrlw"]
 distance = -235.0
