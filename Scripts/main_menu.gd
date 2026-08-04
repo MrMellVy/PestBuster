@@ -60,6 +60,7 @@ func _on_exit_pressed() -> void:
 func _on_fade_timer_timeout() -> void:
 	if button_type == "start" :
 		Global.gameStarted = true
+		autosave_checkpoint()
 		get_tree().change_scene_to_file("res://Scenes/Cutscene/cutscene_1.tscn")
 	elif button_type == "exit" :
 		get_tree().quit()
@@ -102,3 +103,12 @@ func _change_camera(choose_camera: Camera2D) -> void:
 	TransitionOffsetTween.tween_property(transition_camera, "offset", target_offset, 1).set_trans(Tween.TRANS_SINE)
 
 	selected_camera = choose_camera
+
+func autosave_checkpoint():
+	Savedata.save_checkpoint(
+		"res://Scenes/Level/level_1.tscn",
+		1,
+		100,
+		0
+	)
+		

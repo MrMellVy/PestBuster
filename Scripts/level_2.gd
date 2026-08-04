@@ -99,6 +99,7 @@ func position_to_next_wave():
 		await $scoreLabels/MiddleWaveAnim.animation_finished
 		SceneTransitionAnimation.play("between_wave")
 		$Player.apply_wave_stats(current_wave)
+		autosave_checkpoint()
 		
 		# Wave 2+ MORE! and this is where the airenemy spawn.
 		current_wave_batches = [3 + current_wave, 4 + current_wave, 5 + current_wave]
@@ -397,3 +398,11 @@ func _check_dynamic_spawn():
 		return
 	if batch_emy_defeated_count >= batch_emy_defeated_threshold:
 		spawn_next_batch()
+
+func autosave_checkpoint():
+	Savedata.save_checkpoint(
+		"res://Scenes/Level/level_2.tscn",
+		current_wave,
+		$Player.health,
+		$Player.damage_bonus
+	)

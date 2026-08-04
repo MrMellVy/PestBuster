@@ -84,6 +84,7 @@ func position_to_next_wave():
 		await $scoreLabels/MiddleWaveAnim.animation_finished
 		SceneTransitionAnimation.play("between_wave")
 		$Player.apply_wave_stats(current_wave)
+		autosave_checkpoint()
 		
 		if current_wave == 1:
 			# Wave 1 will spawn 2 enemies, then 4, then 3
@@ -342,3 +343,11 @@ func level_dialogue(json_filename: String) -> void:
 	Dialouge.start(json_filename)
 	await Dialouge.dialogue_finished
 	get_tree().paused = false
+
+func autosave_checkpoint():
+	Savedata.save_checkpoint(
+		"res://Scenes/Level/level_1.tscn",
+		current_wave,
+		$Player.health,
+		$Player.damage_bonus
+	)

@@ -1,0 +1,47 @@
+extends Node
+
+const SAVE_PATH := "user://autosave.fish"
+
+var scene_path := "res://Scenes/Level/level_1.tscn"
+var wave := 1
+var health := 100
+var damage_bonus := 0
+
+func _ready() -> void:
+	load_checkpoint()
+	
+func save_checkpoint(
+	p_scene_path: String,
+	p_wave: int,
+	p_health: int,
+	p_damage_bonus: int
+) -> void:
+	scene_path = p_scene_path
+	wave = p_wave
+	health = p_health
+	damage_bonus = p_damage_bonus
+	
+	var config := ConfigFile.new()
+	
+	config.set_value("autosave", "scene_path", scene_path)
+	config.set_value("autosave", "wave", wave)
+	config.set_value("autosave", "health", health)
+	config.set_value("autosave", "damage_bonus", damage_bonus)
+
+	config.save(SAVE_PATH)
+	
+	print("Autosave: ", scene_path, " | Wave:", wave)
+	
+func load_checkpoint() -> void:
+	var config := ConfigFile.new()
+	
+	if config.load(SAVE_PATH) != OK:
+		print("No autosave found.")
+		return
+	
+	scene_path = config.get_value("autosave", "scene_path", "res://Scenes/Level/level_1.tscn")
+	wave = config.get_value("autosave", "wave", 1)
+	health = config.get_value("autosave", "health", 100)
+	damage_bonus = config.get_value("autosave", "damage_bonus", 0)
+
+	print("Autosave loaded: ", scene_path, " | Wave: ", wave)
