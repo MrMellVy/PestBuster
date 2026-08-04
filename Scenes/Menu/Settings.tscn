@@ -56,9 +56,10 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 36
 tab_alignment = 1
-current_tab = 0
+current_tab = 1
 
 [node name="Window" type="TabBar" parent="Settings" unique_id=1395132641]
+visible = false
 layout_mode = 2
 tab_alignment = 1
 metadata/_tab_index = 0
@@ -157,7 +158,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Sounds" type="TabBar" parent="Settings" unique_id=1714482156]
-visible = false
 layout_mode = 2
 tab_alignment = 1
 metadata/_tab_index = 1
@@ -184,7 +184,7 @@ offset_top = 20.0
 offset_right = 46.5
 offset_bottom = 54.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 51
 text = "BGM"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -194,22 +194,23 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -46.5
-offset_top = 94.0
-offset_right = 46.5
-offset_bottom = 128.0
+offset_left = -50.5
+offset_top = 165.0
+offset_right = 50.5
+offset_bottom = 247.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 59
 text = "SFX"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="AudioControl" type="HSlider" parent="Settings/Sounds/VBoxContainer/Control" unique_id=2138663456]
 layout_mode = 0
-offset_left = 90.0
-offset_top = 47.0
-offset_right = 374.0
-offset_bottom = 89.0
+offset_left = 269.0
+offset_top = 73.0
+offset_right = 553.0
+offset_bottom = 115.0
+scale = Vector2(1.98, 1.98)
 theme_override_icons/grabber = ExtResource("7_j0jkk")
 theme_override_styles/slider = SubResource("StyleBoxLine_6dk6o")
 theme_override_styles/grabber_area = SubResource("StyleBoxLine_jr6u5")
@@ -251,10 +252,11 @@ texture_normal = ExtResource("9_mna3m")
 
 [node name="SFXControl" type="HSlider" parent="Settings/Sounds/VBoxContainer/Control" unique_id=2112076325]
 layout_mode = 0
-offset_left = 90.0
-offset_top = 115.0
-offset_right = 374.0
-offset_bottom = 157.0
+offset_left = 270.0
+offset_top = 220.0
+offset_right = 554.0
+offset_bottom = 262.0
+scale = Vector2(1.98, 1.98)
 theme_override_icons/grabber = ExtResource("7_j0jkk")
 theme_override_styles/slider = SubResource("StyleBoxLine_6dk6o")
 theme_override_styles/grabber_area = SubResource("StyleBoxLine_jr6u5")
