@@ -22,7 +22,7 @@ func _on_button_menu_pressed() -> void:
 	
 	get_tree().paused = false
 	BgmManager.set_pause_state(false)
-	
+	Savedata.save_current_scene_checkpoint()
 	get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
 	BgmManager.play_BGM("cyber_runner")
 

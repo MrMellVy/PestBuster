@@ -13,7 +13,11 @@
 [ext_resource type="Script" uid="uid://cvpv3nvnh76b4" path="res://Scripts/start.gd" id="10_gcenh"]
 [ext_resource type="Texture2D" uid="uid://cd0n5cxb6qwgv" path="res://Assets/Other/Main Menu/ButtonsMenu/Settingsnormal.png" id="11_ufnow"]
 [ext_resource type="Texture2D" uid="uid://cnv3f6f6nv5xr" path="res://Assets/Other/Main Menu/ButtonsMenu/SettingsHighlighted.png" id="12_2v82h"]
+[ext_resource type="Script" uid="uid://c4svq13fk5ol1" path="res://Scripts/continue_menu.gd" id="12_4dd87"]
+[ext_resource type="Texture2D" uid="uid://bvxg4ar052pjp" path="res://Assets/Other/Main Menu/ButtonsMenu/MenuButtonsContinue1.png" id="12_kvk33"]
+[ext_resource type="Texture2D" uid="uid://cxwgqji7gc438" path="res://Assets/Other/Main Menu/ButtonsMenu/MenuButtonsContinueHighlighted.png" id="13_kqfms"]
 [ext_resource type="Texture2D" uid="uid://bymqhve0xk36f" path="res://Assets/Other/Main Menu/ButtonsMenu/SettingsHover.png" id="13_xarbm"]
+[ext_resource type="Texture2D" uid="uid://b3ljaammcaita" path="res://Assets/Other/Main Menu/ButtonsMenu/MenuButtonsContinueHover.png" id="14_gcenh"]
 [ext_resource type="Texture2D" uid="uid://b3dd0kfmhikxr" path="res://Assets/Other/Main Menu/ButtonsMenu/MenuButtonsExit.png" id="14_svjyn"]
 [ext_resource type="Texture2D" uid="uid://h6e4x3cpftt0" path="res://Assets/Other/Main Menu/ButtonsMenu/MenuButtonsExitHighlighted.png" id="15_5jio3"]
 [ext_resource type="Script" uid="uid://dodpiemcrm6hq" path="res://Scripts/SettingsButton.gd" id="15_btwdk"]
@@ -23,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://i6vri7kwh8cb" path="res://Scenes/Menu/Settings.tscn" id="19_0jto8"]
 [ext_resource type="PackedScene" uid="uid://by1622uoguy0" path="res://Scenes/Menu/Transition.tscn" id="20_6n2g5"]
 [ext_resource type="FontFile" uid="uid://bgx1d1885ufiu" path="res://Assets/Fonts/Ririgitriz.ttf" id="21_egyys"]
+[ext_resource type="Texture2D" uid="uid://b034awq7mnrf6" path="res://Assets/Other/Tweak/white-01.png" id="28_kqfms"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m3bi6"]
 shader = ExtResource("2_egyys")
@@ -395,6 +400,73 @@ _data = {
 &"buttonstart": SubResource("Animation_t1dhk")
 }
 
+[sub_resource type="Animation" id="Animation_kqfms"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../MainButtons/Button_Manager/Continue:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(250.2564, 158.46153)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../MainButtons/Button_Manager/Continue:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_kvk33"]
+resource_name = "buttoncontinue"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../MainButtons/Button_Manager/Continue:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(250.2564, 158.46153), Vector2(253, 158.462)]
+}
+
+[sub_resource type="Animation" id="Animation_gcenh"]
+resource_name = "buttoncontinuePressed"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../MainButtons/Button_Manager/Continue:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.16666667, 0.23333335, 0.26666668, 0.33333334, 0.43333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.045, 1.045), Vector2(1.045, 1.045), Vector2(1, 1), Vector2(1, 1), Vector2(1.045, 1.045), Vector2(1.045, 1.045)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kqfms"]
+_data = {
+&"RESET": SubResource("Animation_kqfms"),
+&"buttoncontinue": SubResource("Animation_kvk33"),
+&"buttoncontinuePressed": SubResource("Animation_gcenh")
+}
+
 [sub_resource type="Animation" id="Animation_4dd87"]
 resource_name = "ButtonSettingsPressed"
 length = 0.5
@@ -656,6 +728,19 @@ texture_hover = ExtResource("9_kqfms")
 texture_focused = ExtResource("9_kqfms")
 script = ExtResource("10_gcenh")
 
+[node name="Continue" type="TextureButton" parent="MainButtons/Button_Manager" unique_id=1279407181]
+layout_mode = 0
+offset_left = 250.2564
+offset_top = 158.46153
+offset_right = 378.2564
+offset_bottom = 206.46153
+pivot_offset = Vector2(66, 24)
+texture_normal = ExtResource("12_kvk33")
+texture_pressed = ExtResource("13_kqfms")
+texture_hover = ExtResource("14_gcenh")
+texture_focused = ExtResource("14_gcenh")
+script = ExtResource("12_4dd87")
+
 [node name="Option" type="TextureButton" parent="MainButtons/Button_Manager" unique_id=521592957]
 layout_mode = 0
 offset_left = 251.0
@@ -699,6 +784,10 @@ offset_bottom = 1.0
 root_node = NodePath("../MainButtons/Button_Manager/Exit")
 libraries/ = SubResource("AnimationLibrary_5egv6")
 
+[node name="AnimationBContinue" type="AnimationPlayer" parent="." unique_id=1526873345]
+root_node = NodePath("../AnimationBStart")
+libraries/ = SubResource("AnimationLibrary_kqfms")
+
 [node name="AnimationBSettings" type="AnimationPlayer" parent="." unique_id=339872191]
 root_node = NodePath("../AnimationBStart")
 libraries/ = SubResource("AnimationLibrary_btwdk")
@@ -739,6 +828,16 @@ limit_enabled = false
 [node name="TransitionCamera" type="Camera2D" parent="." unique_id=268272595]
 position = Vector2(640, 360)
 
+[node name="ResetHoldbar" type="TextureProgressBar" parent="." unique_id=1790517601]
+layout_mode = 0
+offset_left = 1172.0
+offset_top = 638.0
+offset_right = 1192.0
+offset_bottom = 658.0
+scale = Vector2(3.435, 3.435)
+fill_mode = 5
+texture_progress = ExtResource("28_kqfms")
+
 [connection signal="button_down" from="MainButtons/Button_Manager/Start" to="MainButtons/Button_Manager/Start" method="_on_button_down"]
 [connection signal="button_up" from="MainButtons/Button_Manager/Start" to="MainButtons/Button_Manager/Start" method="_on_button_up"]
 [connection signal="focus_entered" from="MainButtons/Button_Manager/Start" to="MainButtons/Button_Manager/Start" method="_on_focus_entered"]
@@ -746,6 +845,13 @@ position = Vector2(640, 360)
 [connection signal="mouse_entered" from="MainButtons/Button_Manager/Start" to="MainButtons/Button_Manager/Start" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="MainButtons/Button_Manager/Start" to="MainButtons/Button_Manager/Start" method="_on_mouse_exited"]
 [connection signal="pressed" from="MainButtons/Button_Manager/Start" to="." method="_on_start_pressed"]
+[connection signal="button_down" from="MainButtons/Button_Manager/Continue" to="MainButtons/Button_Manager/Continue" method="_on_button_down"]
+[connection signal="button_up" from="MainButtons/Button_Manager/Continue" to="MainButtons/Button_Manager/Continue" method="_on_button_up"]
+[connection signal="focus_entered" from="MainButtons/Button_Manager/Continue" to="MainButtons/Button_Manager/Continue" method="_on_focus_entered"]
+[connection signal="focus_exited" from="MainButtons/Button_Manager/Continue" to="MainButtons/Button_Manager/Continue" method="_on_focus_exited"]
+[connection signal="mouse_entered" from="MainButtons/Button_Manager/Continue" to="MainButtons/Button_Manager/Continue" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="MainButtons/Button_Manager/Continue" to="MainButtons/Button_Manager/Continue" method="_on_mouse_exited"]
+[connection signal="pressed" from="MainButtons/Button_Manager/Continue" to="." method="_on_continue_pressed"]
 [connection signal="button_down" from="MainButtons/Button_Manager/Option" to="MainButtons/Button_Manager/Option" method="_on_button_down"]
 [connection signal="button_up" from="MainButtons/Button_Manager/Option" to="MainButtons/Button_Manager/Option" method="_on_button_up"]
 [connection signal="focus_entered" from="MainButtons/Button_Manager/Option" to="MainButtons/Button_Manager/Option" method="_on_focus_entered"]

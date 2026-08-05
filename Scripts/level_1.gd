@@ -59,6 +59,8 @@ func _ready() -> void:
 		await SceneTransitionAnimation.animation_finished
 		$Player.set_physics_process(true)
 		$Player.set_process_unhandled_input(true)
+		$Player.movementInputMonitoring = Vector2(true,true)
+		$Player/PlayerHealthbar.visible = true
 		$scoreLabels.layer = 3
 		if current_wave == 2:
 			open_path_to_zone_2()

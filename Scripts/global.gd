@@ -14,7 +14,7 @@ var EnemyAirDamageZone: Area2D
 var EnemyAirDamageAmount: int
 
 
-var current_wave: int
+var current_wave: int = 1
 var moving_to_next_wave: bool
 var saved_wave: int = 0
 var is_continuing: bool = false
