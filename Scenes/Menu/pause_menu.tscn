@@ -1,8 +1,17 @@
 [gd_scene format=3 uid="uid://bhik0cbrtt1bx"]
 
 [ext_resource type="Script" uid="uid://bw6ijyjien8ad" path="res://Scripts/pause_menu.gd" id="1_emv3i"]
+[ext_resource type="Texture2D" uid="uid://cd0n5cxb6qwgv" path="res://Assets/Other/Main Menu/ButtonsMenu/Settingsnormal.png" id="2_3hoqq"]
 [ext_resource type="PackedScene" uid="uid://by1622uoguy0" path="res://Scenes/Menu/Transition.tscn" id="2_k0w1u"]
+[ext_resource type="Texture2D" uid="uid://dkbw2cl0a4m0q" path="res://Assets/Other/Retry Menu/ButtonsMenu/ButtonsMenu.png" id="2_r7jgj"]
 [ext_resource type="PackedScene" uid="uid://i6vri7kwh8cb" path="res://Scenes/Menu/Settings.tscn" id="3_1och7"]
+[ext_resource type="Texture2D" uid="uid://oqv87l6igjry" path="res://Assets/Other/Retry Menu/ButtonsMenu/ButtonsMenuHighlighted.png" id="3_28aqb"]
+[ext_resource type="Texture2D" uid="uid://cnv3f6f6nv5xr" path="res://Assets/Other/Main Menu/ButtonsMenu/SettingsHighlighted.png" id="3_dehqv"]
+[ext_resource type="Texture2D" uid="uid://bymqhve0xk36f" path="res://Assets/Other/Main Menu/ButtonsMenu/SettingsHover.png" id="4_d37mi"]
+[ext_resource type="Texture2D" uid="uid://c6vwko8n8wmle" path="res://Assets/Other/Retry Menu/ButtonsMenu/ButtonsMenuHover.png" id="4_j2cck"]
+[ext_resource type="Texture2D" uid="uid://cvtff34qlpr7q" path="res://Assets/Other/Retry Menu/ButtonsMenu/ButtonsResume.png" id="5_2on0c"]
+[ext_resource type="Texture2D" uid="uid://ceum7jqll2dw8" path="res://Assets/Other/Retry Menu/ButtonsMenu/ButtonsResumeHighlighted.png" id="6_n2ruk"]
+[ext_resource type="Texture2D" uid="uid://16dj77br0h2y" path="res://Assets/Other/Retry Menu/ButtonsMenu/ButtonsResumeHover.png" id="7_gy8ec"]
 
 [sub_resource type="Animation" id="Animation_emv3i"]
 resource_name = "Intro"
@@ -56,276 +65,6 @@ _data = {
 &"Intro": SubResource("Animation_emv3i"),
 &"Outro": SubResource("Animation_myy0f"),
 &"RESET": SubResource("Animation_k0w1u")
-}
-
-[sub_resource type="Animation" id="Animation_1och7"]
-resource_name = "ButtonIntro"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../PauseMainButtons/ButtonManager/ButtonResume:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(0.5, 2),
-"update": 0,
-"values": [Vector2(1e-05, 1e-05), Vector2(1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../PauseMainButtons/ButtonManager/ButtonResume:theme_override_colors/font_color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.8745098, 0.8745098, 0.8745098, 0), Color(0.8745098, 0.8745098, 0.8745098, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_vmyb1"]
-resource_name = "ButtonOutro"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../PauseMainButtons/ButtonManager/ButtonResume:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(2, 0.5),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../PauseMainButtons/ButtonManager/ButtonResume:theme_override_colors/font_color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.8745098, 0.8745098, 0.8745098, 1), Color(0.8745098, 0.8745098, 0.8745098, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_bpi0q"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../PauseMainButtons/ButtonManager/ButtonResume:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../PauseMainButtons/ButtonManager/ButtonResume:theme_override_colors/font_color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.8745098, 0.8745098, 0.8745098, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_bpi0q"]
-_data = {
-&"ButtonIntro": SubResource("Animation_1och7"),
-&"ButtonOutro": SubResource("Animation_vmyb1"),
-&"RESET": SubResource("Animation_bpi0q")
-}
-
-[sub_resource type="Animation" id="Animation_sjs17"]
-resource_name = "IntroMenu"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../PauseMainButtons/ButtonManager/ButtonMenu:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(0.5, 2),
-"update": 0,
-"values": [Vector2(1e-05, 1e-05), Vector2(1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../PauseMainButtons/ButtonManager/ButtonMenu:theme_override_colors/font_color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.8745098, 0.8745098, 0.8745098, 0), Color(0.8745098, 0.8745098, 0.8745098, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_stj27"]
-resource_name = "OutroMenu"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../PauseMainButtons/ButtonManager/ButtonMenu:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(2, 0.5),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../PauseMainButtons/ButtonManager/ButtonMenu:theme_override_colors/font_color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.8745098, 0.8745098, 0.8745098, 1), Color(0.8745098, 0.8745098, 0.8745098, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_u8tnp"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../PauseMainButtons/ButtonManager/ButtonMenu:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../PauseMainButtons/ButtonManager/ButtonMenu:theme_override_colors/font_color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.8745098, 0.8745098, 0.8745098, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_stj27"]
-_data = {
-&"IntroMenu": SubResource("Animation_sjs17"),
-&"OutroMenu": SubResource("Animation_stj27"),
-&"RESET": SubResource("Animation_u8tnp")
-}
-
-[sub_resource type="Animation" id="Animation_uscpe"]
-resource_name = "IntroBSettings"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(0.5, 2),
-"update": 0,
-"values": [Vector2(1e-05, 1e-05), Vector2(1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_q7fiq"]
-resource_name = "OutroBSettings"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(2, 0.5),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_taale"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1e-05, 1e-05)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_taale"]
-_data = {
-&"IntroBSettings": SubResource("Animation_uscpe"),
-&"OutroBSettings": SubResource("Animation_q7fiq"),
-&"RESET": SubResource("Animation_taale")
 }
 
 [sub_resource type="Animation" id="Animation_0fi7f"]
@@ -393,83 +132,40 @@ grow_vertical = 2
 color = Color(0, 0.039215688, 0.08235294, 0.5882353)
 
 [node name="PauseMainButtons" type="VBoxContainer" parent="." unique_id=896766388]
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(2.045, 2.045)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -133.0
+offset_top = -157.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.025, 2.025)
+size_flags_stretch_ratio = 0.0
 
-[node name="ButtonManager" type="Control" parent="PauseMainButtons" unique_id=85806548]
+[node name="ButtonMenu" type="TextureButton" parent="PauseMainButtons" unique_id=337147808]
 layout_mode = 2
+texture_normal = ExtResource("2_r7jgj")
+texture_pressed = ExtResource("3_28aqb")
+texture_hover = ExtResource("4_j2cck")
 
-[node name="ButtonMenu" type="Button" parent="PauseMainButtons/ButtonManager" unique_id=1116237672]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 195.0
-offset_top = 210.425
-offset_right = 406.0
-offset_bottom = 281.42505
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(93.58, 35.715)
-theme_override_colors/font_color = Color(0.8745098, 0.8745098, 0.8745098, 1)
-theme_override_font_sizes/font_size = 45
-text = "MENU"
+[node name="ButtonResume" type="TextureButton" parent="PauseMainButtons" unique_id=1548859056]
+layout_mode = 2
+texture_normal = ExtResource("5_2on0c")
+texture_pressed = ExtResource("6_n2ruk")
+texture_hover = ExtResource("7_gy8ec")
 
-[node name="ButtonResume" type="Button" parent="PauseMainButtons/ButtonManager" unique_id=1718266327]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 193.0
-offset_top = 58.5
-offset_right = 408.0
-offset_bottom = 129.5
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(93.58, 35.715)
-theme_override_colors/font_color = Color(0.8745098, 0.8745098, 0.8745098, 1)
-theme_override_font_sizes/font_size = 45
-text = "RESUME"
-
-[node name="Settings" type="Button" parent="PauseMainButtons/ButtonManager" unique_id=1872917195]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 192.5
-offset_top = 133.5
-offset_right = 407.5
-offset_bottom = 204.5
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(1e-05, 1e-05)
-pivot_offset = Vector2(93.58, 35.715)
-theme_override_colors/font_color = Color(0.8745098, 0.8745098, 0.8745098, 1)
-theme_override_font_sizes/font_size = 45
-text = "SETTINGS"
+[node name="Settings" type="TextureButton" parent="PauseMainButtons" unique_id=2082747066]
+layout_mode = 2
+texture_normal = ExtResource("2_3hoqq")
+texture_pressed = ExtResource("3_dehqv")
+texture_hover = ExtResource("4_d37mi")
 
 [node name="BackgroundAnim" type="AnimationPlayer" parent="." unique_id=2071476812]
 libraries/ = SubResource("AnimationLibrary_1och7")
-
-[node name="ButtonAnim" type="AnimationPlayer" parent="." unique_id=495738377]
-root_node = NodePath("../BackgroundAnim")
-libraries/ = SubResource("AnimationLibrary_bpi0q")
-
-[node name="BMenuAnim" type="AnimationPlayer" parent="." unique_id=991270339]
-root_node = NodePath("../BackgroundAnim")
-libraries/ = SubResource("AnimationLibrary_stj27")
-
-[node name="BSettingsAnim" type="AnimationPlayer" parent="." unique_id=1709666006]
-root_node = NodePath("../PauseMainButtons/ButtonManager/Settings")
-libraries/ = SubResource("AnimationLibrary_taale")
 
 [node name="Fade_transition" parent="." unique_id=250833089 instance=ExtResource("2_k0w1u")]
 visible = false
@@ -483,6 +179,6 @@ pivot_offset = Vector2(323, 168)
 [node name="SettingsScreenAnim" type="AnimationPlayer" parent="." unique_id=1190829513]
 libraries/ = SubResource("AnimationLibrary_524vl")
 
-[connection signal="pressed" from="PauseMainButtons/ButtonManager/ButtonMenu" to="." method="_on_button_menu_pressed"]
-[connection signal="pressed" from="PauseMainButtons/ButtonManager/ButtonResume" to="." method="_on_button_resume_pressed"]
-[connection signal="pressed" from="PauseMainButtons/ButtonManager/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="PauseMainButtons/ButtonMenu" to="." method="_on_button_menu_pressed"]
+[connection signal="pressed" from="PauseMainButtons/ButtonResume" to="." method="_on_button_resume_pressed"]
+[connection signal="pressed" from="PauseMainButtons/Settings" to="." method="_on_settings_pressed"]

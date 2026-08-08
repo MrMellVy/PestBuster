@@ -646,6 +646,7 @@ centered = false
 
 [node name="ParallaxC1" type="Parallax2D" parent="Background2" unique_id=338023433]
 scale = Vector2(0.625, 0.625)
+scroll_scale = Vector2(0.5, 0)
 repeat_size = Vector2(2056.095, 0)
 autoscroll = Vector2(-10, 0)
 repeat_times = 2
@@ -701,6 +702,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -1282.0
+offset_top = -1.0
 offset_right = 1277.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -767,6 +770,32 @@ texture_hover = ExtResource("16_3778w")
 texture_focused = ExtResource("16_3778w")
 script = ExtResource("17_k3736")
 
+[node name="CreditsButton" type="Button" parent="MainButtons/Button_Manager" unique_id=1729895563]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 1.389
+offset_left = -10.769231
+offset_top = 333.33334
+offset_right = 6.6707687
+offset_bottom = 364.33334
+grow_horizontal = 2
+grow_vertical = 2
+text = "credit"
+
+[node name="Back_Creditsbutton" type="Button" parent="MainButtons/Button_Manager" unique_id=422620879]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 1.389
+offset_left = -668.2051
+offset_top = 333.3333
+offset_right = -650.7651
+offset_bottom = 364.3333
+grow_horizontal = 2
+grow_vertical = 2
+text = "Back"
+
 [node name="title" type="Sprite2D" parent="." unique_id=402884615]
 texture_filter = 1
 position = Vector2(615, 138)
@@ -825,18 +854,31 @@ limit_enabled = false
 position = Vector2(1920, 360)
 limit_enabled = false
 
+[node name="Camera2D3" type="Camera2D" parent="." unique_id=648728117]
+position = Vector2(-642, 359)
+limit_enabled = false
+
 [node name="TransitionCamera" type="Camera2D" parent="." unique_id=268272595]
 position = Vector2(640, 360)
 
 [node name="ResetHoldbar" type="TextureProgressBar" parent="." unique_id=1790517601]
 layout_mode = 0
-offset_left = 1172.0
-offset_top = 638.0
-offset_right = 1192.0
-offset_bottom = 658.0
+offset_left = 1181.0
+offset_top = 614.0
+offset_right = 1201.0
+offset_bottom = 634.0
 scale = Vector2(3.435, 3.435)
 fill_mode = 5
 texture_progress = ExtResource("28_kqfms")
+
+[node name="ResetLabel" type="Label" parent="." unique_id=124638747]
+layout_mode = 0
+offset_left = 957.0
+offset_top = 693.0
+offset_right = 1268.0
+offset_bottom = 716.0
+text = "Hold ESC to reset save file."
+horizontal_alignment = 2
 
 [connection signal="button_down" from="MainButtons/Button_Manager/Start" to="MainButtons/Button_Manager/Start" method="_on_button_down"]
 [connection signal="button_up" from="MainButtons/Button_Manager/Start" to="MainButtons/Button_Manager/Start" method="_on_button_up"]
@@ -866,5 +908,7 @@ texture_progress = ExtResource("28_kqfms")
 [connection signal="mouse_entered" from="MainButtons/Button_Manager/Exit" to="MainButtons/Button_Manager/Exit" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="MainButtons/Button_Manager/Exit" to="MainButtons/Button_Manager/Exit" method="_on_mouse_exited"]
 [connection signal="pressed" from="MainButtons/Button_Manager/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="MainButtons/Button_Manager/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="MainButtons/Button_Manager/Back_Creditsbutton" to="." method="_on_back_creditsbutton_pressed"]
 [connection signal="timeout" from="Fade_transition/fade_timer" to="." method="_on_fade_timer_timeout"]
 [connection signal="timeout" from="Fade_transition/fade_timerstart" to="." method="_on_fade_timer_timeout"]

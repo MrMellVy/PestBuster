@@ -8,6 +8,8 @@ var fade_startup = false
 @onready var transition_camera: Camera2D = $TransitionCamera
 @onready var continue_button: TextureButton = $MainButtons/Button_Manager/Continue
 @onready var reset_hold_bar: TextureProgressBar = $ResetHoldbar
+@onready var reset_label: Label = $ResetLabel
+@onready var start_button: TextureButton = $MainButtons/Button_Manager/Start
 
 var TransitionTween: Tween
 var TransitionZoomTween: Tween
@@ -34,11 +36,8 @@ func _ready() -> void:
 	_change_camera($Camera2D)
 	handle_connecting_signals()
 	
-	var has_save := Savedata.has_valid_save()
+	update_menu_buttons()
 	
-	$MainButtons/Button_Manager/Start.visible = not has_save
-	continue_button.visible = has_save
-	continue_button.disabled = not has_save
 	if not continue_button.pressed.is_connected(_on_continue_pressed):
 		continue_button.pressed.connect(_on_continue_pressed)
 	
@@ -51,20 +50,34 @@ func _process(delta: float) -> void:
 			reset_hold_bar.visible = true
 			reset_hold_bar.value = esc_hold_time / ESC_HOLD_TIME * 100.0
 			
+			var remaining: float = max(0.0, ESC_HOLD_TIME - esc_hold_time)
+			var seconds_left: int  = int(ceil(remaining))
+			
+			reset_label.text = "Hold ESC for %d seconds to reset save file." % seconds_left
+	
 		if esc_hold_time >= ESC_HOLD_TIME:
 			Savedata.reset_save()
 			esc_reset_done = true
 			
-			continue_button.visible = false
-			continue_button.disabled = true
-			
+			reset_label.text = "Save file reset"
 			reset_hold_bar.value = 100.0
+			
+			update_menu_buttons()
+			
 			print("ASave deleted")
-	else :
+	else:
 		esc_hold_time = 0.0
 		esc_reset_done = false
 		reset_hold_bar.visible = false
 		reset_hold_bar.value = 0.0
+		reset_label.text = "Hold ESC to reset save file."
+
+func update_menu_buttons() -> void:
+	var has_save := Savedata.has_valid_save()
+	
+	$MainButtons/Button_Manager/Start.visible = not has_save
+	continue_button.visible = has_save
+	continue_button.disabled = not has_save
 
 func _on_start_pressed() -> void:
 	button_type = "start"
@@ -108,6 +121,32 @@ func _on_exit_pressed() -> void:
 	$Fade_transition/fade_timer.start()
 	$Fade_transition/Fade_transition/AnimationPlayer.play("Fade_in")
 
+func _on_back_settings_menu() -> void:
+	print("it work.")
+	#main_buttons.visible = true
+	#settings_menu.visible = false
+	#$title.visible = true
+	#$RichTextLabel.visible = true
+	if $AnimationBSettings.current_animation == "ButtonSettingsPressed" and $AnimationBSettings.is_playing():
+		await $AnimationBSettings.animation_finished
+	if selected_camera == $Camera2D2:
+		_change_camera($Camera2D)
+	else:
+		_change_camera($Camera2D2)
+	
+
+func _on_credits_button_pressed() -> void:
+	if selected_camera == $Camera2D:
+		_change_camera($Camera2D3)
+	else:
+		_change_camera($Camera2D)
+
+
+func _on_back_creditsbutton_pressed() -> void:
+	if selected_camera == $Camera2D3:
+		_change_camera($Camera2D)
+	else:
+		_change_camera($Camera2D3)
 
 func _on_fade_timer_timeout() -> void:
 	if button_type == "start" :
@@ -134,20 +173,7 @@ func _on_fade_timer_timeout() -> void:
 		get_tree().quit()
 	elif fade_startup == true:
 		$Fade_transition.hide()
-
-func _on_back_settings_menu() -> void:
-	print("it work.")
-	#main_buttons.visible = true
-	#settings_menu.visible = false
-	#$title.visible = true
-	#$RichTextLabel.visible = true
-	if $AnimationBSettings.current_animation == "ButtonSettingsPressed" and $AnimationBSettings.is_playing():
-		await $AnimationBSettings.animation_finished
-	if selected_camera == $Camera2D2:
-		_change_camera($Camera2D)
-	else:
-		_change_camera($Camera2D2)
-	
+		
 func handle_connecting_signals() -> void:
 	settings_menu.back_settings_menu.connect(_on_back_settings_menu)
 
