@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://b7w5ldp1n0qke" path="res://Scenes/character/air_enemy.tscn" id="12_mt3j2"]
 [ext_resource type="Texture2D" uid="uid://carjrejog3yx1" path="res://Assets/Tilesets/City/Car.png" id="13_akeww"]
 [ext_resource type="Texture2D" uid="uid://ch50ooqblafik" path="res://Assets/Background/Day/Cloud1.png" id="13_fvaf1"]
+[ext_resource type="PackedScene" uid="uid://ca0uhuktjhjrw" path="res://Scenes/character/Support_CH.tscn" id="13_hnohd"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hnohd"]
 load_path = "res://.godot/imported/Cloud0.png-f7d3aa7d538e5189608ed4a3e481fd2e.ctex"
@@ -373,6 +374,11 @@ size = Vector2(20, 669.4375)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_akeww"]
 size = Vector2(51, 259)
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_3k1vp"]
+vertices = PackedVector2Array(147.60156, 9.921875, -122.82031, 8.0625, -120.15625, -147.13281, 141.38281, -150.85938)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-130, -157, -133, 18, 158, 20, 151, -161)])
+
 [node name="Level_1" type="Node2D" unique_id=630728870]
 script = ExtResource("1_pvlc2")
 starting_wave = 1
@@ -517,11 +523,6 @@ position = Vector2(1552, 4)
 
 [node name="scoreLabels" parent="." unique_id=969138735 instance=ExtResource("10_q2tg5")]
 
-[node name="Player" parent="." unique_id=1296403870 instance=ExtResource("1_b828a")]
-position = Vector2(2, 166.565)
-collision_mask = 78
-jumps = 2
-
 [node name="WorldCamera" type="Camera2D" parent="." unique_id=1481191766]
 position = Vector2(0, 166.565)
 zoom = Vector2(4.52, 4.52)
@@ -553,6 +554,21 @@ polygon = PackedVector2Array(-539, 74, -515, -83, 1703, -89, 1689, 104, -487, 81
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wave2ZoneTrigger" unique_id=975688168]
 position = Vector2(601.5, 36.5)
 shape = SubResource("RectangleShape2D_akeww")
+
+[node name="SupportCH" parent="." unique_id=1941443743 node_paths=PackedStringArray("player") instance=ExtResource("13_hnohd")]
+position = Vector2(-24, 156)
+collision_layer = 0
+collision_mask = 76
+player = NodePath("../Player")
+
+[node name="Player" parent="." unique_id=1296403870 instance=ExtResource("1_b828a")]
+position = Vector2(2, 166.565)
+collision_mask = 78
+jumps = 2
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=2049356555]
+position = Vector2(-24, 156)
+navigation_polygon = SubResource("NavigationPolygon_3k1vp")
 
 [connection signal="timeout" from="TimerHealthPowerUp" to="." method="_on_timer_health_power_up_timeout"]
 [connection signal="body_entered" from="Wave2ZoneTrigger" to="." method="_on_wave_2_zone_trigger_body_entered"]

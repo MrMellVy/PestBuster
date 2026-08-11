@@ -33,6 +33,7 @@ var hit_by_skill: bool = false
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 func _ready() -> void:
+	add_to_group("enemies")
 	health = health_max
 	#This code below to make the shader doesn't apply to all enemy in this scene. I think it make a unique copy? it doesn't work on inspector but work on code.
 	if animated_sprite_2d.material:

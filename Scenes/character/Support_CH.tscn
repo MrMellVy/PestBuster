@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://ca0uhuktjhjrw"]
+
+[ext_resource type="Script" uid="uid://dq64un8f463vb" path="res://Scripts/Support_CH.gd" id="1_telfh"]
+[ext_resource type="Texture2D" uid="uid://d2w04og03l3gl" path="res://Assets/Other/Tweak/SlimeFly.png" id="2_xl1fm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dwm71"]
+size = Vector2(64, 64)
+
+[node name="SupportCH" type="CharacterBody2D" unique_id=1941443743]
+script = ExtResource("1_telfh")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=503895054]
+scale = Vector2(0.305, 0.305)
+texture = ExtResource("2_xl1fm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1999399263]
+scale = Vector2(0.33, 0.33)
+shape = SubResource("RectangleShape2D_dwm71")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=860527975]

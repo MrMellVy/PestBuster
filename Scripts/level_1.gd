@@ -65,9 +65,9 @@ func _ready() -> void:
 		if current_wave == 2:
 			open_path_to_zone_2()
 		else:
-			await level_dialogue("CS_00_1")
 			$Player/PlayerHealthbar.visible = true
 			$Player/PlayerHealthbar.layer = 0
+			await level_dialogue("CS_00_1")
 			$Player/PlayerHealthbar.layer = 1
 			$scoreLabels/MiddleWaveAnim.play("LeftStart")
 			await $scoreLabels/MiddleWaveAnim.animation_finished

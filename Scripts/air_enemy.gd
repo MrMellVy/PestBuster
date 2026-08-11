@@ -33,6 +33,7 @@ var off_screen_timer: float = 0.0
 var player: CharacterBody2D
 
 func _ready() -> void:
+	add_to_group("enemies")
 	if animated_sprite_2d.material:
 		animated_sprite_2d.material = animated_sprite_2d.material.duplicate()
 
