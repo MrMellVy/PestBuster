@@ -31,6 +31,7 @@ var rand_x
 var rand_y
 
 func _ready() -> void:
+	Global.enemies_passive = false
 	#region for camera movement.
 	world_camera.make_current()
 	$Player.world_camera = world_camera
@@ -378,12 +379,21 @@ func _on_wave_2_zone_trigger_body_entered(body: Node2D) -> void:
 		position_to_next_wave()
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventKey and event.pressed and event.keycode == KEY_K:
-		print("SKIP. Next Batch.")
-		for child in get_children():
-			if child is Enemy or child is EnemyAir:
-				if not child.defeat:
-					child.take_damage(999999)
+	if event is InputEventKey and event.pressed:
+		if event.keycode == KEY_K:
+			print("SKIP. Next Batch.")
+			for child in get_children():
+				if child is Enemy or child is EnemyAir:
+					if not child.defeat:
+						child.take_damage(999999)
+		elif event.keycode == KEY_T:
+			Global.enemies_passive = !Global.enemies_passive
+			
+			if Global.enemies_passive:
+				print("Enemies stop target player.")
+			else:
+				print("Enemies target player again.")
+
 
 func level_dialogue(json_filename: String) -> void:
 	get_tree().paused = true
@@ -398,6 +408,8 @@ func _check_dynamic_spawn():
 		return
 	if batch_emy_defeated_count >= batch_emy_defeated_threshold:
 		spawn_next_batch()
+
+
 
 func autosave_checkpoint():
 	Savedata.save_checkpoint(

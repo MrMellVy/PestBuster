@@ -44,7 +44,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y += gravity * delta
 		velocity.x = 0
 		
-	if Global.playerAlive:
+	if Global.playerAlive and not Global.enemies_passive:
 		is_enemy_chase = true
 	elif !Global.playerAlive:
 		is_enemy_chase = false
@@ -52,7 +52,7 @@ func _physics_process(delta: float) -> void:
 	Global.EnemyDamageZone = $EnemyDealDamageArea
 	player = Global.playerBody
 	
-	if player_in_area and can_attack and !defeat and !taking_damage:
+	if player_in_area and can_attack and !defeat and !taking_damage and not Global.enemies_passive:
 		attack_sequence()
 	
 	calculate_movement()
@@ -61,7 +61,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 func calculate_movement():
-	if player_in_area and player != null:
+	if player_in_area and player != null and not Global.enemies_passive:
 			var dir_to_player = sign(player.global_position.x - global_position.x)
 			if dir_to_player != 0:
 				dir.x = dir_to_player

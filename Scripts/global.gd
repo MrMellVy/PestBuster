@@ -20,7 +20,7 @@ var saved_wave: int = 0
 var is_continuing: bool = false
 var saved_player_health: int = 100
 var saved_player_damage_bonus: int = 0
-
+var enemies_passive: bool = false
 
 var high_score = 0
 var current_score: int

@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bhoc04ca7xoh5" path="res://Scenes/Other/ScoreWaveLabels.tscn" id="11_g5aqo"]
 [ext_resource type="PackedScene" uid="uid://w7doc70s2ixt" path="res://Scenes/character/player.tscn" id="12_53c2y"]
 [ext_resource type="PackedScene" uid="uid://bhik0cbrtt1bx" path="res://Scenes/Menu/pause_menu.tscn" id="13_j3u46"]
+[ext_resource type="PackedScene" uid="uid://ca0uhuktjhjrw" path="res://Scenes/character/Support_CH.tscn" id="15_d52fh"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hnohd"]
 load_path = "res://.godot/imported/Cloud0.png-f7d3aa7d538e5189608ed4a3e481fd2e.ctex"
@@ -813,6 +814,11 @@ size = Vector2(20, 669.4375)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_akeww"]
 size = Vector2(51, 259)
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_1kfys"]
+vertices = PackedVector2Array(859.47656, -55.140625, 857.47656, -15.90625, 31.257813, -8.078125, 26.789063, -66.84375)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(16, -77, 22, 2, 867, -6, 870, -65)])
+
 [node name="Level_2" type="Node2D" unique_id=630728870]
 script = ExtResource("1_8b42i")
 enemy_scene = ExtResource("2_d8j35")
@@ -956,11 +962,6 @@ position = Vector2(1552, 4)
 
 [node name="scoreLabels" parent="." unique_id=969138735 instance=ExtResource("11_g5aqo")]
 
-[node name="Player" parent="." unique_id=1296403870 instance=ExtResource("12_53c2y")]
-position = Vector2(-394, 166)
-collision_mask = 78
-jumps = 2
-
 [node name="WorldCamera" type="Camera2D" parent="." unique_id=1481191766]
 position = Vector2(0, 166.565)
 zoom = Vector2(4.52, 4.52)
@@ -992,6 +993,20 @@ polygon = PackedVector2Array(-539, 74, -515, -83, 1703, -89, 1689, 104, -487, 81
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wave2ZoneTrigger" unique_id=975688168]
 position = Vector2(601.5, 36.5)
 shape = SubResource("RectangleShape2D_akeww")
+
+[node name="Player" parent="." unique_id=1296403870 instance=ExtResource("12_53c2y")]
+position = Vector2(-406, 151)
+collision_mask = 78
+jumps = 2
+
+[node name="SupportCH" parent="." unique_id=1941443743 node_paths=PackedStringArray("player") instance=ExtResource("15_d52fh")]
+position = Vector2(-301, 126)
+collision_layer = 0
+player = NodePath("../Player")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=1760181654]
+position = Vector2(-394, 166)
+navigation_polygon = SubResource("NavigationPolygon_1kfys")
 
 [connection signal="timeout" from="TimerHealthPowerUp" to="." method="_on_timer_health_power_up_timeout"]
 [connection signal="body_entered" from="Wave2ZoneTrigger" to="." method="_on_wave_2_zone_trigger_body_entered"]

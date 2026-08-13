@@ -53,28 +53,35 @@ func _process(delta: float) -> void:
 	Global.EnemyAirDamageAmount = damage_to_deal
 	Global.EnemyAirDamageZone = $AEDamageZone
 	
-	if player_in_area and can_attack and !defeat and !taking_damage and !is_attacking:
+	if player_in_area and can_attack and !defeat and !taking_damage and !is_attacking and Global.playerAlive and not Global.enemies_passive:
 		attack_sequence()
 	
 	move(delta)
 	handle_animation()
 	
 func move(delta):
-	if defeat: return
+	if defeat: 
+		return
 	
 	player = Global.playerBody
 	is_roaming = true
+	
+	var has_player: bool = player != null and is_instance_valid(player)
+	var can_chase: bool = has_player and Global.playerAlive and not Global.enemies_passive and is_enemyair_chase
+	
 	if is_attacking:
 		velocity = Vector2.ZERO
 		
-	elif !taking_damage and is_enemyair_chase:
-		velocity = position.direction_to(player.position) * speed
-		if velocity.x !=0:
-			dir.x = sign(velocity.x)
-			
 	elif taking_damage:
-		var knockback_dir = position.direction_to(player.position) * -50
-		velocity = knockback_dir
+		if has_player:
+			var knockback_dir = position.direction_to(player.position) * -50
+			velocity = knockback_dir
+		else:
+			velocity = Vector2.ZERO
+	elif can_chase:
+		velocity = position.direction_to(player.position) * speed
+		if velocity.x != 0:
+			dir.x = sign(velocity.x)
 	else:
 		velocity += dir * speed * delta
 	move_and_slide()
@@ -107,6 +114,13 @@ func attack_sequence():
 	has_dealt_damage = false
 	
 	await get_tree().create_timer(0.4).timeout
+	
+	if defeat or taking_damage or Global.enemies_passive:
+		is_attacking = false
+		is_dealing_damage = false
+		can_attack = true
+		return
+	
 	is_dealing_damage = true
 	await  animated_sprite_2d.animation_finished
 	

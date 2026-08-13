@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var player: Player
 
-@export var SPEED: int = 300.0
+@export var SPEED: int = 200.0
 @export var ACCELARATION: int = 500
 @export var FRICTION: int = 400
 @export var GRAVITY: float = 980.0
@@ -13,27 +13,31 @@ extends CharacterBody2D
 @export var detection_range: float = 220.0
 @export var attack_range: float = 70.0
 @export var attack_cooldown: float = 1.5
+@export var skill_dash_speed: float = 300.0
+@export var skill_dash_time: float = 0.25
+@export var skill_radius: float = 90.0
 @export_range(0.0, 1.0) var skill_chance: float = 0.3
 
-@onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var Anim_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
 
-var target_enemy: Enemy = null
+var target_enemy: CharacterBody2D = null
 var attack_cooldown_timer: float = 0.0
 var is_attacking: bool = false
 var is_using_skill: bool = false
 var retarget_time: float = 0.0
+var skill_dash_dir: float = 0.0
+var is_skill_dashing: bool = false
 const RETARGET_DELAY: float = 0.2
 
+
+
 func _ready() -> void:
-	navigation_agent_2d.path_desired_distance = 200.0
-	navigation_agent_2d.target_desired_distance = 50.0
+	navigation_agent_2d.path_desired_distance = 20.0
+	navigation_agent_2d.target_desired_distance = 10.0
 	navigation_agent_2d.path_max_distance = 200.0
 
 func _physics_process(delta: float) -> void:
-	if Engine.get_physics_frames() % 60 == 0:
-		print("Enemies found: ", get_tree().get_nodes_in_group("enemies").size())
-	
 	if not is_on_floor():
 		velocity.y += GRAVITY * delta
 	
@@ -41,38 +45,52 @@ func _physics_process(delta: float) -> void:
 	if attack_cooldown_timer < 0.0:
 		attack_cooldown_timer = 0.0
 	
+	retarget_time -= delta
+	if retarget_time < 0.0:
+		retarget_time = 0.0
+	
 	if player == null or not is_instance_valid(player) or not Global.playerAlive:
 		velocity.x = move_toward(velocity.x, 0.0, FRICTION * delta)
+		play_anim("idle")
 		move_and_slide()
 		return
 		
-	retarget_time -= delta
-	if retarget_time <= 0.0:
+	if target_enemy == null or not is_instance_valid(target_enemy) or target_enemy.defeat:
+		find_target_enemy()
+		retarget_time = RETARGET_DELAY
+	elif retarget_time <= 0.0:
 		find_target_enemy()
 		retarget_time = RETARGET_DELAY
 	
 	if is_attacking:
-		velocity.x = move_toward(velocity.x, 0.0, FRICTION * delta)
+		if is_skill_dashing:
+			velocity.x = skill_dash_dir * skill_dash_speed
+		else:
+			velocity.x = move_toward(velocity.x, 0.0, FRICTION * delta)
 		move_and_slide()
 		return
 	
 	if target_enemy != null:
 		var distance_to_enemy: float = global_position.distance_to(target_enemy.global_position)
-		
 		navigation_agent_2d.target_position = target_enemy.global_position
-		change_direction(sign(target_enemy.global_position.x - global_position.x))
+		
+		if abs(target_enemy.global_position.x - global_position.x) > 6.0:
+			change_direction(sign(target_enemy.global_position.x - global_position.x))
 		
 		if distance_to_enemy <= attack_range:
-			velocity.x = move_toward(velocity.x, 0.0, FRICTION * delta)
+			velocity.x = move_toward(velocity.x, 0.0,FRICTION * delta)
+			play_anim("idle")
 			try_attack()
+			move_and_slide()
+			return
 		else:
 			follow_navigation(delta)
 	else:
 		navigation_agent_2d.target_position = player.global_position + Vector2(30,0)
 		follow_navigation(delta)
-		
+	update_movement_animation()
 	move_and_slide()
-	
+
 func follow_navigation(delta: float) -> void:
 	if navigation_agent_2d.is_target_reached():
 		velocity.x = move_toward(velocity.x, 0.0, FRICTION * delta)
@@ -80,29 +98,63 @@ func follow_navigation(delta: float) -> void:
 	
 	var direction: Vector2 = (
 		navigation_agent_2d.get_next_path_position() - global_position).normalized()
-		
-	change_direction(direction.x)
+	
+	if abs(direction.x) > 0.1:
+		change_direction(direction.x)
 	velocity.x = move_toward(velocity.x, direction.x * SPEED, ACCELARATION * delta)
 	
+
 func find_target_enemy() -> void:
 	target_enemy = null
 	var closet_distance: float = detection_range
 	
 	for node: Node in get_tree().get_nodes_in_group("enemies"):
-		var enemy := node as Enemy
-		
-		if enemy == null:
+		if not is_instance_valid(node):
 			continue
 		
-		if not is_instance_valid(enemy) or enemy.defeat:
+		if not node is CharacterBody2D:
 			continue
-
-		var distance_to_enemy: float = global_position.distance_to(enemy.global_position)
+		
+		if not node.has_method("take_damage"):
+			continue
+		
+		if "defeat" in node and node.defeat:
+			continue
+		
+		var enemy_node: CharacterBody2D = node
+		var distance_to_enemy: float = global_position.distance_to(enemy_node.global_position)
 		
 		if distance_to_enemy <= closet_distance:
 			closet_distance = distance_to_enemy
-			target_enemy = enemy
+			target_enemy = enemy_node
 			
+func update_movement_animation() -> void:
+	if is_attacking or is_using_skill:
+		return
+	if abs(velocity.x) > 10.0:
+		play_anim("run")
+	else:
+		play_anim("idle")
+
+func play_anim(anim_name: String) -> void:
+	if Anim_sprite.sprite_frames == null:
+		return
+	
+	if not Anim_sprite.sprite_frames.has_animation(anim_name):
+		return
+		
+	if Anim_sprite.animation != anim_name:
+		Anim_sprite.play(anim_name)
+		
+func play_anim_attack(anim_name: String) -> void:
+	if Anim_sprite.sprite_frames == null:
+		return
+	
+	if not Anim_sprite.sprite_frames.has_animation(anim_name):
+		return
+		
+	Anim_sprite.play(anim_name)
+
 func try_attack() -> void:
 	if is_attacking:
 		return
@@ -113,12 +165,12 @@ func try_attack() -> void:
 	if target_enemy == null:
 		return
 		
-	if not is_instance_valid(target_enemy) or target_enemy.defeat:
+	if not is_valid_target(target_enemy):
 		return
 	
 	is_attacking = true
 	
-	var attack_target: Enemy = target_enemy
+	var attack_target: CharacterBody2D = target_enemy
 	
 	if abs(attack_target.global_position.x -global_position.x) > 5.0:
 		change_direction(sign(attack_target.global_position.x - global_position.x))
@@ -131,33 +183,87 @@ func try_attack() -> void:
 	is_attacking = false
 	attack_cooldown_timer = attack_cooldown
 		
-func normal_attack(target: Enemy) -> void:
+func normal_attack(target: CharacterBody2D) -> void:
 	print("Support Char Normal Attack start.")
 	#modulate = Color.GREEN
-	#Attack anim here.
+	play_anim_attack("atk1")
 	await  get_tree().create_timer(0.2).timeout
 	
-	if is_instance_valid(target) and not target.defeat:
+	if is_valid_target(target):
 		target.take_damage(attack_damage)
 
-func use_skill_a(target: Enemy) -> void:
-	print("Support Char Normal Attack start.")
+func use_skill_a(target: CharacterBody2D) -> void:
+	print("Support Char Skill start.")
+	
 	is_using_skill = true
-	#modulate = Color.YELLOW
-	#Play anim here.
+	modulate = Color.YELLOW
+	play_anim_attack("skill_a")
+	
 	await get_tree().create_timer(0.35).timeout
+	
+	if not is_valid_target(target):
+		is_using_skill = false
+		modulate = Color.WHITE
+		return
+	var dir: float = sign(target.global_position.x - global_position.x)
+	
+	if dir == 0.0:
+		if Anim_sprite.flip_h:
+			dir = -1.0
+		else:
+			dir = 1.0
+	change_direction(dir)
+	
+	is_skill_dashing = true
+	skill_dash_dir = dir
 	
 	var hit_count: int = 3
 	
 	for i in range(hit_count):
-		if is_instance_valid(target) and not target.defeat:
-			target.take_damage(skill_damage)
-			
-		await  get_tree().create_timer(0.2).timeout
+		var enemies := get_enemies_in_range(skill_radius)
+		print("Skill hit: ", enemies.size())
 		
+		for enemy in enemies:
+			if is_valid_target(enemy):
+				enemy.take_damage(skill_damage)
+			
+			await get_tree().create_timer(0.15).timeout
+		
+		is_skill_dashing = false
+		skill_dash_dir = 0.0
+		velocity.x = 0.0
+		is_using_skill = false
+		modulate = Color.WHITE
+
+func get_enemies_in_range(radius: float) -> Array:
+	var enemies: Array = []
+	for node: Node in get_tree().get_nodes_in_group("enemies"):
+		var enemy:= node as CharacterBody2D
+		
+		if enemy == null:
+			continue
+		
+		if not is_instance_valid(enemy) or enemy.defeat:
+			continue
+		
+		if global_position.distance_to(enemy.global_position) <= radius:
+			enemies.append(enemy)
+	return enemies
+
+func is_valid_target(target: CharacterBody2D) -> bool:
+	if not is_instance_valid(target):
+		return false
+	if not target.has_method("take_damage"):
+		return false
+	if "defeat" in target and target.defeat:
+		return false
+	return true
 
 func change_direction(direction: float) -> void:
-	if sign(direction) == -1:
-		sprite_2d.flip_h = false
-	elif sign(direction) == 1:
-		sprite_2d.flip_h = true
+	if abs(direction) < 0.1:
+		return
+		
+	if direction < 0.0:
+		Anim_sprite.flip_h = true
+	else:
+		Anim_sprite.flip_h = false
