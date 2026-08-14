@@ -119,6 +119,10 @@ skill_attack={
 ]
 }
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://Scripts/Translate/Translate.en.translation", "res://Scripts/Translate/Translate.id.translation")
+
 [layer_names]
 
 2d_physics/layer_1="Player"

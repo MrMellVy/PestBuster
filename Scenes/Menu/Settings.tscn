@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://cy6e6f1wg5s58" path="res://Scripts/audio_control.gd" id="8_egbht"]
 [ext_resource type="Texture2D" uid="uid://4vi7vfmn4j81" path="res://Assets/Other/Tweak/Volume Ori/Volume.png" id="9_mna3m"]
 [ext_resource type="Script" uid="uid://ospuvieprdcc" path="res://Scripts/sfx_control.gd" id="10_tr27g"]
+[ext_resource type="Script" uid="uid://buytacwayv54w" path="res://Scripts/LanguageSettings.gd" id="11_ann11"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_6dk6o"]
 color = Color(0.41598046, 0.41598046, 0.41598028, 1)
@@ -49,21 +50,21 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 85.0
-offset_top = 28.0
+offset_top = 36.0
 offset_right = -93.0
-offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 36
 tab_alignment = 1
-current_tab = 0
+current_tab = 1
 
-[node name="Window" type="TabBar" parent="Settings" unique_id=1395132641]
+[node name="KEY_WINDOW" type="TabBar" parent="Settings" unique_id=1395132641]
+visible = false
 layout_mode = 2
 tab_alignment = 1
 metadata/_tab_index = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Settings/Window" unique_id=1519029697]
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings/KEY_WINDOW" unique_id=1519029697]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -72,10 +73,10 @@ offset_bottom = -31.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Control" type="Control" parent="Settings/Window/VBoxContainer" unique_id=917596116]
+[node name="Control" type="Control" parent="Settings/KEY_WINDOW/VBoxContainer" unique_id=917596116]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Settings/Window/VBoxContainer/Control" unique_id=1894647946]
+[node name="Label" type="Label" parent="Settings/KEY_WINDOW/VBoxContainer/Control" unique_id=1894647946]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -86,11 +87,11 @@ offset_right = 46.5
 offset_bottom = 44.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 35
-text = "Window"
+text = "KEY_WINDOW"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="FullScreenControl" type="CheckButton" parent="Settings/Window/VBoxContainer/Control" unique_id=2106782770]
+[node name="FullScreenControl" type="CheckButton" parent="Settings/KEY_WINDOW/VBoxContainer/Control" unique_id=2106782770]
 visible = false
 layout_mode = 0
 offset_left = 81.0
@@ -102,7 +103,7 @@ theme_override_icons/unchecked = ExtResource("3_fymb1")
 text = "Fullscreen"
 script = ExtResource("4_upvq6")
 
-[node name="ScreenControl" type="OptionButton" parent="Settings/Window/VBoxContainer/Control" unique_id=571442091]
+[node name="ScreenControl" type="OptionButton" parent="Settings/KEY_WINDOW/VBoxContainer/Control" unique_id=571442091]
 layout_mode = 0
 offset_left = 616.61993
 offset_top = 99.0
@@ -119,7 +120,7 @@ popup/item_2/text = "Fullscreen"
 popup/item_2/id = 2
 script = ExtResource("5_afaf4")
 
-[node name="WindowModeLabel" type="Label" parent="Settings/Window/VBoxContainer/Control/ScreenControl" unique_id=669171993]
+[node name="WindowModeLabel" type="Label" parent="Settings/KEY_WINDOW/VBoxContainer/Control/ScreenControl" unique_id=669171993]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -129,11 +130,11 @@ offset_right = -215.0
 offset_bottom = 32.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 19
-text = "Window Mode"
+text = "KEY_Wmode"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="WindowControl" type="OptionButton" parent="Settings/Window/VBoxContainer/Control" unique_id=448353658]
+[node name="WindowControl" type="OptionButton" parent="Settings/KEY_WINDOW/VBoxContainer/Control" unique_id=448353658]
 layout_mode = 0
 offset_left = 616.62
 offset_top = 239.67
@@ -142,7 +143,7 @@ offset_bottom = 270.66998
 scale = Vector2(1.91, 1.91)
 script = ExtResource("6_o14jo")
 
-[node name="WindowSizeLabel" type="Label" parent="Settings/Window/VBoxContainer/Control/WindowControl" unique_id=1235341031]
+[node name="WindowSizeLabel" type="Label" parent="Settings/KEY_WINDOW/VBoxContainer/Control/WindowControl" unique_id=1235341031]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -152,17 +153,16 @@ offset_right = -215.0
 offset_bottom = 32.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 19
-text = "Window Size"
+text = "KEY_Wsize"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Sounds" type="TabBar" parent="Settings" unique_id=1714482156]
-visible = false
+[node name="KEY_SOUNDS" type="TabBar" parent="Settings" unique_id=1714482156]
 layout_mode = 2
 tab_alignment = 1
 metadata/_tab_index = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Settings/Sounds" unique_id=1808019618]
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings/KEY_SOUNDS" unique_id=1808019618]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -171,10 +171,10 @@ offset_bottom = -31.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Control" type="Control" parent="Settings/Sounds/VBoxContainer" unique_id=120040181]
+[node name="Control" type="Control" parent="Settings/KEY_SOUNDS/VBoxContainer" unique_id=120040181]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Settings/Sounds/VBoxContainer/Control" unique_id=305208980]
+[node name="Label" type="Label" parent="Settings/KEY_SOUNDS/VBoxContainer/Control" unique_id=305208980]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -189,7 +189,7 @@ text = "BGM"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label2" type="Label" parent="Settings/Sounds/VBoxContainer/Control" unique_id=167341696]
+[node name="Label2" type="Label" parent="Settings/KEY_SOUNDS/VBoxContainer/Control" unique_id=167341696]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -204,7 +204,7 @@ text = "SFX"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AudioControl" type="HSlider" parent="Settings/Sounds/VBoxContainer/Control" unique_id=2138663456]
+[node name="AudioControl" type="HSlider" parent="Settings/KEY_SOUNDS/VBoxContainer/Control" unique_id=2138663456]
 layout_mode = 0
 offset_left = 269.0
 offset_top = 73.0
@@ -221,7 +221,7 @@ value = 1.0
 script = ExtResource("8_egbht")
 audio_bus_name = "BGM"
 
-[node name="VolumeLabel" type="Label" parent="Settings/Sounds/VBoxContainer/Control/AudioControl" unique_id=891905625]
+[node name="VolumeLabel" type="Label" parent="Settings/KEY_SOUNDS/VBoxContainer/Control/AudioControl" unique_id=891905625]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.042
@@ -236,7 +236,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "0%"
 
-[node name="VolumeIcon" type="TextureButton" parent="Settings/Sounds/VBoxContainer/Control/AudioControl" unique_id=1290649332]
+[node name="VolumeIcon" type="TextureButton" parent="Settings/KEY_SOUNDS/VBoxContainer/Control/AudioControl" unique_id=1290649332]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.113000005
@@ -250,7 +250,7 @@ offset_bottom = -9.600002
 scale = Vector2(1.6, 1.6)
 texture_normal = ExtResource("9_mna3m")
 
-[node name="SFXControl" type="HSlider" parent="Settings/Sounds/VBoxContainer/Control" unique_id=2112076325]
+[node name="SFXControl" type="HSlider" parent="Settings/KEY_SOUNDS/VBoxContainer/Control" unique_id=2112076325]
 layout_mode = 0
 offset_left = 270.0
 offset_top = 220.0
@@ -267,7 +267,7 @@ value = 1.0
 script = ExtResource("10_tr27g")
 audio_bus_name = "SFX"
 
-[node name="SFXLabel" type="Label" parent="Settings/Sounds/VBoxContainer/Control/SFXControl" unique_id=726828652]
+[node name="SFXLabel" type="Label" parent="Settings/KEY_SOUNDS/VBoxContainer/Control/SFXControl" unique_id=726828652]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.042
@@ -282,7 +282,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "0%"
 
-[node name="SFXIcon" type="TextureButton" parent="Settings/Sounds/VBoxContainer/Control/SFXControl" unique_id=2079366788]
+[node name="SFXIcon" type="TextureButton" parent="Settings/KEY_SOUNDS/VBoxContainer/Control/SFXControl" unique_id=2079366788]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.113000005
@@ -295,6 +295,63 @@ offset_right = -9.467999
 offset_bottom = -9.600002
 scale = Vector2(1.6, 1.6)
 texture_normal = ExtResource("9_mna3m")
+
+[node name="KEY_LANGUAGE" type="TabBar" parent="Settings" unique_id=684116989]
+visible = false
+layout_mode = 2
+tab_alignment = 1
+metadata/_tab_index = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings/KEY_LANGUAGE" unique_id=1524286388 node_paths=PackedStringArray("language_option")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -31.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("11_ann11")
+language_option = NodePath("Control/Language")
+
+[node name="Control" type="Control" parent="Settings/KEY_LANGUAGE/VBoxContainer" unique_id=248350069]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Settings/KEY_LANGUAGE/VBoxContainer/Control" unique_id=338723221]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -46.5
+offset_top = 10.0
+offset_right = 46.5
+offset_bottom = 44.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 35
+text = "KEY_LANGUAGE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Language" type="OptionButton" parent="Settings/KEY_LANGUAGE/VBoxContainer/Control" unique_id=1678406020]
+layout_mode = 0
+offset_left = 616.61993
+offset_top = 99.0
+offset_right = 750.6197
+offset_bottom = 130.0
+scale = Vector2(1.91, 1.91)
+
+[node name="Label" type="Label" parent="Settings/KEY_LANGUAGE/VBoxContainer/Control/Language" unique_id=1560056172]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -247.0
+offset_top = -2.0
+offset_right = -215.0
+offset_bottom = 32.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 19
+text = "KEY_LANGUAGE"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Back" type="Button" parent="." unique_id=1198480062]
 layout_mode = 1
@@ -313,10 +370,10 @@ scale = Vector2(1.675, 1.675)
 pivot_offset = Vector2(69.552246, 15.522369)
 theme_override_colors/font_color = Color(0.009324101, 0.009324101, 0.009324101, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_ehtkc")
-text = "Back"
+text = "KEY_BACK"
 
-[connection signal="toggled" from="Settings/Window/VBoxContainer/Control/FullScreenControl" to="Settings/Window/VBoxContainer/Control/FullScreenControl" method="_on_toggled"]
-[connection signal="item_selected" from="Settings/Window/VBoxContainer/Control/ScreenControl" to="Settings/Window/VBoxContainer/Control/ScreenControl" method="_on_item_selected"]
-[connection signal="item_selected" from="Settings/Window/VBoxContainer/Control/WindowControl" to="Settings/Window/VBoxContainer/Control/WindowControl" method="_on_item_selected"]
-[connection signal="value_changed" from="Settings/Sounds/VBoxContainer/Control/AudioControl" to="Settings/Sounds/VBoxContainer/Control/AudioControl" method="_on_value_changed"]
-[connection signal="value_changed" from="Settings/Sounds/VBoxContainer/Control/SFXControl" to="Settings/Sounds/VBoxContainer/Control/SFXControl" method="_on_value_changed"]
+[connection signal="toggled" from="Settings/KEY_WINDOW/VBoxContainer/Control/FullScreenControl" to="Settings/KEY_WINDOW/VBoxContainer/Control/FullScreenControl" method="_on_toggled"]
+[connection signal="item_selected" from="Settings/KEY_WINDOW/VBoxContainer/Control/ScreenControl" to="Settings/KEY_WINDOW/VBoxContainer/Control/ScreenControl" method="_on_item_selected"]
+[connection signal="item_selected" from="Settings/KEY_WINDOW/VBoxContainer/Control/WindowControl" to="Settings/KEY_WINDOW/VBoxContainer/Control/WindowControl" method="_on_item_selected"]
+[connection signal="value_changed" from="Settings/KEY_SOUNDS/VBoxContainer/Control/AudioControl" to="Settings/KEY_SOUNDS/VBoxContainer/Control/AudioControl" method="_on_value_changed"]
+[connection signal="value_changed" from="Settings/KEY_SOUNDS/VBoxContainer/Control/SFXControl" to="Settings/KEY_SOUNDS/VBoxContainer/Control/SFXControl" method="_on_value_changed"]

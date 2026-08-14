@@ -1,0 +1,11 @@
+[
+        {"name": "Kamu", "text": "Kota ini..", "face": "SpriteFace_Silence_1"},
+        {"name": "Kamu", "text": "Heh, tak pernah kukira aku akan kembali kesini lagi.", "face": "SpriteFace_Silence"},
+        {"name": "Kamu", "text": "...", "face": "SpriteFace_Silence"},
+        {"name": "Kamu", "text": "Baik.. sesuatu tentag..", "face": "SpriteFace_Haha_1"},
+        {"name": "Kamu", "text": "Tikus.. tikus mutasi-", "face": "SpriteFace_Hm"},
+        {"name": "Kamu", "text": "Itukah? Apakah itu terlalu besar..", "face": "SpriteFace_Haha_2", "event": "cam2" },
+        {"name": "Kamu", "text": "Ti-", "face": "SpriteFace_What", "auto": 0.2, "event": "car_crash"}
+]
+
+

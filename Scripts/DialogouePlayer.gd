@@ -7,17 +7,20 @@ signal dialogue_event(event_name: String)
 var dialogue = []
 var current_dialogue_id = 0
 var d_active = false
+var current_dialogue_name := ""
 
 func _ready() -> void:
 	$NinePatchRect.visible = false
 	process_mode = Node.PROCESS_MODE_ALWAYS
-
+	add_to_group("refresh_language")
 	if get_tree().current_scene == self and test_dialogue != "":
 		start(test_dialogue)
+
 func start(dialogue_name: String):
 	if d_active:
 		return
-	var target_file_path = "res://Scripts/Dialogue/" + dialogue_name + ".json"
+	current_dialogue_name = dialogue_name
+	var target_file_path := get_localized_dialogue_path(dialogue_name)
 	d_active = true
 	$NinePatchRect.visible = true
 	
@@ -97,6 +100,64 @@ func next_script():
 		if d_active and dialogue[current_dialogue_id] == current_line:
 			next_script()
 
+func get_language_code() -> String:
+	var locale := TranslationServer.get_locale()
+	
+	if locale == "":
+		return "en"
+		
+	return locale.split("_")[0]
+
+func get_localized_dialogue_path(dialogue_name: String) -> String:
+	var base_path := "res://Scripts/Dialogue/"
+	var language := get_language_code()
+	var localized_path := base_path + dialogue_name + "_" + language + ".json"
+	
+	if FileAccess.file_exists(localized_path):
+		return localized_path
+	return base_path + dialogue_name + ".json"
+	var fallback_path := base_path + dialogue_name + ".json"
+	
+	print("Using fallback path: ", fallback_path)
+	
+	return fallback_path
+	
+func refresh_language() -> void:
+	if not d_active:
+		return
+	if current_dialogue_name == "":
+		return
+
+	var old_id := int(current_dialogue_id)
+	var target_file_path := get_localized_dialogue_path(current_dialogue_name)
+
+	dialogue = load_dialogue(target_file_path)
+	if dialogue == null or dialogue.is_empty():
+		stop()
+		return
+	current_dialogue_id = int(clamp(old_id, 0, dialogue.size() - 1))
+	refresh_current_line()
+	
+func refresh_current_line() -> void:
+	if current_dialogue_id < 0  or current_dialogue_id >= dialogue.size():
+		return
+		
+	var current_line = dialogue[current_dialogue_id]
+	
+	$NinePatchRect/Name.text = current_line.get("name", "Unw")
+	$NinePatchRect/Dialogue.text = current_line.get("text", "...")
+	
+	var face_name = current_line.get("face", "")
+	
+	if face_name != "":
+		var texture_path = "res://Assets/Sprites/PlayerFace/" + face_name + ".png"
+		if ResourceLoader.exists(texture_path):
+			$NinePatchRect/PictureProtait.texture = load(texture_path)
+		else:
+			print("Face Texture not found, ", texture_path)
+			$NinePatchRect/PictureProtait.texture = null
+	else:
+		$NinePatchRect/PictureProtait.texture = null
 func stop() -> void:
 	d_active = false
 	$NinePatchRect.visible = false
