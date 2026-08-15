@@ -3,8 +3,8 @@ extends CharacterBody2D
 @export var player: Player
 
 @export var SPEED: int = 200.0
-@export var ACCELARATION: int = 500
-@export var FRICTION: int = 400
+@export var ACCELARATION: int = 700
+@export var FRICTION: int = 800
 @export var GRAVITY: float = 980.0
 
 @export_category("Support Combat")
@@ -18,6 +18,9 @@ extends CharacterBody2D
 @export var skill_radius: float = 90.0
 @export_range(0.0, 1.0) var skill_chance: float = 0.3
 
+@export_category("Debug")
+@export var disable_enemy_detection := false
+
 @onready var Anim_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
 
@@ -30,13 +33,12 @@ var skill_dash_dir: float = 0.0
 var is_skill_dashing: bool = false
 const RETARGET_DELAY: float = 0.2
 
-
-
 func _ready() -> void:
-	navigation_agent_2d.path_desired_distance = 20.0
-	navigation_agent_2d.target_desired_distance = 10.0
+	navigation_agent_2d.path_desired_distance = 4.0
+	navigation_agent_2d.target_desired_distance = 6.0
 	navigation_agent_2d.path_max_distance = 200.0
-
+	navigation_agent_2d.avoidance_enabled = false
+	
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y += GRAVITY * delta
@@ -55,12 +57,15 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		return
 		
-	if target_enemy == null or not is_instance_valid(target_enemy) or target_enemy.defeat:
-		find_target_enemy()
-		retarget_time = RETARGET_DELAY
-	elif retarget_time <= 0.0:
-		find_target_enemy()
-		retarget_time = RETARGET_DELAY
+	if disable_enemy_detection:
+		target_enemy = null
+	else:
+		if target_enemy == null or not is_instance_valid(target_enemy) or target_enemy.defeat:
+			find_target_enemy()
+			retarget_time = RETARGET_DELAY
+		elif retarget_time <= 0.0:
+			find_target_enemy()
+			retarget_time = RETARGET_DELAY
 	
 	if is_attacking:
 		if is_skill_dashing:
@@ -86,23 +91,41 @@ func _physics_process(delta: float) -> void:
 		else:
 			follow_navigation(delta)
 	else:
-		navigation_agent_2d.target_position = player.global_position + Vector2(30,0)
-		follow_navigation(delta)
+		var follow_pos := player.global_position + Vector2(30,0)
+		navigation_agent_2d.target_position = follow_pos
+		if global_position.distance_to(follow_pos) > 16.0:
+			follow_navigation(delta)
+		else:
+			velocity.x = move_toward(velocity.x, 0.0, FRICTION * delta)
+			
 	update_movement_animation()
 	move_and_slide()
 
 func follow_navigation(delta: float) -> void:
 	if navigation_agent_2d.is_target_reached():
-		velocity.x = move_toward(velocity.x, 0.0, FRICTION * delta)
+		velocity.x = move_toward(velocity.x, 0.0, FRICTION * 3.0 * delta)
 		return
+	var next_pos := navigation_agent_2d.get_next_path_position()
+	var direction := (next_pos - global_position).normalized()
+	var distance_to_target := global_position.distance_to(navigation_agent_2d.target_position)
+
+	var target_speed := float(SPEED)
 	
-	var direction: Vector2 = (
-		navigation_agent_2d.get_next_path_position() - global_position).normalized()
+	if distance_to_target < 100.0:
+		target_speed = min(float(SPEED), distance_to_target * 4.0)
 	
 	if abs(direction.x) > 0.1:
 		change_direction(direction.x)
-	velocity.x = move_toward(velocity.x, direction.x * SPEED, ACCELARATION * delta)
 	
+	var desired_velocity := direction.x * target_speed
+	
+	if abs(direction.x) > 10.0 and sign(velocity.x) != sign(desired_velocity):
+		velocity.x = move_toward(velocity.x, desired_velocity, ACCELARATION * delta)
+	else:
+		velocity.x = move_toward(velocity.x, direction.x * target_speed, ACCELARATION * delta)
+	
+	if distance_to_target < 8.0:
+		velocity.x = move_toward(velocity.x, 0.0, FRICTION * 3.0 * delta)
 
 func find_target_enemy() -> void:
 	target_enemy = null
@@ -156,6 +179,8 @@ func play_anim_attack(anim_name: String) -> void:
 	Anim_sprite.play(anim_name)
 
 func try_attack() -> void:
+	if disable_enemy_detection:
+		return
 	if is_attacking:
 		return
 		
@@ -267,3 +292,12 @@ func change_direction(direction: float) -> void:
 		Anim_sprite.flip_h = true
 	else:
 		Anim_sprite.flip_h = false
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed and not event.echo:
+		if event.keycode == KEY_I:
+			disable_enemy_detection = not disable_enemy_detection
+			if disable_enemy_detection:
+				target_enemy = null
+			
+			print("SpChar dect: ", disable_enemy_detection)

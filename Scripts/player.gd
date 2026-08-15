@@ -457,20 +457,24 @@ func _physics_process(delta) -> void:
 			velocity.x = 0
 		check_hitbox()
 	if shake:
-		time += 1
-		shake_duration -= delta
-		var final_pos = Vector2(sin(time) * 1, sin(time) * 2)
+		if world_camera == null or not is_instance_valid(world_camera):
+			world_camera = get_viewport().get_camera_2d()
+		
 		if world_camera:
+			time += 1
+			shake_duration -= delta
+			
+			var final_pos = Vector2(sin(time) * 1, sin(time) * 2)
 			world_camera.offset = lerp(world_camera.offset, final_pos, 0.2)
+			
+			if shake_duration <= 0.0:
+				shake = false
+				time = 0
+				world_camera.offset = Vector2.ZERO
+				
 		else:
-			$Camera2D.offset = lerp($Camera2D.offset, final_pos, 0.2)
-	if shake_duration <= 0.0:
-		shake = false
-		time = 0
-		if world_camera:
-			world_camera.offset = Vector2.ZERO
-		else:
-			$Camera2D.offset = Vector2.ZERO
+			shake = false
+			time = 0
 	move_and_slide()
 	
 func check_hitbox():
@@ -531,8 +535,13 @@ func handle_defeat_animation():
 	#var tween = create_tween()
 	#tween.tween_property(world_camera, "zoom", Vector2(4.0,4.0), 0.5)
 	#await  tween.finished
-	world_camera.zoom.x = 4
-	world_camera.zoom.y = 4
+	if world_camera == null or not is_instance_valid(world_camera):
+		world_camera = get_viewport().get_camera_2d()
+	
+	if world_camera:
+		world_camera.zoom.x = 4
+		world_camera.zoom.y = 4
+		
 	await get_tree().create_timer(3.5).timeout
 	Global.playerAlive = false
 	await get_tree().create_timer(2.0).timeout
