@@ -872,6 +872,7 @@ fill_mode = 5
 texture_progress = ExtResource("28_kqfms")
 
 [node name="ResetLabel" type="Label" parent="." unique_id=124638747]
+modulate = Color(0.46229059, 0.46229064, 0.4622904, 1)
 layout_mode = 0
 offset_left = 957.0
 offset_top = 693.0

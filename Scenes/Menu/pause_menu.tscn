@@ -67,58 +67,6 @@ _data = {
 &"RESET": SubResource("Animation_k0w1u")
 }
 
-[sub_resource type="Animation" id="Animation_0fi7f"]
-resource_name = "CloseSettingsScreen"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Options:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, 16.035), Vector2(0, -357.015)]
-}
-
-[sub_resource type="Animation" id="Animation_ix48p"]
-resource_name = "OpenSettingsScreen"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Options:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4006618),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0, -357.015), Vector2(0, 16.035), Vector2(0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_524vl"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Options:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -357.015)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_524vl"]
-_data = {
-&"CloseSettingsScreen": SubResource("Animation_0fi7f"),
-&"OpenSettingsScreen": SubResource("Animation_ix48p"),
-&"RESET": SubResource("Animation_524vl")
-}
-
 [node name="PauseMenu" type="CanvasLayer" unique_id=1424256854]
 process_mode = 3
 script = ExtResource("1_emv3i")
@@ -171,13 +119,8 @@ libraries/ = SubResource("AnimationLibrary_1och7")
 visible = false
 
 [node name="Options" parent="." unique_id=439920918 instance=ExtResource("3_1och7")]
-visible = false
-offset_top = -357.015
-offset_bottom = -357.0149
+offset_bottom = 0.00012207031
 pivot_offset = Vector2(323, 168)
-
-[node name="SettingsScreenAnim" type="AnimationPlayer" parent="." unique_id=1190829513]
-libraries/ = SubResource("AnimationLibrary_524vl")
 
 [connection signal="pressed" from="PauseMainButtons/ButtonMenu" to="." method="_on_button_menu_pressed"]
 [connection signal="pressed" from="PauseMainButtons/ButtonResume" to="." method="_on_button_resume_pressed"]
