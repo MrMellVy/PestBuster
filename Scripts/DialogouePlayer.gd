@@ -143,7 +143,6 @@ func refresh_current_line() -> void:
 		return
 		
 	var current_line = dialogue[current_dialogue_id]
-	
 	$NinePatchRect/Name.text = current_line.get("name", "Unw")
 	$NinePatchRect/Dialogue.text = current_line.get("text", "...")
 	

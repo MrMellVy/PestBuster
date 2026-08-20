@@ -1,0 +1,8 @@
+[
+        {"name": "Symbol", "text": "~`!@#$%^&*()_+-={}|[]\\:;'\",./<>?", "face": "SpriteFace_Silence_1"},
+        {"name": "CAP", "text": "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "face": "SpriteFace_Silence"},
+        {"name": "small", "text": "abcdefghijklmnopqrstuvwxyz", "face": "SpriteFace_Silence"},
+
+]
+
+

@@ -43,7 +43,7 @@ _data = {
 
 [node name="Dialogue" type="CanvasLayer" unique_id=872236530]
 script = ExtResource("1_3lq5a")
-test_dialogue = "CS_00_1"
+test_dialogue = "CS_00_3"
 
 [node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=507488428]
 anchors_preset = 10
@@ -78,9 +78,9 @@ patch_margin_bottom = 12
 [node name="Name" type="RichTextLabel" parent="NinePatchRect" unique_id=1859198936]
 layout_mode = 0
 offset_left = 27.0
-offset_top = 11.0
+offset_top = 15.0
 offset_right = 478.0
-offset_bottom = 68.0
+offset_bottom = 59.0
 theme_override_fonts/normal_font = ExtResource("3_welnc")
 theme_override_font_sizes/normal_font_size = 41
 text = "NAME"
@@ -90,10 +90,10 @@ layout_mode = 0
 offset_left = 33.0
 offset_top = 62.0
 offset_right = 926.0
-offset_bottom = 247.0
+offset_bottom = 228.0
 theme_override_fonts/normal_font = ExtResource("3_welnc")
-theme_override_font_sizes/normal_font_size = 34
-text = "Dialogue	"
+theme_override_font_sizes/normal_font_size = 48
+text = "Dialogue"
 visible_characters = 0
 visible_characters_behavior = 1
 visible_ratio = 0.0

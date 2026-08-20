@@ -260,6 +260,25 @@ func use_skill_a(target: CharacterBody2D) -> void:
 		is_using_skill = false
 		modulate = Color.WHITE
 
+func debug_force_skill_a() -> void:
+	if is_attacking or is_using_skill:
+		return
+
+	if target_enemy == null or not is_valid_target(target_enemy):
+		find_target_enemy()
+
+	if target_enemy == null or not is_valid_target(target_enemy):
+		print("Support cheat: no enemy for skill_a")
+		return
+
+	attack_cooldown_timer = 0.0
+	is_attacking = true
+
+	await use_skill_a(target_enemy)
+
+	is_attacking = false
+	attack_cooldown_timer = attack_cooldown
+
 func get_enemies_in_range(radius: float) -> Array:
 	var enemies: Array = []
 	for node: Node in get_tree().get_nodes_in_group("enemies"):
@@ -301,3 +320,5 @@ func _unhandled_input(event: InputEvent) -> void:
 				target_enemy = null
 			
 			print("SpChar dect: ", disable_enemy_detection)
+		elif  event.keycode == KEY_K:
+			debug_force_skill_a()

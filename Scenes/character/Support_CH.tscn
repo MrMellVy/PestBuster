@@ -193,6 +193,7 @@ animations = [{
 size = Vector2(13.818184, 32)
 
 [node name="SupportCH" type="CharacterBody2D" unique_id=1941443743]
+z_index = 1
 collision_mask = 76
 script = ExtResource("1_telfh")
 
