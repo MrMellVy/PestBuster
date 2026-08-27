@@ -1073,7 +1073,7 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_76hi5"]
 size = Vector2(1699, 22)
 
-[node name="Player" type="CharacterBody2D" unique_id=1296403870 node_paths=PackedStringArray("PlayerSprite", "PlayerCollider") groups=["player"]]
+[node name="player" type="CharacterBody2D" unique_id=1296403870 node_paths=PackedStringArray("PlayerSprite", "PlayerCollider") groups=["player"]]
 collision_mask = 15
 script = ExtResource("1_3smsa")
 PlayerSprite = NodePath("AnimatedSprite2D")

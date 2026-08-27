@@ -253,20 +253,22 @@ func trigger_next_phase():
 	
 	if current_wave == 4:
 		open_path_to_zone_2()
+	else:
+		is_spawning = true
+		
+		$scoreLabels/MiddlecurrentwaveLabel.visible = true
+		
+		$scoreLabels/ScoreAnim.play("ScoreUp")
+		$scoreLabels/WaveAnim.play("WaveUp")
+		$scoreLabels/MiddleWaveAnim.play("LeftStart")
 
-	is_spawning = true
-	
-	$scoreLabels/ScoreAnim.play("ScoreUp")
-	$scoreLabels/WaveAnim.play("WaveUp")
-	$scoreLabels/MiddleWaveAnim.play("LeftStart")
+		await $scoreLabels/ScoreAnim.animation_finished
+		await $scoreLabels/WaveAnim.animation_finished
+		await $scoreLabels/MiddleWaveAnim.animation_finished
+		await get_tree().create_timer(1.5).timeout
 
-	await $scoreLabels/ScoreAnim.animation_finished
-	await $scoreLabels/WaveAnim.animation_finished
-	await $scoreLabels/MiddleWaveAnim.animation_finished
-	await get_tree().create_timer(1.5).timeout
-
-	is_changing_phase = false
-	position_to_next_wave()
+		is_changing_phase = false
+		position_to_next_wave()
 		
 func _process(_delta):
 	if !Global.playerAlive and !is_transitioning:
@@ -286,12 +288,16 @@ func update_score():
 		Global.current_score = 0
 
 func open_path_to_zone_2():
+	is_spawning = false
+	
+	$scoreLabels/MiddlecurrentwaveLabel.visible = false
+	
 	#put the sign point to the right here unc.
 	$"Border Collision/BorderCollisionRight/CollisionShape2D".set_deferred("disabled", true)
 	print("path to new zone open! waiting to move to the right.")
 	
 	var tween = create_tween()
-	tween.tween_property(world_camera, "limit_right", 1680, 2.0).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(world_camera, "limit_right", 687, 2.0).set_trans(Tween.TRANS_SINE)
 
 func _on_timer_health_power_up_timeout() -> void:
 	var active_powerups = get_tree().get_nodes_in_group("health_powerups")
@@ -308,9 +314,11 @@ func _on_timer_health_power_up_timeout() -> void:
 	var max_attempts = 10
 	
 	for attempt in range(max_attempts):
-		rand_x = randi_range(-435, 550)
+		rand_x = randi_range(-435, 140)
 		if current_wave == 4:
-			rand_x = randi_range(576, 1668)
+			rand_x = randi_range(164, 687)
+		if current_wave == 5:
+			rand_x = randi_range(711, 1463)
 		rand_y = -70
 		new_position = Vector2(rand_x, rand_y)
 	
@@ -355,9 +363,9 @@ func _on_wave_2_zone_trigger_body_entered(body: Node2D) -> void:
 		$"Border Collision/BorderCollisionRight/CollisionShape2D".set_deferred("disabled", false)
 		
 		var tween = create_tween()
-		tween.tween_property(world_camera, "limit_left", 570, 1.0).set_trans(Tween.TRANS_SINE)
+		tween.tween_property(world_camera, "limit_left", 164, 1.0).set_trans(Tween.TRANS_SINE)
 		
-		$scoreLabels.visible = false
+		$scoreLabels/MiddlecurrentwaveLabel.visible = false
 		$Player/PlayerHealthbar.visible = false
 		
 		await level_dialogue("CS_00_2")

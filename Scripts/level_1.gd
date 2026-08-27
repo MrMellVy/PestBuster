@@ -263,9 +263,9 @@ func _on_timer_health_power_up_timeout() -> void:
 	var max_attempts = 10
 	
 	for attempt in range(max_attempts):
-		rand_x = randi_range(-435, 550)
+		rand_x = randi_range(-435, 298)
 		if current_wave == 2:
-			rand_x = randi_range(576, 1668)
+			rand_x = randi_range(321, 799)
 		rand_y = -70
 		new_position = Vector2(rand_x, rand_y)
 	

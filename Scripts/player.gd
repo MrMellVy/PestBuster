@@ -137,6 +137,7 @@ var dashTap
 
 func _ready() -> void:
 	Global.playerBody = self
+	add_to_group("player")
 	current_attack = false
 	defeat = false
 	can_take_damage = true
@@ -486,7 +487,7 @@ func check_hitbox():
 		if parent_node == self:
 			continue
 			
-		if parent_node is Enemy or EnemyAir:
+		if parent_node.is_in_group("enemies"):
 			if "is_dealing_damage" in parent_node and "has_dealt_damage" in parent_node:
 				if parent_node.is_dealing_damage == true and parent_node.has_dealt_damage == false:
 					var dir = sign(global_position.x - parent_node.global_position.x)

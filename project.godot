@@ -132,6 +132,7 @@ locale/translations=PackedStringArray("res://Scripts/Translate/Translate.en.tran
 2d_physics/layer_5="AirAreaEmy"
 2d_physics/layer_6="AirEmy"
 2d_physics/layer_7="Border"
+2d_physics/layer_9="boss"
 
 [physics]
 

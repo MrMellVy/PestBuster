@@ -23,10 +23,10 @@
 [ext_resource type="Script" uid="uid://dodpiemcrm6hq" path="res://Scripts/SettingsButton.gd" id="15_btwdk"]
 [ext_resource type="Texture2D" uid="uid://bavjjf76l83xm" path="res://Assets/Other/Main Menu/ButtonsMenu/MenuButtonsExitHover.png" id="16_3778w"]
 [ext_resource type="Script" uid="uid://c57isocbv8ffm" path="res://Scripts/exit.gd" id="17_k3736"]
-[ext_resource type="Texture2D" uid="uid://crqx2cn2iyfwu" path="res://Assets/Other/Main Menu/Title/NewTitle.png" id="18_llifo"]
 [ext_resource type="PackedScene" uid="uid://i6vri7kwh8cb" path="res://Scenes/Menu/Settings.tscn" id="19_0jto8"]
 [ext_resource type="PackedScene" uid="uid://by1622uoguy0" path="res://Scenes/Menu/Transition.tscn" id="20_6n2g5"]
 [ext_resource type="FontFile" uid="uid://bgx1d1885ufiu" path="res://Assets/Fonts/Ririgitriz.ttf" id="21_egyys"]
+[ext_resource type="Texture2D" uid="uid://dshg88t21fy5h" path="res://Assets/Other/Main Menu/Title/ratroyings.png" id="24_kqfms"]
 [ext_resource type="Texture2D" uid="uid://b034awq7mnrf6" path="res://Assets/Other/Tweak/white-01.png" id="28_kqfms"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m3bi6"]
@@ -361,7 +361,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(251, 158)]
+"values": [Vector2(251, 199.487)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -390,7 +390,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(251, 158), Vector2(253, 158)]
+"values": [Vector2(251, 199.487), Vector2(253, 199.487)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5egv6"]
@@ -412,7 +412,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(250.2564, 158.46153)]
+"values": [Vector2(250.256, 199.487)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -441,7 +441,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(250.2564, 158.46153), Vector2(253, 158.462)]
+"values": [Vector2(250.256, 199.487), Vector2(253, 158.462)]
 }
 
 [sub_resource type="Animation" id="Animation_gcenh"]
@@ -495,7 +495,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(251, 209)]
+"values": [Vector2(251, 250.538)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -524,7 +524,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(251, 209), Vector2(253, 209)]
+"values": [Vector2(251, 250.538), Vector2(253, 250.538)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_btwdk"]
@@ -562,7 +562,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(251, 260.36)]
+"values": [Vector2(251, 301.386)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -591,7 +591,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(251, 260.36), Vector2(253, 260.36)]
+"values": [Vector2(251, 301.386), Vector2(253, 301.386)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8dnnj"]
@@ -707,7 +707,7 @@ offset_top = -1.0
 offset_right = 1277.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.13725491)
+color = Color(0, 0, 0, 0.36078432)
 
 [node name="MainButtons" type="VBoxContainer" parent="." unique_id=334783007]
 layout_mode = 1
@@ -721,9 +721,9 @@ layout_mode = 2
 [node name="Start" type="TextureButton" parent="MainButtons/Button_Manager" unique_id=2039831401]
 layout_mode = 0
 offset_left = 251.0
-offset_top = 158.0
+offset_top = 199.487
 offset_right = 379.00018
-offset_bottom = 206.0
+offset_bottom = 247.487
 pivot_offset = Vector2(66, 24)
 texture_normal = ExtResource("7_b801w")
 texture_pressed = ExtResource("8_kvk33")
@@ -733,10 +733,10 @@ script = ExtResource("10_gcenh")
 
 [node name="Continue" type="TextureButton" parent="MainButtons/Button_Manager" unique_id=1279407181]
 layout_mode = 0
-offset_left = 250.2564
-offset_top = 158.46153
-offset_right = 378.2564
-offset_bottom = 206.46153
+offset_left = 250.256
+offset_top = 199.487
+offset_right = 378.256
+offset_bottom = 247.487
 pivot_offset = Vector2(66, 24)
 texture_normal = ExtResource("12_kvk33")
 texture_pressed = ExtResource("13_kqfms")
@@ -747,9 +747,9 @@ script = ExtResource("12_4dd87")
 [node name="Option" type="TextureButton" parent="MainButtons/Button_Manager" unique_id=521592957]
 layout_mode = 0
 offset_left = 251.0
-offset_top = 209.0
-offset_right = 379.00018
-offset_bottom = 257.0
+offset_top = 250.538
+offset_right = 379.00015
+offset_bottom = 298.538
 pivot_offset = Vector2(66.4359, 24.846146)
 texture_normal = ExtResource("11_ufnow")
 texture_pressed = ExtResource("12_2v82h")
@@ -760,9 +760,9 @@ script = ExtResource("15_btwdk")
 [node name="Exit" type="TextureButton" parent="MainButtons/Button_Manager" unique_id=1399843577]
 layout_mode = 0
 offset_left = 251.0
-offset_top = 260.36
-offset_right = 379.00275
-offset_bottom = 308.36017
+offset_top = 301.386
+offset_right = 379.00272
+offset_bottom = 349.38617
 pivot_offset = Vector2(66.99309, 24)
 texture_normal = ExtResource("14_svjyn")
 texture_pressed = ExtResource("15_5jio3")
@@ -798,9 +798,9 @@ text = "Back"
 
 [node name="title" type="Sprite2D" parent="." unique_id=402884615]
 texture_filter = 1
-position = Vector2(615, 138)
-scale = Vector2(2.621, 2.616)
-texture = ExtResource("18_llifo")
+position = Vector2(621.00006, 178.99997)
+scale = Vector2(4.685, 4.685)
+texture = ExtResource("24_kqfms")
 
 [node name="Options" parent="." unique_id=315415237 instance=ExtResource("19_0jto8")]
 layout_mode = 1
@@ -836,6 +836,7 @@ wait_time = 1.5
 wait_time = 2.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=578224207]
+visible = false
 layout_mode = 0
 offset_left = 739.0
 offset_top = 170.0
