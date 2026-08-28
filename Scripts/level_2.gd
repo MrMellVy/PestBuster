@@ -66,10 +66,13 @@ func _ready() -> void:
 		$Player.movementInputMonitoring = Vector2(true, true)
 		$Player/PlayerHealthbar.visible = true
 		
-		if current_wave >= 4:
+		if current_wave == 4:
 			open_path_to_zone_2()
-		
-		await start_wave_intro()
+		elif current_wave == 5:
+			$"Border Collision/BorderCollisionRight/CollisionShape2D".set_deferred("disabled", true)
+			open_path_to_zone_3()
+		else:
+			await start_wave_intro()
 		Global.is_continuing = false
 		
 	else:
@@ -80,9 +83,15 @@ func _ready() -> void:
 		$Player.set_process_unhandled_input(true)
 		$Player.movementInputMonitoring = Vector2(true, true)
 		$Player/PlayerHealthbar.visible = true
-	
-		await start_wave_intro()
-
+		
+		if current_wave == 4:
+			open_path_to_zone_2()
+		elif current_wave == 5:
+			$"Border Collision/BorderCollisionRight/CollisionShape2D".set_deferred("disabled", true)
+			open_path_to_zone_3()
+		else:
+			await start_wave_intro()
+			
 func position_to_next_wave():
 		wave_spawn_ended = false
 		is_changing_phase = false
@@ -299,6 +308,15 @@ func open_path_to_zone_2():
 	var tween = create_tween()
 	tween.tween_property(world_camera, "limit_right", 687, 2.0).set_trans(Tween.TRANS_SINE)
 
+func open_path_to_zone_3():
+	is_spawning = false
+	$scoreLabels.visible = false
+	$"Border Collision/BorderCollisionRight2/CollisionShape2D".set_deferred("disabled", true)
+	print("Path to zone 3 open, waiting to move to the right.")
+	
+	var tween = create_tween()
+	tween.tween_property(world_camera, "limit_right", 1463, 2.0).set_trans(Tween.TRANS_SINE)
+
 func _on_timer_health_power_up_timeout() -> void:
 	var active_powerups = get_tree().get_nodes_in_group("health_powerups")
 	var current_count = active_powerups.size()
@@ -426,3 +444,36 @@ func autosave_checkpoint():
 		$Player.health,
 		$Player.damage_bonus
 	)
+
+
+func _on_wave_3_zone_trigger_body_entered(body: Node2D) -> void:
+	if body.name == "Player" and current_wave == 5 and not is_spawning:
+		print("Player reached Zone 3 Transition, Starting Wave")
+		
+		#Disable the font sign here. with .hide()
+		$Wave3ZoneTrigger.set_deferred("monitoring", false) #for failsafe
+		$"Border Collision/BorderCollisionRight2/CollisionShape2D".set_deferred("disabled", false)
+		
+		var tween = create_tween()
+		tween.tween_property(world_camera, "limit_left", 711, 1.0).set_trans(Tween.TRANS_SINE)
+		
+		$scoreLabels/MiddlecurrentwaveLabel.visible = false
+		$Player/PlayerHealthbar.visible = false
+		
+		await level_dialogue("CS_00_2")
+		
+		$scoreLabels.visible = true
+		$Player/PlayerHealthbar.visible = true
+		
+		Global.current_wave = current_wave
+		
+		var zoom_tween = create_tween()
+		zoom_tween.tween_property(world_camera, "zoom", Vector2(1.0,1.0), 1.0).set_trans(Tween.TRANS_SINE)
+		$scoreLabels/MiddleWaveAnim.play("LeftStart")
+		
+		await $scoreLabels/ScoreAnim.animation_finished
+		await $scoreLabels/WaveAnim.animation_finished
+		await $scoreLabels/MiddleWaveAnim.animation_finished
+		
+		await get_tree().create_timer(1.5).timeout
+		position_to_next_wave()

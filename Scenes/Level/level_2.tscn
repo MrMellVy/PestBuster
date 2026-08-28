@@ -815,12 +815,13 @@ size = Vector2(24, 669.4375)
 size = Vector2(51, 259)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_1kfys"]
-vertices = PackedVector2Array(934.3281, -44.960938, 935.65625, -5, 912.2422, -5.03125, -32.8125, -41.039063, -32.171875, -5.9921875)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(3, 2, 4)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-43, -51, -42, 4, 946, 5, 944, -55)])
+vertices = PackedVector2Array(1838, -29.0625, 1838, -4.0078125, -32.171875, -5.9765625, -32.8125, -40.929688)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-43, -51, -42, 4, 1848, 6, 1848, -39)])
 
 [node name="Level_2" type="Node2D" unique_id=630728870]
 script = ExtResource("1_8b42i")
+starting_wave = 5
 enemy_scene = ExtResource("2_d8j35")
 airenemy_scene = ExtResource("3_d52fh")
 
@@ -994,6 +995,12 @@ polygon = PackedVector2Array(-539, 74, -515, -83, 1703, -89, 1689, 104, -487, 81
 position = Vector2(190, 37)
 shape = SubResource("RectangleShape2D_akeww")
 
+[node name="Wave3ZoneTrigger" type="Area2D" parent="." unique_id=2034379332]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wave3ZoneTrigger" unique_id=1245811003]
+position = Vector2(737, 36)
+shape = SubResource("RectangleShape2D_akeww")
+
 [node name="Player" parent="." unique_id=1296403870 instance=ExtResource("12_53c2y")]
 position = Vector2(-412, 166)
 collision_mask = 78
@@ -1005,13 +1012,14 @@ collision_mask = 14
 player = NodePath("../Player")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=1760181654]
-visible = false
 position = Vector2(-394, 166)
 navigation_polygon = SubResource("NavigationPolygon_1kfys")
 
 [node name="Marker2D" type="Marker2D" parent="." unique_id=895766117]
-position = Vector2(1463, -69)
+position = Vector2(711, -59)
 
 [connection signal="timeout" from="TimerHealthPowerUp" to="." method="_on_timer_health_power_up_timeout"]
 [connection signal="body_entered" from="Wave2ZoneTrigger" to="." method="_on_wave_2_zone_trigger_body_entered"]
 [connection signal="body_exited" from="Wave2ZoneTrigger" to="." method="_on_wave_2_zone_trigger_body_exited"]
+[connection signal="body_entered" from="Wave3ZoneTrigger" to="." method="_on_wave_3_zone_trigger_body_entered"]
+[connection signal="body_exited" from="Wave3ZoneTrigger" to="." method="_on_wave_3_zone_trigger_body_exited"]
