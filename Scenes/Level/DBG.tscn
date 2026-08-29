@@ -820,7 +820,7 @@ jumps = 2
 
 [node name="WorldCamera" type="Camera2D" parent="." unique_id=1481191766]
 position = Vector2(0, 166.565)
-zoom = Vector2(3.435, 3.435)
+zoom = Vector2(3.605, 3.605)
 limit_left = -435
 limit_right = 550
 limit_bottom = 198

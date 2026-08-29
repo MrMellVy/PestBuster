@@ -21,6 +21,7 @@ var has_dealt_damage: bool = false
 var health: int
 var dir: Vector2
 var is_roaming: bool = true
+var is_spawning: bool = false
 var player: CharacterBody2D
 var player_in_area = false
 var can_attack: bool = true
@@ -43,7 +44,11 @@ func _physics_process(delta: float) -> void:
 	if !is_on_floor():
 		velocity.y += gravity * delta
 		velocity.x = 0
-		
+	
+	if is_spawning:
+		move_and_slide()
+		return
+	
 	if Global.playerAlive and not Global.enemies_passive:
 		is_enemy_chase = true
 	elif !Global.playerAlive:
@@ -226,3 +231,14 @@ func get_separation_x() -> float:
 				push_x -= 1.0
 				
 	return sign(push_x)
+
+func start_spawn_animation():
+	is_spawning = true
+	$EnemyDealDamageArea/CollisionShape2D.set_deferred("disabled", true)
+	animation_player.play("spawn_from_ground")
+	z_index = -1
+	
+func finish_spawn():
+	is_spawning = false
+	$EnemyDealDamageArea/CollisionShape2D.set_deferred("disabled",false)
+	z_index = 1

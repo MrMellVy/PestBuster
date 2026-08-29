@@ -246,7 +246,7 @@ func open_path_to_zone_2():
 	print("path to new zone open! waiting to move to the right.")
 	
 	var tween = create_tween()
-	tween.tween_property(world_camera, "limit_right", 1680, 2.0).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(world_camera, "limit_right", 804, 2.0).set_trans(Tween.TRANS_SINE)
 
 func _on_timer_health_power_up_timeout() -> void:
 	var active_powerups = get_tree().get_nodes_in_group("health_powerups")
@@ -310,7 +310,7 @@ func _on_wave_2_zone_trigger_body_entered(body: Node2D) -> void:
 		$"Border Collision/BorderCollisionRight/CollisionShape2D".set_deferred("disabled", false)
 		
 		var tween = create_tween()
-		tween.tween_property(world_camera, "limit_left", 570, 1.0).set_trans(Tween.TRANS_SINE)
+		tween.tween_property(world_camera, "limit_left", 319, 1.0).set_trans(Tween.TRANS_SINE)
 		
 		$scoreLabels.visible = false
 		$Player/PlayerHealthbar.visible = false

@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bhoc04ca7xoh5" path="res://Scenes/Other/ScoreWaveLabels.tscn" id="11_g5aqo"]
 [ext_resource type="PackedScene" uid="uid://w7doc70s2ixt" path="res://Scenes/character/player.tscn" id="12_53c2y"]
 [ext_resource type="PackedScene" uid="uid://bhik0cbrtt1bx" path="res://Scenes/Menu/pause_menu.tscn" id="13_j3u46"]
+[ext_resource type="PackedScene" uid="uid://83r0sj6dfeal" path="res://Scenes/character/boss.tscn" id="15_1kfys"]
 [ext_resource type="PackedScene" uid="uid://ca0uhuktjhjrw" path="res://Scenes/character/Support_CH.tscn" id="15_d52fh"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hnohd"]
@@ -1017,6 +1018,10 @@ navigation_polygon = SubResource("NavigationPolygon_1kfys")
 
 [node name="Marker2D" type="Marker2D" parent="." unique_id=895766117]
 position = Vector2(711, -59)
+
+[node name="BossRat1" parent="." unique_id=1376914475 instance=ExtResource("15_1kfys")]
+z_index = 0
+position = Vector2(1079, 114)
 
 [connection signal="timeout" from="TimerHealthPowerUp" to="." method="_on_timer_health_power_up_timeout"]
 [connection signal="body_entered" from="Wave2ZoneTrigger" to="." method="_on_wave_2_zone_trigger_body_entered"]

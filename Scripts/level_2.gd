@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var SceneTransitionAnimation = $Fade_transition/Fade_transition/AnimationPlayer
 @onready var world_camera: Camera2D = $WorldCamera
+@onready var boss_rat_1: CharacterBody2D = $BossRat1
 
 @export var starting_wave: int = 3
 
@@ -31,6 +32,10 @@ var rand_x
 var rand_y
 
 func _ready() -> void:
+	boss_rat_1.hide()
+	boss_rat_1.get_node("UI").hide()
+	boss_rat_1.process_mode = Node.PROCESS_MODE_DISABLED
+	
 	Global.enemies_passive = false
 	#region for camera movement.
 	world_camera.make_current()
@@ -462,13 +467,16 @@ func _on_wave_3_zone_trigger_body_entered(body: Node2D) -> void:
 		
 		await level_dialogue("CS_00_2")
 		
+		boss_rat_1.show()
+		boss_rat_1.get_node("UI").show()
+		boss_rat_1.process_mode = Node.PROCESS_MODE_INHERIT
 		$scoreLabels.visible = true
 		$Player/PlayerHealthbar.visible = true
 		
 		Global.current_wave = current_wave
 		
 		var zoom_tween = create_tween()
-		zoom_tween.tween_property(world_camera, "zoom", Vector2(1.0,1.0), 1.0).set_trans(Tween.TRANS_SINE)
+		zoom_tween.tween_property(world_camera, "zoom", Vector2(2.0,2.0), 1.0).set_trans(Tween.TRANS_SINE)
 		$scoreLabels/MiddleWaveAnim.play("LeftStart")
 		
 		await $scoreLabels/ScoreAnim.animation_finished

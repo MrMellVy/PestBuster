@@ -533,15 +533,13 @@ func handle_defeat_animation():
 	PlayerSprite.play("defeat")
 	BgmManager.play_defeated()
 	await get_tree().create_timer(0.5).timeout
-	#var tween = create_tween()
-	#tween.tween_property(world_camera, "zoom", Vector2(4.0,4.0), 0.5)
-	#await  tween.finished
+	
+	var tween = create_tween()
+	tween.tween_property(world_camera, "zoom", Vector2(7.0,7.0), 1.5).set_trans(Tween.TRANS_SINE)
+	await  tween.finished
+	
 	if world_camera == null or not is_instance_valid(world_camera):
 		world_camera = get_viewport().get_camera_2d()
-	
-	if world_camera:
-		world_camera.zoom.x = 4
-		world_camera.zoom.y = 4
 		
 	await get_tree().create_timer(3.5).timeout
 	Global.playerAlive = false

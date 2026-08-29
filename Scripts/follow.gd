@@ -24,9 +24,10 @@ func transition() -> void:
 		cooldown = 0.0
 	
 	if distance_to_player > 150 and cooldown <= 0.0:
-		var chance = randi() % 2
-		match chance:
-			0: get_parent().change_state("SpawnMinion")
-			1: get_parent().change_state("Teleport")
+		var chance = randf()
+		if chance < 0.7:
+			get_parent().change_state("SpawnMinion")
+		else:
+			get_parent().change_state("Teleport")
 		cooldown = 2.0
 		print("rolled", chance)
