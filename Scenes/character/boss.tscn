@@ -6,6 +6,9 @@
 [ext_resource type="Shader" uid="uid://coiyd03hra4c5" path="res://Assets/Shader/hiteffect.gdshader" id="2_rrsei"]
 [ext_resource type="Texture2D" uid="uid://j5bv46leblg" path="res://Assets/Sprites/Boss/1/minibos_walk.png" id="3_fq4ee"]
 [ext_resource type="Script" uid="uid://dkbtj13exldog" path="res://Scripts/finite_state_machine.gd" id="4_0p0md"]
+[ext_resource type="Texture2D" uid="uid://c8e0f673hcsod" path="res://Assets/Sprites/Boss/1/minibos_dead.png" id="4_pmlhu"]
+[ext_resource type="Texture2D" uid="uid://bqw7blcwla37i" path="res://Assets/Sprites/Boss/1/minibos_hurt.png" id="5_7d68f"]
+[ext_resource type="Texture2D" uid="uid://huhlnyv7f6fj" path="res://Assets/Sprites/Boss/1/minibos_skill.png" id="5_fnim3"]
 [ext_resource type="Script" uid="uid://b023tqc3ndvry" path="res://Scripts/idle.gd" id="5_wqev4"]
 [ext_resource type="Script" uid="uid://cyf11j3ki46cd" path="res://Scripts/follow.gd" id="6_u4g2t"]
 [ext_resource type="Script" uid="uid://bceiv4ei6852t" path="res://Scripts/attack.gd" id="8_lba6h"]
@@ -58,6 +61,58 @@ region = Rect2(1024, 0, 128, 128)
 atlas = ExtResource("1_ddk4t")
 region = Rect2(1152, 0, 128, 128)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_42u1o"]
+atlas = ExtResource("4_pmlhu")
+region = Rect2(0, 0, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_px8tw"]
+atlas = ExtResource("4_pmlhu")
+region = Rect2(256, 0, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xmmmi"]
+atlas = ExtResource("4_pmlhu")
+region = Rect2(512, 0, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8fcyb"]
+atlas = ExtResource("4_pmlhu")
+region = Rect2(768, 0, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wf0at"]
+atlas = ExtResource("4_pmlhu")
+region = Rect2(1024, 0, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bnoov"]
+atlas = ExtResource("4_pmlhu")
+region = Rect2(1280, 0, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5hp16"]
+atlas = ExtResource("4_pmlhu")
+region = Rect2(1536, 0, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_egu2e"]
+atlas = ExtResource("4_pmlhu")
+region = Rect2(1792, 0, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qfo0d"]
+atlas = ExtResource("5_7d68f")
+region = Rect2(0, 0, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1mbht"]
+atlas = ExtResource("5_7d68f")
+region = Rect2(256, 0, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nbenv"]
+atlas = ExtResource("5_7d68f")
+region = Rect2(512, 0, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aa0ct"]
+atlas = ExtResource("5_7d68f")
+region = Rect2(768, 0, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ve86"]
+atlas = ExtResource("5_7d68f")
+region = Rect2(1024, 0, 256, 128)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_8s145"]
 atlas = ExtResource("2_fq4ee")
 region = Rect2(0, 0, 128, 128)
@@ -77,6 +132,38 @@ region = Rect2(384, 0, 128, 128)
 [sub_resource type="AtlasTexture" id="AtlasTexture_rp42q"]
 atlas = ExtResource("2_fq4ee")
 region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sgx5g"]
+atlas = ExtResource("5_fnim3")
+region = Rect2(0, 0, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pmlhu"]
+atlas = ExtResource("5_fnim3")
+region = Rect2(256, 0, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7d68f"]
+atlas = ExtResource("5_fnim3")
+region = Rect2(512, 0, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6efbs"]
+atlas = ExtResource("5_fnim3")
+region = Rect2(768, 0, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hx3xe"]
+atlas = ExtResource("5_fnim3")
+region = Rect2(1024, 0, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jr1ie"]
+atlas = ExtResource("5_fnim3")
+region = Rect2(1280, 0, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kukwu"]
+atlas = ExtResource("5_fnim3")
+region = Rect2(1536, 0, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ooxg3"]
+atlas = ExtResource("5_fnim3")
+region = Rect2(1792, 0, 256, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xidxb"]
 atlas = ExtResource("3_fq4ee")
@@ -131,9 +218,58 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_l0i76")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"attack",
 "speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_42u1o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_px8tw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xmmmi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8fcyb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wf0at")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bnoov")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5hp16")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_egu2e")
+}],
+"loop": 0,
+"name": &"defeat",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qfo0d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1mbht")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nbenv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aa0ct")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ve86")
+}],
+"loop": 0,
+"name": &"hurt",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -157,6 +293,35 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_sgx5g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pmlhu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7d68f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6efbs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hx3xe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jr1ie")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kukwu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ooxg3")
+}],
+"loop": 0,
+"name": &"skill",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_xidxb")
 }, {
 "duration": 1.0,
@@ -171,7 +336,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_mohhr")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"walk",
 "speed": 8.0
 }]
@@ -398,10 +563,10 @@ tracks/0/path = NodePath("AnimatedSprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.49749115, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 2, 3, 4, 5, 6, 7, 8, 9]
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -413,7 +578,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"attack"]
+"values": [&"skill"]
 }
 tracks/2/type = "method"
 tracks/2/imported = false
@@ -422,7 +587,7 @@ tracks/2/path = NodePath("FiniteStateMachine/Teleport")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(1.5),
+"times": PackedFloat32Array(1.75),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -436,7 +601,7 @@ tracks/3/path = NodePath("AnimatedSprite2D:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(1, 1.45, 1.57, 2),
+"times": PackedFloat32Array(1.25, 1.63, 1.75, 2),
 "transitions": PackedFloat32Array(0.5, -2, -2, 2),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 81.96), Vector2(0, 81.96), Vector2(0, 0)]
@@ -582,6 +747,7 @@ target_position = Vector2(-94, 0)
 material = SubResource("ShaderMaterial_rrsei")
 sprite_frames = SubResource("SpriteFrames_3k1vp")
 animation = &"idle"
+autoplay = "idle"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1008178523]
 libraries/ = SubResource("AnimationLibrary_0p0md")

@@ -22,10 +22,10 @@ func attack():
 func exit() -> void:
 	super.exit()
 	is_attacking = false
+	owner.disable_damage()
 	owner.is_dealing_damage = false
+	owner.set_process(true)
 	
 func transition() -> void:
-	if owner.global_position.distance_to(player.global_position) > 150:
-		get_parent().change_state("Follow")
-	elif  not is_attacking:
+	if  not is_attacking:
 		get_parent().change_state("Follow")

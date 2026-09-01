@@ -58,4 +58,5 @@ func disable_damage():
 
 func take_damage(damage_amount: int):
 	health -= damage_amount
+	
 	print("Boss took ", damage_amount, " damage! HP left: ", health)

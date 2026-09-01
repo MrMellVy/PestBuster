@@ -4,6 +4,8 @@ extends CanvasLayer
 @onready var settingmenu: Settingsmenu = $Options
 @onready var pause_main_buttons: VBoxContainer = $PauseMainButtons
 
+var is_menu_open: bool = false
+var was_paused_before_menu: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -27,39 +29,33 @@ func _on_button_menu_pressed() -> void:
 	BgmManager.play_BGM("cyber_runner")
 
 func _input(event: InputEvent) -> void:
-	if Dialouge.d_active:
-		return
-	
 	if Input.is_action_just_pressed("ui_cancel"):
-		if get_tree().paused:
-			if settingmenu.visible:
-				settingmenu.visible = false
-				pause_main_buttons.visible = true
-			
-			#$BackgroundAnim.play("Outro")
-			#$ButtonAnim.play("ButtonOutro")
-			#$BMenuAnim.play("OutroMenu")
-			#$BSettingsAnim.play("OutroBSettings")
-			#$SettingsScreenAnim.play("CloseSettingsScreen")
-			
-			#await $BackgroundAnim.animation_finished
-			
-			visible = false
-			get_tree().paused = false
-			BgmManager.set_pause_state(false)
+		if is_menu_open:
+			close_pause_menu()
 		else:
-			visible = true
-			get_tree().paused = true
-			BgmManager.set_pause_state(true)
+			open_pause_menu()
 
-			pause_main_buttons.visible = true
-			settingmenu.visible = false
+func open_pause_menu() -> void:
+	is_menu_open = true
+	visible = true
+	pause_main_buttons.visible = true
+	settingmenu.visible = false
+	
+	was_paused_before_menu = get_tree().paused
+	
+	get_tree().paused = true
+	BgmManager.set_pause_state(true)
 
-			#$BackgroundAnim.play("Intro")
-			#$ButtonAnim.play("ButtonIntro")
-			#$BMenuAnim.play("IntroMenu")
-			#$BSettingsAnim.play("IntroBSettings")
-
+func close_pause_menu() -> void:
+	is_menu_open = false
+	visible = false
+	
+	if settingmenu.visible:
+		settingmenu.visible = true
+		pause_main_buttons.visible = true
+		
+	get_tree().paused = was_paused_before_menu
+	BgmManager.set_pause_state(was_paused_before_menu)
 
 func _on_settings_pressed() -> void:
 	print("it work.")
@@ -79,23 +75,10 @@ func _on_back_settings_menu() -> void:
 	#$ButtonAnim.play("ButtonIntro")
 	#$BMenuAnim.play("IntroMenu")
 	#$BSettingsAnim.play("IntroBSettings")
+	
 func handle_connecting_signals() -> void:
 	settingmenu.back_settings_menu.connect(_on_back_settings_menu)
 
-
 func _on_button_resume_pressed() -> void:
-	if get_tree().paused:
-		if settingmenu.visible:
-			settingmenu.visible = false
-			pause_main_buttons.visible = true
-
-		#$BackgroundAnim.play("Outro")
-		#$ButtonAnim.play("ButtonOutro")
-		#$BMenuAnim.play("OutroMenu")
-		#$BSettingsAnim.play("OutroBSettings")
-		#
-		#await $BackgroundAnim.animation_finished
-
-		visible = false
-		get_tree().paused = false
-		BgmManager.set_pause_state(false)
+	if is_menu_open:
+		close_pause_menu()
