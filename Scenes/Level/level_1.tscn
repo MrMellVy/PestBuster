@@ -555,7 +555,8 @@ collision_mask = 78
 jumps = 2
 
 [node name="Marker2D" type="Marker2D" parent="." unique_id=1420072554]
-position = Vector2(804, -32)
+position = Vector2(376, 133)
+gizmo_extents = 4.0
 
 [connection signal="timeout" from="TimerHealthPowerUp" to="." method="_on_timer_health_power_up_timeout"]
 [connection signal="body_entered" from="Wave2ZoneTrigger" to="." method="_on_wave_2_zone_trigger_body_entered"]

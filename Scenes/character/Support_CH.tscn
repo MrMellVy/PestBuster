@@ -192,19 +192,21 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dwm71"]
 size = Vector2(13.818184, 32)
 
-[node name="SupportCH" type="CharacterBody2D" unique_id=1941443743]
+[node name="SupportCH" type="CharacterBody2D" unique_id=1941443743 node_paths=PackedStringArray("Anim_sprite")]
 z_index = 1
 collision_mask = 76
 script = ExtResource("1_telfh")
+Anim_sprite = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=929224078]
+position = Vector2(0, -24)
 sprite_frames = SubResource("SpriteFrames_3k1vp")
-animation = &"skill_a"
-frame = 2
-frame_progress = 0.038621534
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.22190815
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1999399263]
-position = Vector2(0, 7)
+position = Vector2(0, -16)
 shape = SubResource("RectangleShape2D_dwm71")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=860527975]

@@ -27,6 +27,9 @@ func _on_button_menu_pressed() -> void:
 	BgmManager.play_BGM("cyber_runner")
 
 func _input(event: InputEvent) -> void:
+	if Dialouge.d_active:
+		return
+	
 	if Input.is_action_just_pressed("ui_cancel"):
 		if get_tree().paused:
 			if settingmenu.visible:

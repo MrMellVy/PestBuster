@@ -46,8 +46,20 @@ func _ready() -> void:
 		$Player.health = Global.saved_player_health
 		$Player.damage_bonus = Global.saved_player_damage_bonus
 		$scoreLabels.layer = 1
-		await SceneTransitionAnimation.animation_finished
 		$scoreLabels.layer = 3
+		
+		$Player.set_physics_process(true)
+		$Player.set_process_unhandled_input(true)
+		$Player.movementInputMonitoring = Vector2(true,true)
+		
+		if current_wave >= 2:
+			world_camera.limit_left = 319
+			world_camera.limit_right = 804
+			
+			$"Border Collision/BorderCollisionRight/CollisionShape2D".set_deferred("disabled", false)
+			$Wave2ZoneTrigger.hide()
+			$Player.global_position = Vector2(376, 133)
+			
 		position_to_next_wave()
 		current_wave_batches = [3 + current_wave, 5 + current_wave]
 		current_batch_index = 0
@@ -360,5 +372,6 @@ func autosave_checkpoint():
 		"res://Scenes/Level/level_1.tscn",
 		current_wave,
 		$Player.health,
-		$Player.damage_bonus
+		$Player.damage_bonus,
+		Global.current_score
 	)

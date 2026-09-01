@@ -62,7 +62,6 @@ func _input(event: InputEvent) -> void:
 				_change_camera($Player/WorldCamera2)
 			else:
 				_change_camera($Player/WorldCamera)
-			
 func start() -> void:
 	$Player/WorldCameraTransition.make_current()
 	_change_camera($Player/WorldCamera)
@@ -76,8 +75,6 @@ func start() -> void:
 	
 	get_tree().change_scene_to_file("res://Scenes/Level/level_2.tscn")
 
-
-
 func move_player_to_target(target_node: Node2D) -> void:
 	anim_is_moving = true
 	
@@ -87,7 +84,7 @@ func move_player_to_target(target_node: Node2D) -> void:
 	else:
 		player.toggle_flip_sprite(-1)
 	player.PlayerSprite.play("run")
-
+	
 	var tween = create_tween()
 	tween.tween_property(player, "global_position", target_node.global_position, 1.5)
 	await tween.finished

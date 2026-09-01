@@ -21,7 +21,7 @@ extends CharacterBody2D
 @export_category("Debug")
 @export var disable_enemy_detection := false
 
-@onready var Anim_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@export var Anim_sprite: AnimatedSprite2D
 @onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
 
 var target_enemy: CharacterBody2D = null

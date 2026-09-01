@@ -1,0 +1,10 @@
+[
+        {"name": "You", "text": "Are we there yet?", "face": "SpriteFace_Silence_1", "event": "start_move"},
+        {"name": "Nashear", "text": "Almost there...", "face": "SpriteFace_Silence"},
+        {"name": "You", "text": "Great then-", "face": "SpriteFace_Silence", "auto": 5.0, "event": "boss_camera_show"},
+        {"name": "You", "text": "That's.. must be the boss right..?", "face": "SpriteFace_Haha_1"},
+        {"name": "Nashear", "text": "Hm.. it big than the others, of course..!", "face": "SpriteFace_Hm"},
+
+]
+
+

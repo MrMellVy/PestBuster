@@ -36,6 +36,7 @@ func start_retry_from_autosave():
 	Global.saved_wave = Savedata.wave
 	Global.saved_player_health = Savedata.health
 	Global.saved_player_damage_bonus = Savedata.damage_bonus
+	Global.current_score = Savedata.score
 	
 	get_tree().change_scene_to_file(Savedata.scene_path)
 	

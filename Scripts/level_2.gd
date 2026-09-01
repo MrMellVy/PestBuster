@@ -74,12 +74,40 @@ func _ready() -> void:
 		if current_wave == 4:
 			open_path_to_zone_2()
 		elif current_wave == 5:
-			$"Border Collision/BorderCollisionRight/CollisionShape2D".set_deferred("disabled", true)
-			open_path_to_zone_3()
+			world_camera.limit_left = 711
+			world_camera.limit_right = 1388
+			world_camera.zoom = Vector2(2.0, 2.0)
+			
+			$"Border Collision/BorderCollisionRight2/CollisionShape2D".set_deferred("disabled", false)
+			if has_node("Wave3ZoneTrigger"):
+				$Wave3ZoneTrigger/CollisionShape2D.set_deferred("disabled", true)
+			
+			$Player.global_position = Vector2(745, 165)
+			
+			boss_rat_1.show()
+			boss_rat_1.get_node("UI").show()
+			boss_rat_1.process_mode = Node.PROCESS_MODE_INHERIT
+			
+			await level_dialogue("CS_00_2")
+			
+			$scoreLabels.visible = true
+			$Player/PlayerHealthbar.visible = true
+			
+			Global.current_wave = current_wave
+			
+			$scoreLabels/ScoreAnim.play("ScoreUp")
+			$scoreLabels/WaveAnim.play("WaveUp")
+			$scoreLabels/MiddleWaveAnim.play("LeftStart")
+			
+			await $scoreLabels/ScoreAnim.animation_finished
+			await $scoreLabels/WaveAnim.animation_finished
+			await $scoreLabels/MiddleWaveAnim.animation_finished
+			
+			await get_tree().create_timer(1.5).timeout
+			position_to_next_wave()
 		else:
 			await start_wave_intro()
 		Global.is_continuing = false
-		
 	else:
 		current_wave = starting_wave
 		Global.current_wave = current_wave
@@ -92,8 +120,37 @@ func _ready() -> void:
 		if current_wave == 4:
 			open_path_to_zone_2()
 		elif current_wave == 5:
-			$"Border Collision/BorderCollisionRight/CollisionShape2D".set_deferred("disabled", true)
-			open_path_to_zone_3()
+			world_camera.limit_left = 711
+			world_camera.limit_right = 1388
+			world_camera.zoom = Vector2(2.0, 2.0)
+			
+			$"Border Collision/BorderCollisionRight2/CollisionShape2D".set_deferred("disabled", false)
+			if has_node("Wave3ZoneTrigger"):
+				$Wave3ZoneTrigger.hide()
+			
+			$Player.global_position = Vector2(745, 165)
+			
+			boss_rat_1.show()
+			boss_rat_1.get_node("UI").show()
+			boss_rat_1.process_mode = Node.PROCESS_MODE_INHERIT
+			
+			await level_dialogue("CS_00_2")
+			
+			$scoreLabels.visible = true
+			$Player/PlayerHealthbar.visible = true
+			
+			Global.current_wave = current_wave
+			
+			$scoreLabels/ScoreAnim.play("ScoreUp")
+			$scoreLabels/WaveAnim.play("WaveUp")
+			$scoreLabels/MiddleWaveAnim.play("LeftStart")
+			
+			await $scoreLabels/ScoreAnim.animation_finished
+			await $scoreLabels/WaveAnim.animation_finished
+			await $scoreLabels/MiddleWaveAnim.animation_finished
+			
+			await get_tree().create_timer(1.5).timeout
+			position_to_next_wave()
 		else:
 			await start_wave_intro()
 			
@@ -267,6 +324,8 @@ func trigger_next_phase():
 	
 	if current_wave == 4:
 		open_path_to_zone_2()
+	elif current_wave == 5:
+		open_path_to_zone_3()
 	else:
 		is_spawning = true
 		
@@ -387,26 +446,7 @@ func _on_wave_2_zone_trigger_body_entered(body: Node2D) -> void:
 		
 		var tween = create_tween()
 		tween.tween_property(world_camera, "limit_left", 164, 1.0).set_trans(Tween.TRANS_SINE)
-		
-		$scoreLabels/MiddlecurrentwaveLabel.visible = false
-		$Player/PlayerHealthbar.visible = false
-		
-		await level_dialogue("CS_00_2")
-		
-		$scoreLabels.visible = true
-		$Player/PlayerHealthbar.visible = true
-		
-		Global.current_wave = current_wave
-		
-		$scoreLabels/ScoreAnim.play("ScoreUp")
-		$scoreLabels/WaveAnim.play("WaveUp")
-		$scoreLabels/MiddleWaveAnim.play("LeftStart")
-		
-		await $scoreLabels/ScoreAnim.animation_finished
-		await $scoreLabels/WaveAnim.animation_finished
-		await $scoreLabels/MiddleWaveAnim.animation_finished
-		
-		await get_tree().create_timer(1.5).timeout
+
 		position_to_next_wave()
 
 func _input(event: InputEvent) -> void:
@@ -447,41 +487,20 @@ func autosave_checkpoint():
 		"res://Scenes/Level/level_2.tscn",
 		current_wave,
 		$Player.health,
-		$Player.damage_bonus
+		$Player.damage_bonus,
+		Global.current_score
 	)
 
 
 func _on_wave_3_zone_trigger_body_entered(body: Node2D) -> void:
 	if body.name == "Player" and current_wave == 5 and not is_spawning:
-		print("Player reached Zone 3 Transition, Starting Wave")
+		print("Player reached Zone 3 Transition to cutscene ")
+
+		$Wave3ZoneTrigger.set_deferred("monitoring", false)
 		
-		#Disable the font sign here. with .hide()
-		$Wave3ZoneTrigger.set_deferred("monitoring", false) #for failsafe
-		$"Border Collision/BorderCollisionRight2/CollisionShape2D".set_deferred("disabled", false)
+		Global.saved_wave = 5
+		Global.saved_player_health = $Player.health
+		Global.saved_player_damage_bonus = $Player.damage_bonus
+		autosave_checkpoint()
 		
-		var tween = create_tween()
-		tween.tween_property(world_camera, "limit_left", 711, 1.0).set_trans(Tween.TRANS_SINE)
-		
-		$scoreLabels/MiddlecurrentwaveLabel.visible = false
-		$Player/PlayerHealthbar.visible = false
-		
-		await level_dialogue("CS_00_2")
-		
-		boss_rat_1.show()
-		boss_rat_1.get_node("UI").show()
-		boss_rat_1.process_mode = Node.PROCESS_MODE_INHERIT
-		$scoreLabels.visible = true
-		$Player/PlayerHealthbar.visible = true
-		
-		Global.current_wave = current_wave
-		
-		var zoom_tween = create_tween()
-		zoom_tween.tween_property(world_camera, "zoom", Vector2(2.0,2.0), 1.0).set_trans(Tween.TRANS_SINE)
-		$scoreLabels/MiddleWaveAnim.play("LeftStart")
-		
-		await $scoreLabels/ScoreAnim.animation_finished
-		await $scoreLabels/WaveAnim.animation_finished
-		await $scoreLabels/MiddleWaveAnim.animation_finished
-		
-		await get_tree().create_timer(1.5).timeout
-		position_to_next_wave()
+		get_tree().change_scene_to_file("res://Scenes/Cutscene/cutscene_3.tscn")

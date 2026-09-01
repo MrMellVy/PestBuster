@@ -16,7 +16,7 @@ var is_dealing_damage: bool = false
 var has_dealt_damage: bool = false
 var defeat: bool = false
 
-var health := 500:
+var health := 100:
 	set(value):
 		health = value
 		progress_bar.value = value
