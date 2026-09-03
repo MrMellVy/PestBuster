@@ -12,7 +12,7 @@ var advance_action: StringName = "attack"
 var anim_is_moving: bool = false
 
 var dialogue_is_active: bool = true
-var max_lines: int = 14
+var max_lines: int = 8
 
 func _ready() -> void:
 	$Fade_transition.show()    
@@ -53,11 +53,11 @@ func _input(event: InputEvent) -> void:
 		current_dialogue_index += 1
 		print("Dialogue Index: ", current_dialogue_index)
 		#Index always start from zero yeah. 1,2,3,4 -> 0,1,2,3.
-		if current_dialogue_index == 3:
+		if current_dialogue_index == 1:
 			await move_player_to_target($Target_Move3)
-		elif current_dialogue_index == 5:
+		elif current_dialogue_index == 2:
 			await move_player_to_target($Target_Move5)
-		elif current_dialogue_index == 6:
+		elif current_dialogue_index == 3:
 			if selected_camera == $Player/WorldCamera:
 				_change_camera($Player/WorldCamera2)
 			else:

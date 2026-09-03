@@ -1,7 +1,7 @@
 extends RichTextLabel
 
 
-var default_text = "WAVE "
+var default_text = "ZONE "
 
 func _process(delta: float) -> void:
 	var text = str(default_text, str(Global.current_wave))

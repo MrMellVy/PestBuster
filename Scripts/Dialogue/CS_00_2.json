@@ -1,7 +1,6 @@
 [
-        {"name": "You", "text": "How many are they!?", "face": "SpriteFace_Silence_1"},
-        {"name": "You", "text": "Right, i just need to focus cleaning them.", "face": "SpriteFace_Silence"},
-        {"name": "You", "text": ".", "face": "SpriteFace_Silence"}
+        {"name": "You", "text": "Damn, of course they going to attack and no talk.", "face": "SpriteFace_Silence_1"},
+        {"name": "You", "text": "Could'nt have another choice i guess.", "face": "SpriteFace_Silence"},
 ]
 
 

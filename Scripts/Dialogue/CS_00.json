@@ -1,10 +1,10 @@
 [
-        {"name": "You", "text": "This city..", "face": "SpriteFace_Silence_1"},
-        {"name": "You", "text": "Huh, never thought i will comeback to here again.", "face": "SpriteFace_Silence"},
+        {"name": "You", "text": "Finally here.", "face": "SpriteFace_Silence_1"},
+        {"name": "You", "text": "What i'm here again?", "face": "SpriteFace_Silence"},
         {"name": "You", "text": "...", "face": "SpriteFace_Silence"},
         {"name": "You", "text": "Okay.. something about..", "face": "SpriteFace_Haha_1"},
-        {"name": "You", "text": "Something about rats.. Mutated-", "face": "SpriteFace_Hm"},
-        {"name": "You", "text": "That.. that to big..", "face": "SpriteFace_Haha_2", "event": "cam2" },
+        {"name": "You", "text": "Something about rats.. Mutated-", "auto": 1.0, "face": "SpriteFace_Hm"},
+        {"name": "You", "text": "So that's must be it..", "face": "SpriteFace_Haha_2", "event": "cam2" },
         {"name": "You", "text": "Oh-", "face": "SpriteFace_What", "auto": 0.2, "event": "car_crash"}
 ]
 
