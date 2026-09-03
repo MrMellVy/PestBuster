@@ -16,7 +16,7 @@ var is_dealing_damage: bool = false
 var has_dealt_damage: bool = false
 var defeat: bool = false
 
-var health := 100:
+var health: int:
 	set(value):
 		health = value
 		progress_bar.value = value
@@ -27,7 +27,17 @@ var health := 100:
 
 func _ready() -> void:
 	add_to_group("enemies")
-
+	var current_level_name = get_tree().current_scene.name
+	
+	if current_level_name == "level_2":
+		progress_bar.max_value = 350
+		health = 350
+	elif current_level_name == "level_3":
+		progress_bar.max_value = 500
+		health = 500
+	else:
+		progress_bar.max_value = 350
+		health = 350
 func _process(_delta: float) -> void:
 	direction = player.position - position
 	if player.position.x < position.x :
@@ -58,5 +68,4 @@ func disable_damage():
 
 func take_damage(damage_amount: int):
 	health -= damage_amount
-	
 	print("Boss took ", damage_amount, " damage! HP left: ", health)

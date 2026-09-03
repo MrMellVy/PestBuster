@@ -106,19 +106,14 @@ func position_to_next_wave():
 			current_wave_batches = [2, 4, 3]
 			current_air_wave_batches = [0]
 		elif current_wave == 3:
-			if Global.is_continuing:
-				Global.is_continuing = false
-				$scoreLabels.visible = true
-				return
-			else:
-				Global.saved_wave = current_wave
-				Global.is_continuing = true
-				Global.saved_player_health = $Player.health
-				Global.saved_player_damage_bonus = $Player.damage_bonus
-				get_tree().change_scene_to_file("res://Scenes/Cutscene/cutscene_2.tscn")
+			Global.saved_wave = current_wave
+			Global.is_continuing = true
+			Global.saved_player_health = $Player.health
+			Global.saved_player_damage_bonus = $Player.damage_bonus
+			get_tree().change_scene_to_file("res://Scenes/Cutscene/cutscene_2.tscn")
 		else:
 			# Wave 2+ MORE! and this is where the airenemy spawn.
-			current_wave_batches = [3 + current_wave, 5 + current_wave]
+			current_wave_batches = [current_wave, 1 + current_wave]
 			current_air_wave_batches = [1 + current_wave, 2 + current_wave]
 		current_batch_index = 0
 		current_air_batch_index = 0
@@ -151,9 +146,9 @@ func spawn_next_batch():
 				enemy.global_position = $EnemySpawnPoint2.global_position
 			if current_wave == 2: #<- remember this myslf, to move into other area but still in one scenes. GS mean Ground Spawn
 				if i % 3 == 0:
-					enemy.global_position = $EnemySpawnPoint3.global_position
+					enemy.global_position = $EnemySpawnPoint2.global_position
 				else:
-					enemy.global_position = $EnemySpawnPoint4.global_position
+					enemy.global_position = $EnemySpawnPoint3.global_position
 			enemy.tree_exited.connect(check_enemy_count)
 
 			
@@ -170,18 +165,14 @@ func spawn_next_batch():
 
 			var index_SPoint = i % 3
 			if index_SPoint == 0:
-				air_enemy.global_position = $AirEnemySpawnPoint1.global_position
-			elif index_SPoint == 1:
 				air_enemy.global_position = $AirEnemySpawnPoint2.global_position
 			else:
 				air_enemy.global_position = $AirEnemySpawnPoint3.global_position
 			if current_wave == 2:
 				if index_SPoint == 0:
-					air_enemy.global_position = $AirEnemySpawnPoint4.global_position
-				elif index_SPoint == 1:
-					air_enemy.global_position = $AirEnemySpawnPoint5.global_position
+					air_enemy.global_position = $AirEnemySpawnPoint2.global_position
 				else:
-					air_enemy.global_position = $AirEnemySpawnPoint6.global_position
+					air_enemy.global_position = $AirEnemySpawnPoint3.global_position
 			air_enemy.tree_exited.connect(check_enemy_count)
 			total_enemies_alive += 1
 			add_child(air_enemy)

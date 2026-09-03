@@ -811,6 +811,7 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-43, -51, -42, 4, 946, 5, 944, -55)])
 
 [node name="DBG" type="Node2D" unique_id=630728870]
+visible = false
 script = ExtResource("9_0ty4y")
 
 [node name="player" parent="." unique_id=1296403870 instance=ExtResource("14_ex2jc")]

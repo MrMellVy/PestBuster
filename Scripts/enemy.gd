@@ -6,7 +6,7 @@ class_name Enemy
 @export var speed: float = 50 #The enemy speed.
 @export var health_max = 40
 @export var points_for_kill = 250
-@export var damage_to_deal = 20
+@export var damage_to_deal = 10
 
 @export_category("Physics")
 @export var push_force = 10.0 # So it doesnt collide with other enemy. Yes, taking the difficult way.
