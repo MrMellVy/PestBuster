@@ -54,12 +54,12 @@ func _ready() -> void:
 		$Player.movementInputMonitoring = Vector2(true,true)
 		
 		if current_wave >= 2:
-			world_camera.limit_left = 319
-			world_camera.limit_right = 804
+			world_camera.limit_left = -32
+			world_camera.limit_right = 272
 			
 			$"Border Collision/BorderCollisionRight/CollisionShape2D".set_deferred("disabled", false)
 			$Wave2ZoneTrigger.hide()
-			$Player.global_position = Vector2(376, 133)
+			$Player.global_position = Vector2(-32, 133)
 			
 		position_to_next_wave()
 		current_wave_batches = [3 + current_wave, 5 + current_wave]
@@ -111,6 +111,7 @@ func position_to_next_wave():
 			Global.is_continuing = true
 			Global.saved_player_health = $Player.health
 			Global.saved_player_damage_bonus = $Player.damage_bonus
+			autosave_checkpoint()
 			get_tree().change_scene_to_file("res://Scenes/Cutscene/cutscene_2.tscn")
 		else:
 			# Wave 2+ MORE! and this is where the airenemy spawn.
@@ -202,11 +203,11 @@ func trigger_next_phase():
 	is_spawning = true
 	if wave_spawn_ended:
 		print("Wave Cleared! Starting Next Wave...")
-		autosave_checkpoint()
 		
 		current_wave += 1
-		
 		Global.current_wave = current_wave
+		
+		autosave_checkpoint()
 		
 		if current_wave == 2 and not Global.is_continuing:
 			open_path_to_zone_2()
@@ -252,7 +253,7 @@ func open_path_to_zone_2():
 	print("path to new zone open! waiting to move to the right.")
 	
 	var tween = create_tween()
-	tween.tween_property(world_camera, "limit_right", 804, 2.0).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(world_camera, "limit_right", 272, 2.0).set_trans(Tween.TRANS_SINE)
 
 func _on_timer_health_power_up_timeout() -> void:
 	var active_powerups = get_tree().get_nodes_in_group("health_powerups")
@@ -316,7 +317,7 @@ func _on_wave_2_zone_trigger_body_entered(body: Node2D) -> void:
 		$"Border Collision/BorderCollisionRight/CollisionShape2D".set_deferred("disabled", false)
 		
 		var tween = create_tween()
-		tween.tween_property(world_camera, "limit_left", 319, 1.0).set_trans(Tween.TRANS_SINE)
+		tween.tween_property(world_camera, "limit_left", -32, 1.0).set_trans(Tween.TRANS_SINE)
 		
 		$scoreLabels.visible = false
 		$Player/PlayerHealthbar.visible = false

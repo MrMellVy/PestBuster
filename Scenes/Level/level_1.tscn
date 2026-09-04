@@ -537,7 +537,7 @@ position = Vector2(-45, 2)
 position = Vector2(447, -6)
 
 [node name="Marker2D" type="Marker2D" parent="." unique_id=1420072554]
-position = Vector2(-52, 127)
+position = Vector2(272, 124)
 gizmo_extents = 4.0
 
 [connection signal="timeout" from="TimerHealthPowerUp" to="." method="_on_timer_health_power_up_timeout"]
