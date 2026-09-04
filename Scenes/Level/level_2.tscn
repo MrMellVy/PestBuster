@@ -815,10 +815,10 @@ size = Vector2(24, 669.4375)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_akeww"]
 size = Vector2(51, 259)
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_1kfys"]
-vertices = PackedVector2Array(1747, -31.046875, 1747, -6, -32.179688, -6, -32.8125, -40.9375)
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_t8rx8"]
+vertices = PackedVector2Array(1372, 149.00781, -423.7578, 151.97656, -423.21875, 128.96094, 1372, 123.03125)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-43, -51, -42, 4, 1757, 4, 1757, -41)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-434, 162, 1382, 159, 1382, 113, -433, 119)])
 
 [node name="Level_2" type="Node2D" unique_id=630728870]
 script = ExtResource("1_8b42i")
@@ -1009,15 +1009,6 @@ position = Vector2(-412, 166)
 collision_mask = 78
 jumps = 2
 
-[node name="SupportCH" parent="." unique_id=1941443743 node_paths=PackedStringArray("player") instance=ExtResource("15_d52fh")]
-position = Vector2(-375, 166)
-collision_mask = 14
-player = NodePath("../Player")
-
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=1760181654]
-position = Vector2(-394, 166)
-navigation_polygon = SubResource("NavigationPolygon_1kfys")
-
 [node name="Marker2D" type="Marker2D" parent="." unique_id=895766117]
 position = Vector2(1388, 167)
 
@@ -1026,6 +1017,13 @@ z_index = -1
 position = Vector2(1079, 114)
 collision_layer = 256
 collision_mask = 76
+
+[node name="SupportCH" parent="." unique_id=1941443743 node_paths=PackedStringArray("player") instance=ExtResource("15_d52fh")]
+position = Vector2(-102, 136)
+player = NodePath("../Player")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=1280492670]
+navigation_polygon = SubResource("NavigationPolygon_t8rx8")
 
 [connection signal="timeout" from="TimerHealthPowerUp" to="." method="_on_timer_health_power_up_timeout"]
 [connection signal="body_entered" from="Wave2ZoneTrigger" to="." method="_on_wave_2_zone_trigger_body_entered"]

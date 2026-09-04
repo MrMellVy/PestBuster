@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dyhirno48mfiq" path="res://Assets/Tilesets/City/Platform-Sheet.png" id="9_gu6kt"]
 [ext_resource type="PackedScene" uid="uid://83r0sj6dfeal" path="res://Scenes/character/boss.tscn" id="10_mdswu"]
 [ext_resource type="Texture2D" uid="uid://carjrejog3yx1" path="res://Assets/Tilesets/City/Car.png" id="10_o2plo"]
+[ext_resource type="PackedScene" uid="uid://ca0uhuktjhjrw" path="res://Scenes/character/Support_CH.tscn" id="10_tapar"]
 [ext_resource type="PackedScene" uid="uid://bhik0cbrtt1bx" path="res://Scenes/Menu/pause_menu.tscn" id="13_14fte"]
 [ext_resource type="PackedScene" uid="uid://w7doc70s2ixt" path="res://Scenes/character/player.tscn" id="14_ex2jc"]
 
@@ -811,7 +812,6 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-43, -51, -42, 4, 946, 5, 944, -55)])
 
 [node name="DBG" type="Node2D" unique_id=630728870]
-visible = false
 script = ExtResource("9_0ty4y")
 
 [node name="player" parent="." unique_id=1296403870 instance=ExtResource("14_ex2jc")]
@@ -913,6 +913,9 @@ navigation_polygon = SubResource("NavigationPolygon_1kfys")
 position = Vector2(0, 118)
 collision_layer = 0
 collision_mask = 76
+
+[node name="SupportCH" parent="." unique_id=1941443743 instance=ExtResource("10_tapar")]
+position = Vector2(507, 133)
 
 [connection signal="body_entered" from="Wave2ZoneTrigger" to="." method="_on_wave_2_zone_trigger_body_entered"]
 [connection signal="body_exited" from="Wave2ZoneTrigger" to="." method="_on_wave_2_zone_trigger_body_exited"]

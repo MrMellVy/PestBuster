@@ -40,6 +40,9 @@ func _ready() -> void:
 	navigation_agent_2d.avoidance_enabled = false
 	
 func _physics_process(delta: float) -> void:
+	if player == null and Global.playerBody != null:
+		player = Global.playerBody
+	
 	if not is_on_floor():
 		velocity.y += GRAVITY * delta
 	
@@ -102,30 +105,15 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func follow_navigation(delta: float) -> void:
-	if navigation_agent_2d.is_target_reached():
-		velocity.x = move_toward(velocity.x, 0.0, FRICTION * 3.0 * delta)
-		return
-	var next_pos := navigation_agent_2d.get_next_path_position()
-	var direction := (next_pos - global_position).normalized()
-	var distance_to_target := global_position.distance_to(navigation_agent_2d.target_position)
+	var target_x := navigation_agent_2d.target_position.x
+	var dist_x = abs(target_x - global_position.x)
 
-	var target_speed := float(SPEED)
-	
-	if distance_to_target < 100.0:
-		target_speed = min(float(SPEED), distance_to_target * 4.0)
-	
-	if abs(direction.x) > 0.1:
-		change_direction(direction.x)
-	
-	var desired_velocity := direction.x * target_speed
-	
-	if abs(direction.x) > 10.0 and sign(velocity.x) != sign(desired_velocity):
-		velocity.x = move_toward(velocity.x, desired_velocity, ACCELARATION * delta)
+	if dist_x > 8.0:
+		var dir_x = sign(target_x - global_position.x)
+		change_direction(dir_x)
+		velocity.x = move_toward(velocity.x, dir_x * SPEED, ACCELARATION * delta)
 	else:
-		velocity.x = move_toward(velocity.x, direction.x * target_speed, ACCELARATION * delta)
-	
-	if distance_to_target < 8.0:
-		velocity.x = move_toward(velocity.x, 0.0, FRICTION * 3.0 * delta)
+		velocity.x = move_toward(velocity.x, 0.0, FRICTION * delta)
 
 func find_target_enemy() -> void:
 	target_enemy = null

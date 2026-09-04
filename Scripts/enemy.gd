@@ -21,6 +21,7 @@ var has_dealt_damage: bool = false
 var health: int
 var dir: Vector2
 var is_roaming: bool = true
+var is_attacking: bool = false
 var is_spawning: bool = false
 var player: CharacterBody2D
 var player_in_area = false
@@ -108,7 +109,15 @@ func calculate_movement():
 		velocity.x = dir.x * speed
 		
 	is_roaming = true
-	
+
+func interrupt_attack() -> void:
+	if not is_attacking:
+		return
+	is_attacking = false
+	is_dealing_damage = false
+	if not defeat:
+		can_attack = true
+
 func handle_animation():
 	if defeat:
 		return 
@@ -121,8 +130,8 @@ func handle_animation():
 	if taking_damage:
 		play_enemy_animation("hitted")
 		animation_player.play("TakeDamage")
-	elif is_dealing_damage:
-		play_enemy_animation("attack")
+	elif is_attacking:
+		return
 	else:
 		if abs(velocity.x) > anim_threshold:
 			play_enemy_animation("move")
@@ -161,6 +170,8 @@ func _on_enemy_hitbox_area_entered(area: Area2D) -> void:
 		take_damage(damage)
 		
 func take_damage(damage):
+	interrupt_attack()
+	
 	health -= damage
 	taking_damage = true
 	if health <= health_min:
@@ -173,21 +184,43 @@ func take_damage(damage):
 	print(str(self), "current health is ", health)
 
 func attack_sequence():
-	can_attack = false
-	await  get_tree().create_timer(0.4).timeout
-
-	if defeat or taking_damage:
-		can_attack = true
+	if not can_attack or defeat or taking_damage or Global.enemies_passive:
 		return
-		
+	can_attack = false
+	is_attacking = true
+	
+	play_enemy_animation("attack")
+	
+	if animation_player.has_animation("attack"):
+		animation_player.play("attack")
+	else:
+		end_attack()
+
+func attack() -> void:
+	if defeat or taking_damage:
+		return
 	is_dealing_damage = true
-	has_dealt_damage = false
+	if player_in_area and is_instance_valid(player) and player.has_method("take_damage"):
+		var push_direction: float = 1.0
+		push_direction = sign(player.global_position.x - global_position.x)
+		
+		if push_direction == 0:
+			push_direction = 1.0
+		player.take_damage(damage_to_deal, push_direction)
 
-	await $AnimatedSprite2D.animation_finished
-
+func stop_damage() -> void:
 	is_dealing_damage = false
-	await get_tree().create_timer(3.0).timeout
-	can_attack = true
+	
+func end_attack() -> void:
+	is_attacking = false
+	is_dealing_damage = false
+	if defeat:
+		return
+	get_tree().create_timer(3.0).timeout.connect(_attack_cooldown_finished)
+
+func _attack_cooldown_finished() -> void:
+	if is_inside_tree() and not defeat:
+		can_attack = true
 
 func _on_enemy_deal_damage_area_area_entered(area: Area2D) -> void:
 	if area == Global.playerHitbox:

@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://284g8u8ogi1b" path="res://Scripts/spawn_minion.gd" id="10_2f27s"]
 [ext_resource type="PackedScene" uid="uid://b8w4kw2ipi6o8" path="res://Scenes/character/enemy.tscn" id="11_df6xc"]
 [ext_resource type="Script" uid="uid://c6btqlalthr7i" path="res://Scripts/defeat.gd" id="12_df6xc"]
+[ext_resource type="Script" uid="uid://dgdv5dvmf7uvx" path="res://Scripts/hurt.gd" id="16_7d68f"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rrsei"]
 shader = ExtResource("2_rrsei")
@@ -889,6 +890,9 @@ script = ExtResource("9_euso8")
 [node name="SpawnMinion" type="Node2D" parent="FiniteStateMachine" unique_id=1128974599]
 script = ExtResource("10_2f27s")
 minion_node = ExtResource("11_df6xc")
+
+[node name="Hurt" type="Node2D" parent="FiniteStateMachine" unique_id=1712650093]
+script = ExtResource("16_7d68f")
 
 [node name="Defeat" type="Node2D" parent="FiniteStateMachine" unique_id=1581167934]
 script = ExtResource("12_df6xc")

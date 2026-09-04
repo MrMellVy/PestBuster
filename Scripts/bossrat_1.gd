@@ -69,3 +69,5 @@ func disable_damage():
 func take_damage(damage_amount: int):
 	health -= damage_amount
 	print("Boss took ", damage_amount, " damage! HP left: ", health)
+	if health > 0 and not defeat:
+		find_child("FiniteStateMachine").change_state("Hurt")

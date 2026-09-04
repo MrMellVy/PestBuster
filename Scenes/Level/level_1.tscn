@@ -496,15 +496,12 @@ jumps = 2
 position = Vector2(0, 166.565)
 zoom = Vector2(4.52, 4.52)
 limit_left = -435
-limit_right = 299
+limit_right = -52
 limit_bottom = 198
 
 [node name="TimerHealthPowerUp" type="Timer" parent="." unique_id=1022797986]
 wait_time = 20.0
 autostart = true
-
-[node name="BorderMarker" type="Marker2D" parent="." unique_id=1564193171]
-position = Vector2(-1, -69)
 
 [node name="PauseMenu" parent="." unique_id=1424256854 instance=ExtResource("11_q2tg5")]
 layer = 10
@@ -540,7 +537,7 @@ position = Vector2(-45, 2)
 position = Vector2(447, -6)
 
 [node name="Marker2D" type="Marker2D" parent="." unique_id=1420072554]
-position = Vector2(376, 133)
+position = Vector2(-52, 127)
 gizmo_extents = 4.0
 
 [connection signal="timeout" from="TimerHealthPowerUp" to="." method="_on_timer_health_power_up_timeout"]
