@@ -15,6 +15,8 @@ var dialogue_is_active: bool = true
 var max_lines: int = 8
 
 func _ready() -> void:
+	Savedata.save_cutscene_checkpoint("res://Scenes/Cutscene/cutscene_2.tscn")
+
 	$Fade_transition.show()    
 	$Fade_transition/Fade_transition/AnimationPlayer.play("Fade_out")
 	BgmManager.play_BGM("cyberpunk-street")

@@ -15,6 +15,7 @@ var min_spawn_distance: float = 100.0
 var wave_spawn_ended: bool = false
 var is_transitioning: bool = false
 
+var minion_spawner_timer: Timer
 var current_wave_batches: Array = []
 var current_batch_index: int = 0
 var current_air_wave_batches: Array = []
@@ -57,11 +58,12 @@ func _ready() -> void:
 	
 	if Global.is_continuing:
 		current_wave = Global.saved_wave
+		Global.current_wave = current_wave
 		$Player.health = Global.saved_player_health
 		$Player.damage_bonus = Global.saved_player_damage_bonus
 		
 		$scoreLabels.layer = 1
-		await SceneTransitionAnimation.animation_finished
+		SceneTransitionAnimation.animation_finished
 		$scoreLabels.layer = 3
 		
 		#await level_dialogue("CS_01_1")
@@ -76,19 +78,24 @@ func _ready() -> void:
 		elif current_wave == 5:
 			world_camera.limit_left = 711
 			world_camera.limit_right = 1388
-			world_camera.zoom = Vector2(2.0, 2.0)
-			
+			world_camera.zoom = Vector2(4.0, 4.0)
+
+			$Fade_transition.show()
+			$Fade_transition.layer = 2
+			$Fade_transition/Fade_transition/AnimationPlayer.play("Fade_out_start")
+			await $Fade_transition/Fade_transition/AnimationPlayer.animation_finished
+	
 			$"Border Collision/BorderCollisionRight2/CollisionShape2D".set_deferred("disabled", false)
 			if has_node("Wave3ZoneTrigger"):
 				$Wave3ZoneTrigger/CollisionShape2D.set_deferred("disabled", true)
 			
 			$Player.global_position = Vector2(745, 165)
-			
+			$SupportCH.global_position = Vector2(760, 165)
 			boss_rat_1.show()
 			boss_rat_1.get_node("UI").show()
 			boss_rat_1.process_mode = Node.PROCESS_MODE_INHERIT
 			
-			await level_dialogue("CS_00_2")
+			start_boss_enemy_spawner()
 			
 			$scoreLabels.visible = true
 			$Player/PlayerHealthbar.visible = true
@@ -122,19 +129,26 @@ func _ready() -> void:
 		elif current_wave == 5:
 			world_camera.limit_left = 711
 			world_camera.limit_right = 1388
-			world_camera.zoom = Vector2(2.0, 2.0)
-			
+			world_camera.zoom = Vector2(4.0, 4.0)
+	
+			$Fade_transition.show()
+			$Fade_transition.layer = 2
+			$Fade_transition/Fade_transition/AnimationPlayer.play("Fade_out_start")
+			await $Fade_transition/Fade_transition/AnimationPlayer.animation_finished
+	
 			$"Border Collision/BorderCollisionRight2/CollisionShape2D".set_deferred("disabled", false)
 			if has_node("Wave3ZoneTrigger"):
-				$Wave3ZoneTrigger.hide()
+				$Wave3ZoneTrigger/CollisionShape2D.set_deferred("disabled", true)
 			
 			$Player.global_position = Vector2(745, 165)
-			
+			$SupportCH.global_position = Vector2(760, 165)
+			$SupportCH.set_collision_mask_value(6, true)
+
 			boss_rat_1.show()
 			boss_rat_1.get_node("UI").show()
 			boss_rat_1.process_mode = Node.PROCESS_MODE_INHERIT
 			
-			await level_dialogue("CS_00_2")
+			start_boss_enemy_spawner()
 			
 			$scoreLabels.visible = true
 			$Player/PlayerHealthbar.visible = true
@@ -171,11 +185,10 @@ func position_to_next_wave():
 		await $scoreLabels/MiddleWaveAnim.animation_finished
 		SceneTransitionAnimation.play("between_wave")
 		$Player.apply_wave_stats(current_wave)
-		autosave_checkpoint()
 		
 		# Wave 2+ MORE! and this is where the airenemy spawn.
-		current_wave_batches = [3 + current_wave, 4 + current_wave, 5 + current_wave]
-		current_air_wave_batches = [1 + current_wave, 2 + current_wave, 3 + current_wave]
+		current_wave_batches = [1 + current_wave, 2 + current_wave, 2 + current_wave]
+		current_air_wave_batches = [current_wave, 1 + current_wave, 1 + current_wave]
 		
 		current_batch_index = 0
 		#Fix for freeze bug happens when close the window.
@@ -318,6 +331,8 @@ func trigger_next_phase():
 	is_changing_phase = true
 	
 	print("wave clear, next.")
+	
+	autosave_checkpoint()
 	
 	current_wave += 1
 	Global.current_wave = current_wave
@@ -491,6 +506,52 @@ func autosave_checkpoint():
 		Global.current_score
 	)
 
+func start_boss_enemy_spawner() -> void:
+	print("Starting boss minion spawner")
+	if minion_spawner_timer == null:
+		minion_spawner_timer = Timer.new()
+		minion_spawner_timer.wait_time = 2.0
+		minion_spawner_timer.timeout.connect(_manage_boss_minions)
+		add_child(minion_spawner_timer)
+		
+	minion_spawner_timer.start()
+
+func _manage_boss_minions() -> void:
+	if current_wave != 5 or boss_rat_1.defeat:
+		if minion_spawner_timer:
+			if minion_spawner_timer:
+				minion_spawner_timer.stop()
+			return
+	var active_ground := 0
+	var active_air := 0
+	
+	for minion in get_tree().get_nodes_in_group("level_minions"):
+		if is_instance_valid(minion) and not minion.defeat:
+			if minion is Enemy:
+				active_ground += 1
+			elif minion is EnemyAir:
+				active_air += 1
+		if active_ground < 2:
+			var ground_enemy = enemy_scene.instantiate()
+			ground_enemy.z_index = 1
+			ground_enemy.add_to_group("level_minions")
+			
+			ground_enemy.global_position = $EnemySpawnPoint1.global_position if  randf() < 0.5 else $EnemySpawnPoint4.global_position
+			add_child(ground_enemy)
+		if active_air < 2:
+			var air_enemy = enemy_scene.instantiate()
+			air_enemy.z_index = 1
+			air_enemy.add_to_group("level_minions")
+			
+			air_enemy.global_position = $AirEnemySpawnPoint5.global_position if  randf() < 0.5 else $AirEnemySpawnPoint6.global_position
+			add_child(air_enemy)
+			
+func _on_boss_fight_won() -> void:
+	if minion_spawner_timer:
+		minion_spawner_timer.stop()
+	for minion in get_tree().get_nodes_in_group("level_minions"):
+		if is_instance_valid(minion):
+			minion.queue_free()
 
 func _on_wave_3_zone_trigger_body_entered(body: Node2D) -> void:
 	if body.name == "Player" and current_wave == 5 and not is_spawning:

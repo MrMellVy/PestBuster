@@ -19,7 +19,10 @@ func _on_button_menu_pressed() -> void:
 	fade_transition.visible = true
 	#$Fade_transition/Fade_transition/AnimationPlayer.play("Fade_in")
 	#await $Fade_transition/Fade_transition/AnimationPlayer.animation_finished
-	#
+	var level = get_tree().current_scene
+	
+	if level and level.has_method("autosave_checkpoint"):
+		level.autosave_checkpoint()
 	Dialouge.stop()
 	
 	get_tree().paused = false

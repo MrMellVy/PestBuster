@@ -781,7 +781,7 @@ _data = {
 radius = 38.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3k1vp"]
-size = Vector2(250, 76)
+size = Vector2(644, 76)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rrsei"]
 radius = 64.070274
@@ -817,7 +817,6 @@ shape = SubResource("CircleShape2D_76hi5")
 [node name="PlayerDetect" type="Area2D" parent="CollisionShape2D" unique_id=1005091525]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionShape2D/PlayerDetect" unique_id=1712586258]
-position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_3k1vp")
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=450738101]

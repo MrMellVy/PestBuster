@@ -14,6 +14,7 @@ var max_lines: int = 8
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Savedata.save_cutscene_checkpoint("res://Scenes/Cutscene/cutscene_1.tscn")
 	$Fade_transition.show()    
 	$Fade_transition/Fade_transition/AnimationPlayer.play("Fade_out")
 	BgmManager.play_BGM("cyberpunk-street")
@@ -45,3 +46,4 @@ func start() -> void:
 		await animation_player.animation_finished
 		
 	get_tree().change_scene_to_file("res://Scenes/Level/level_1.tscn")
+	

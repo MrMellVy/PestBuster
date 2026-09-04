@@ -13,6 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://ca0uhuktjhjrw" path="res://Scenes/character/Support_CH.tscn" id="11_tt1ut"]
 [ext_resource type="AudioStream" uid="uid://c6o5s6rr6s47w" path="res://Assets/Audio/SFX/WooshBoss.wav" id="12_c25yr"]
 [ext_resource type="Texture2D" uid="uid://ds3bfmiexbhlr" path="res://Assets/Sprites/Boss/1/minibos_idle.png" id="13_4ul3f"]
+[ext_resource type="Texture2D" uid="uid://huhlnyv7f6fj" path="res://Assets/Sprites/Boss/1/minibos_skill.png" id="14_ry550"]
+[ext_resource type="Texture2D" uid="uid://mx3f8ff8oodu" path="res://Assets/Tilesets/City/Roads_crack.png" id="15_hc4xf"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_uicln"]
 load_path = "res://.godot/imported/Cloud0.png-f7d3aa7d538e5189608ed4a3e481fd2e.ctex"
@@ -715,6 +717,38 @@ region = Rect2(384, 0, 128, 128)
 atlas = ExtResource("13_4ul3f")
 region = Rect2(512, 0, 128, 128)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_q6r06"]
+atlas = ExtResource("14_ry550")
+region = Rect2(0, 0, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j2f7l"]
+atlas = ExtResource("14_ry550")
+region = Rect2(256, 0, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ksmv"]
+atlas = ExtResource("14_ry550")
+region = Rect2(512, 0, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f7nxl"]
+atlas = ExtResource("14_ry550")
+region = Rect2(768, 0, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ma3i"]
+atlas = ExtResource("14_ry550")
+region = Rect2(1024, 0, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jij1g"]
+atlas = ExtResource("14_ry550")
+region = Rect2(1280, 0, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yojar"]
+atlas = ExtResource("14_ry550")
+region = Rect2(1536, 0, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ypt8x"]
+atlas = ExtResource("14_ry550")
+region = Rect2(1792, 0, 256, 128)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_3k1vp"]
 animations = [{
 "frames": [{
@@ -736,6 +770,35 @@ animations = [{
 "loop": 1,
 "name": &"idle",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q6r06")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j2f7l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ksmv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f7nxl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ma3i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jij1g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yojar")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ypt8x")
+}],
+"loop": 0,
+"name": &"skill",
+"speed": 8.0
 }]
 
 [sub_resource type="Animation" id="Animation_4ul3f"]
@@ -774,6 +837,50 @@ _data = {
 &"RESET": SubResource("Animation_4ul3f"),
 &"Start_boss": SubResource("Animation_ry550")
 }
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eca1b"]
+atlas = ExtResource("15_hc4xf")
+region = Rect2(0, 0, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_unv1s"]
+atlas = ExtResource("15_hc4xf")
+region = Rect2(96, 0, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pvof0"]
+atlas = ExtResource("15_hc4xf")
+region = Rect2(192, 0, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xlc6y"]
+atlas = ExtResource("15_hc4xf")
+region = Rect2(288, 0, 96, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_76hi5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eca1b")
+}],
+"loop": 0,
+"name": &"idle",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eca1b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_unv1s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pvof0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xlc6y")
+}],
+"loop": 0,
+"name": &"roads_crack",
+"speed": 6.0
+}]
 
 [node name="Cutscene1" type="Node2D" unique_id=1863500679]
 script = ExtResource("1_tt1ut")
@@ -870,7 +977,7 @@ limit_bottom = 198
 
 [node name="WorldCamera2" type="Camera2D" parent="." unique_id=1286879714]
 position = Vector2(660, 113)
-zoom = Vector2(6.15, 6.15)
+zoom = Vector2(4.315, 4.315)
 limit_bottom = 198
 
 [node name="WorldCamera3" type="Camera2D" parent="." unique_id=9110645]
@@ -886,7 +993,10 @@ limit_bottom = 198
 [node name="WorldCameraTransition" type="Camera2D" parent="." unique_id=161662883]
 position = Vector2(-7, 166)
 zoom = Vector2(6.15, 6.15)
-limit_bottom = 198
+limit_left = -9999999
+limit_top = -10000001
+limit_right = 10000001
+limit_bottom = 197
 
 [node name="Target_Move3" type="Marker2D" parent="." unique_id=1163069681]
 position = Vector2(104, 166)
@@ -909,8 +1019,17 @@ stream = ExtResource("12_c25yr")
 [node name="BOSSprite" type="AnimatedSprite2D" parent="." unique_id=76254989]
 position = Vector2(662, -174)
 sprite_frames = SubResource("SpriteFrames_3k1vp")
-animation = &"idle"
+animation = &"skill"
+frame = 7
+frame_progress = 1.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1350029910]
 root_node = NodePath("../BOSSprite")
 libraries/ = SubResource("AnimationLibrary_hc4xf")
+
+[node name="Road_crack" type="AnimatedSprite2D" parent="." unique_id=2030262645]
+position = Vector2(658.50006, 182.00002)
+scale = Vector2(1.1145842, 1)
+sprite_frames = SubResource("SpriteFrames_76hi5")
+animation = &"idle"
+autoplay = "idle"

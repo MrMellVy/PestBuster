@@ -495,21 +495,30 @@ func check_hitbox():
 					var damage = Global.EnemyDamageAmount
 					if parent_node is EnemyAir:
 						damage = Global.EnemyAirDamageAmount
-					
-					take_damage(damage, dir)
+					var is_boss: bool = parent_node is BossRat or "boss" in parent_node.name
+					take_damage(damage, dir, is_boss)
 					parent_node.has_dealt_damage = true
 					break
 
-func take_damage(value, push_direction):
+func take_damage(value, push_direction, is_boss: bool = false):
 	if defeat or value <= 0 or !can_take_damage: 
 		return
 	health -= value
 	can_take_damage = false
 	print("player health: ", health)
-	velocity.x = push_direction * 200
-	velocity.y = 200
-	shake = true
-	shake_duration = max_shake_duration
+	if is_boss:
+		velocity.x = push_direction * 600.0
+		velocity.y = -350
+		
+		movementInputMonitoring = Vector2(false, false)
+		_inputPauseReset(0.4)
+		shake = true
+		shake_duration = max_shake_duration * 1.0
+	else:
+		velocity.x = push_direction * 200
+		velocity.y = 200
+		shake = true
+		shake_duration = max_shake_duration
 	
 	if health <= 0:
 		health = 0

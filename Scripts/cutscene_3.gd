@@ -15,6 +15,7 @@ var dialogue_is_active: bool = true
 var max_lines: int = 5
 
 func _ready() -> void:
+	Savedata.save_cutscene_checkpoint("res://Scenes/Cutscene/cutscene_3.tscn")
 	$Fade_transition.show()    
 	$Fade_transition/Fade_transition/AnimationPlayer.play("Fade_out")
 	BgmManager.play_BGM("cyberpunk-street")
@@ -62,8 +63,10 @@ func _on_dialogue_event(event_name: String) -> void:
 		await _change_camera($WorldCamera3, 1.5)
 		$AudioStreamPlayer.play()
 		$AnimationPlayer.play("Start_boss")
+		$BOSSprite.play("skill")
 		await _change_camera($WorldCamera4, 0.5)
 		await _change_camera($WorldCamera2, 0.6)
+		$Road_crack.play("roads_crack")
 		$BOSSprite.play("idle")
 		anim_is_moving = false
 		
@@ -114,6 +117,14 @@ func move_support_to_target(target_node: Node2D) -> void:
 	support.Anim_sprite.play("idle")
 	anim_is_moving = false
 	Dialouge.set_process_input(true)
+
+func autosave_checkpoint():
+	Savedata.save_checkpoint(
+		"res://Scenes/Cutscene/cutscene_3.tscn",
+		$Player.health,
+		$Player.damage_bonus,
+		Global.current_score
+	)
 
 
 func _change_camera(choose_camera: Camera2D, duration: float = 0.5):

@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+class_name BossRat
+
 const SPEED = 10.0
 const JUMP_VELOCITY = -300.0
 const GRAVITY = 980.0
@@ -11,7 +13,9 @@ const GRAVITY = 980.0
 var direction_x : float = 1.0
 var direction: Vector2
 
+@export var hurt_cooldown: float = 2.5
 @export var damage_to_deal: int = 30
+var can_be_hurt: bool = true
 var is_dealing_damage: bool = false
 var has_dealt_damage: bool = false
 var defeat: bool = false
@@ -30,11 +34,11 @@ func _ready() -> void:
 	var current_level_name = get_tree().current_scene.name
 	
 	if current_level_name == "level_2":
-		progress_bar.max_value = 350
-		health = 350
-	elif current_level_name == "level_3":
 		progress_bar.max_value = 500
 		health = 500
+	elif current_level_name == "level_3":
+		progress_bar.max_value = 750
+		health = 750
 	else:
 		progress_bar.max_value = 350
 		health = 350
@@ -67,7 +71,13 @@ func disable_damage():
 	is_dealing_damage = false
 
 func take_damage(damage_amount: int):
+	if not can_be_hurt or defeat:
+		return
+		
 	health -= damage_amount
 	print("Boss took ", damage_amount, " damage! HP left: ", health)
 	if health > 0 and not defeat:
+		can_be_hurt = false
 		find_child("FiniteStateMachine").change_state("Hurt")
+		await get_tree().create_timer(hurt_cooldown).timeout
+		can_be_hurt = true

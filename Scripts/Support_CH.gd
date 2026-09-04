@@ -17,6 +17,7 @@ extends CharacterBody2D
 @export var skill_dash_time: float = 0.25
 @export var skill_radius: float = 90.0
 @export_range(0.0, 1.0) var skill_chance: float = 0.3
+@export_range(0.0, 1.0) var attack_chance: float = 0.2
 
 @export_category("Debug")
 @export var disable_enemy_detection := false
@@ -86,11 +87,14 @@ func _physics_process(delta: float) -> void:
 			change_direction(sign(target_enemy.global_position.x - global_position.x))
 		
 		if distance_to_enemy <= attack_range:
-			velocity.x = move_toward(velocity.x, 0.0,FRICTION * delta)
-			play_anim("idle")
-			try_attack()
-			move_and_slide()
-			return
+			if attack_cooldown_timer <= 0.0:
+				velocity.x = move_toward(velocity.x, 0.0,FRICTION * delta)
+				play_anim("idle")
+				try_attack()
+				move_and_slide()
+				return
+			else:
+				velocity.x = move_toward(velocity.x, 0.0, FRICTION * delta)
 		else:
 			follow_navigation(delta)
 	else:
@@ -179,6 +183,10 @@ func try_attack() -> void:
 		return
 		
 	if not is_valid_target(target_enemy):
+		return
+	
+	if randf() > attack_chance:
+		attack_cooldown_timer = 0.4
 		return
 	
 	is_attacking = true

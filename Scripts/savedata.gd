@@ -30,11 +30,25 @@ func save_checkpoint(
 	config.set_value("autosave", "wave", wave)
 	config.set_value("autosave", "health", health)
 	config.set_value("autosave", "damage_bonus", damage_bonus)
+	config.set_value("autosave", "score", score)
 
 	config.save(SAVE_PATH)
 	
 	print("Autosave: ", scene_path, " | Wave: ", wave, " | Score: ", score)
+
+func save_cutscene_checkpoint(p_scene_path: String) -> void:
+	scene_path = p_scene_path
+	var config := ConfigFile.new()
+
+	config.set_value("autosave", "scene_path", scene_path)
+	config.set_value("autosave", "wave", wave)
+	config.set_value("autosave", "health", health)
+	config.set_value("autosave", "damage_bonus", damage_bonus)
+	config.set_value("autosave", "score", score)
 	
+	config.save(SAVE_PATH)
+	print("Autosave: ", scene_path)
+
 func load_checkpoint() -> void:
 	var config := ConfigFile.new()
 	

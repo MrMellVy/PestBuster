@@ -43,6 +43,7 @@ func _ready() -> void:
 	$Player.set_process_unhandled_input(false)
 	if Global.is_continuing:
 		current_wave = Global.saved_wave
+		Global.current_wave = current_wave
 		$Player.health = Global.saved_player_health
 		$Player.damage_bonus = Global.saved_player_damage_bonus
 		$scoreLabels.layer = 1
@@ -99,7 +100,7 @@ func position_to_next_wave():
 		await $scoreLabels/MiddleWaveAnim.animation_finished
 		SceneTransitionAnimation.play("between_wave")
 		$Player.apply_wave_stats(current_wave)
-		autosave_checkpoint()
+
 		
 		if current_wave == 1:
 			# Wave 1 will spawn 2 enemies, then 4, then 3
@@ -201,6 +202,8 @@ func trigger_next_phase():
 	is_spawning = true
 	if wave_spawn_ended:
 		print("Wave Cleared! Starting Next Wave...")
+		autosave_checkpoint()
+		
 		current_wave += 1
 		
 		Global.current_wave = current_wave

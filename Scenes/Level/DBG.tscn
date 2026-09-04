@@ -916,6 +916,7 @@ collision_mask = 76
 
 [node name="SupportCH" parent="." unique_id=1941443743 instance=ExtResource("10_tapar")]
 position = Vector2(507, 133)
+attack_cooldown = 2.5
 
 [connection signal="body_entered" from="Wave2ZoneTrigger" to="." method="_on_wave_2_zone_trigger_body_entered"]
 [connection signal="body_exited" from="Wave2ZoneTrigger" to="." method="_on_wave_2_zone_trigger_body_exited"]

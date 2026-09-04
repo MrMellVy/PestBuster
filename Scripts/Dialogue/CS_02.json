@@ -1,12 +1,12 @@
 [
         {"name": "Nashear", "text": "You good at fighting huh.", "face": "SpriteFace_Silence_1", "event": "start_move"},
-        {"name": "You", "text": "Thank you?", "face": "SpriteFace_Silence_1", "event": "start_move"},
+        {"name": "You", "text": "Thank you?", "face": "SpriteFace_Silence_1"},
         {"name": "You", "text": "Are we there yet?", "face": "SpriteFace_Silence_1"},
         {"name": "Nashear", "text": "Almost there.", "face": "SpriteFace_Silence"},
         {"name": "You", "text": "Sure, let's-", "face": "SpriteFace_Silence", "auto": 5.0, "event": "boss_camera_show"},
         {"name": "You", "text": "Are we really going to fight it!?", "face": "SpriteFace_Haha_1"},
         {"name": "Nashear", "text": "Yeah, that's must be the leader", "face": "SpriteFace_Hm"},
-        {"name": "Nashear", "text": "Get ready. That creature are walking towards us!", "face": "SpriteFace_Hm"},
+        {"name": "Nashear", "text": "Get ready. That creature are walking towards us!", "face": "SpriteFace_Hm", "auto": 3.0, "event": "boss_move"},
 
 ]
 
