@@ -157,7 +157,7 @@ func _on_fade_timer_timeout() -> void:
 			100,
 			0
 		)
-		get_tree().change_scene_to_file("res://Scenes/Cutscene/cutscene_1.tscn")
+		get_tree().change_scene_to_file("res://Scenes/Other/Keyboardshortcut.tscn")
 	elif button_type == "continue":
 		Global.gameStarted = true
 		

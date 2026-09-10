@@ -1262,12 +1262,24 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -1282.0
+offset_left = -4.0
 offset_top = -1.0
 offset_right = 1277.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.36078432)
+
+[node name="DarkOverlay2" type="ColorRect" parent="." unique_id=67919247]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1287.0
+offset_top = -1.0
+offset_right = -1284.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.627451)
 
 [node name="MainButtons" type="VBoxContainer" parent="." unique_id=334783007]
 layout_mode = 1
@@ -1441,6 +1453,193 @@ offset_bottom = 716.0
 theme_override_fonts/font = ExtResource("21_egyys")
 text = "Hold ESC to reset save file."
 horizontal_alignment = 2
+
+[node name="Credit" type="Node2D" parent="." unique_id=794234324]
+position = Vector2(-720, -43)
+
+[node name="Creditlabeltitle" type="Label" parent="Credit" unique_id=2143501313]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -458.0
+offset_top = 642.0
+offset_right = 560.0
+offset_bottom = 689.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("21_egyys")
+theme_override_font_sizes/font_size = 21
+text = "\"Swords & Blades Sound Pack\" by Leonardo Calvo  "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Creditlabeltitle2" type="Label" parent="Credit" unique_id=1643652951]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -458.0
+offset_top = 578.0
+offset_right = 560.0
+offset_bottom = 625.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("21_egyys")
+theme_override_font_sizes/font_size = 21
+text = "\"Battle Encounter, Cyberpunk-street, cyber_runner\" music by ansimuz"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Creditlabeltitle3" type="Label" parent="Credit" unique_id=541438067]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -458.0
+offset_top = 517.0
+offset_right = 560.0
+offset_bottom = 564.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("21_egyys")
+theme_override_font_sizes/font_size = 21
+text = "\"Side Scrolling Hack n' Slash Character\" by Joe_Idaho"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Creditlabeltitle4" type="Label" parent="Credit" unique_id=1770477623]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -458.0
+offset_top = 462.0
+offset_right = 560.0
+offset_bottom = 509.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("21_egyys")
+theme_override_font_sizes/font_size = 21
+text = "\"RIRIGITRIZ\" font by RinJuSu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Creditlabeltitle5" type="Label" parent="Credit" unique_id=2062689759]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 21.0
+offset_top = 67.0
+offset_right = 132.0
+offset_bottom = 136.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("21_egyys")
+theme_override_font_sizes/font_size = 32
+text = "STORY
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Creditlabeltitle6" type="Label" parent="Credit" unique_id=1196107243]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = 107.0
+offset_right = 128.0
+offset_bottom = 154.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("21_egyys")
+theme_override_font_sizes/font_size = 21
+text = "BYUJI
+RINJUSU"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Creditlabeltitle7" type="Label" parent="Credit" unique_id=1575941287]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 7.0
+offset_top = 165.0
+offset_right = 146.0
+offset_bottom = 234.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("21_egyys")
+theme_override_font_sizes/font_size = 32
+text = "ASSETS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Creditlabeltitle8" type="Label" parent="Credit" unique_id=39341622]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = 225.0
+offset_right = 128.0
+offset_bottom = 272.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("21_egyys")
+theme_override_font_sizes/font_size = 21
+text = "RINJUSU
+BYUJI"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Creditlabeltitle9" type="Label" parent="Credit" unique_id=1858764389]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 7.0
+offset_top = 277.0
+offset_right = 146.0
+offset_bottom = 346.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("21_egyys")
+theme_override_font_sizes/font_size = 32
+text = "CODE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Creditlabeltitle10" type="Label" parent="Credit" unique_id=828093598]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 16.5
+offset_top = 337.0
+offset_right = 136.5
+offset_bottom = 384.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("21_egyys")
+theme_override_font_sizes/font_size = 21
+text = "RINJUSU
+MrMellVy"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="button_down" from="MainButtons/Button_Manager/Start" to="MainButtons/Button_Manager/Start" method="_on_button_down"]
 [connection signal="button_up" from="MainButtons/Button_Manager/Start" to="MainButtons/Button_Manager/Start" method="_on_button_up"]

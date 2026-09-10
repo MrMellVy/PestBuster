@@ -13,7 +13,7 @@ var defeat = false
 var taking_damage = false
 var is_roaming: bool
 
-var damage_to_deal = 20
+var damage_to_deal = 10
 var is_dealing_damage: bool = false
 var has_dealt_damage: bool = false
 

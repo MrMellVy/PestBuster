@@ -80,11 +80,15 @@ func next_script():
 
 	var face_name = current_line.get("face","")
 	if face_name != "":
-		var texture_path = "res://Assets/Sprites/PlayerFace/" + face_name + ".png"
-		if ResourceLoader.exists(texture_path):
-			$NinePatchRect/PictureProtait.texture = load(texture_path)
+		var path_1 = "res://Assets/Sprites/PlayerFace/" + face_name + ".png"
+		var path_2 = "res://Assets/Sprites/SupportFace/" + face_name + ".png"
+		if ResourceLoader.exists(path_1):
+			$NinePatchRect/PictureProtait.texture = load(path_1)
+		elif ResourceLoader.exists(path_2):
+			$NinePatchRect/PictureProtait.texture = load(path_2)
+
 		else:
-			print("Face texture not found at", texture_path)
+			print("Face texture not found at", path_1)
 			$NinePatchRect/PictureProtait.texture = null
 	else:
 		$NinePatchRect/PictureProtait.texture = null
@@ -150,14 +154,19 @@ func refresh_current_line() -> void:
 	var face_name = current_line.get("face", "")
 	
 	if face_name != "":
-		var texture_path = "res://Assets/Sprites/PlayerFace/" + face_name + ".png"
-		if ResourceLoader.exists(texture_path):
-			$NinePatchRect/PictureProtait.texture = load(texture_path)
+		var path_1 = "res://Assets/Sprites/PlayerFace/" + face_name + ".png"
+		var path_2 = "res://Assets/Sprites/SupportFace/" + face_name + ".png"
+		if ResourceLoader.exists(path_1):
+			$NinePatchRect/PictureProtait.texture = load(path_1)
+		elif ResourceLoader.exists(path_2):
+			$NinePatchRect/PictureProtait.texture = load(path_2)
 		else:
-			print("Face Texture not found, ", texture_path)
+			print("Face Texture not found, ", face_name)
 			$NinePatchRect/PictureProtait.texture = null
 	else:
 		$NinePatchRect/PictureProtait.texture = null
+
+
 func stop() -> void:
 	d_active = false
 	$NinePatchRect.visible = false

@@ -52,7 +52,7 @@ func _ready() -> void:
 	$Fade_transition/Fade_transition/AnimationPlayer.play("Fade_out_start")
 	
 	BgmManager.play_BGM("Battle Encounter")
-	
+	show_skill_label()
 	$Player.set_physics_process(false)
 	$Player.set_process_unhandled_input(false)
 	
@@ -125,7 +125,37 @@ func _ready() -> void:
 		$Player/PlayerHealthbar.visible = true
 		
 		if current_wave == 4:
-			open_path_to_zone_2()
+			world_camera.limit_right = 687
+			world_camera.limit_left = 164
+
+			$Fade_transition.show()
+			$Fade_transition.layer = 2
+			$Fade_transition/Fade_transition/AnimationPlayer.play("Fade_out_start")
+			await $Fade_transition/Fade_transition/AnimationPlayer.animation_finished
+	
+			$"Border Collision/BorderCollisionRight2/CollisionShape2D".set_deferred("disabled", false)
+			if has_node("Wave2ZoneTrigger"):
+				$Wave2ZoneTrigger/CollisionShape2D.set_deferred("disabled", true)
+			
+			$Player.global_position = Vector2(180, 165)
+			$SupportCH.global_position = Vector2(170, 165)
+			$SupportCH.set_collision_mask_value(6, true)
+			
+			$scoreLabels.visible = true
+			$Player/PlayerHealthbar.visible = true
+			
+			Global.current_wave = current_wave
+			
+			$scoreLabels/ScoreAnim.play("ScoreUp")
+			$scoreLabels/WaveAnim.play("WaveUp")
+			$scoreLabels/MiddleWaveAnim.play("LeftStart")
+			
+			await $scoreLabels/ScoreAnim.animation_finished
+			await $scoreLabels/WaveAnim.animation_finished
+			await $scoreLabels/MiddleWaveAnim.animation_finished
+			
+			await get_tree().create_timer(1.5).timeout
+			position_to_next_wave()
 		elif current_wave == 5:
 			world_camera.limit_left = 711
 			world_camera.limit_right = 1388
@@ -169,6 +199,7 @@ func _ready() -> void:
 			await start_wave_intro()
 			
 func position_to_next_wave():
+		autosave_checkpoint()
 		wave_spawn_ended = false
 		is_changing_phase = false
 		all_batches_spawned = false
@@ -331,15 +362,14 @@ func trigger_next_phase():
 	is_changing_phase = true
 	
 	print("wave clear, next.")
-	
-	autosave_checkpoint()
-	
 	current_wave += 1
 	Global.current_wave = current_wave
 	
 	if current_wave == 4:
+		$Player/Label.visible = true
 		open_path_to_zone_2()
 	elif current_wave == 5:
+		$Player/Label.visible = true
 		open_path_to_zone_3()
 	else:
 		is_spawning = true
@@ -395,6 +425,28 @@ func open_path_to_zone_3():
 	
 	var tween = create_tween()
 	tween.tween_property(world_camera, "limit_right", 1463, 2.0).set_trans(Tween.TRANS_SINE)
+
+func show_skill_label() -> void:
+	$Player/Label3.modulate.a = 1.0
+	$Player/Label3.show()
+
+	await get_tree().create_timer(5.0).timeout
+	
+	var tween = create_tween()
+	tween.tween_property($Player/Label3, "modulate:a", 0.0, 1.0)
+	
+	await  tween.finished
+	$Player/Label3.hide()
+	await get_tree().create_timer(1.0).timeout
+	$Player/Label2.modulate.a = 1.0
+	$Player/Label2.show()
+
+	await get_tree().create_timer(5.0).timeout
+	var tween2 = create_tween()
+	tween2.tween_property($Player/Label2, "modulate:a", 0.0, 1.0)
+	
+	await  tween.finished
+	$Player/Label2.hide()
 
 func _on_timer_health_power_up_timeout() -> void:
 	var active_powerups = get_tree().get_nodes_in_group("health_powerups")
@@ -454,8 +506,9 @@ func _on_timer_health_power_up_timeout() -> void:
 func _on_wave_2_zone_trigger_body_entered(body: Node2D) -> void:
 	if body.name == "Player" and current_wave == 4 and not is_spawning:
 		print("Player reached Zone 2 Transition, Starting Wave")
-		
+
 		#Disable the font sign here. with .hide()
+		$Player/Label.visible = false
 		$Wave2ZoneTrigger.set_deferred("monitoring", false) #for failsafe
 		$"Border Collision/BorderCollisionRight/CollisionShape2D".set_deferred("disabled", false)
 		
@@ -464,21 +517,21 @@ func _on_wave_2_zone_trigger_body_entered(body: Node2D) -> void:
 
 		position_to_next_wave()
 
-func _input(event: InputEvent) -> void:
-	if event is InputEventKey and event.pressed:
-		if event.keycode == KEY_K:
-			print("SKIP. Next Batch.")
-			for child in get_children():
-				if child is Enemy or child is EnemyAir:
-					if not child.defeat:
-						child.take_damage(999999)
-		elif event.keycode == KEY_T:
-			Global.enemies_passive = !Global.enemies_passive
-			
-			if Global.enemies_passive:
-				print("Enemies stop target player.")
-			else:
-				print("Enemies target player again.")
+#func _input(event: InputEvent) -> void:
+	#if event is InputEventKey and event.pressed:
+		#if event.keycode == KEY_K:
+			#print("SKIP. Next Batch.")
+			#for child in get_children():
+				#if child is Enemy or child is EnemyAir:
+					#if not child.defeat:
+						#child.take_damage(999999)
+		#elif event.keycode == KEY_T:
+			#Global.enemies_passive = !Global.enemies_passive
+			#
+			#if Global.enemies_passive:
+				#print("Enemies stop target player.")
+			#else:
+				#print("Enemies target player again.")
 
 
 func level_dialogue(json_filename: String) -> void:
@@ -552,13 +605,20 @@ func _on_boss_fight_won() -> void:
 	for minion in get_tree().get_nodes_in_group("level_minions"):
 		if is_instance_valid(minion):
 			minion.queue_free()
+	
+	print("Clear move to cutscene 4!")
+	Global.saved_wave = 6
+	Global.saved_player_health = $Player.health
+	Global.saved_player_damage_bonus = $Player.damage_bonus
+	autosave_checkpoint()
+	get_tree().change_scene_to_file("res://Scenes/Cutscene/cutscene_4.tscn")
 
 func _on_wave_3_zone_trigger_body_entered(body: Node2D) -> void:
 	if body.name == "Player" and current_wave == 5 and not is_spawning:
+		$Player/Label.visible = false
 		print("Player reached Zone 3 Transition to cutscene ")
-
 		$Wave3ZoneTrigger.set_deferred("monitoring", false)
-		
+
 		Global.saved_wave = 5
 		Global.saved_player_health = $Player.health
 		Global.saved_player_damage_bonus = $Player.damage_bonus

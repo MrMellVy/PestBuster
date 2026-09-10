@@ -13,9 +13,12 @@ const GRAVITY = 980.0
 var direction_x : float = 1.0
 var direction: Vector2
 
-@export var hurt_cooldown: float = 2.5
+@export var hurt_cooldown: float = 1.0
 @export var damage_to_deal: int = 30
+@export_range(0.0, 1.0) var stagger_resist: float = 0.7
+
 var can_be_hurt: bool = true
+var is_invulnerable: bool = false
 var is_dealing_damage: bool = false
 var has_dealt_damage: bool = false
 var defeat: bool = false
@@ -33,10 +36,10 @@ func _ready() -> void:
 	add_to_group("enemies")
 	var current_level_name = get_tree().current_scene.name
 	
-	if current_level_name == "level_2":
+	if current_level_name == "Level_2":
 		progress_bar.max_value = 500
 		health = 500
-	elif current_level_name == "level_3":
+	elif current_level_name == "Level_3":
 		progress_bar.max_value = 750
 		health = 750
 	else:
@@ -71,13 +74,26 @@ func disable_damage():
 	is_dealing_damage = false
 
 func take_damage(damage_amount: int):
-	if not can_be_hurt or defeat:
+	if not can_be_hurt or defeat or is_invulnerable:
 		return
 		
 	health -= damage_amount
 	print("Boss took ", damage_amount, " damage! HP left: ", health)
 	if health > 0 and not defeat:
 		can_be_hurt = false
-		find_child("FiniteStateMachine").change_state("Hurt")
-		await get_tree().create_timer(hurt_cooldown).timeout
+		if randf() > stagger_resist:
+			find_child("FiniteStateMachine").change_state("Hurt")
+		else:
+			var possible_counters = ["Attack"]
+			var current_level_name = get_tree().current_scene.name
+			if current_level_name == "Level_3" or current_level_name == "level_3":
+				if randf() < 0.20:
+					possible_counters.append("Dash")
+			else:
+				if randf() < 0.40:
+					possible_counters.append("SpawnMinion")
+			var random_count = possible_counters.pick_random()
+			find_child("FiniteStateMachine").change_state(random_count)
+		if get_tree().current_scene.name == "Level_2":
+			await get_tree().create_timer(hurt_cooldown).timeout
 		can_be_hurt = true

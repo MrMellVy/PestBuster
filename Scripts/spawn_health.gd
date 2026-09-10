@@ -25,10 +25,10 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 			if body.health < body.health_max:
 				var heal_amount: int
 				if randf() < 0.5:
-					heal_amount = 20
-					print("Got High Heal! 20 HP")
+					heal_amount = 55
+					print("Got High Heal! 55 HP")
 				else:
-					heal_amount = randi_range(10, 15)
+					heal_amount = randi_range(45, 35)
 					print("Normal Heal! Restored ", heal_amount, " HP.")
 				body.heal(heal_amount)
 				queue_free()

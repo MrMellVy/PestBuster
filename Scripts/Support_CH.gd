@@ -308,13 +308,13 @@ func change_direction(direction: float) -> void:
 	else:
 		Anim_sprite.flip_h = false
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventKey and event.pressed and not event.echo:
-		if event.keycode == KEY_I:
-			disable_enemy_detection = not disable_enemy_detection
-			if disable_enemy_detection:
-				target_enemy = null
-			
-			print("SpChar dect: ", disable_enemy_detection)
-		elif  event.keycode == KEY_K:
-			debug_force_skill_a()
+#func _unhandled_input(event: InputEvent) -> void:
+	#if event is InputEventKey and event.pressed and not event.echo:
+		#if event.keycode == KEY_I:
+			#disable_enemy_detection = not disable_enemy_detection
+			#if disable_enemy_detection:
+				#target_enemy = null
+			#
+			#print("SpChar dect: ", disable_enemy_detection)
+		#elif  event.keycode == KEY_K:
+			#debug_force_skill_a()

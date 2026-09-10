@@ -43,7 +43,7 @@ _data = {
 
 [node name="Dialogue" type="CanvasLayer" unique_id=872236530]
 script = ExtResource("1_3lq5a")
-test_dialogue = "CS_00_3"
+test_dialogue = "CS_04"
 
 [node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=507488428]
 anchors_preset = 10

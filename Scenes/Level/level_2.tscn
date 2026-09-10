@@ -12,10 +12,12 @@
 [ext_resource type="Texture2D" uid="uid://carjrejog3yx1" path="res://Assets/Tilesets/City/Car.png" id="9_h104p"]
 [ext_resource type="PackedScene" uid="uid://by1622uoguy0" path="res://Scenes/Menu/Transition.tscn" id="10_nq7eo"]
 [ext_resource type="PackedScene" uid="uid://bhoc04ca7xoh5" path="res://Scenes/Other/ScoreWaveLabels.tscn" id="11_g5aqo"]
+[ext_resource type="Texture2D" uid="uid://ceh7ybe25p14a" path="res://Assets/Tilesets/Lab/item_lab.png" id="11_t8rx8"]
 [ext_resource type="PackedScene" uid="uid://w7doc70s2ixt" path="res://Scenes/character/player.tscn" id="12_53c2y"]
 [ext_resource type="PackedScene" uid="uid://bhik0cbrtt1bx" path="res://Scenes/Menu/pause_menu.tscn" id="13_j3u46"]
 [ext_resource type="PackedScene" uid="uid://83r0sj6dfeal" path="res://Scenes/character/boss.tscn" id="15_1kfys"]
 [ext_resource type="PackedScene" uid="uid://ca0uhuktjhjrw" path="res://Scenes/character/Support_CH.tscn" id="15_d52fh"]
+[ext_resource type="FontFile" uid="uid://bgx1d1885ufiu" path="res://Assets/Fonts/Ririgitriz.ttf" id="16_rc20r"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hnohd"]
 load_path = "res://.godot/imported/Cloud0.png-f7d3aa7d538e5189608ed4a3e481fd2e.ctex"
@@ -806,6 +808,209 @@ texture = ExtResource("9_h104p")
 [sub_resource type="TileSet" id="TileSet_hnohd"]
 sources/0 = SubResource("TileSetAtlasSource_fvaf1")
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rc20r"]
+texture = ExtResource("11_t8rx8")
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+10:0/0 = 0
+11:0/0 = 0
+12:0/0 = 0
+13:0/0 = 0
+14:0/0 = 0
+15:0/0 = 0
+16:0/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+8:1/0 = 0
+9:1/0 = 0
+10:1/0 = 0
+11:1/0 = 0
+12:1/0 = 0
+13:1/0 = 0
+14:1/0 = 0
+15:1/0 = 0
+16:1/0 = 0
+18:1/0 = 0
+19:1/0 = 0
+20:1/0 = 0
+21:1/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+8:2/0 = 0
+9:2/0 = 0
+10:2/0 = 0
+13:2/0 = 0
+14:2/0 = 0
+15:2/0 = 0
+19:2/0 = 0
+20:2/0 = 0
+21:2/0 = 0
+22:2/0 = 0
+23:2/0 = 0
+24:2/0 = 0
+25:2/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+8:3/0 = 0
+9:3/0 = 0
+10:3/0 = 0
+13:3/0 = 0
+14:3/0 = 0
+15:3/0 = 0
+20:3/0 = 0
+23:3/0 = 0
+24:3/0 = 0
+25:3/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+8:4/0 = 0
+9:4/0 = 0
+10:4/0 = 0
+11:4/0 = 0
+12:4/0 = 0
+13:4/0 = 0
+14:4/0 = 0
+15:4/0 = 0
+16:4/0 = 0
+18:4/0 = 0
+19:4/0 = 0
+20:4/0 = 0
+21:4/0 = 0
+22:4/0 = 0
+23:4/0 = 0
+24:4/0 = 0
+25:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+8:5/0 = 0
+9:5/0 = 0
+10:5/0 = 0
+13:5/0 = 0
+14:5/0 = 0
+15:5/0 = 0
+18:5/0 = 0
+19:5/0 = 0
+20:5/0 = 0
+21:5/0 = 0
+22:5/0 = 0
+23:5/0 = 0
+24:5/0 = 0
+25:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+8:6/0 = 0
+9:6/0 = 0
+10:6/0 = 0
+11:6/0 = 0
+12:6/0 = 0
+13:6/0 = 0
+15:6/0 = 0
+16:6/0 = 0
+17:6/0 = 0
+18:6/0 = 0
+19:6/0 = 0
+20:6/0 = 0
+21:6/0 = 0
+22:6/0 = 0
+23:6/0 = 0
+24:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+6:7/0 = 0
+7:7/0 = 0
+8:7/0 = 0
+9:7/0 = 0
+10:7/0 = 0
+11:7/0 = 0
+12:7/0 = 0
+13:7/0 = 0
+14:7/0 = 0
+15:7/0 = 0
+16:7/0 = 0
+17:7/0 = 0
+18:7/0 = 0
+19:7/0 = 0
+20:7/0 = 0
+21:7/0 = 0
+22:7/0 = 0
+23:7/0 = 0
+24:7/0 = 0
+25:6/0 = 0
+26:6/0 = 0
+27:6/0 = 0
+28:6/0 = 0
+29:6/0 = 0
+30:6/0 = 0
+31:6/0 = 0
+25:7/0 = 0
+26:7/0 = 0
+27:7/0 = 0
+28:7/0 = 0
+29:7/0 = 0
+26:5/0 = 0
+27:5/0 = 0
+28:5/0 = 0
+29:5/0 = 0
+30:5/0 = 0
+31:5/0 = 0
+26:1/0 = 0
+27:1/0 = 0
+28:1/0 = 0
+29:1/0 = 0
+30:1/0 = 0
+31:1/0 = 0
+31:2/0 = 0
+30:2/0 = 0
+29:3/0 = 0
+28:3/0 = 0
+27:3/0 = 0
+26:2/0 = 0
+27:2/0 = 0
+28:2/0 = 0
+29:2/0 = 0
+26:3/0 = 0
+26:4/0 = 0
+27:4/0 = 0
+28:4/0 = 0
+29:4/0 = 0
+30:4/0 = 0
+31:4/0 = 0
+31:3/0 = 0
+30:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_r1dii"]
+sources/1 = SubResource("TileSetAtlasSource_rc20r")
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mt3j2"]
 size = Vector2(20, 710.875)
 
@@ -822,7 +1027,6 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-434, 162, 1382, 159, 1
 
 [node name="Level_2" type="Node2D" unique_id=630728870]
 script = ExtResource("1_8b42i")
-starting_wave = 5
 enemy_scene = ExtResource("2_d8j35")
 airenemy_scene = ExtResource("3_d52fh")
 
@@ -886,6 +1090,11 @@ tile_set = SubResource("TileSet_pvlc2")
 position = Vector2(436, 134.145)
 tile_map_data = PackedByteArray("AADr////AAAOAAAAAADt/wIAAAACAAMAAADu/wIAAAADAAMAAADv////AAAOAAAAAADT////AAAAAAAAAADT/wIAAAAAAAMAAADU/wIAAAABAAMAAADV/wIAAAACAAMAAADW/wIAAAADAAMAAADX/wIAAAAEAAMAAADY/wIAAAAFAAMAAADZ/wIAAAAGAAMAAAA=")
 tile_set = SubResource("TileSet_hnohd")
+
+[node name="itemlabPotions" type="TileMapLayer" parent="." unique_id=1465052956]
+position = Vector2(0, 6)
+tile_map_data = PackedByteArray("AAAHAPr/AQAMAAAAAAAHAPv/AQAMAAEAAAAPAPr/AQAQAAAAAAAPAPv/AQAQAAEAAAAPAP7/AQAQAAQAAAB+AP3/AQATAAcAAAB/AP3/AQAUAAcAAAB7AP3/AQARAAYAAAB6AP3/AQAWAAcAAACaAP3/AQAOAAcAAACbAPz/AQAPAAYAAACbAP3/AQAPAAcAAACcAP3/AQAQAAYAAACdAP3/AQARAAYAAACgAP3/AQAQAAcAAACfAP3/AQATAAcAAACjAP3/AQAWAAcAAACkAP3/AQAVAAYAAADpAP3/AQAWAAcAAADqAP3/AQAYAAcAAABNAAkAAQAdAAUAAABNAAoAAQAdAAYAAABOAAkAAQAeAAUAAABOAAoAAQAeAAYAAABPAAkAAQAZAAcAAABPAAoAAQAfAAYAAABJAAkAAQAdAAIAAABKAAkAAQAeAAIAAABQAAkAAQAaAAcAAABRAAkAAQAbAAcAAABSAAkAAQAcAAcAAABTAAkAAQAdAAcAAABGAAkAAQAaAAIAAABHAAkAAQAbAAIAAABIAAkAAQAcAAIAAABLAAkAAQAfAAIAAABGAAoAAQAbAAMAAABGAAsAAQAbAAQAAABHAAoAAQAcAAMAAABHAAsAAQAcAAQAAABIAAoAAQAdAAMAAABIAAsAAQAdAAQAAABJAAoAAQAeAAMAAABJAAsAAQAeAAQAAABKAAoAAQAfAAMAAABKAAsAAQAfAAQAAABTAAoAAQAZAAYAAABUAAoAAQAaAAYAAAA7AAkAAQAZAAYAAAA8AAkAAQAaAAYAAAA1AAkAAQAaAAEAAAA2AAkAAQAbAAEAAAA3AAkAAQAcAAEAAAA4AAkAAQAdAAEAAAA5AAkAAQAeAAEAAAA6AAkAAQAfAAEAAAA9AAoAAQAaAAUAAAA+AAoAAQAbAAUAAAA/AAoAAQAcAAUAAABUAAgAAQAaAAUAAAA=")
+tile_set = SubResource("TileSet_r1dii")
 
 [node name="Border Collision" type="Node2D" parent="." unique_id=704711646]
 position = Vector2(0, 335.14)
@@ -1010,8 +1219,38 @@ position = Vector2(-412, 166)
 collision_mask = 78
 jumps = 2
 
+[node name="Label" type="Label" parent="Player" unique_id=419576241]
+visible = false
+offset_left = -21.0
+offset_top = 7.0
+offset_right = 20.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("16_rc20r")
+theme_override_font_sizes/font_size = 15
+text = "GO ->"
+
+[node name="Label2" type="Label" parent="Player" unique_id=650669713]
+visible = false
+offset_left = -103.0
+offset_top = 10.0
+offset_right = 102.0
+offset_bottom = 26.0
+theme_override_fonts/font = ExtResource("16_rc20r")
+theme_override_font_sizes/font_size = 15
+text = "PRESS 'C' To use skill!"
+
+[node name="Label3" type="Label" parent="Player" unique_id=304122559]
+visible = false
+offset_left = -102.0
+offset_top = 13.0
+offset_right = 103.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("16_rc20r")
+theme_override_font_sizes/font_size = 9
+text = "PRESS 'Z + SHIFT' To use Dash attack!"
+
 [node name="Marker2D" type="Marker2D" parent="." unique_id=895766117]
-position = Vector2(761, 165)
+position = Vector2(164, 159)
 
 [node name="BossRat1" parent="." unique_id=1376914475 instance=ExtResource("15_1kfys")]
 z_index = -1

@@ -1,0 +1,12 @@
+[
+        {"name": "Nashear", "text": "...", "face": "CHSpriteFace_Silence_1", "auto": 7.0,  "event": "attack_boss_move_back"},
+        {"name": "Nashear", "text": "We- we did it?", "face": "CHSpriteFace_What"},
+        {"name": "You", "text": "Yeah, we did it!", "face": "SpriteFace_What"},
+        {"name": "Nashear", "text": "Oh, it seems we deal much damage to this building...", "face": "CHSpriteFace_Haha_2", "event": "move_around"},
+        {"name": "Nashear", "text": "We should go now!", "face": "CHSpriteFace_What"},
+        {"name": "You", "text": "Come! let's go.", "face": "SpriteFace_Silence_1"},
+        {"name": "Nashear", "text": "...", "face": "CHSpriteFace_Silence_1", "auto": 2.0,  "event": "run_away"}
+
+]
+
+

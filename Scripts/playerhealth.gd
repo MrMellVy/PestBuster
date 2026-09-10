@@ -11,8 +11,12 @@ func _ready() -> void:
 	
 func _process(_delta: float) -> void:
 	if Global.playerBody != null:
-		self.max_value = Global.playerBody.health_max
+		var actual_max_health = Global.playerBody.health_max
 		var actual_health = Global.playerBody.health
+		
+		if self.max_value != actual_max_health:
+			self.max_value = actual_max_health
+			current_tracked_health = -1.0
 		
 		if current_tracked_health == -1.0:
 			self.value = actual_health

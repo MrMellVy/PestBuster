@@ -1,0 +1,11 @@
+[
+        {"name": "Nashear", "text": "...", "face": "SpriteFace_Silence_1", "auto": 3.0,  "event": "attack_boss_move_back"},
+        {"name": "Nashear", "text": "That rat running away!", "face": "SpriteFace_What"},
+        {"name": "You", "text": "How can we reach that creature!?", "face": "SpriteFace_What"},
+        {"name": "Nashear", "text": "I have a car.", "face": "SpriteFace_What", "event": "showcar"},
+        {"name": "You", "text": "Oh, alright. let's go.", "face": "SpriteFace_Haha_2"},
+        {"name": "Nashear", "text": "...", "face": "SpriteFace_Silence_1", "auto": 3.0,  "event": "boss_chase"},
+
+]
+
+

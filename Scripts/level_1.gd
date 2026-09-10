@@ -34,7 +34,6 @@ func _ready() -> void:
 	$Player.add_child(remote)
 	remote.remote_path = remote.get_path_to(world_camera)
 	#endregion
-	
 	$Fade_transition.show()
 	$Fade_transition.layer = 2
 	$Fade_transition/Fade_transition/AnimationPlayer.play("Fade_out_start")
@@ -53,14 +52,24 @@ func _ready() -> void:
 		$Player.set_process_unhandled_input(true)
 		$Player.movementInputMonitoring = Vector2(true,true)
 		
-		if current_wave >= 2:
+		if current_wave == 2:
 			world_camera.limit_left = -32
 			world_camera.limit_right = 272
 			
 			$"Border Collision/BorderCollisionRight/CollisionShape2D".set_deferred("disabled", false)
-			$Wave2ZoneTrigger.hide()
-			$Player.global_position = Vector2(-32, 133)
 			
+			$Wave2ZoneTrigger.set_deferred("monitoring", false)
+			$Wave2ZoneTrigger.hide()
+			$Player.global_position = Vector2(-40, 133)
+			$scoreLabels.visible = true
+			$scoreLabels/ScoreAnim.play("ScoreUp")
+			$scoreLabels/WaveAnim.play("WaveUp")
+			$scoreLabels/MiddleWaveAnim.play("LeftStart")
+			
+			await $scoreLabels/ScoreAnim.animation_finished
+			await $scoreLabels/WaveAnim.animation_finished
+			await $scoreLabels/MiddleWaveAnim.animation_finished
+			await get_tree().create_timer(1.5).timeout
 		position_to_next_wave()
 		current_wave_batches = [3 + current_wave, 5 + current_wave]
 		current_batch_index = 0
@@ -77,6 +86,7 @@ func _ready() -> void:
 		$Player/PlayerHealthbar.visible = true
 		$scoreLabels.layer = 3
 		if current_wave == 2:
+			$Player/Label.visible = true
 			open_path_to_zone_2()
 		else:
 			$Player/PlayerHealthbar.visible = true
@@ -89,9 +99,10 @@ func _ready() -> void:
 		
 func position_to_next_wave():
 		if current_wave != 0:
+			autosave_checkpoint()
 			Global.moving_to_next_wave = true
-		wave_spawn_ended = false
-		is_spawning = true
+			wave_spawn_ended = false
+			is_spawning = true
 		
 		$Fade_transition.layer = 2
 		$scoreLabels/ScoreAnim.play("ScoreDown")
@@ -114,7 +125,7 @@ func position_to_next_wave():
 			autosave_checkpoint()
 			get_tree().change_scene_to_file("res://Scenes/Cutscene/cutscene_2.tscn")
 		else:
-			# Wave 2+ MORE! and this is where the airenemy spawn.
+			# Wave 2+ Wave3ZoneTriggerMORE! and this is where the airenemy spawn.
 			current_wave_batches = [current_wave, 1 + current_wave]
 			current_air_wave_batches = [1 + current_wave, 2 + current_wave]
 		current_batch_index = 0
@@ -207,9 +218,8 @@ func trigger_next_phase():
 		current_wave += 1
 		Global.current_wave = current_wave
 		
-		autosave_checkpoint()
-		
 		if current_wave == 2 and not Global.is_continuing:
+			$Player/Label.visible = true
 			open_path_to_zone_2()
 		elif current_wave == 3 and not Global.is_continuing:
 			$scoreLabels.visible = false
@@ -311,7 +321,7 @@ func _on_timer_health_power_up_timeout() -> void:
 func _on_wave_2_zone_trigger_body_entered(body: Node2D) -> void:
 	if body.name == "Player" and current_wave == 2 and not is_spawning:
 		print("Player reached Zone 2 Transition, Starting Wave")
-		
+		$Player/Label.visible = false
 		#Disable the font sign here. with .hide()
 		$Wave2ZoneTrigger.set_deferred("monitoring", false) #for failsafe
 		$"Border Collision/BorderCollisionRight/CollisionShape2D".set_deferred("disabled", false)
@@ -340,21 +350,21 @@ func _on_wave_2_zone_trigger_body_entered(body: Node2D) -> void:
 		await get_tree().create_timer(1.5).timeout
 		position_to_next_wave()
 
-func _input(event: InputEvent) -> void:
-	if event is InputEventKey and event.pressed:
-		if event.keycode == KEY_K:
-			print("SKIP. Next Batch.")
-			for child in get_children():
-				if child is Enemy or child is EnemyAir:
-					if not child.defeat:
-						child.take_damage(999999)
-		elif event.keycode == KEY_T:
-			Global.enemies_passive = !Global.enemies_passive
-			
-			if Global.enemies_passive:
-				print("Enemies stop target player.")
-			else:
-				print("Enemies target player again.")
+#func _input(event: InputEvent) -> void:
+	#if event is InputEventKey and event.pressed:
+		#if event.keycode == KEY_K:
+			#print("SKIP. Next Batch.")
+			#for child in get_children():
+				#if child is Enemy or child is EnemyAir:
+					#if not child.defeat:
+						#child.take_damage(999999)
+		#elif event.keycode == KEY_T:
+			#Global.enemies_passive = !Global.enemies_passive
+			#
+			#if Global.enemies_passive:
+				#print("Enemies stop target player.")
+			#else:
+				#print("Enemies target player again.")
 
 func level_dialogue(json_filename: String) -> void:
 	get_tree().paused = true

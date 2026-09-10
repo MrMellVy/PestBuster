@@ -9,7 +9,9 @@ func enter() -> void:
 	owner.disable_damage()
 	animation_player.stop()
 	
-	animation_player_2.play("defeated")
-	animation_player.play("defeated")
+	print("boss defeated!")
+	var level = owner.get_parent()
+	if level.has_method("_on_boss_fight_won"):
+		level._on_boss_fight_won()
 func  boss_slained():
-	animation_player.play("boss_slained")
+	print("boss defeated!")
