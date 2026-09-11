@@ -1543,7 +1543,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("21_egyys")
 theme_override_font_sizes/font_size = 32
-text = "STORY
+text = "STORY DESIGN
 "
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -1581,7 +1581,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("21_egyys")
 theme_override_font_sizes/font_size = 32
-text = "ASSETS"
+text = "ASSETS DESIGN"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1618,7 +1618,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("21_egyys")
 theme_override_font_sizes/font_size = 32
-text = "CODE"
+text = "PROGRAMMING"
 horizontal_alignment = 1
 vertical_alignment = 1
 
