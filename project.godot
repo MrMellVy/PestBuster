@@ -12,9 +12,11 @@ config_version=5
 
 config/name="Ratroyings"
 config/description="The Rats are attacking the city!? Clean the pests."
-config/version="0.0.0.1"
+config/version="1.0.0.0"
 run/main_scene="uid://dnhdvxp66r0sr"
 config/features=PackedStringArray("4.7", "Forward Plus")
+boot_splash/show_image=false
+boot_splash/use_filter=false
 config/icon="uid://b7r0bk8xre7c"
 
 [audio]

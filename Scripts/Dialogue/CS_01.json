@@ -2,10 +2,10 @@
         {"name": "You", "text": "Phew, there's gone for now.", "face": "SpriteFace_Silence_1"},
         {"name": "You", "text": "Where should i go now?.", "face": "SpriteFace_Silence"},
         {"name": "You", "text": "...", "face": "SpriteFace_Silence"},
-        {"name": "Nashear", "text": "Hey, what you even doing in here?", "face": "SpriteFace_Haha_1"},
+        {"name": "Nashear", "text": "Hey, what you even doing in here?", "face": "CHSpriteFace_What"},
         {"name": "You", "text": "Huh?", "face": "SpriteFace_Hm"},
-        {"name": "Nashear", "text": "You shoudn't be here you know. Rats running around right now.", "face": "SpriteFace_Silence_1"},
-        {"name": "Nashear", "text": "Neither less, follow me to safe place!", "face": "SpriteFace_Silence_1"},
+        {"name": "Nashear", "text": "You shoudn't be here you know. Rats running around right now.", "face": "CHSpriteFace_Silence_1"},
+        {"name": "Nashear", "text": "Neither less, follow me to safe place!", "face": "CHSpriteFace_What"},
         {"name": "You", "text": "Ah, right? Sure.", "face": "SpriteFace_Silence_1"},
 
 ]
