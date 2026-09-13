@@ -25,10 +25,15 @@ func _on_item_selected(index: int) -> void:
 	var new_size = size_values[index]
 	
 	new_size.x = min(new_size.x, screen_size.x)
-	new_size.y = min(new_size.y, screen_size.y)
+	new_size.y = min(new_size.y, screen_size.y - 60)
 
 	get_window().size = new_size
 	get_window().move_to_center()
+	
+	var win = get_window()
+	if win.position.y < 40:
+		win.position.y = 40
+
 	
 func _show_item_selected() -> void:
 	var current_size = get_window().size
