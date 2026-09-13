@@ -8,53 +8,53 @@ The source code in this repository is licensed under the MIT License (see `LICEN
 The following assets were created by the project authors (Rinjusu and Byuji):
 
 - **Character**
-    Nashear (SupportPlayer) - Rinjusu
+    - Nashear (SupportPlayer) - Rinjusu
 
 - **Tilesets (City)**
-    Buildings - Byuji
-    Buildings_2 - Byuji, Rinjusu
-    Car - Byuji, Rinjusu
-    Roads - Rinjusu
-    Roads_crack - Rinjusu
+    - Buildings - Byuji
+    - Buildings_2 - Byuji, Rinjusu
+    - Car - Byuji, Rinjusu
+    - Roads - Rinjusu
+    - Roads_crack - Rinjusu
 
 - **Tilesets (Lab)**
-    item_lab - Byuji, Rinjusu
-    lab_background - Byuji
-    lab_floor - Byuji
-    lab_WallRoom - Rinjusu
+    - item_lab - Byuji, Rinjusu
+    - lab_background - Byuji
+    - lab_floor - Byuji
+    - lab_WallRoom - Rinjusu
 
 - **Enemy**
-    Boss - Byuji
-    tikus (Enemy) - Byuji
-    Mosquito (EnemyAir) - Rinjusu
+    - Boss - Byuji
+    - tikus (Enemy) - Byuji
+    - Mosquito (EnemyAir) - Rinjusu
 
 - **Face Character**
-    PlayerFace - Rinjusu
-    SupportFace - Rinjusu
+    - PlayerFace - Rinjusu
+    - SupportFace - Rinjusu
 
 - **PickUps**
-    PowerUps - Rinjusu
+    - PowerUps - Rinjusu
 
 - **UI**
-    Dialougebox (Boxes) - Rinjusu
-    Progressbar - Rinjusu
-    UI (Other\Tweak) - Rinjusu
-    Retry Menu - Rinjusu
-    Main Menu (ButtonsMenu) - Rinjusu
-    Main Menu (Title) - Byuji
-    Logo - Rinjusu
+    - Dialougebox (Boxes) - Rinjusu
+    - Progressbar - Rinjusu
+    - UI (Other\Tweak) - Rinjusu
+    - Retry Menu - Rinjusu
+    - Main Menu (ButtonsMenu) - Rinjusu
+    - Main Menu (Title) - Byuji
+    - Logo - Rinjusu
 
 - **Background**
-    Day - Rinjusu
+    - Day - Rinjusu
 
 - **Musics**
-    Gameovertheme_2 - Rinjusu
+    - Gameovertheme_2 - Rinjusu
 
 - **SFX**
-    WooshBoss - Rinjusu
-    Hitsound - Rinjusu
-    lmptaudioefek - Rinjusu
-    Gameovertheme - Rinjusu
+    - WooshBoss - Rinjusu
+    - Hitsound - Rinjusu
+    - lmptaudioefek - Rinjusu
+    - Gameovertheme - Rinjusu
 
 
 **All rights reserved.** These assets are not covered by the MIT License and may not be reused, modified, or redistributed without permission from the project authors.
