@@ -1,0 +1,63 @@
+# COMPLETE CREDITS
+
+# SPRITE
+
+|- Character
+    Player - Joe_Idaho
+    Nashear (SupportPlayer) - Rinjusu
+
+|- Tilesets (City)
+    Buildings - Byuji
+    Buildings_2 - Byuji, Rinjusu
+    Car - Byuji, Rinjusu
+    Roads - Rinjusu
+    Roads_crack - Rinjusu
+
+|- Tilesets (Lab)
+    item_lab - Byuji, Rinjusu
+    lab_background - Byuji
+    lab_floor - Byuji
+    lab_WallRoom - Rinjusu
+
+|- Enemy
+    Boss - Byuji
+    tikus (Enemy) - Byuji
+    Mosquito (EnemyAir) - Rinjusu
+
+|- Face Character
+    PlayerFace - Rinjusu
+    SupportFace - Rinjusu
+
+|- PickUps
+    PowerUps - Rinjusu
+
+|- UI
+    Dialougebox (Boxes) - Rinjusu
+    Progressbar - Rinjusu
+    UI (Other\Tweak) - Rinjusu
+    Retry Menu - Rinjusu
+    Main Menu (ButtonsMenu) - Rinjusu
+    Main Menu (Title) - Byuji
+    Logo - Rinjusu
+
+|- Background
+    Day - Rinjusu
+
+# SOUNDS
+
+|- Musics
+    Battle Encounter - Luis Zuno (ansimuz)
+    Cyberpunk-street - Luis Zuno (ansimuz)
+    cyber_runner -  Luis Zuno (ansimuz)
+    Gameovertheme_2 - Rinjusu
+
+|- SFX
+    Sword Whoosh (01,02,04) - Leonardo Calvo (thesoundrack)
+    WooshBoss - Rinjusu
+    Hitsound - Rinjusu
+    lmptaudioefek - Rinjusu
+    Gameovertheme - Rinjusu
+
+# Fonts
+
+|- Ririgitriz - Rinjusu
